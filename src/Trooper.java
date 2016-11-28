@@ -1,6 +1,7 @@
 //Göra en move för alla troopers, eller låta varje trooper ovverrida och göra en egen move?
 
 
+import java.util.Stack;
 
 public class Trooper {
     private int maxhealth;
@@ -8,6 +9,7 @@ public class Trooper {
     private int speed;
     private String direction;
     private Position position = null;
+   // private Stack<Position> visited;
     //private Tile previousTile;
 
     public Trooper(int hp){
