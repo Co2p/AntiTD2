@@ -1,12 +1,12 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
 
 /**
  * Created by Daniel on 2016-11-24.
  */
 public class MenuPanels {
     private JFrame frame;
-    private JTextField textField;
 
     public MenuPanels() {
         frame = new JFrame("Move shoot kill repeat! Zombie Edition");
@@ -16,10 +16,10 @@ public class MenuPanels {
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel upperPanel   = buildUpperPanel();
+        JMenuBar menuBar    = buildMenuBar();
         JPanel middlePanel  = buildMiddlePanel();
 
-        frame.add(upperPanel, BorderLayout.NORTH);
+        frame.add(menuBar, BorderLayout.NORTH);
         frame.add(middlePanel, BorderLayout.CENTER);
 
         frame.pack();
@@ -29,11 +29,17 @@ public class MenuPanels {
         frame.setVisible(true);
     }
 
-    private JPanel buildUpperPanel() {
-        JPanel upperPanel = new JPanel();
-        upperPanel.setBorder(BorderFactory.createTitledBorder("Zombies"));
+    private JMenuBar buildMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
 
-        return upperPanel;
+        JMenu fileMenu = new JMenu("Game");
+        fileMenu.setMnemonic(KeyEvent.VK_F);
+        menuBar.add(fileMenu);
+
+        JMenuItem newMenuItem = new JMenuItem("New", KeyEvent.VK_N);
+        fileMenu.add(newMenuItem);
+
+        return menuBar;
     }
 
     private JPanel buildMiddlePanel() {
