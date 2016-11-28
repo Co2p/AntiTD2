@@ -9,6 +9,10 @@ public class RoadTile extends Tile implements Zone, Observable {
     private Trooper trooper;
     private boolean isGoal = false;
 
+    /**
+     * Constructor for RoadTile
+     * @param p, the position where the tile will be placed.
+     */
     public RoadTile(Position p) {
         super(p);
     }
