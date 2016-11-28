@@ -1,6 +1,3 @@
-/**
- * Created by andreas on 2016-11-28.
- */
 
 public abstract class Tile {
     private Position position;

@@ -1,5 +1,4 @@
 
-
 public class Position {
     private int y;
     private int x;
