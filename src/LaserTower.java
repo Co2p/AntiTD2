@@ -1,10 +1,17 @@
+import java.util.Observable;
+
 /**
- * Created by andreas on 2016-11-30.
+ * Created by gordon on 2016-11-30.
  */
 public class LaserTower extends Tower {
 
-    public LaserTower(int damage, int range){
-        super(damage, range);
+    public LaserTower(TowerTile tile, Tile[] roadtiles) {
+        super(100, 2);
+        tile.setTower(this);
     }
 
+    @Override
+    public int fire() {
+        return damage;
+    }
 }

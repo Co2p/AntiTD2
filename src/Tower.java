@@ -3,10 +3,10 @@ import java.util.Observable;
 import java.util.Observer;
 
 public class Tower implements Observer {
-    private int damage;
-    private int range;
-    private Position pos;
-    private ArrayList<Position> neighbours = new ArrayList<>();
+    protected int damage;
+    protected int range;
+    protected Position pos;
+    protected ArrayList<Position> neighbours = new ArrayList<>();
 
     public Tower(int damage, int range){
         this.damage=damage;
