@@ -23,10 +23,6 @@ public class DOMParser {
     private boolean error = false;
     private  String errorMessage = "";
 
-    public int getLevelCount() {
-        return levelCount;
-    }
-
     private int levelCount;
     private ArrayList<String> levelName = new ArrayList<>();
     private ArrayList<Double> credits = new ArrayList<>();
@@ -188,5 +184,13 @@ public class DOMParser {
      */
     public String getErrorMessage() {
         return errorMessage;
+    }
+
+    /**
+     *
+     * @return The number of levels found in the xml
+     */
+    public int getLevelCount() {
+        return levelCount;
     }
 }
