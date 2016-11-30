@@ -7,7 +7,9 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
+import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ArrayList;
 
@@ -19,7 +21,7 @@ public class DOMParser {
     private DocumentBuilder builder;
     private XPath path;
     private boolean error = false;
-    private  String errorMessage;
+    private  String errorMessage = "";
 
     public int getLevelCount() {
         return levelCount;
@@ -58,13 +60,26 @@ public class DOMParser {
      * @param fileName file name for the xml
      */
     public void parseFile(String fileName) {
-        URL url = getClass().getResource(fileName);
         Document doc = null;
         try {
-            doc = builder.parse(url.openStream());
-        } catch (SAXException | IOException | IllegalArgumentException e) {
+
+            URL url = getClass().getResource(fileName);
+            if(url != null) {
+                File f = new File(url.toURI());
+                if(f.exists() && !f.isDirectory()) {
+                    doc = builder.parse(url.openStream());
+                } else {
+                    errorMessage = "Could not find file: "+fileName;
+                }
+            } else {
+                errorMessage = "Could not find file: "+fileName;
+            }
+
+        } catch (SAXException | IOException | IllegalArgumentException | NullPointerException e) {
             error = true;
-            errorMessage = e.getCause().toString();
+            errorMessage = e.getMessage();
+        } catch (URISyntaxException e) {
+           errorMessage = e.getMessage();
         }
 
         if(doc != null) {
