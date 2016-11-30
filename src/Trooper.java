@@ -78,6 +78,9 @@ public class Trooper {
         return position;
     }
 
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 
     // Återstår att göra.
     /*public void move(){}

@@ -11,7 +11,7 @@ public class RoadTile extends Tile implements Zone, Observable {
 
     /**
      * Constructor for RoadTile
-     * @param p, the position where the tile will be placed.
+     * @param p
      */
     public RoadTile(Position p) {
         super(p);
