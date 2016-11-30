@@ -39,22 +39,22 @@ public class TestTrooper {
     @Test
     public void TestSetDirection(){
         Trooper t = new Trooper(10,1);
-        t.setDirection("South");
-        assertEquals(t.getDirection(), "South");
+        t.setDirection(Direction.SOUTH);
+        assertEquals(Direction.SOUTH, t.getDirection());
     }
 
     @Test
     public void TestSetSpeed(){
         Trooper t = new Trooper(10,1);
         t.setSpeed(2);
-        assertEquals(t.getSpeed(), 2);
+        assertEquals(2, t.getSpeed());
     }
 
     @Test
     public void TestIsDead(){
         Trooper t = new Trooper(10,1);
         t.receiveDamage(10);
-        assertEquals(t.getHealth(), 0);
+        assertEquals(0, t.getHealth());
         assertTrue(t.isDead());
     }
 
