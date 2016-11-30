@@ -1,5 +1,7 @@
+import java.util.Observable;
+import java.util.Observer;
 
-public class Tower {
+public class Tower implements Observer {
     private int damage;
     private int range;
 
@@ -10,5 +12,10 @@ public class Tower {
 
     public int fire(int damage){
         return damage;
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+
     }
 }
