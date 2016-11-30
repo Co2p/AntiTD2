@@ -8,6 +8,9 @@ public class LaserTower extends Tower {
     public LaserTower(TowerTile tile, Tile[] roadtiles) {
         super(100, 2);
         tile.setTower(this);
+        for (Tile road: roadtiles) {
+            road.addObserver(this);
+        }
     }
 
     @Override
