@@ -5,9 +5,12 @@ import javax.swing.*;
  */
 public class main {
     public static void main(String[] args){
-        SwingUtilities.invokeLater(() -> {
-            MenuPanels gui = new MenuPanels();
-            gui.show();
-        });
+        SwingUtilities.invokeLater(new Runnable() {
+
+            @Override
+            public void run() {
+                MenuPanels gui = new MenuPanels();
+                gui.show();
+            }});
     }
 }
