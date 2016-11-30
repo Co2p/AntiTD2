@@ -25,7 +25,7 @@ public class DOMParser {
 
     private int levelCount;
     private ArrayList<String> levelName = new ArrayList<>();
-    private ArrayList<Double> credits = new ArrayList<>();
+    private ArrayList<Long> credits = new ArrayList<>();
     private ArrayList<Integer> unitsToWin = new ArrayList<>();
     private ArrayList<Integer> towerSpawnRate = new ArrayList<>();
     private ArrayList<Integer> timeLimit = new ArrayList<>();
@@ -83,7 +83,7 @@ public class DOMParser {
                 levelCount = Integer.parseInt(path.evaluate("count(/levellist/level)",doc));
                 for (int i = 0; i < levelCount;i++) {
                     levelName.add(i, path.evaluate("/levellist/level["+(i+1)+"]/@name",doc));
-                    credits.add(i,Double.parseDouble(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/credits",doc)));
+                    credits.add(i,Long.parseLong(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/credits",doc)));
                     unitsToWin.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/unitstowin",doc)));
                     towerSpawnRate.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/towerspawnrate",doc)));
                     timeLimit.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/timelimit",doc)));
@@ -118,7 +118,7 @@ public class DOMParser {
      * Returns the start amount of credits.
      * @return credits count.
      */
-    public ArrayList<Double> getCredits() {
+    public ArrayList<Long> getCredits() {
         return credits;
     }
 
