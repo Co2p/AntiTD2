@@ -5,7 +5,7 @@ public class TowerTile extends Tile {
 
     /**
      * Constructor to create a Towertile.
-     * @param p
+     * @param p The Position that the tile will be placed on.
      */
     public TowerTile(Position p){
         super(p);
