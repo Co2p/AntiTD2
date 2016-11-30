@@ -1,12 +1,11 @@
-import java.util.Observable;
 
-public abstract class Tile extends Observable {
+public abstract class Tile {
     private Position position;
     private Boolean occupied = false;
 
     /**
      * Constructor to create a Tile, this will only be used in subclasses.
-     * @param p the postion of the tile on the board
+     * @param p
      */
     public Tile(Position p){
         this.position = p;
