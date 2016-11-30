@@ -7,10 +7,11 @@ public class Trooper {
     private int maxhealth;
     private int health;
     private int speed;
-    private String direction;
+    private Direction direction;
     private Position position = null;
-   // private Stack<Position> visited;
-    //private Tile previousTile;
+    private Stack<Position> visited;
+    private Tile previousTile;
+
 
     public Trooper(int hp){
         this.maxhealth=hp;
@@ -46,11 +47,11 @@ public class Trooper {
         }
     }
 
-    public void setDirection(String direction){
-        this.direction = direction;
+    public void setDirection(Direction d){
+        this.direction = d;
     }
 
-    public String getDirection(){
+    public Direction getDirection(){
         return direction;
     }
 
@@ -82,12 +83,14 @@ public class Trooper {
         this.position = position;
     }
 
-    // Återstår att göra.
-    /*public void move(){}
+    //TODO
+    /*public void move(){
+
+    }
 
     public void reachedGoal(){
         //Set previousTile
-    }
+    }*/
 
     public void setPreviousTile(Tile previousTile) {
         this.previousTile = previousTile;
@@ -96,5 +99,5 @@ public class Trooper {
     public Tile getPreviousTile() {
         return previousTile;
     }
-    */
+
 }
