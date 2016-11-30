@@ -1,3 +1,4 @@
+import java.util.Map;
 
 public class Position {
     private int y;
@@ -63,6 +64,13 @@ public class Position {
         return p;
     }
 
+    public double pythagoras(Position p) {
+        int xVert = Math.abs(p.getX() - x);
+        int yVert = Math.abs(p.getY() - y);
+        double dist = Math.sqrt(Math.pow(xVert, 2) + Math.pow(yVert, 2));
+        return dist;
+    }
+
     /**
      * Get the Position to north of the current Position
      * @return p
@@ -105,8 +113,7 @@ public class Position {
 
         Position position = (Position) o;
 
-        if (y != position.y) return false;
-        return x == position.x;
+        return y == position.y && x == position.x;
     }
 
     /**
