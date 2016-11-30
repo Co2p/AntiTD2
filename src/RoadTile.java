@@ -1,11 +1,8 @@
-import javafx.beans.InvalidationListener;
-import javafx.beans.Observable;
-
 /**
  * A tile that Troopers walk on
  * Created by gordon on 2016-11-28.
  */
-public class RoadTile extends Tile implements Zone, Observable {
+public class RoadTile extends Tile implements Zone {
     private boolean isGoal;
     private Tile portalExit;
 
@@ -34,26 +31,11 @@ public class RoadTile extends Tile implements Zone, Observable {
      */
     @Override
     public void landOn(Trooper t) {
+        setChanged();
         if (t != null) {
-            notifyAll();
+            notifyObservers(t);
         }
     }
-
-    /**
-     * @see Observable
-     */
-    @Override
-    public void addListener(InvalidationListener listener) {}
-
-    /**
-     * @see Observable
-     */
-    @Override
-    public void removeListener(InvalidationListener listener) {}
-
-    public void moveTo() {}
-
-    public void moveFrom() {}
 
     /**
      * Returns true if the tile has a portal on it.
