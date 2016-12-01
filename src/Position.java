@@ -110,6 +110,10 @@ public class Position {
         return getPosToSouth().getPosToWest();
     }
 
+    public boolean outOfRange() {
+        return x < 0 || y < 0;
+    }
+
     /**
      * Compares two Positions
      * @param o Objects to compare
