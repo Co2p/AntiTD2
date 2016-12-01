@@ -51,10 +51,39 @@ public class TestTrooper {
     }
 
     @Test
-    public void TestIsDead(){
+    public void TestTakingFatalDamage(){
         Trooper t = new Trooper(10,1);
-        t.receiveDamage(10);
-        assertEquals(0, t.getHealth());
+        t.receiveDamage(11);
+        t.receiveDamage(11);
+        assertTrue(t.isDead());
+    }
+
+    @Test
+    public void TestIsZombieWithFullHealth(){
+        Trooper t = new Trooper(10,1);
+        t.receiveDamage(11);
+        assertFalse(t.isDead());
+        assertEquals(10,t.getHealth());
+    }
+
+    @Test
+    public void TestArmorSaveHuman(){
+        Trooper t = new Trooper(10,1);
+        t.setArmor(2);
+        t.receiveDamage(11);
+        assertFalse(t.isDead());
+        assertEquals(1,t.getHealth());
+    }
+
+
+    @Test
+    public void TestIsDeadWithArmor(){
+        Trooper t = new Trooper(10,1);
+        t.setArmor(4);
+        t.receiveDamage(20);
+        t.receiveDamage(11);
+        assertEquals(1,t.getHealth());
+        t.receiveDamage(4);
         assertTrue(t.isDead());
     }
 
