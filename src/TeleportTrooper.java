@@ -12,6 +12,11 @@ public class TeleportTrooper extends Trooper{
         this.map = map;
     }
 
+    /**
+     * places a portal on current RoadTile which teleports troopers to a tile
+     * five steps further ahead.
+     * @param preferred -
+     */
     public void placePortal(Direction preferred) {
         RoadTile portalPlacement = (RoadTile) map.get(getPosition());
         int portalsteps = 5;
@@ -20,6 +25,6 @@ public class TeleportTrooper extends Trooper{
         }
         portalPlacement.setPortal(map.get(getPosition()));
     }
-
+    /* TODO override the move method to work with placePortal, and make it possible for the trooper to walk backwards when placing a portal */
 
 }
