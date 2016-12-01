@@ -1,5 +1,8 @@
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Hashtable;
+
 import static junit.framework.TestCase.*;
 
 /**
@@ -11,7 +14,8 @@ public class TestArmy {
 
     @Before
     public void createArmy() {
-        army = new Army();
+        Hashtable temp = new Hashtable();
+        army = new Army(temp);
     }
 
     @Test
@@ -24,5 +28,11 @@ public class TestArmy {
     public void createTeleportTrooper() {
         army.createTrooper(TrooperType.TELEPORTER);
         assertTrue(TeleportTrooper.class.isInstance(army.getFromQueue()));
+    }
+
+    @Test
+    public void createArmoredTrooper() {
+        army.createTrooper(TrooperType.ARMORED);
+        assertTrue(ArmoredTrooper.class.isInstance(army.getFromQueue()));
     }
 }
