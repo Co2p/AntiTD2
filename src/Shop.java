@@ -21,12 +21,19 @@ public class Shop {
 
     public void define(){
         for (int i = 0; i <buttons.length ; i++) {
-            buttons[i] = new Rectangle();
+            buttons[i] = new Rectangle((GamePanel.width/2) - ((noOfButtons*buttonsize)/2) + (buttonsize*i),
+            15, buttonsize, 0);
 
         }
     }
 
     public void draw(Graphics gr){
+
+        for (int i = 0; i < buttons.length ; i++) {
+
+            gr.fillRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height);
+
+        }
 
     }
 
