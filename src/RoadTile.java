@@ -31,6 +31,7 @@ public class RoadTile extends Tile implements Zone {
      */
     @Override
     public void landOn(Trooper t) {
+        //TODO if hasPortal -> move trooper to portal exit tile
         setChanged();
         if (t != null) {
             notifyObservers(t);

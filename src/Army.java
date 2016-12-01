@@ -1,5 +1,5 @@
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.LinkedList;
 
 /**
@@ -10,9 +10,10 @@ public class Army {
     private ArrayList<Trooper> army;
     private LinkedList<Trooper> armyQueue;
     private int reachedGoal = 0;
-    private HashMap<Position, Tile> map;
+    private Hashtable<Position, Tile> map;
+    private Direction preferred;
 
-    public Army (HashMap<Position,Tile> map) {
+    public Army (Hashtable<Position, Tile> map) {
         army = new ArrayList<>();
         armyQueue = new LinkedList<>();
         this.map = map;
@@ -27,7 +28,9 @@ public class Army {
                 armyQueue.add(new TeleportTrooper(75));
                 break;
             case ARMORED:
-                armyQueue.add(new ArmoredTrooper(150,1).setArmor(5));
+                ArmoredTrooper trooper = new ArmoredTrooper(150,1);
+                trooper.setArmor(5);
+                armyQueue.add(trooper);
                 break;
         }
     }
@@ -40,7 +43,7 @@ public class Army {
         army.add(armyQueue.poll());
         for (Trooper trooper: army) {
             if (!trooper.isDead()) {
-                trooper.move(map);
+                trooper.move(map, preferred);
                 if (trooper.reachedGoal()) {
                     army.remove(trooper);
                     reachedGoal++;
@@ -49,5 +52,9 @@ public class Army {
                 army.remove(trooper);
             }
         }
+    }
+
+    public void setPreferred(Direction preferred) {
+        this.preferred = preferred;
     }
 }
