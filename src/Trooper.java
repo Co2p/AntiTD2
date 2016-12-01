@@ -17,6 +17,7 @@ public class Trooper {
     private Direction direction;
     private Position position = null;
     private Stack<Position> visited;
+    private boolean reachedGoal = false;
     private boolean moveEast;
     private boolean moveNorth;
     private boolean moveSouth;
@@ -137,11 +138,12 @@ public class Trooper {
         this.position = position;
     }
 
-    public boolean reachedGoal(Boolean goal){
-        if(goal){
-            return true;
-        }
-        return false;
+    public boolean getReachedGoal(){
+        return reachedGoal;
+    }
+
+    public void setReachedGoal() {
+        reachedGoal = true;
     }
 
 

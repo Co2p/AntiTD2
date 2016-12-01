@@ -44,7 +44,8 @@ public class Army {
         for (Trooper trooper: army) {
             if (!trooper.isDead()) {
                 trooper.move(map, preferred);
-                if (trooper.reachedGoal()) {
+                //don't push
+                if (trooper.getReachedGoal()) {
                     army.remove(trooper);
                     reachedGoal++;
                 }
