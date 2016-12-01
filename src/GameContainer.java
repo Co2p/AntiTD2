@@ -7,7 +7,7 @@ public class GameContainer {
 
     public static int columnCount = 12;   //define number of columns
     public static int rowCount = 8;       //define numer of rows
-    private int squareSize = 50;   //change this to be dynamic (square size)
+    public static int squareSize = 50;   //change this to be dynamic (square size)
 
     private Square[][] backgroundSquares;    //Array containg the ground backgroundSquares
     private Square[][] airSquares;           //Array containing the air backgroundSquares.

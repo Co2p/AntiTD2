@@ -15,6 +15,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];
+    public static Image[] button_images = new Image[10];
+
+    public static Point mousePoint = new Point (0,0);
 
     public static Shop shop;
     public static GameContainer gameContainer;
@@ -32,20 +35,22 @@ public class GamePanel extends JPanel implements Runnable {
                                         "000000000010" ;
 
         public String airString =       "011100000000" +
-                                        "000000000000" +
+                                        "200000000000" +
                                         "000000110000" +
                                         "000000000000" +
                                         "000010000000" +
                                         "000010000000" +
                                         "000010000000" +
-                                        "000000000100" ;
+                                        "000000000130" ;
 
 
     private Thread thread = new Thread(this);//thread that runs the game
    // public static GameBoard gameBoard;    //GameBoard is the game JPanel
     private static boolean isFirst = true; //first time the game opens = true
 
-    public GamePanel(){
+    public GamePanel(JFrame frame){
+
+        frame.addMouseListener(new ClickHandler());
         thread.start();
     }
 
@@ -60,6 +65,12 @@ public class GamePanel extends JPanel implements Runnable {
             square_air[i] = new ImageIcon("res/air.png").getImage();
             square_air[i] = createImage(new FilteredImageSource(
                     square_air[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+        }
+
+        for (int i = 0; i <button_images.length ; i++) {
+            button_images[i] = new ImageIcon("res/buttons.png").getImage();
+            button_images[i] = createImage(new FilteredImageSource(
+                    button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
         }
 
         setupTemporaryMaps();
@@ -82,7 +93,9 @@ public class GamePanel extends JPanel implements Runnable {
             define();   //define the squarearray
             isFirst = false;
         }
-        gr.clearRect(0,0, getWidth(), getHeight());
+
+        gr.setColor(new Color(149, 149, 149));
+        gr.fillRect(0,0, getWidth(), getHeight());
 
         gameContainer.draw(gr);
         shop.draw(gr);

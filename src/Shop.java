@@ -6,37 +6,52 @@ import java.awt.*;
 public class Shop {
 
     public int buttonsize = 50;
-    public int noOfButtons = 6;
+    public static int noOfButtons = 6;
     public int smallSpace = 3;
-    public int LargeSpace = 12;
+    public int largeSpace = 50;
 
-    public Rectangle[] buttons;
+    public ShopButton[] buttons;
 
     public Shop(){
 
-        buttons = new Rectangle[noOfButtons];
+        buttons = new ShopButton[noOfButtons];
         define();
 
     }
 
     public void define(){
+
         for (int i = 0; i <buttons.length ; i++) {
-
-
-            buttons[i] = new Rectangle((GamePanel.width/2) - ((noOfButtons*buttonsize)/2) + (buttonsize*i), 400, buttonsize, buttonsize);
-
-        }
-    }
-
-    public void draw(Graphics gr){
-
-        for (int i = 0; i < buttons.length ; i++) {
-
-            gr.fillRect(buttons[i].x, buttons[i].y, buttons[i].width, buttons[i].height);
-
+            buttons[i] = new ShopButton((GamePanel.width/2) -
+                    ((noOfButtons*buttonsize)/2) -((smallSpace*(buttons.length-1)) /2) + ((buttonsize + smallSpace)*i),
+                    (GameContainer.rowCount * GameContainer.squareSize )
+                            + largeSpace/2, buttonsize , buttonsize, i);
         }
 
     }
 
+
+    //Do something better than just mousebutton
+    public void click(int mouseButton){
+
+        if(mouseButton ==1){
+            for (int i = 0; i <buttons.length ; i++) {
+
+                if(buttons[i].contains(GamePanel.mousePoint)){
+
+                }
+
+            }
+
+        }
+
+    }
+
+    public void draw(Graphics gr) {
+
+        for (int i = 0; i < buttons.length; i++) {
+                buttons[i].draw(gr, i);
+            }
+    }
 
 }
