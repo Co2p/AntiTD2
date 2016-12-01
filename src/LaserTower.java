@@ -5,8 +5,8 @@ import java.util.Observable;
  */
 public class LaserTower extends Tower {
 
-    public LaserTower(TowerTile tile, Tile[] roadtiles) {
-        super(100, 2);
+    public LaserTower(TowerTile tile, Tile[] roadtiles, Position pos) {
+        super(100, 2, pos);
         tile.setTower(this);
         for (Tile road: roadtiles) {
             road.addObserver(this);

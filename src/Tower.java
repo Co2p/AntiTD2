@@ -1,3 +1,5 @@
+import javafx.geometry.Pos;
+
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -16,9 +18,11 @@ public class Tower implements Observer {
      * @param damage tower damage
      * @param range tower range
      */
-    public Tower(int damage, int range){
+    public Tower(int damage, int range, Position pos){
         this.damage=damage;
         this.range=range;    //Ska vi ens ha range?
+        setPos(pos);
+        addNeighbours(range);
     }
 
     /**
@@ -54,21 +58,50 @@ public class Tower implements Observer {
     }
 
     /**
-     *
+     * Adds neighbouring tiles to the neighbours array
+     * @param range the range of the tower
      */
-    public void addNeighbours(){
-        int x= pos.getX();
-        int y = pos.getY();
-        for(int i=1; i<=range; i++){
-            neighbours.add(pos.getPosToNorth());
-            neighbours.add(pos.getPosToEast());
-            neighbours.add(pos.getPosToSouth());
-            neighbours.add(pos.getPosToWest());
-            neighbours.add(pos.getPosToNorthEast());
-            neighbours.add(pos.getPosToNorthWest());
-            neighbours.add(pos.getPosToSouthEast());
-            neighbours.add(pos.getPosToSouthWest());
+    public void addNeighbours(int range) {
+        Position NPos = pos;
+        Position SPos = pos;
+        Position WPos = pos;
+        Position EPos = pos;
+        for(int step = 1; step <= range; step++){
+            NPos = addNeighbour(NPos.getPosToNorth());
+            SPos = addNeighbour(SPos.getPosToSouth());
+            WPos = addNeighbour(WPos.getPosToWest());
+            EPos = addNeighbour(EPos.getPosToEast());
+            Position SWPos = NPos;
+            Position SEPos = NPos;
+            Position NWPos = SPos;
+            Position NEPos = SPos;
+            for (int j = 0; j < step - 1; j++) {
+                SWPos = addNeighbour(SWPos.getPosToSouthWest());
+                SEPos = addNeighbour(SEPos.getPosToSouthEast());
+                NWPos = addNeighbour(NWPos.getPosToNorthWest());
+                NEPos = addNeighbour(NEPos.getPosToNorthEast());
+            }
         }
+        //North South West East * range
+            //for each step in range:
+                //North step range - 1:
+                    //SW
+                    //SE
+                //South step range - 1:
+                    //NW
+                    //NE
+
+    }
+
+    private Position addNeighbour(Position pos) {
+        if (!pos.outOfRange()) {
+            neighbours.add(pos);
+        }
+        return pos;
+    }
+
+    public int getNrofNeighbours() {
+        return neighbours.size();
     }
 
     @Override
@@ -80,7 +113,7 @@ public class Tower implements Observer {
     }
 
     public boolean inRange(Position position) {
-        for(int i =0; i<neighbours.size(); i++){
+        for(int i = 0; i<neighbours.size(); i++){
             if(position.equals(neighbours.get(i))){
                 return true;
             }
