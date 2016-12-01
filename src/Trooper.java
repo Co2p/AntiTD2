@@ -25,6 +25,9 @@ public class Trooper {
         this.speed=speed;
     }
 
+    public Trooper() {
+    }
+
     public void receiveHealth(int addhealth){
         if((this.health + addhealth) >= this.maxhealth){
             this.health=this.maxhealth;
