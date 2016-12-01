@@ -54,6 +54,34 @@ public class Position {
         this.y=j;
     }
 
+    public Position getPosToLeft(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return getPosToWest();
+            case SOUTH:
+                return getPosToEast();
+            case WEST:
+                return getPosToSouth();
+            case EAST:
+                return getPosToNorth();
+        }
+        return this;
+    }
+
+    public Position getPosToRight(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return getPosToEast();
+            case SOUTH:
+                return getPosToWest();
+            case WEST:
+                return getPosToNorth();
+            case EAST:
+                return getPosToSouth();
+        }
+        return this;
+    }
+
     /**
      * Get the Position to south of the current Position.
      * @return p
