@@ -1,4 +1,3 @@
-import java.util.Map;
 
 public class Position {
     private int y;
@@ -54,6 +53,12 @@ public class Position {
         this.y=j;
     }
 
+    /**
+     * Method to get the position to left according to
+     * the direction youre facing.
+     * @param direction
+     * @return Position to the left.
+     */
     public Position getPosToLeft(Direction direction) {
         switch (direction) {
             case NORTH:
@@ -68,6 +73,12 @@ public class Position {
         return this;
     }
 
+    /**
+     * Method to get the position to right according to
+     * the direction youre facing.
+     * @param direction
+     * @return Position to the right.
+     */
     public Position getPosToRight(Direction direction) {
         switch (direction) {
             case NORTH:
@@ -122,22 +133,42 @@ public class Position {
         return p;
     }
 
+    /**
+     * Get the Position to north east of the current Position.
+     * @return p
+     */
     public Position getPosToNorthEast() {
         return getPosToNorth().getPosToEast();
     }
 
+    /**
+     * Get the Position to north west of the current Position.
+     * @return p
+     */
     public Position getPosToNorthWest() {
         return getPosToNorth().getPosToWest();
     }
 
+    /**
+     * Get the Position to south east of the current Position.
+     * @return p
+     */
     public Position getPosToSouthEast() {
         return getPosToSouth().getPosToEast();
     }
 
+    /**
+     * Get the Position to south west of the current Position.
+     * @return p
+     */
     public Position getPosToSouthWest() {
         return getPosToSouth().getPosToWest();
     }
 
+    /**
+     * Method to se if an position is out of range.
+     * @return true if the position is out of rage, false if not.
+     */
     public boolean outOfRange() {
         return x < 0 || y < 0;
     }
@@ -157,6 +188,11 @@ public class Position {
         return y == position.y && x == position.x;
     }
 
+    /**
+     * Method to generate a distance between two positions.
+     * @param p the position to searh from
+     * @return the dinstance between two posiitons.
+     */
     public double distance(Position p) {
         int xVert = Math.abs(p.getX() - x);
         int yVert = Math.abs(p.getY() - y);
