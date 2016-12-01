@@ -60,14 +60,14 @@ public class Tower implements Observer {
         int x= pos.getX();
         int y = pos.getY();
         for(int i=1; i<=range; i++){
-            neighbours.add(new Position(x+i,y+i));
-            neighbours.add(new Position(x,y+i));
-            neighbours.add(new Position(x+i,y));
-            neighbours.add(new Position(x-i,y-i));
-            neighbours.add(new Position(x,y-i));
-            neighbours.add(new Position(x-i,y));
-            neighbours.add(new Position(x+i,y-i));
-            neighbours.add(new Position(x-i,y+i));
+            neighbours.add(pos.getPosToNorth());
+            neighbours.add(pos.getPosToEast());
+            neighbours.add(pos.getPosToSouth());
+            neighbours.add(pos.getPosToWest());
+            neighbours.add(pos.getPosToNorthEast());
+            neighbours.add(pos.getPosToNorthWest());
+            neighbours.add(pos.getPosToSouthEast());
+            neighbours.add(pos.getPosToSouthWest());
         }
     }
 

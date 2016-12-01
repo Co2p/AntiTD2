@@ -9,6 +9,7 @@ import static junit.framework.TestCase.*;
 public class TestParser {
 
     private DOMParser parser;
+    private String xmlFile = "xml/test.xml";
 
     @Before
     public void createParser() {
@@ -82,6 +83,48 @@ public class TestParser {
         assertEquals("Could not find file: notExisting.xml",parser.getErrorMessage());
     }
 
+    @Test
+    public void getLevelNameAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals("Level 1",parser.getLevelName().get(0));
+    }
+
+    @Test
+    public void getCreditsAfterParse() {
+        parser.parseFile(xmlFile);
+        long cred = 1000;
+        assertEquals((Long)cred,parser.getCredits().get(0));
+    }
+
+    @Test
+    public void getUnitsAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals((Integer) 30,parser.getUnitsToWin().get(0));
+    }
+
+    @Test
+    public void getTowersAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals((Integer) 25,parser.getTowerSpawnRate().get(0));
+    }
+
+    @Test
+    public void getTimeAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals((Integer) 2,parser.getTimeLimit().get(0));
+    }
+
+    @Test
+    public void getClassNameAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals("className",parser.getClassName().get(0));
+    }
+
+    @Test
+    public void getClassPathAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals("imhere",parser.getClassPath().get(0));
+    }
 
 
 }

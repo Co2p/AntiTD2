@@ -48,6 +48,9 @@ public class Trooper {
         this.armor = armor;
     }
 
+    public Trooper() {
+    }
+
     public void receiveHealth(int addhealth){
         if(!hasTurned) {
             if ((this.health + addhealth) >= this.maxhealth) {
