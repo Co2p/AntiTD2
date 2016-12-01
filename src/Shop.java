@@ -21,8 +21,9 @@ public class Shop {
 
     public void define(){
         for (int i = 0; i <buttons.length ; i++) {
-            buttons[i] = new Rectangle((GamePanel.width/2) - ((noOfButtons*buttonsize)/2) + (buttonsize*i),
-            15, buttonsize, 0);
+
+
+            buttons[i] = new Rectangle((GamePanel.width/2) - ((noOfButtons*buttonsize)/2) + (buttonsize*i), 400, buttonsize, buttonsize);
 
         }
     }

@@ -82,13 +82,10 @@ public class GamePanel extends JPanel implements Runnable {
             define();   //define the squarearray
             isFirst = false;
         }
-       // gr.clearRect(0,0, getWidth(), getHeight());
+        gr.clearRect(0,0, getWidth(), getHeight());
 
         gameContainer.draw(gr);
         shop.draw(gr);
-
-        //draw(gr);
-
     }
 
 
@@ -118,10 +115,7 @@ public class GamePanel extends JPanel implements Runnable {
                 //Setup the maps with integers 1,0
                 background[x][y] = backgroundString.charAt(((y*GameContainer.columnCount) + x));
                 air[x][y] = airString.charAt(((y*GameContainer.columnCount) + x));
-
             }
         }
     }
-
-
 }
