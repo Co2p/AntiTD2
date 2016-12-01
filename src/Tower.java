@@ -113,11 +113,6 @@ public class Tower implements Observer {
     }
 
     public boolean inRange(Position position) {
-        for(int i = 0; i<neighbours.size(); i++){
-            if(position.equals(neighbours.get(i))){
-                return true;
-            }
-        }
-        return false;
+        return neighbours.contains(position);
     }
 }
