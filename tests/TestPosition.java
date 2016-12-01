@@ -61,8 +61,22 @@ public class TestPosition {
         p = p.getPosToEast();
         x=p.getX();
         y=p.getY();
-        assertEquals(x,1);
-        assertEquals(y,2);
+        assertEquals(1,x);
+        assertEquals(2,y);
+    }
+
+    @Test
+    public void TestDistanceStraight() {
+        Position p1 = new Position(0, 0);
+        Position p2 = new Position(5,0);
+        assertTrue(5 == p1.distance(p2));
+    }
+
+    @Test
+    public void TestDistanceHypotenuse() {
+        Position p1 = new Position(0, 0);
+        Position p2 = new Position(5,5);
+        assertTrue(7.0710678118654755 == p1.distance(p2));
     }
 
     /**

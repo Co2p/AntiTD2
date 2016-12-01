@@ -129,7 +129,7 @@ public class Position {
         return y == position.y && x == position.x;
     }
 
-    public double pythagoras(Position p) {
+    public double distance(Position p) {
         int xVert = Math.abs(p.getX() - x);
         int yVert = Math.abs(p.getY() - y);
         double dist = Math.sqrt(Math.pow(xVert, 2) + Math.pow(yVert, 2));
