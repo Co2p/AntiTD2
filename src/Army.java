@@ -12,6 +12,9 @@ public class Army {
     private int reachedGoal = 0;
     private Hashtable<Position, Tile> map;
     private Direction preferred;
+    private static int TELEPORTERHEALTH = 75;
+    private static int ARMOREDHEALTH = 150;
+
 
     public Army (Hashtable<Position, Tile> map) {
         army = new ArrayList<>();
@@ -19,28 +22,42 @@ public class Army {
         this.map = map;
     }
 
+    /**
+     * Creates a trooper of given type.
+     * @param type enum telling which trooper to create, pitiful, teleporter
+     *             or armored trooper.
+     */
     public void createTrooper(TrooperType type) {
         switch (type) {
             case PITIFUL:
                 armyQueue.add(new PitifulTrooper());
                 break;
             case TELEPORTER:
-                armyQueue.add(new TeleportTrooper(75));
+                armyQueue.add(new TeleportTrooper(TELEPORTERHEALTH,map));
                 break;
             case ARMORED:
-                ArmoredTrooper trooper = new ArmoredTrooper(150,1);
+                ArmoredTrooper trooper = new ArmoredTrooper(ARMOREDHEALTH,1);
                 trooper.setArmor(5);
                 armyQueue.add(trooper);
                 break;
         }
     }
 
+    /**
+     * Retrieves the trooper in front of the queue.
+     * @return returns a trooper from the queue
+     */
     public Trooper getFromQueue() {
         return armyQueue.poll();
     }
 
+    /**
+     * Will take a newly created trooper from the queue and add it to the list
+     * of active troopers, then it will move each trooper if they are alive and
+     * check if they reach goal.
+     */
     public void updateArmy() {
-        army.add(armyQueue.poll());
+        army.add(getFromQueue());
         for (Trooper trooper: army) {
             if (!trooper.isDead()) {
                 trooper.move(map, preferred);
@@ -55,6 +72,11 @@ public class Army {
         }
     }
 
+    /**
+     * Sets the preferred direction for the army to move,
+     * @param preferred enum telling the army if they should try to move left
+     *                  or right before anything else.
+     */
     public void setPreferred(Direction preferred) {
         this.preferred = preferred;
     }
