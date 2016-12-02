@@ -27,4 +27,8 @@ public abstract class Tile extends Observable {
     private void setOccupied(boolean b){
         occupied = b;
     }
+
+    public Position getPosition() {
+        return position;
+    }
 }
