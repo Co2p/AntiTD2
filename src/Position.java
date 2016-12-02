@@ -54,6 +54,25 @@ public class Position {
     }
 
     /**
+     * Converts Direction into Position
+     * @param direction the direction of travel
+     * @return the position
+     */
+    public Position getPosToDirection(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return getPosToNorth();
+            case SOUTH:
+                return getPosToSouth();
+            case WEST:
+                return getPosToWest();
+            case EAST:
+                return getPosToEast();
+        }
+        return this;
+    }
+
+    /**
      * Method to get the position to left according to
      * the direction youre facing.
      * @param direction
