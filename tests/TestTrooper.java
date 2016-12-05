@@ -15,7 +15,7 @@ public class TestTrooper {
     public void TestCreateTrooperOnlyHp(){
         Trooper t = new Trooper(10);
         assertEquals(t.getHealth(),10);
-        assertEquals(t.getSpeed(), 1);
+        assertEquals(t.getSpeed(), 2);
     }
 
     @Test
