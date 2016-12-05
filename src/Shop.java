@@ -31,7 +31,7 @@ public class Shop {
             buttons[i] = new ShopButton((GamePanel.width/2) -
                     ((noOfButtons*buttonsize)/2) -((smallSpace*(buttons.length-1)) /2) + ((buttonsize + smallSpace)*i),
                     (GameContainer.rowCount * GameContainer.squareSize )
-                            + largeSpace/2, buttonsize , buttonsize, i);
+                            + largeSpace, buttonsize , buttonsize, i);
         }
 
     }

@@ -1,13 +1,13 @@
 import java.awt.*;
 
 /**
-<<<<<<<<< Temporary merge branch 1
  * Created by Simon on 2016-12-01.
  */
 public class ShopButton extends Rectangle{
 
         public int id;
         public int x, y;
+        public static int height, width;
 
 
         public ShopButton(int x, int y, int width, int height, int id){
@@ -15,6 +15,9 @@ public class ShopButton extends Rectangle{
             this.id = id;
             this.x = x;
             this.y = y;
+            this.height = height;
+            this.width = width;
+            System.out.println(x + "<- X : Y -> " + y );
         }
 
 
@@ -28,25 +31,4 @@ public class ShopButton extends Rectangle{
                 gr.drawImage(GamePanel.button_images[id],x, y, null);
         }
 
-=========
- * Created by Daniel on 2016-12-05.
- */
-public class ShopButton extends Rectangle {
-    public int id;
-    public int x, y;
-
-
-    public ShopButton(int x, int y, int width, int height, int id){
-        setBounds(x,y,width,height);
-        this.id = id;
-        this.x = x;
-        this.y = y;
-    }
-
-
-    public void draw(Graphics gr, int i){
-
-        gr.drawImage(GamePanel.button_images[id],x, y, null);
-    }
->>>>>>>>> Temporary merge branch 2
 }
