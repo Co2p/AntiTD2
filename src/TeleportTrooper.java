@@ -22,9 +22,11 @@ public class TeleportTrooper extends Trooper{
         int portalsteps = 5;
         for(int i = 0; i < portalsteps; i++) {
             move(map,preferred);
+            if (isReverse()) {
+                i--;
+            }
         }
         portalPlacement.setPortal(map.get(getPosition()));
     }
-    /* TODO override the move method to work with placePortal, and make it possible for the trooper to walk backwards when placing a portal */
 
 }

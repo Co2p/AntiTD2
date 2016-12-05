@@ -1,10 +1,15 @@
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+
 /**
  * A tile that Troopers walk on
  * Created by gordon on 2016-11-28.
  */
 public class RoadTile extends Tile implements Zone {
     private boolean isGoal;
-    private Tile portalExit;
+    private RoadTile portalExit = null;
+    private Object landOnModifier = null;
+    private Method landOnMethod = null;
 
     /**
      * Constructor for RoadTile
@@ -31,10 +36,23 @@ public class RoadTile extends Tile implements Zone {
      */
     @Override
     public void landOn(Trooper t) {
-        //TODO if hasPortal -> move trooper to portal exit tile
-        setChanged();
-        if (t != null) {
-            notifyObservers(t);
+        if (isGoal) {
+            t.setReachedGoal();
+        } else if(portalExit != null) {
+            t.setPosition(portalExit.getPosition());
+            portalExit.landOn(t);
+        } else {
+            setChanged();
+            if (t != null) {
+                notifyObservers(t);
+            }
+            try {
+                landOnMethod.invoke(landOnModifier,t);
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -50,7 +68,7 @@ public class RoadTile extends Tile implements Zone {
      * Sets a portal on the tile
      * @param t the tile where the portal exits
      */
-    public void setPortal(Tile t) {
+    public void setPortal(RoadTile t) {
         portalExit = t;
     }
 

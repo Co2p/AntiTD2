@@ -60,7 +60,8 @@ public class Army {
         army.add(getFromQueue());
         for (Trooper trooper: army) {
             if (!trooper.isDead()) {
-                trooper.move(map, preferred);
+                RoadTile road = trooper.move(map, preferred);
+                road.landOn(trooper);
                 if (trooper.getReachedGoal()) {
                     army.remove(trooper);
                     reachedGoal++;
