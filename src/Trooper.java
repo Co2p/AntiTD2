@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
 
@@ -12,7 +13,9 @@ public class Trooper {
     private boolean isDead = false;
     private Direction direction;
     private Position position = null;
-    private Stack<Position> visited;
+    private Stack<Position> path = new Stack<>();
+    private ArrayList<Position> visited = new ArrayList<>();
+    private boolean reverse = false;
     private boolean reachedGoal = false;
 
     /**
@@ -196,6 +199,10 @@ public class Trooper {
         reachedGoal = true;
     }
 
+    public boolean isReverse() {
+        return reverse;
+    }
+
     /**
      * Takes in a Hashtable of positions and returns a table containing possible tiles to move to
      * @param map_hashTable a table of tiles (a map)
@@ -223,45 +230,60 @@ public class Trooper {
     }
 
     //TODO !
-    private Position backTrace(){
-        return new Position();
-    }
+//    private void backTrace(Hashtable<Position,RoadTile> possibleMovesTable){
+//        path.pop();
+//        position = path.peek();
+//        RoadTile road = possibleMovesTable.get(position);
+//        road.landOn(this);
+//    }
 
     /**
      * Finds the next tile to move to and calls landOn for that tile
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */
-    public void move(Hashtable<Position, Tile> map_hashTable, Direction preferred){
+    public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred){
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
-
+        path.add(position);
+        visited.add(position);
         if (preferred == direction &&
                 possibleMovesTable.containsKey(position.getPosToDirection(direction)) &&
                 !visited.contains(position.getPosToDirection(direction))){
             nextPosition = position.getPosToDirection(direction);
+            reverse = false;
 
         } else if(preferred == Direction.RIGHT &&
                 possibleMovesTable.containsKey(position.getPosToRight(direction)) &&
                 !visited.contains(position.getPosToRight(direction))){
             nextPosition = position.getPosToRight(direction);
+            reverse = false;
         }
         else if (preferred == Direction.LEFT &&
                 possibleMovesTable.containsKey(position.getPosToLeft(direction)) &&
                 !visited.contains(position.getPosToRight(direction))){
             nextPosition = position.getPosToLeft(direction);
+            reverse = false;
         }
         else {
             nextPosition = getDefaultNextPosition(possibleMovesTable, direction);
+            if (visited.contains(nextPosition)) {
+                nextPosition = null;
+            }
+            reverse = false;
         }
 
         if(nextPosition == null) {
-            nextPosition = backTrace();
+            reverse = true;
+            path.pop();
+            position = path.peek();
+            nextPosition = position;
+//            backTrace(possibleMovesTable);
         }
         RoadTile t = possibleMovesTable.get(nextPosition);
-        visited.add(position);
         setPosition(nextPosition);
-        t.landOn(this);
+        return t;
+//        t.landOn(this);
     }
 
     /**
