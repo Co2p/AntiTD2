@@ -24,6 +24,8 @@ public class Lobby {
         mainFrame = new JFrame();
         mainFrame.setSize(500,400);
         buildNamePanel();
+        mainFrame.addMouseListener(new ClickHandler());
+        mainFrame.addMouseMotionListener(new ClickHandler());
     }
 
     public void showGUI() {

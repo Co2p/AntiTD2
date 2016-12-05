@@ -49,12 +49,7 @@ public class GamePanel extends JPanel implements Runnable {
    // public static GameBoard gameBoard;    //GameBoard is the game JPanel
     private static boolean isFirst = true; //first time the game opens = true
 
-    public GamePanel(JFrame frame){
-
-        this.frame = frame;
-        this.frame.addMouseListener(new ClickHandler());
-        this.frame.addMouseMotionListener(new ClickHandler());
-
+    public GamePanel(){
         thread.start();
     }
 

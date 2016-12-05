@@ -1,4 +1,3 @@
-<<<<<<<<< Temporary merge branch 1
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -20,6 +19,7 @@ public class ClickHandler extends MouseAdapter {
 
         //call the clickmethod inside the shop
         GamePanel.shop.click(e.getButton());
+        
 
         System.out.println(GamePanel.mousePoint);
     }
@@ -45,12 +45,4 @@ public class ClickHandler extends MouseAdapter {
         //find out where the mouse is on screen.
         GamePanel.mousePoint = new Point(e.getX(), e.getY() - ShopButton.height/2);
     }
-=========
-/**
- * Created by Daniel on 2016-12-05.
- */
-public class ClickHandler {
-
-
->>>>>>>>> Temporary merge branch 2
 }
