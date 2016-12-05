@@ -4,13 +4,19 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 
 /**
-<<<<<<< HEAD
- * Created by Daniel on 2016-12-05.
+<<<<<<<<< Temporary merge branch 1
+ * Created by Simon on 2016-11-30.
+ *
+ * Contains the game board. extends the JPanel
  */
-
 public class GamePanel extends JPanel implements Runnable {
 
 
+=========
+ * Created by Daniel on 2016-12-05.
+ */
+public class GamePanel extends JPanel implements Runnable{
+>>>>>>>>> Temporary merge branch 2
     public static int width, height;
 
     public static Image[] square_material = new Image[50];
@@ -26,6 +32,34 @@ public class GamePanel extends JPanel implements Runnable {
     public static Character[][] background;
     public static Character[][] air;
     public String backgroundString =    "000000000000" +
+<<<<<<<<< Temporary merge branch 1
+                                        "111111111110" +
+                                        "000000000010" +
+                                        "000000000010" +
+                                        "000001111110" +
+                                        "000001000010" +
+                                        "000001111010" +
+                                        "000000000010" ;
+
+        public String airString =       "011100000000" +
+                                        "200000000000" +
+                                        "000000110000" +
+                                        "000000000000" +
+                                        "000010000000" +
+                                        "000010000000" +
+                                        "000010000000" +
+                                        "000000000130" ;
+
+
+    private Thread thread = new Thread(this);//thread that runs the game
+   // public static GameBoard gameBoard;    //GameBoard is the game JPanel
+    private static boolean isFirst = true; //first time the game opens = true
+
+    public GamePanel(JFrame frame){
+
+        frame.addMouseListener(new ClickHandler());
+        frame.addMouseMotionListener(new ClickHandler());
+=========
             "111111111110" +
             "000000000010" +
             "000000000010" +
@@ -49,6 +83,8 @@ public class GamePanel extends JPanel implements Runnable {
     private static boolean isFirst = true; //first time the game opens = true
 
     public GamePanel(){
+>>>>>>>>> Temporary merge branch 2
+
         thread.start();
     }
 
@@ -92,6 +128,10 @@ public class GamePanel extends JPanel implements Runnable {
             isFirst = false;
         }
 
+<<<<<<<<< Temporary merge branch 1
+        //set background color to gray
+=========
+>>>>>>>>> Temporary merge branch 2
         gr.setColor(new Color(149, 149, 149));
         gr.fillRect(0,0, getWidth(), getHeight());
 
