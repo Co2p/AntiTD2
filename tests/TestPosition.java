@@ -36,6 +36,18 @@ public class TestPosition {
     }
 
     /**
+     *
+     */
+    @Test
+    public void testGetPosToDirection() {
+        Position p = new Position(1, 1);
+        assertEquals(new Position(2,1), p.getPosToDirection(Direction.SOUTH));
+        assertEquals(new Position(0,1), p.getPosToDirection(Direction.NORTH));
+        assertEquals(new Position(1,0), p.getPosToDirection(Direction.WEST));
+        assertEquals(new Position(1,2), p.getPosToDirection(Direction.EAST));
+    }
+
+    /**
      * Test so getPosToWest gives the west position.
      */
     @Test
@@ -73,7 +85,7 @@ public class TestPosition {
     }
 
     @Test
-    public void TestDistanceHypotenuse() {
+    public void TestDistance() {
         Position p1 = new Position(0, 0);
         Position p2 = new Position(5,5);
         assertTrue(7.0710678118654755 == p1.distance(p2));
