@@ -1,7 +1,3 @@
-
-
-import javafx.geometry.Pos;
-
 import java.util.Hashtable;
 import java.util.Stack;
 
