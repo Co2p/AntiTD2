@@ -1,5 +1,3 @@
-
-
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
@@ -88,7 +86,7 @@ public class Trooper {
     }
 
     /**
-     * Receive damage (deduct from  health
+     * Receive damage (deduct from  health)
      * @param removeHealth amount of damage to the trooper
      */
     public void receiveDamage(int removeHealth){
@@ -210,7 +208,7 @@ public class Trooper {
      * @param map_hashTable a table of tiles (a map)
      * @return a map of neighbouring roadtiles
      */
-    private Hashtable<Position,RoadTile> getPossibleMoves(Hashtable<Position,Tile> map_hashTable){
+    public Hashtable<Position,RoadTile> getPossibleMoves(Hashtable<Position,Tile> map_hashTable){
         Hashtable<Position,RoadTile> possibleMovesTable = new Hashtable<>();
         Position keyPos = position.getPosToEast();
         if (RoadTile.class.isInstance(map_hashTable.get(keyPos))) {
