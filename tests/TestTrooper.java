@@ -1,8 +1,13 @@
 import org.junit.Test;
 
+import java.util.Hashtable;
+
 import static junit.framework.TestCase.*;
 
 public class TestTrooper {
+    Hashtable<Position, Tile> map = new Hashtable<>();
+    PitifulTrooper pt;
+
 
     @Test
     public void TestCreateTrooper(){
@@ -100,10 +105,35 @@ public class TestTrooper {
         assertNull(t.getPosition());
     }
 
-    //Återstår att göra.
-    /*@Test
-    public void TestPreviosTile(){
-        Trooper t = new Trooper(10);
+    private void makeMap() {
+        Position p1 = new Position(0,1);
+        RoadTile rt1 = new RoadTile(p1 , false);
+        Position p2 = new Position(1,1);
+        RoadTile rt2 = new RoadTile(p2 ,false);
+        Position p3 = new Position(2,1);
+        RoadTile rt3 = new RoadTile(p3 , false);
+        Position p4 = new Position(3,2);
+        RoadTile rt4 = new RoadTile(p4, true);
+        map.put(p1, rt1);
+        map.put(p2, rt2);
+        map.put(p3, rt3);
+        map.put(p4, rt4);
+    }
 
-    }*/
+    @Test
+    public void TestTrooperGetPossibleMoves() {
+        pt = new PitifulTrooper();
+        makeMap();
+        Hashtable<Position, RoadTile> pm = pt.getPossibleMoves(map);
+        assertEquals(1, pm.size());
+    }
+
+    @Test
+    public void testMove() {
+        pt = new PitifulTrooper();
+        pt.setPosition(new Position(0,1));
+        makeMap();
+        RoadTile rt = pt.move(map, Direction.NORTH);
+        assertEquals(new Position(1,1), rt.getPosition());
+    }
 }
