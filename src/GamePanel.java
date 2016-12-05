@@ -51,6 +51,8 @@ public class GamePanel extends JPanel implements Runnable {
     public GamePanel(JFrame frame){
 
         frame.addMouseListener(new ClickHandler());
+        frame.addMouseMotionListener(new ClickHandler());
+
         thread.start();
     }
 
@@ -94,6 +96,7 @@ public class GamePanel extends JPanel implements Runnable {
             isFirst = false;
         }
 
+        //set background color to gray
         gr.setColor(new Color(149, 149, 149));
         gr.fillRect(0,0, getWidth(), getHeight());
 
