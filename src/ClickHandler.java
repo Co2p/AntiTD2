@@ -41,11 +41,6 @@ public class ClickHandler extends MouseAdapter {
     }
 
     @Override
-    public void mouseDragged(MouseEvent e) {
-
-    }
-
-    @Override
     public void mouseMoved(MouseEvent e) {
 
         //find out where the mouse is on screen.
