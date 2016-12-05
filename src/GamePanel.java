@@ -27,7 +27,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     //This is just a test string for the map
 
-
     public static int[][]background;
     public static int[][]air;
 
