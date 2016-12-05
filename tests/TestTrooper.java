@@ -123,6 +123,7 @@ public class TestTrooper {
     @Test
     public void TestTrooperGetPossibleMoves() {
         pt = new PitifulTrooper();
+        pt.setPosition(new Position(0,1));
         makeMap();
         Hashtable<Position, RoadTile> pm = pt.getPossibleMoves(map);
         assertEquals(1, pm.size());
