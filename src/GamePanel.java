@@ -21,6 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static Point mousePoint = new Point (0,0);
 
     public static Shop shop;
+    public static Shop stats;
     public static GameContainer gameContainer;
 
     //This is just a test string for the map
@@ -44,12 +45,14 @@ public class GamePanel extends JPanel implements Runnable {
                                         "000010000000" +
                                         "000000000130" ;
 
+    private Level level;
 
     private Thread thread = new Thread(this);//thread that runs the game
    // public static GameBoard gameBoard;    //GameBoard is the game JPanel
     private static boolean isFirst = true; //first time the game opens = true
 
-    public GamePanel(){
+    public GamePanel(Level level){
+        this.level = level;
         thread.start();
     }
 
@@ -81,7 +84,8 @@ public class GamePanel extends JPanel implements Runnable {
         width = getWidth();
         height = getHeight();
         setupImages();
-        shop = new Shop();
+        //noOfButtons, noOfStats
+        shop = new Shop(8);
         gameContainer = new GameContainer();
     }
 
