@@ -19,7 +19,7 @@ public class GameContainer {
 
     public void define(){
 
-        backgroundSquares = new Square[columnCount][rowCount];    //Setup the square array
+        backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
         airSquares = new Square[columnCount][rowCount];    //Setup the square array
 
         for (int y = 0; y < backgroundSquares[0].length ; y++) {

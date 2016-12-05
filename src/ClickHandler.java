@@ -13,7 +13,6 @@ import java.awt.event.MouseEvent;
 public class ClickHandler extends MouseAdapter {
 
 
-
     @Override
     public void mousePressed(MouseEvent e) {
 
@@ -24,23 +23,7 @@ public class ClickHandler extends MouseAdapter {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
     public void mouseMoved(MouseEvent e) {
-
         //find out where the mouse is on screen.
         GamePanel.mousePoint = new Point(e.getX(), e.getY() - ShopButton.height/2);
     }
