@@ -100,17 +100,6 @@ public class TestTrooper {
         assertNull(t.getPosition());
     }
 
-    @Test
-    public void TestTrooperMoveTo(){
-        Position p = new Position(1,2);
-        Trooper t = new Trooper(10);
-        t.moveTo(p);
-        Position p2 = new Position(10,11);
-        t.moveTo(p2);
-        assertEquals(t.getPosition().getX(),10);
-        assertEquals(t.getPosition().getY(),11);
-    }
-
     //Återstår att göra.
     /*@Test
     public void TestPreviosTile(){
