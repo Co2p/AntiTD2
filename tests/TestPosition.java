@@ -85,7 +85,7 @@ public class TestPosition {
     }
 
     @Test
-    public void TestDistanceHypotenuse() {
+    public void TestDistance() {
         Position p1 = new Position(0, 0);
         Position p2 = new Position(5,5);
         assertTrue(7.0710678118654755 == p1.distance(p2));
