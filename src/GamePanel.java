@@ -16,6 +16,7 @@ public class GamePanel extends JPanel implements Runnable {
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];
     public static Image[] button_images = new Image[10];
+    public static Frame frame;
 
     public static Point mousePoint = new Point (0,0);
 
@@ -50,8 +51,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GamePanel(JFrame frame){
 
-        frame.addMouseListener(new ClickHandler());
-        frame.addMouseMotionListener(new ClickHandler());
+        this.frame = frame;
+        this.frame.addMouseListener(new ClickHandler());
+        this.frame.addMouseMotionListener(new ClickHandler());
 
         thread.start();
     }
