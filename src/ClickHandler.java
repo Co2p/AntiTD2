@@ -1,24 +1,26 @@
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
 
 /**
  * Created by Simon on 2016-12-01.
+ *
+ * The mouseAdapter interface lets class use only some of the methods
+ * in the mouseclick event handler. Some methods like " Mouse released " might
+ * not be used, and is therefor redundant to declare.
+ * remove unused methods before export.
  */
-public class ClickHandler implements MouseListener , MouseMotionListener{
+public class ClickHandler extends MouseAdapter {
 
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-
-    }
 
     @Override
     public void mousePressed(MouseEvent e) {
     GamePanel.shop.click(e.getButton());
 
         System.out.println("Button clicked");
+
+        GamePanel.mousePoint = new Point(e.getX(), e.getY());
 
         System.out.println(GamePanel.mousePoint);
     }
