@@ -1,9 +1,20 @@
 import java.awt.*;
 
 /**
+<<<<<<< HEAD
  * Created by Daniel on 2016-12-05.
  */
 public class Square extends Rectangle{
+=======
+ * Created by Simon on 2016-11-30.
+ *
+ * this class defines how a square on the gameboard looks for the player.
+ */
+
+
+public class Square extends Rectangle {
+
+>>>>>>> clickHandler
     public int id;
 
     public Square(int x, int y, int width, int height, int id){
@@ -13,7 +24,11 @@ public class Square extends Rectangle{
 
     public void drawBackground(Graphics gr, int indexX, int indexY){
         gr.drawImage(GamePanel.square_material[
+<<<<<<< HEAD
                         Character.getNumericValue(GamePanel.background[indexX][indexY])]
+=======
+                Character.getNumericValue(GamePanel.background[indexX][indexY])]
+>>>>>>> clickHandler
                 , x,y, width, height, null);
         //gr.drawRect(x,y,width,height);
     }
@@ -26,4 +41,8 @@ public class Square extends Rectangle{
                 , x,y, width, height, null);
         //gr.drawRect(x,y,width,height);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> clickHandler
 }

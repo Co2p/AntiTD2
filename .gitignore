@@ -1,4 +1,8 @@
 
 *.iml
 .idea/*
+<<<<<<< HEAD
 out/*
+=======
+ out/*
+>>>>>>> clickHandler

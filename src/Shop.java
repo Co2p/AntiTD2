@@ -1,9 +1,16 @@
 import java.awt.*;
 
 /**
+<<<<<<< HEAD
  * Created by Daniel on 2016-12-05.
  */
 public class Shop {
+=======
+ * Created by Simon on 2016-12-01.
+ */
+public class Shop {
+
+>>>>>>> clickHandler
     public int buttonsize = 50;
     public static int noOfButtons = 6;
     public int smallSpace = 3;
@@ -30,7 +37,11 @@ public class Shop {
     }
 
 
+<<<<<<< HEAD
     //Do something better than just mousebutton
+=======
+    //Do something better than just mouse button (left click)
+>>>>>>> clickHandler
     public void click(int mouseButton){
 
         if(mouseButton ==1){
@@ -38,6 +49,11 @@ public class Shop {
 
                 if(buttons[i].contains(GamePanel.mousePoint)){
 
+<<<<<<< HEAD
+=======
+                    int j = i +1;
+                    System.out.println("this is Button: " + j);
+>>>>>>> clickHandler
                 }
 
             }
@@ -48,8 +64,22 @@ public class Shop {
 
     public void draw(Graphics gr) {
 
+<<<<<<< HEAD
         for (int i = 0; i < buttons.length; i++) {
             buttons[i].draw(gr, i);
         }
     }
+=======
+
+        for (int i = 0; i < buttons.length; i++) {
+
+            if(buttons[i].contains(GamePanel.mousePoint)){
+                gr.setColor(Color.red);
+                gr.fillRect(buttons[i].x, buttons[i].y, buttons[i].height, buttons[i].width);
+            }
+                buttons[i].draw(gr, i);
+            }
+    }
+
+>>>>>>> clickHandler
 }
