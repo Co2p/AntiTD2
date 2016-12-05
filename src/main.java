@@ -9,8 +9,10 @@ public class main {
 
             @Override
             public void run() {
-                MenuPanels gui = new MenuPanels();
+
+                Gui gui = new Gui();
                 gui.show();
+
             }});
     }
 }
