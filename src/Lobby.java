@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -11,18 +12,19 @@ public class Lobby {
     private JFrame mainFrame;
     private JPanel enterNamePanel;
     private JPanel selectLevelPanel;
-    private ArrayList levels;
     public Player player;
     public GamePanel gamePanel;
+    private ArrayList<Level> levelArray;
+    private int levelCounter = 0;
 
-    public Lobby(ArrayList levels) {
-        this.levels = levels;
+    public Lobby(ArrayList<Level> levelArray) {
+        this.levelArray = levelArray;
         setUpGUI();
     }
 
     private void setUpGUI() {
         mainFrame = new JFrame();
-        mainFrame.setSize(500,400);
+        mainFrame.setSize(1080,720);
         buildNamePanel();
         mainFrame.addMouseListener(new ClickHandler());
         mainFrame.addMouseMotionListener(new ClickHandler());
@@ -58,7 +60,7 @@ public class Lobby {
         + player.getName());
 
         int noOfLevels = 0;
-        for (int i = 0; i < levels.size(); i++) {
+        for (int i = 0; i < levelArray.size(); i++) {
             noOfLevels++;
             JButton levelButton = new JButton("Level " + noOfLevels);
             selectLevelPanel.add(levelButton);
@@ -76,7 +78,8 @@ public class Lobby {
 
     private void buildGamePanel() {
         selectLevelPanel.setVisible(false);
-        gamePanel = new GamePanel();
-        mainFrame.add(gamePanel);
+        gamePanel = new GamePanel(levelArray.get(levelCounter));
+        levelCounter++;
+        mainFrame.add(gamePanel, BorderLayout.CENTER);
     }
 }

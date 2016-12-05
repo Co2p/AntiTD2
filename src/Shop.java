@@ -5,21 +5,25 @@ import java.awt.*;
  */
 public class Shop {
 
-    public int buttonsize = 50;
-    public static int noOfButtons = 6;
-    public int smallSpace = 3;
-    public int largeSpace = 50;
+    private int buttonsize = 50;
+    private int noOfButtons = 0;
+    private int smallSpace = 3;
+    private int largeSpace = 50;
+
+    private int noOfStats = 0;
+    private int statsSize = 30;
 
     public ShopButton[] buttons;
 
-    public Shop(){
+    public Shop(int noOfButtons){
 
+        this.noOfButtons = noOfButtons;
         buttons = new ShopButton[noOfButtons];
-        define();
 
+        define();
     }
 
-    public void define(){
+    private void define(){
 
         for (int i = 0; i <buttons.length ; i++) {
             buttons[i] = new ShopButton((GamePanel.width/2) -
@@ -27,9 +31,7 @@ public class Shop {
                     (GameContainer.rowCount * GameContainer.squareSize )
                             + largeSpace, buttonsize , buttonsize, i);
         }
-
     }
-
 
     //Do something better than just mouse button (left click)
     public void click(int mouseButton){
@@ -42,14 +44,12 @@ public class Shop {
                     int j = i +1;
                     System.out.println("this is Button: " + j);
                 }
-
             }
-
         }
-
     }
 
     public void draw(Graphics gr) {
+
 
 
         for (int i = 0; i < buttons.length; i++) {
