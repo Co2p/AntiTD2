@@ -45,7 +45,7 @@ public class GamePanel extends JPanel implements Runnable {
 
    // public static Character[][] background;
    // public static Character[][] air;
-   
+
     public String backgroundString =    "000000000000" +
                                         "111111111110" +
                                         "000000000010" +
@@ -152,9 +152,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         for (int y = 0; y < background[0].length ; y++) {
             for (int x = 0; x < background.length ; x++) {
-
-                System.out.println(mapString.charAt(((y*GameContainer.columnCount) + x)));
-
                 if(mapString.charAt(((y*GameContainer.columnCount) + x) )
                         == Translator.mapGrass.charAt(0)){
                     background[x][y] = Translator.squareGrass;
