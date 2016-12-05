@@ -19,6 +19,7 @@ public class ClickHandler extends MouseAdapter {
 
         //call the clickmethod inside the shop
         GamePanel.shop.click(e.getButton());
+        
 
         GamePanel.mousePoint = new Point(e.getX(), e.getY());
         System.out.println(GamePanel.mousePoint);
