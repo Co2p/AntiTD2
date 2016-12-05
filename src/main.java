@@ -6,7 +6,7 @@ import java.util.ArrayList;
  */
 public class main {
 
-    public static void main(String[] args ){
+    public static void main(String[] args ) {
         ArrayList levels = new ArrayList();
         levels.add(1);
         levels.add(2);
@@ -15,6 +15,5 @@ public class main {
             Lobby lobby = new Lobby(levels);
             lobby.showGUI();
         });
-
     }
 }

@@ -1,8 +1,11 @@
 import java.awt.*;
 
 /**
- * Created by Daniel on 2016-12-05.
+ * Created by Simon on 2016-11-30.
+ *
+ * this class defines how a square on the gameboard looks for the player.
  */
+
 public class Square extends Rectangle{
     public int id;
 

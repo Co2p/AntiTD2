@@ -4,9 +4,13 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 
 /**
+<<<<<<< HEAD
  * Created by Daniel on 2016-12-05.
  */
-public class GamePanel extends JPanel implements Runnable{
+
+public class GamePanel extends JPanel implements Runnable {
+
+
     public static int width, height;
 
     public static Image[] square_material = new Image[50];
@@ -45,7 +49,6 @@ public class GamePanel extends JPanel implements Runnable{
     private static boolean isFirst = true; //first time the game opens = true
 
     public GamePanel(){
-
         thread.start();
     }
 
