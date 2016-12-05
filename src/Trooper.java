@@ -83,7 +83,7 @@ public class Trooper {
     }
 
     /**
-     * Receive damage (deduct from  health
+     * Receive damage (deduct from  health)
      * @param removeHealth amount of damage to the trooper
      */
     public void receiveDamage(int removeHealth){
