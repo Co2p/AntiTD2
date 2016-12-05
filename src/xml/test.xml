@@ -8,7 +8,7 @@
             <timelimit>2</timelimit>
         </rules>
         <zone>
-            <tile classpath="" > </tile> //oklart hur denna ska fungera
+            <tile className="className" >imhere</tile> //oklart hur denna ska fungera
         </zone>
         <map>
             <row>00TT00000000</row>

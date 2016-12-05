@@ -1,7 +1,4 @@
 
-import java.util.Collection;
-
-
 public class Player {
     private String name;
     private Results result;

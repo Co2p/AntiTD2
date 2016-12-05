@@ -1,5 +1,4 @@
 
-
 public class Position {
     private int y;
     private int x;
@@ -55,6 +54,65 @@ public class Position {
     }
 
     /**
+     * Converts Direction into Position
+     * @param direction the direction of travel
+     * @return the position
+     */
+    public Position getPosToDirection(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return getPosToNorth();
+            case SOUTH:
+                return getPosToSouth();
+            case WEST:
+                return getPosToWest();
+            case EAST:
+                return getPosToEast();
+        }
+        return this;
+    }
+
+    /**
+     * Method to get the position to left according to
+     * the direction youre facing.
+     * @param direction
+     * @return Position to the left.
+     */
+    public Position getPosToLeft(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return getPosToWest();
+            case SOUTH:
+                return getPosToEast();
+            case WEST:
+                return getPosToSouth();
+            case EAST:
+                return getPosToNorth();
+        }
+        return this;
+    }
+
+    /**
+     * Method to get the position to right according to
+     * the direction youre facing.
+     * @param direction
+     * @return Position to the right.
+     */
+    public Position getPosToRight(Direction direction) {
+        switch (direction) {
+            case NORTH:
+                return getPosToEast();
+            case SOUTH:
+                return getPosToWest();
+            case WEST:
+                return getPosToNorth();
+            case EAST:
+                return getPosToSouth();
+        }
+        return this;
+    }
+
+    /**
      * Get the Position to south of the current Position.
      * @return p
      */
@@ -95,6 +153,46 @@ public class Position {
     }
 
     /**
+     * Get the Position to north east of the current Position.
+     * @return p
+     */
+    public Position getPosToNorthEast() {
+        return getPosToNorth().getPosToEast();
+    }
+
+    /**
+     * Get the Position to north west of the current Position.
+     * @return p
+     */
+    public Position getPosToNorthWest() {
+        return getPosToNorth().getPosToWest();
+    }
+
+    /**
+     * Get the Position to south east of the current Position.
+     * @return p
+     */
+    public Position getPosToSouthEast() {
+        return getPosToSouth().getPosToEast();
+    }
+
+    /**
+     * Get the Position to south west of the current Position.
+     * @return p
+     */
+    public Position getPosToSouthWest() {
+        return getPosToSouth().getPosToWest();
+    }
+
+    /**
+     * Method to se if an position is out of range.
+     * @return true if the position is out of rage, false if not.
+     */
+    public boolean outOfRange() {
+        return x < 0 || y < 0;
+    }
+
+    /**
      * Compares two Positions
      * @param o Objects to compare
      * @return True if equal, false if different
@@ -106,8 +204,19 @@ public class Position {
 
         Position position = (Position) o;
 
-        if (y != position.y) return false;
-        return x == position.x;
+        return y == position.y && x == position.x;
+    }
+
+    /**
+     * Method to generate a distance between two positions.
+     * @param p the position to searh from
+     * @return the dinstance between two posiitons.
+     */
+    public double distance(Position p) {
+        int xVert = Math.abs(p.getX() - x);
+        int yVert = Math.abs(p.getY() - y);
+        double dist = Math.sqrt(Math.pow(xVert, 2) + Math.pow(yVert, 2));
+        return dist;
     }
 
     /**

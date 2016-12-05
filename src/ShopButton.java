@@ -5,6 +5,8 @@ import java.awt.*;
  */
 public class ShopButton extends Rectangle{
 
+        public int fontSize = 20;
+        private int fontSizeButtons = 12;
         public int id;
         public int x, y;
         public static int height, width;
@@ -39,6 +41,21 @@ public class ShopButton extends Rectangle{
                 gr.drawRect(x,y,width,height);
 
                 //Draw the image on the "button"
-                gr.drawImage(GamePanel.button_images[id],x, y, null);
+                gr.drawImage(GamePanel.button_images[i],x, y, null);
+            gr.setColor(Color.red);
+            gr.setFont(new Font("TimesRoman", Font.BOLD, fontSizeButtons));
+            gr.drawString(Integer.toString(300), x, y);
+
         }
+
+        public void drawStats(Graphics gr, int i, int value){
+
+            gr.drawImage(GamePanel.button_images[i],x, y, null);
+
+            int buttonXPos = x + width;
+            int buttonYPos = y + (height/3)*2;
+            gr.setColor(Color.black);
+            gr.setFont(new Font("TimesRoman", Font.BOLD, fontSize));
+            gr.drawString(Integer.toString(value), buttonXPos, buttonYPos);
+    }
 }

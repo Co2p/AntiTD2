@@ -13,7 +13,6 @@ public class GameContainer {
     private Square[][] airSquares;           //Array containing the air backgroundSquares.
 
     public GameContainer(){
-
         define();
     }
 

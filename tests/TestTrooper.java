@@ -39,22 +39,51 @@ public class TestTrooper {
     @Test
     public void TestSetDirection(){
         Trooper t = new Trooper(10,1);
-        t.setDirection("South");
-        assertEquals(t.getDirection(), "South");
+        t.setDirection(Direction.SOUTH);
+        assertEquals(Direction.SOUTH, t.getDirection());
     }
 
     @Test
     public void TestSetSpeed(){
         Trooper t = new Trooper(10,1);
         t.setSpeed(2);
-        assertEquals(t.getSpeed(), 2);
+        assertEquals(2, t.getSpeed());
     }
 
     @Test
-    public void TestIsDead(){
+    public void TestTakingFatalDamage(){
         Trooper t = new Trooper(10,1);
-        t.receiveDamage(10);
-        assertEquals(t.getHealth(), 0);
+        t.receiveDamage(11);
+        t.receiveDamage(11);
+        assertTrue(t.isDead());
+    }
+
+    @Test
+    public void TestIsZombieWithFullHealth(){
+        Trooper t = new Trooper(10,1);
+        t.receiveDamage(11);
+        assertFalse(t.isDead());
+        assertEquals(10,t.getHealth());
+    }
+
+    @Test
+    public void TestArmorSaveHuman(){
+        Trooper t = new Trooper(10,1);
+        t.setArmor(2);
+        t.receiveDamage(11);
+        assertFalse(t.isDead());
+        assertEquals(1,t.getHealth());
+    }
+
+
+    @Test
+    public void TestIsDeadWithArmor(){
+        Trooper t = new Trooper(10,1);
+        t.setArmor(4);
+        t.receiveDamage(20);
+        t.receiveDamage(11);
+        assertEquals(1,t.getHealth());
+        t.receiveDamage(4);
         assertTrue(t.isDead());
     }
 
@@ -69,17 +98,6 @@ public class TestTrooper {
     public void TestTrooperPositionNull(){
         Trooper t = new Trooper(10);
         assertNull(t.getPosition());
-    }
-
-    @Test
-    public void TestTrooperMoveTo(){
-        Position p = new Position(1,2);
-        Trooper t = new Trooper(10);
-        t.moveTo(p);
-        Position p2 = new Position(10,11);
-        t.moveTo(p2);
-        assertEquals(t.getPosition().getX(),10);
-        assertEquals(t.getPosition().getY(),11);
     }
 
     //Återstår att göra.
