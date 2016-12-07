@@ -78,7 +78,8 @@ public class Lobby {
 
     private void buildGamePanel() {
         selectLevelPanel.setVisible(false);
-        gamePanel = new GamePanel(levelArray.get(levelCounter));
+       // gamePanel = new GamePanel(levelArray.get(levelCounter));
+        gamePanel = new GamePanel(mainFrame);
         levelCounter++;
         mainFrame.add(gamePanel, BorderLayout.CENTER);
     }

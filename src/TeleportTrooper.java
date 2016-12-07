@@ -26,7 +26,8 @@ public class TeleportTrooper extends Trooper{
                 i--;
             }
         }
-        portalPlacement.setPortal((RoadTile) map.get(getPosition()));
+
+        portalPlacement.setPortal((RoadTile)map.get(getPosition()));
     }
 
 }

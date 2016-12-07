@@ -26,5 +26,6 @@ public class main {
             Lobby lobby = new Lobby(levelArray);
             lobby.showGUI();
         });
+
     }
 }

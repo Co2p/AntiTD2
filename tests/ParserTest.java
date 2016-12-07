@@ -5,7 +5,10 @@ import java.util.ArrayList;
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
 /*
+<<<<<<< HEAD
 >>>>>>> daniel
+=======
+>>>>>>> 4ae5a0a0a6289ceefdd6eb33a9ccccdd5d7ca08b
 public class Main {
     public static void main (String[] args) {
         DOMParser parser = null;
@@ -39,6 +42,7 @@ public class Main {
             }
 
         }
+        */
 //        System.out.println("Name of the level is: "+parser.getLevelName());
 //        System.out.println("Rules: ");
 //        System.out.println("Credits: "+parser.getCredits());
@@ -53,8 +57,4 @@ public class Main {
 //        for (String str: map) {
 //            System.out.println(str);
 //        }
-    }
-}
-<<<<<<< HEAD
-=======
-*/
+
