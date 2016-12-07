@@ -18,70 +18,37 @@ public class GamePanel extends JPanel implements Runnable {
     public static Image[] square_air = new Image[50];
     public static Image[] button_images = new Image[10];
 
-
-    public static Frame frame;
     public static Translator translator;
     
     public static Point mousePoint = new Point (0,0);
 
     public static Shop shop;
 
+    public static Level level;
+
     public static GameContainer gameContainer;
 
-    //This is just a test string for the map
 
     public static int[][]background;
     public static int[][]air;
 
-    public String mapString =   "00TT00000000"+
-                                "SRRRR0000000"+
-                                "00TTRTTT0000"+
-                                "0000R0RRRT00"+
-                                "0000RRR0RT00"+
-                                "000TTT0TRT00"+
-                                "00000000RT00"+
-                                "00000000G000";
+    public String mapString =   "000000000000"+
+                                "0RR00R00R0R0"+
+                                "0R00R0R0R0R0"+
+                                "0RR0R0R0R0R0"+
+                                "0R00RRR0R0R0"+
+                                "0R00R0R0R0R0"+
+                                "0R00R0R0R0RR"+
+                                "000000000000";
 
-/*
-
-
-   // public static Character[][] background;
-   // public static Character[][] air;
-
-    public String backgroundString =    "000000000000" +
-                                        "111111111110" +
-                                        "000000000010" +
-                                        "000000000010" +
-                                        "000001111110" +
-                                        "000001000010" +
-                                        "000001111010" +
-                                        "000000000010" ;
-
-        public String airString =       "011100000000" +
-                                        "200000000000" +
-                                        "000000110000" +
-                                        "000000000000" +
-                                        "000010000000" +
-                                        "000010000000" +
-                                        "000010000000" +
-                                        "000000000130" ;
-
-<<<<<<< HEAD
-    private Level level;
-=======
-
-*/
 
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
 
-    public GamePanel(JFrame frame){
-
-        GamePanel.frame = frame;
-        GamePanel.frame.addMouseListener(new ClickHandler());
-        GamePanel.frame.addMouseMotionListener(new ClickHandler());
-
+    public GamePanel(Level level){
+        this.level = level;
         thread.start();
+
     }
 
     private void setupImages(){
@@ -106,20 +73,20 @@ public class GamePanel extends JPanel implements Runnable {
 
 
         setupMap();
-        //setupTemporaryMaps();
+
     }
 
     private void define(){
 
-
-        //Define with and height for game plane
+        //Define the gamepanel
         width = getWidth();
         height = getHeight();
+
+        mapString = level.getMap();
+
+
         setupImages();
-
         shop = new Shop();
-
-
         gameContainer = new GameContainer();
     }
 
@@ -192,19 +159,5 @@ public class GamePanel extends JPanel implements Runnable {
                 }
             }
     }
-/*
-    private void setupTemporaryMaps(){
-        background = new Character[GameContainer.columnCount][GameContainer.rowCount];
-        air = new Character[GameContainer.columnCount][GameContainer.rowCount];
-
-        for (int y = 0; y < background[0].length ; y++) {
-            for (int x = 0; x < background.length ; x++) {
-
-                //Setup the maps with integers 1,0
-                background[x][y] = backgroundString.charAt(((y*GameContainer.columnCount) + x));
-                air[x][y] = airString.charAt(((y*GameContainer.columnCount) + x));
-            }
-        }
-    }*/
 
 }

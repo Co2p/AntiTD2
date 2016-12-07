@@ -2,8 +2,8 @@
 <levellist>
     <level name ="Level 1">
         <rules>
-            <credits>1000</credits>
-            <unitstowin>30</unitstowin>
+            <credits>600</credits>
+            <unitstowin>10</unitstowin>
             <towerspawnrate>25</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
         </rules>
@@ -13,6 +13,27 @@
         <map>
             <row>00TT00000000</row>
             <row>SRRRR0000000</row>
+            <row>00TTRTTT0000</row>
+            <row>0000R0RRRT00</row>
+            <row>0000RRR0RT00</row>
+            <row>000TTT0TRT00</row>
+            <row>00000000RT00</row>
+            <row>00000000G000</row>
+        </map>
+    </level>
+    <level name ="Level 2">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>25</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>000000000000</row>
+            <row>000000000000</row>
             <row>00TTRTTT0000</row>
             <row>0000R0RRRT00</row>
             <row>0000RRR0RT00</row>

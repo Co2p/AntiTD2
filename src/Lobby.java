@@ -64,6 +64,7 @@ public class Lobby {
             noOfLevels++;
             JButton levelButton = new JButton("Level " + noOfLevels);
             selectLevelPanel.add(levelButton);
+
             levelButton.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -79,7 +80,7 @@ public class Lobby {
     private void buildGamePanel() {
         selectLevelPanel.setVisible(false);
        // gamePanel = new GamePanel(levelArray.get(levelCounter));
-        gamePanel = new GamePanel(mainFrame);
+        gamePanel = new GamePanel(levelArray.get(0));
         levelCounter++;
         mainFrame.add(gamePanel, BorderLayout.CENTER);
     }

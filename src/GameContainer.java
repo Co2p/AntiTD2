@@ -1,21 +1,7 @@
 import java.awt.*;
 
 /**
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
  * Created by Simon on 2016-12-01.
-=======
->>>>>>> clickHandler
-<<<<<<<<< Temporary merge branch 1
- * Created by Simon on 2016-12-01.
-=========
- * Created by Daniel on 2016-12-05.
->>>>>>>>> Temporary merge branch 2
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> clickHandler
  */
 public class GameContainer {
 
