@@ -38,8 +38,16 @@ public class LevelBuilder {
         level.setTimeLimit(levelParser.getTimeLimit().get(i));
         level.setClassName(levelParser.getClassName().get(i));
         level.setClassPath(levelParser.getClassPath().get(i));
-        level.setMap(levelParser.getMap().get(i));
+        level.setMap(stringArrayToString(levelParser.getMap().get(i)));
         return level;
+    }
+
+    public String stringArrayToString(String[] sArr) {
+        StringBuilder sb = new StringBuilder();
+        for (String s: sArr) {
+            sb.append(s);
+        }
+        return sb.toString();
     }
 
     public int getNoOfLevels() {
