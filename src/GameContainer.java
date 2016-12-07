@@ -18,6 +18,7 @@ public class GameContainer {
 
     public void define(){
 
+        //Setup the squares (Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
         airSquares = new Square[columnCount][rowCount];    //Setup the square array
 

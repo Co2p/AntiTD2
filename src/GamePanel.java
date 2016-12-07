@@ -73,7 +73,6 @@ public class GamePanel extends JPanel implements Runnable {
         GamePanel.frame = frame;
         GamePanel.frame.addMouseListener(new ClickHandler());
         GamePanel.frame.addMouseMotionListener(new ClickHandler());
-        translator = new Translator();
 
         thread.start();
     }
@@ -149,31 +148,34 @@ public class GamePanel extends JPanel implements Runnable {
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
         air = new int[GameContainer.columnCount][GameContainer.rowCount];
 
-        for (int y = 0; y < background[0].length ; y++) {
-            for (int x = 0; x < background.length ; x++) {
-                if(mapString.charAt(((y*GameContainer.columnCount) + x) )
-                        == Translator.mapGrass.charAt(0)){
+        for (int y = 0; y < background[0].length ; y++)
+            for (int x = 0; x < background.length; x++) {
+
+                //Take out the character (String-value) at specific index
+                String indexString = mapString.substring(
+                        (y * GameContainer.columnCount) + x);
+
+                if (indexString == Translator.mapGrass) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.air;
-                } if (mapString.charAt(((y*GameContainer.columnCount) + x) )
-                        == Translator.mapRoad.charAt(0)){
+                }
+                if (indexString == Translator.mapRoad) {
                     background[x][y] = Translator.squareRoad;
-                    air[x][y] =  Translator.air;
-                } if(mapString.charAt(((y*GameContainer.columnCount) + x) )
-                        == Translator.mapGoal.charAt(0)){
-                    background[x][y] =  Translator.squareRoad;
-                    air[x][y] =  Translator.goal;
-                } if(mapString.charAt(((y*GameContainer.columnCount) + x) )
-                        == Translator.mapStart.charAt(0)){
+                    air[x][y] = Translator.air;
+                }
+                if (indexString == Translator.mapGoal) {
+                    background[x][y] = Translator.squareRoad;
+                    air[x][y] = Translator.goal;
+                }
+                if (indexString == Translator.mapStart) {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.start;
-                } if(mapString.charAt(((y*GameContainer.columnCount) + x) )
-                        == Translator.mapTowerZone.charAt(0)){
-                    background[x][y] =  Translator.squareGrass;
-                    air[x][y] =  Translator.towerZone;
+                }
+                if (indexString == Translator.mapTowerZone) {
+                    background[x][y] = Translator.squareGrass;
+                    air[x][y] = Translator.towerZone;
                 }
             }
-        }
 
 
     }
