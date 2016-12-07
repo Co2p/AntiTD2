@@ -38,12 +38,12 @@ public class Shop {
      * */
     public void define(){
 
-        noOfCredits = GamePanel.level.getCredits();
-        noOfGreen = GamePanel.level.getUnitsToWin();
-        noOfRed = GamePanel.level.getTimeLimit();
+        noOfCredits = Game.level.getCredits();
+        noOfGreen = Game.level.getUnitsToWin();
+        noOfRed = Game.level.getTimeLimit();
 
         for (int i = 0; i <buttons.length ; i++) {
-            buttons[i] = new ShopButton((GamePanel.width/2) -
+            buttons[i] = new ShopButton((Game.width/2) -
                     ((noOfButtons*buttonsize)/2) -((smallSpace*
                     (buttons.length-1)) /2) + ((buttonsize + smallSpace)*i),
                     (GameContainer.rowCount * GameContainer.squareSize )
@@ -52,7 +52,7 @@ public class Shop {
 
         for (int i = 0; i < statsElements.length ; i++) {
             //define where the statselement should be placed.
-            statsElements[i] = new ShopButton(((GamePanel.width/2)
+            statsElements[i] = new ShopButton(((Game.width/2)
                     - (GameContainer.columnCount*
                     GameContainer.squareSize )/2 + (((GameContainer.columnCount
                     *GameContainer.squareSize)/7)*3)*i ),
@@ -75,7 +75,7 @@ public class Shop {
             for (int i = 0; i <buttons.length ; i++) {
 
                 //if click was registered on a button
-                if(buttons[i].contains(GamePanel.mousePoint)){
+                if(buttons[i].contains(Game.mousePoint)){
                     int j = i +1;
                     System.out.println("Button: " + j + " was clicked");
 
@@ -101,7 +101,7 @@ public class Shop {
         //Draw the buttons
         for (int i = 0; i < buttons.length; i++) {
 
-            if(buttons[i].contains(GamePanel.mousePoint)){
+            if(buttons[i].contains(Game.mousePoint)){
                 gr.setColor(Color.red);
                 gr.fillRect(buttons[i].x, buttons[i].y, buttons[i].height,
                         buttons[i].width);

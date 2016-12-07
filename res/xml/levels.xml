@@ -21,7 +21,7 @@
             <row>00000000G000</row>
         </map>
     </level>
-    <level name ="Level 2">
+    <level name ="EKORRE">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
@@ -40,6 +40,27 @@
             <row>000TTT0TRT00</row>
             <row>00000000RT00</row>
             <row>00000000G000</row>
+        </map>
+    </level>
+    <level name ="fu">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>25</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00RR0RR0RR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
         </map>
     </level>
 </levellist>

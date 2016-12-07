@@ -27,12 +27,12 @@ public class GameContainer {
             for (int x = 0; x < backgroundSquares.length ; x++) {
 
                 //placing the grid in the center of the screen
-                backgroundSquares[x][y] = new Square( ((GamePanel.width/2) -
+                backgroundSquares[x][y] = new Square( ((Game.width/2) -
                         ((columnCount*squareSize)/2) + (x * squareSize)),
                         y*squareSize, squareSize, squareSize, 0);
 
                 //setup the airSquares.
-                airSquares[x][y] = new Square( ((GamePanel.width/2) -
+                airSquares[x][y] = new Square( ((Game.width/2) -
                         ((columnCount*squareSize)/2) + (x * squareSize)),
                         y*squareSize, squareSize, squareSize, 0);
             }

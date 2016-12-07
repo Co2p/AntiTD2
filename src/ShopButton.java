@@ -44,7 +44,7 @@ public class ShopButton extends Rectangle{
 
                 //Draw the image on the "button"
 
-                gr.drawImage(GamePanel.button_images[i],x, y, null);
+                gr.drawImage(Game.button_images[i],x, y, null);
             gr.setColor(Color.red);
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSizeButtons));
             gr.drawString(Integer.toString(300), x, y);
@@ -53,7 +53,7 @@ public class ShopButton extends Rectangle{
 
         public void drawStats(Graphics gr, int i, int value){
 
-            gr.drawImage(GamePanel.button_images[i],x, y, null);
+            gr.drawImage(Game.button_images[i],x, y, null);
 
             int buttonXPos = x + width;
             int buttonYPos = y + (height/3)*2;

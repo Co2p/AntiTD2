@@ -15,6 +15,9 @@ public class LaserTower extends Tower {
 
     @Override
     public void fire() {
-        //TODO build a custom fire method
+        if (!super.targets.contains(focusTarget)) {
+            focusTarget = targets.get(targets.size() - 1);
+        }
+        focusTarget.receiveDamage(damage);
     }
 }
