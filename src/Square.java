@@ -28,13 +28,13 @@ public class Square extends Rectangle {
 
     public void drawBackground(Graphics gr, int indexX, int indexY){
 
-        if((GamePanel.background[indexX][indexY])
+        if((Game.background[indexX][indexY])
                 == Translator.squareGrass){
-            gr.drawImage(GamePanel.square_material[Translator.squareGrass]
+            gr.drawImage(Game.square_material[Translator.squareGrass]
                     , x,y, width, height, null);
-        }else if((GamePanel.background[indexX][indexY])
+        }else if((Game.background[indexX][indexY])
                 == Translator.squareRoad){
-            gr.drawImage(GamePanel.square_material[Translator.squareRoad]
+            gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x,y, width, height, null);
         }
 
@@ -42,7 +42,7 @@ public class Square extends Rectangle {
 
     public void drawGraphics(Graphics gr, int indexX, int indexY){
 
-        gr.drawImage(GamePanel.square_air[(GamePanel.air[indexX][indexY])]
+        gr.drawImage(Game.square_air[(Game.air[indexX][indexY])]
                 , x,y, width, height, null);
         //gr.drawRect(x,y,width,height);
     }

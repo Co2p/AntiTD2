@@ -7,18 +7,19 @@ public class LevelBuilder {
 
     private DOMParser levelParser;
     private String fileName;
+    private static String FILELOCATION = "../xml/levels.xml";
 
     public LevelBuilder (String fileName) {
         this.fileName = fileName;
         setupParser(fileName);
         if(levelParser.isError()) {
             //Set error message to view.
-            levelParser.parseFile("../xml/levels.xml");
+            levelParser.parseFile(FILELOCATION);
         }
     }
 
     public LevelBuilder() {
-        setupParser("../xml/levels.xml");
+      setupParser(FILELOCATION);
     }
 
     private void setupParser(String fileName) {

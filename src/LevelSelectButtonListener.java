@@ -1,4 +1,3 @@
-import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -22,7 +21,7 @@ public class LevelSelectButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        frame.add(new GamePanel(level), BorderLayout.CENTER);
+        frame.add(new Game(level), BorderLayout.CENTER);
         frame.setVisible(true);
     }
 }
