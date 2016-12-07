@@ -21,21 +21,15 @@ public class GameContainer {
     private Square[][] airSquares;           //Array containing the air backgroundSquares.
 
     public GameContainer(){
-<<<<<<< HEAD
-=======
-
->>>>>>> master
         define();
     }
 
     public void define(){
 
-<<<<<<< HEAD
+
         //Setup the squares (Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
-=======
-        backgroundSquares = new Square[columnCount][rowCount];    //Setup the square array
->>>>>>> master
+
         airSquares = new Square[columnCount][rowCount];    //Setup the square array
 
         for (int y = 0; y < backgroundSquares[0].length ; y++) {

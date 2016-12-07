@@ -5,17 +5,14 @@ import java.awt.*;
  */
 public class ShopButton extends Rectangle{
 
-<<<<<<< HEAD
+
         public int fontSize = 20;
         private int fontSizeButtons = 12;
-=======
->>>>>>> master
+
         public int id;
         public int x, y;
         public static int height, width;
 
-
-<<<<<<< HEAD
     /**
      * Constructor for a ShopButton
      *
@@ -23,8 +20,6 @@ public class ShopButton extends Rectangle{
      * the width of a button, and an id.
      *
      * */
-=======
->>>>>>> master
         public ShopButton(int x, int y, int width, int height, int id){
             setBounds(x,y,width,height);
             this.id = id;
@@ -32,7 +27,7 @@ public class ShopButton extends Rectangle{
             this.y = y;
             this.height = height;
             this.width = width;
-<<<<<<< HEAD
+
         }
 
         /**
@@ -41,12 +36,6 @@ public class ShopButton extends Rectangle{
          * draw rect draws a rectangle around the button image.
          *
          * */
-=======
-            System.out.println(x + "<- X : Y -> " + y );
-        }
-
-
->>>>>>> master
         public void draw(Graphics gr, int i){
 
                 //draw the bound of the button rectangle
@@ -54,7 +43,7 @@ public class ShopButton extends Rectangle{
                 gr.drawRect(x,y,width,height);
 
                 //Draw the image on the "button"
-<<<<<<< HEAD
+
                 gr.drawImage(GamePanel.button_images[i],x, y, null);
             gr.setColor(Color.red);
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSizeButtons));
@@ -72,9 +61,5 @@ public class ShopButton extends Rectangle{
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSize));
             gr.drawString(Integer.toString(value), buttonXPos, buttonYPos);
     }
-=======
-                gr.drawImage(GamePanel.button_images[id],x, y, null);
-        }
 
->>>>>>> master
 }
