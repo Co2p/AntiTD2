@@ -1,7 +1,15 @@
 import java.awt.*;
 
 /**
+<<<<<<< HEAD
  * Created by Simon on 2016-12-01.
+=======
+<<<<<<<<< Temporary merge branch 1
+ * Created by Simon on 2016-12-01.
+=========
+ * Created by Daniel on 2016-12-05.
+>>>>>>>>> Temporary merge branch 2
+>>>>>>> master
  */
 public class GameContainer {
 
@@ -13,13 +21,21 @@ public class GameContainer {
     private Square[][] airSquares;           //Array containing the air backgroundSquares.
 
     public GameContainer(){
+<<<<<<< HEAD
+=======
+
+>>>>>>> master
         define();
     }
 
     public void define(){
 
+<<<<<<< HEAD
         //Setup the squares (Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
+=======
+        backgroundSquares = new Square[columnCount][rowCount];    //Setup the square array
+>>>>>>> master
         airSquares = new Square[columnCount][rowCount];    //Setup the square array
 
         for (int y = 0; y < backgroundSquares[0].length ; y++) {
