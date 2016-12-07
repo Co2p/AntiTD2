@@ -13,8 +13,7 @@ public class TestLevelBuilder {
 
     @Test
     public void TestBuildLevel() {
-        LevelBuilder lb = new LevelBuilder("fileName");
-        Assert.assertEquals(Level.class, lb.buildLevel(1).getClass());
+
     }
 
     @Test
@@ -23,4 +22,13 @@ public class TestLevelBuilder {
         Assert.assertEquals("fileName", lb.getFileName());
     }
 
+    @Test
+    public void TestStringArrayToString() {
+        LevelBuilder lb = new LevelBuilder();
+        String[] sArr = new String[10];
+        for (int i = 0; i < 10; i++) {
+            sArr[i] = "" + i;
+        }
+        Assert.assertEquals("0123456789", lb.stringArrayToString(sArr));
+    }
 }

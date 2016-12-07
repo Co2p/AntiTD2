@@ -10,7 +10,7 @@ public class TestTower {
     public void TestBasicsTower(){
         Tower t = new Tower(4,1, new Position());
         assertEquals(t.getRange(),1);
-        assertEquals(t.fire(),4);
+        //assertEquals(t.fire(),4);
     }
     @Test
     public void TestTowerSetPos(){

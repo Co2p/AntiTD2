@@ -13,8 +13,10 @@ public class LaserTower extends Tower {
         }
     }
 
+    /*
     @Override
     public int fire() {
         return damage;
     }
+    */
 }
