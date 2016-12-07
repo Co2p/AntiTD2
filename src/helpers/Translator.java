@@ -1,3 +1,5 @@
+package helpers;
+
 /**
  * Created by Simon on 2016-12-05.
  * Class for declaring names as numbers.

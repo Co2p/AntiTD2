@@ -1,4 +1,7 @@
-import javafx.geometry.Pos;
+package tower;
+
+import helpers.Position;
+import trooper.Trooper;
 
 import java.util.ArrayList;
 import java.util.Observable;
@@ -43,7 +46,7 @@ public class Tower implements Observer {
     }
 
     /**
-     * Position of the tower
+     * helpers.Position of the tower
      * @return tower position
      */
     public Position getPos() {

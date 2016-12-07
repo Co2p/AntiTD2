@@ -1,6 +1,10 @@
+package tile;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import trooper.Trooper;
+import helpers.Position;
 
 /**
  * A tile that Troopers walk on
@@ -14,7 +18,7 @@ public class RoadTile extends Tile implements Zone {
     private ArrayList<Trooper> troopers;
 
     /**
-     * Constructor for RoadTile
+     * Constructor for tile.RoadTile
      * @param p, the position where the tile will be placed.
      * @param isGoal, if the tile is a goal (end tile)
      */
@@ -25,7 +29,7 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Constructor for RoadTile, isGoal is set to false by default.
+     * Constructor for tile.RoadTile, isGoal is set to false by default.
      * @param p, the position where the tile will be placed.
      */
     public RoadTile(Position p) {
@@ -34,8 +38,8 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Called when a Trooper lands on the RoadTile
-     * @param t the Trooper
+     * Called when a trooper.Trooper lands on the tile.RoadTile
+     * @param t the trooper.Trooper
      */
     @Override
     public void landOn(Trooper t) {

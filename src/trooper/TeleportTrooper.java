@@ -1,3 +1,10 @@
+package trooper;
+
+import tile.RoadTile;
+import tile.Tile;
+import helpers.Direction;
+import helpers.Position;
+
 import java.util.Hashtable;
 
 /**
@@ -5,7 +12,7 @@ import java.util.Hashtable;
  */
 public class TeleportTrooper extends Trooper{
 
-    private Hashtable<Position,Tile> map;
+    private Hashtable<Position, Tile> map;
 
     public TeleportTrooper(int hp, Hashtable<Position,Tile> map) {
         super(hp);
@@ -13,7 +20,7 @@ public class TeleportTrooper extends Trooper{
     }
 
     /**
-     * places a portal on current RoadTile which teleports troopers to a tile
+     * places a portal on current tile.RoadTile which teleports troopers to a tile
      * five steps further ahead.
      * @param preferred -
      */

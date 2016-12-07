@@ -1,4 +1,8 @@
+import helpers.Position;
 import org.junit.Test;
+import tower.Tower;
+import trooper.Trooper;
+
 import static org.junit.Assert.*;
 
 /**

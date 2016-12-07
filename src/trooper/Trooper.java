@@ -1,6 +1,13 @@
+package trooper;
+
+import tile.RoadTile;
+import tile.Tile;
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
+import helpers.Position;
+import helpers.Direction;
 
 public class Trooper {
     private int maxhealth;
@@ -19,7 +26,7 @@ public class Trooper {
     private boolean reachedGoal = false;
 
     /**
-     * Default constructor, crates a PitifulTrooper
+     * Default constructor, crates a trooper.PitifulTrooper
      */
     public Trooper(){
         this.maxhealth=100;
@@ -114,7 +121,7 @@ public class Trooper {
 
     /**
      * Set the prioritized direction for the trooper
-     * @param d a Direction (North, East, South, West)
+     * @param d a helpers.Direction (North, East, South, West)
      */
     public void setDirection(Direction d){
         if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == Direction.EAST) {
@@ -208,7 +215,7 @@ public class Trooper {
      * @param map_hashTable a table of tiles (a map)
      * @return a map of neighbouring roadtiles
      */
-    public Hashtable<Position,RoadTile> getPossibleMoves(Hashtable<Position,Tile> map_hashTable){
+    public Hashtable<Position, RoadTile> getPossibleMoves(Hashtable<Position, Tile> map_hashTable){
         Hashtable<Position,RoadTile> possibleMovesTable = new Hashtable<>();
         Position keyPos = position.getPosToEast();
         if (RoadTile.class.isInstance(map_hashTable.get(keyPos))) {
@@ -230,10 +237,10 @@ public class Trooper {
     }
 
     //TODO !
-//    private void backTrace(Hashtable<Position,RoadTile> possibleMovesTable){
+//    private void backTrace(Hashtable<helpers.Position,tile.RoadTile> possibleMovesTable){
 //        path.pop();
 //        position = path.peek();
-//        RoadTile road = possibleMovesTable.get(position);
+//        tile.RoadTile road = possibleMovesTable.get(position);
 //        road.landOn(this);
 //    }
 

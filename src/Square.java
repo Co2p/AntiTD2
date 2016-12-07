@@ -1,3 +1,5 @@
+import helpers.Translator;
+
 import java.awt.*;
 
 /**

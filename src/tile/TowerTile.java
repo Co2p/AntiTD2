@@ -1,3 +1,7 @@
+package tile;
+
+import helpers.Position;
+import tower.Tower;
 
 public class TowerTile extends Tile {
     private Tower tower;
@@ -5,7 +9,7 @@ public class TowerTile extends Tile {
 
     /**
      * Constructor to create a Towertile.
-     * @param p The Position that the tile will be placed on.
+     * @param p The helpers.Position that the tile will be placed on.
      */
     public TowerTile(Position p){
         super(p);

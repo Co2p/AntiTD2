@@ -1,3 +1,6 @@
+package helpers;
+
+import helpers.Direction;
 
 public class Position {
     private int y;
@@ -22,7 +25,7 @@ public class Position {
     }
 
     /**
-     * Get the x from a Position.
+     * Get the x from a helpers.Position.
      * @return x
      */
     public int getX(){
@@ -30,7 +33,7 @@ public class Position {
     }
 
     /**
-     * Get the y from a Position.
+     * Get the y from a helpers.Position.
      * @return y
      */
     public int getY(){
@@ -38,7 +41,7 @@ public class Position {
     }
 
     /**
-     * Set/change x of a Position.
+     * Set/change x of a helpers.Position.
      * @param i the integer you want to set as x coordinate.
      */
     public void setX(int i){
@@ -46,7 +49,7 @@ public class Position {
     }
 
     /**
-     * Set/change y of a Position.
+     * Set/change y of a helpers.Position.
      * @param j the integer you want to set as y coordinate.
      */
     public void setY(int j){
@@ -54,7 +57,7 @@ public class Position {
     }
 
     /**
-     * Converts Direction into Position
+     * Converts helpers.Direction into helpers.Position
      * @param direction the direction of travel
      * @return the position
      */
@@ -76,7 +79,7 @@ public class Position {
      * Method to get the position to left according to
      * the direction youre facing.
      * @param direction
-     * @return Position to the left.
+     * @return helpers.Position to the left.
      */
     public Position getPosToLeft(Direction direction) {
         switch (direction) {
@@ -96,7 +99,7 @@ public class Position {
      * Method to get the position to right according to
      * the direction youre facing.
      * @param direction
-     * @return Position to the right.
+     * @return helpers.Position to the right.
      */
     public Position getPosToRight(Direction direction) {
         switch (direction) {
@@ -113,7 +116,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to south of the current Position.
+     * Get the helpers.Position to south of the current helpers.Position.
      * @return p
      */
     public Position getPosToSouth(){
@@ -123,7 +126,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to north of the current Position
+     * Get the helpers.Position to north of the current helpers.Position
      * @return p
      */
     public Position getPosToNorth(){
@@ -133,7 +136,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to west of the current Position.
+     * Get the helpers.Position to west of the current helpers.Position.
      * @return p
      */
     public Position getPosToWest(){
@@ -143,7 +146,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to east of the current Position.
+     * Get the helpers.Position to east of the current helpers.Position.
      * @return p
      */
     public Position getPosToEast(){
@@ -153,7 +156,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to north east of the current Position.
+     * Get the helpers.Position to north east of the current helpers.Position.
      * @return p
      */
     public Position getPosToNorthEast() {
@@ -161,7 +164,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to north west of the current Position.
+     * Get the helpers.Position to north west of the current helpers.Position.
      * @return p
      */
     public Position getPosToNorthWest() {
@@ -169,7 +172,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to south east of the current Position.
+     * Get the helpers.Position to south east of the current helpers.Position.
      * @return p
      */
     public Position getPosToSouthEast() {
@@ -177,7 +180,7 @@ public class Position {
     }
 
     /**
-     * Get the Position to south west of the current Position.
+     * Get the helpers.Position to south west of the current helpers.Position.
      * @return p
      */
     public Position getPosToSouthWest() {
@@ -220,7 +223,7 @@ public class Position {
     }
 
     /**
-     * Creates hashcode for a Position.
+     * Creates hashcode for a helpers.Position.
      * @return hashCode
      */
     @Override

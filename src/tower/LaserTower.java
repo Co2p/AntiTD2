@@ -1,4 +1,8 @@
-import java.util.Observable;
+package tower;
+
+import helpers.Position;
+import tile.Tile;
+import tile.TowerTile;
 
 /**
  * Created by gordon on 2016-11-30.
