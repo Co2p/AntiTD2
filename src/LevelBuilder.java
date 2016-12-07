@@ -1,9 +1,7 @@
-/**
- * Created by Alexander Nyström(dv15anm) on 01/12/2016.
- */
+import helpers.DOMParser;
 
 /**
- *
+ * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
 public class LevelBuilder {
 
@@ -15,12 +13,12 @@ public class LevelBuilder {
         setupParser(fileName);
         if(levelParser.isError()) {
             //Set error message to view.
-            levelParser.parseFile("xml/levels.xml");
+            levelParser.parseFile("../xml/levels.xml");
         }
     }
 
     public LevelBuilder() {
-        setupParser("xml/levels.xml");
+        setupParser("../xml/levels.xml");
     }
 
     private void setupParser(String fileName) {

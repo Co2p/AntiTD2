@@ -11,8 +11,8 @@ import java.util.ArrayList;
 >>>>>>> 4ae5a0a0a6289ceefdd6eb33a9ccccdd5d7ca08b
 public class Main {
     public static void main (String[] args) {
-        DOMParser parser = null;
-        parser = new DOMParser();
+        helpers.DOMParser parser = null;
+        parser = new helpers.DOMParser();
         parser.parseFile("levels.xml");
         if(parser.isError()) {
             System.out.println(parser.getErrorMessage());
