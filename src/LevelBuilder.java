@@ -9,16 +9,23 @@ public class LevelBuilder {
 
     private DOMParser levelParser;
     private String fileName;
-    private int levelCount;
 
     public LevelBuilder (String fileName) {
-        levelParser = new DOMParser();
         this.fileName = fileName;
-        levelParser.parseFile(fileName);
+        setupParser(fileName);
         if(levelParser.isError()) {
             //Set error message to view.
             levelParser.parseFile("xml/levels.xml");
         }
+    }
+
+    public LevelBuilder() {
+        setupParser("xml/levels.xml");
+    }
+
+    private void setupParser(String fileName) {
+        levelParser = new DOMParser();
+        levelParser.parseFile(fileName);
     }
 
     public Level buildLevel(int i) {
@@ -36,7 +43,7 @@ public class LevelBuilder {
     }
 
     public int getNoOfLevels() {
-       return this.levelCount = levelParser.getLevelCount();
+       return levelParser.getLevelCount();
     }
 
     public String getFileName() {
