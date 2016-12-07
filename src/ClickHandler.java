@@ -13,33 +13,16 @@ import java.awt.event.MouseEvent;
 public class ClickHandler extends MouseAdapter {
 
 
-
     @Override
     public void mousePressed(MouseEvent e) {
 
         //call the clickmethod inside the shop
         GamePanel.shop.click(e.getButton());
-        
-
         System.out.println(GamePanel.mousePoint);
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) {
 
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent e) {
-
-    }
-
-    @Override
-    public void mouseExited(MouseEvent e) {
-
-    }
-
-    @Override
     public void mouseMoved(MouseEvent e) {
 
         //find out where the mouse is on screen.

@@ -12,9 +12,9 @@ public class LaserTower extends Tower {
             road.addObserver(this);
         }
     }
-
+/*
     @Override
     public int fire() {
         return damage;
-    }
+    }*/
 }

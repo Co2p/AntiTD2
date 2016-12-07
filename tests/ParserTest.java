@@ -4,6 +4,7 @@ import java.util.ArrayList;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
+/*
 public class Main {
     public static void main (String[] args) {
         DOMParser parser = null;
@@ -37,6 +38,7 @@ public class Main {
             }
 
         }
+        */
 //        System.out.println("Name of the level is: "+parser.getLevelName());
 //        System.out.println("Rules: ");
 //        System.out.println("Credits: "+parser.getCredits());
@@ -51,5 +53,5 @@ public class Main {
 //        for (String str: map) {
 //            System.out.println(str);
 //        }
-    }
-}
+//    }
+//}
