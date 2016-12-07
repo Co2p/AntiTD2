@@ -5,5 +5,6 @@ public class ArmoredTrooper extends Trooper {
 
     public ArmoredTrooper(int hp, int speed) {
         super(hp, speed);
+        setArmor(hp/2);
     }
 }

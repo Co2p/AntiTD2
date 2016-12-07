@@ -15,6 +15,10 @@ public class LaserTower extends Tower {
 
     @Override
     public void fire() {
+<<<<<<< HEAD
 
+=======
+        //TODO build a custom fire method
+>>>>>>> gordon
     }
 }
