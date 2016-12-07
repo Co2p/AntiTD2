@@ -6,7 +6,7 @@ public class Player {
     /**
      * Constructor without name, name will then be set to "Unknown".
      */
-    public Player(){
+    public Player() {
         this.name = "Unknown";
     }
 
@@ -38,7 +38,7 @@ public class Player {
      * Adds result to the resultlist.
      * @param r the results.
      */
-    public void setResult(Results r){
+    public void setResult(Results r) {
         this.result = r;
 
     }
