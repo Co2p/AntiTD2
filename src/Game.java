@@ -9,7 +9,7 @@ import java.util.Objects;
  *
  * Contains the game board. extends the JPanel
  */
-public class GamePanel extends JPanel implements Runnable {
+public class Game extends JPanel implements Runnable {
 
 
     public static int width, height;
@@ -17,8 +17,6 @@ public class GamePanel extends JPanel implements Runnable {
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];
     public static Image[] button_images = new Image[10];
-
-    public static Translator translator;
     
     public static Point mousePoint = new Point (0,0);
 
@@ -45,34 +43,9 @@ public class GamePanel extends JPanel implements Runnable {
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
 
-    public GamePanel(Level level){
+    public Game(Level level){
         this.level = level;
         thread.start();
-
-    }
-
-    private void setupImages(){
-
-        for (int i = 0; i <square_material.length ; i++) {
-            square_material[i] = new ImageIcon("res/materials.png").getImage();
-            square_material[i] = createImage(new FilteredImageSource(
-                    square_material[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
-        }
-
-        for (int i = 0; i <square_air.length ; i++) {
-            square_air[i] = new ImageIcon("res/air.png").getImage();
-            square_air[i] = createImage(new FilteredImageSource(
-                    square_air[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
-        }
-
-        for (int i = 0; i <button_images.length ; i++) {
-            button_images[i] = new ImageIcon("res/buttons.png").getImage();
-            button_images[i] = createImage(new FilteredImageSource(
-                    button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
-        }
-
-
-        setupMap();
 
     }
 
@@ -125,7 +98,30 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    private void setupImages(){
 
+        for (int i = 0; i <square_material.length ; i++) {
+            square_material[i] = new ImageIcon("res/materials.png").getImage();
+            square_material[i] = createImage(new FilteredImageSource(
+                    square_material[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+        }
+
+        for (int i = 0; i <square_air.length ; i++) {
+            square_air[i] = new ImageIcon("res/air.png").getImage();
+            square_air[i] = createImage(new FilteredImageSource(
+                    square_air[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+        }
+
+        for (int i = 0; i <button_images.length ; i++) {
+            button_images[i] = new ImageIcon("res/buttons.png").getImage();
+            button_images[i] = createImage(new FilteredImageSource(
+                    button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+        }
+
+
+        setupMap();
+
+    }
 
     private void setupMap(){
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
