@@ -13,6 +13,11 @@ public class main {
                 Gui gui = new Gui();
                 gui.show();
 
+<<<<<<< HEAD
             }});
+=======
+    public static void main(String[] args ) {
+
+>>>>>>> master
     }
 }
