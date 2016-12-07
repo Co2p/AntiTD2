@@ -1,21 +1,7 @@
 import java.awt.*;
 
 /**
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
  * Created by Simon on 2016-12-01.
-=======
->>>>>>> clickHandler
-<<<<<<<<< Temporary merge branch 1
- * Created by Simon on 2016-12-01.
-=========
- * Created by Daniel on 2016-12-05.
->>>>>>>>> Temporary merge branch 2
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> clickHandler
  */
 public class GameContainer {
 
@@ -32,7 +18,6 @@ public class GameContainer {
 
     public void define(){
 
-
         //Setup the squares (Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
 
@@ -42,12 +27,12 @@ public class GameContainer {
             for (int x = 0; x < backgroundSquares.length ; x++) {
 
                 //placing the grid in the center of the screen
-                backgroundSquares[x][y] = new Square( ((GamePanel.width/2) -
+                backgroundSquares[x][y] = new Square( ((Game.width/2) -
                         ((columnCount*squareSize)/2) + (x * squareSize)),
                         y*squareSize, squareSize, squareSize, 0);
 
                 //setup the airSquares.
-                airSquares[x][y] = new Square( ((GamePanel.width/2) -
+                airSquares[x][y] = new Square( ((Game.width/2) -
                         ((columnCount*squareSize)/2) + (x * squareSize)),
                         y*squareSize, squareSize, squareSize, 0);
             }

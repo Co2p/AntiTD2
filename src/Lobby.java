@@ -1,5 +1,4 @@
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -13,9 +12,7 @@ public class Lobby {
     private JPanel enterNamePanel;
     private JPanel selectLevelPanel;
     public Player player;
-    public GamePanel gamePanel;
-    private ArrayList<Level> levelArray;
-    private int levelCounter = 0;
+    public ArrayList<Level> levelArray;
 
     public Lobby(ArrayList<Level> levelArray) {
         this.levelArray = levelArray;
@@ -62,25 +59,16 @@ public class Lobby {
         int noOfLevels = 0;
         for (int i = 0; i < levelArray.size(); i++) {
             noOfLevels++;
-            JButton levelButton = new JButton("Level " + noOfLevels);
+            JButton levelButton = new JButton(levelArray.get(i).getLevelName());
+
             selectLevelPanel.add(levelButton);
-            levelButton.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    buildGamePanel();
-                }
-            });
+
+            levelButton.addActionListener(
+                    new LevelSelectButtonListener(mainFrame,levelArray.get(i)));
         }
 
         selectLevelPanel.add(instructionLabel);
         mainFrame.add(selectLevelPanel);
     }
 
-    private void buildGamePanel() {
-        selectLevelPanel.setVisible(false);
-       // gamePanel = new GamePanel(levelArray.get(levelCounter));
-        gamePanel = new GamePanel(mainFrame);
-        levelCounter++;
-        mainFrame.add(gamePanel, BorderLayout.CENTER);
-    }
 }

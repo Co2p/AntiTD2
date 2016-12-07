@@ -17,8 +17,8 @@ public class ClickHandler extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
 
         //call the clickmethod inside the shop
-        GamePanel.shop.click(e.getButton());
-        System.out.println(GamePanel.mousePoint);
+        Game.shop.click(e.getButton());
+        System.out.println(Game.mousePoint);
     }
 
     @Override
@@ -26,6 +26,6 @@ public class ClickHandler extends MouseAdapter {
     public void mouseMoved(MouseEvent e) {
 
         //find out where the mouse is on screen.
-        GamePanel.mousePoint = new Point(e.getX(), e.getY() - ShopButton.height/2);
+        Game.mousePoint = new Point(e.getX(), e.getY() - ShopButton.height/2);
     }
 }
