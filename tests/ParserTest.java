@@ -4,6 +4,8 @@ import java.util.ArrayList;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
+/*
+>>>>>>> daniel
 public class Main {
     public static void main (String[] args) {
         DOMParser parser = null;
@@ -53,3 +55,6 @@ public class Main {
 //        }
     }
 }
+<<<<<<< HEAD
+=======
+*/

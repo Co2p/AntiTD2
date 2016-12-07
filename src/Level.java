@@ -10,7 +10,7 @@ public class Level {
     public int timeLimit;
     public String className;
     public String classPath;
-    public String[] map;
+    public String map;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -86,11 +86,11 @@ public class Level {
         this.classPath = classPath;
     }
 
-    public String[] getMap() {
+    public String getMap() {
         return map;
     }
 
-    public void setMap(String[] map) {
+    public void setMap(String map) {
         this.map = map;
     }
 }
