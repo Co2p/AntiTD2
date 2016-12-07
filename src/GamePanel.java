@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
+import java.util.Objects;
 
 /**
  * Created by Simon on 2016-11-30.
@@ -16,16 +17,37 @@ public class GamePanel extends JPanel implements Runnable {
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];
     public static Image[] button_images = new Image[10];
-    public static Frame frame;
 
+
+    public static Frame frame;
+    public static Translator translator;
+    
     public static Point mousePoint = new Point (0,0);
 
     public static Shop shop;
+
     public static GameContainer gameContainer;
 
     //This is just a test string for the map
-    public static Character[][] background;
-    public static Character[][] air;
+
+    public static int[][]background;
+    public static int[][]air;
+
+    public String mapString =   "00TT00000000"+
+                                "SRRRR0000000"+
+                                "00TTRTTT0000"+
+                                "0000R0RRRT00"+
+                                "0000RRR0RT00"+
+                                "000TTT0TRT00"+
+                                "00000000RT00"+
+                                "00000000G000";
+
+/*
+
+
+   // public static Character[][] background;
+   // public static Character[][] air;
+
     public String backgroundString =    "000000000000" +
                                         "111111111110" +
                                         "000000000010" +
@@ -44,16 +66,26 @@ public class GamePanel extends JPanel implements Runnable {
                                         "000010000000" +
                                         "000000000130" ;
 
+<<<<<<< HEAD
+    private Level level;
+=======
+
+*/
 
     private Thread thread = new Thread(this);//thread that runs the game
-   // public static GameBoard gameBoard;    //GameBoard is the game JPanel
     private static boolean isFirst = true; //first time the game opens = true
 
-    public GamePanel(){
+    public GamePanel(JFrame frame){
+
+        GamePanel.frame = frame;
+        GamePanel.frame.addMouseListener(new ClickHandler());
+        GamePanel.frame.addMouseMotionListener(new ClickHandler());
+
         thread.start();
     }
 
-    public void setupImages(){
+    private void setupImages(){
+
         for (int i = 0; i <square_material.length ; i++) {
             square_material[i] = new ImageIcon("res/materials.png").getImage();
             square_material[i] = createImage(new FilteredImageSource(
@@ -72,16 +104,22 @@ public class GamePanel extends JPanel implements Runnable {
                     button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
         }
 
-        setupTemporaryMaps();
+
+        setupMap();
+        //setupTemporaryMaps();
     }
 
-    public void define(){
+    private void define(){
+
 
         //Define with and height for game plane
         width = getWidth();
         height = getHeight();
         setupImages();
+
         shop = new Shop();
+
+
         gameContainer = new GameContainer();
     }
 
@@ -111,14 +149,51 @@ public class GamePanel extends JPanel implements Runnable {
             }
             repaint();  // repaint the graphics in the gameframe.
             try{
-                thread.sleep(100);
+
+                thread.sleep(50);
+
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
     }
 
-    public void setupTemporaryMaps(){
+
+
+    private void setupMap(){
+        background = new int[GameContainer.columnCount][GameContainer.rowCount];
+        air = new int[GameContainer.columnCount][GameContainer.rowCount];
+
+        for (int y = 0; y < background[0].length ; y++)
+            for (int x = 0; x < background.length; x++) {
+
+                //Take out the character (String-value) at specific index
+                char indexChar = mapString.charAt(
+                        (y * GameContainer.columnCount) + x);
+                if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
+                    background[x][y] = Translator.squareGrass;
+                    air[x][y] = Translator.air;
+                }
+                if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
+                    background[x][y] = Translator.squareRoad;
+                    air[x][y] = Translator.air;
+                }
+                if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
+                    background[x][y] = Translator.squareRoad;
+                    air[x][y] = Translator.goal;
+                }
+                if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
+                    background[x][y] = Translator.squareRoad;
+                    air[x][y] = Translator.start;
+                }
+                if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
+                    background[x][y] = Translator.squareGrass;
+                    air[x][y] = Translator.towerZone;
+                }
+            }
+    }
+/*
+    private void setupTemporaryMaps(){
         background = new Character[GameContainer.columnCount][GameContainer.rowCount];
         air = new Character[GameContainer.columnCount][GameContainer.rowCount];
 
@@ -130,5 +205,6 @@ public class GamePanel extends JPanel implements Runnable {
                 air[x][y] = airString.charAt(((y*GameContainer.columnCount) + x));
             }
         }
-    }
+    }*/
+
 }

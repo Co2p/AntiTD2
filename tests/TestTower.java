@@ -6,12 +6,19 @@ import static org.junit.Assert.*;
  */
 public class TestTower {
 
+    /**
+     * Test that the constructor sets the values correctly
+     */
     @Test
     public void TestBasicsTower(){
         Tower t = new Tower(4,1, new Position());
         assertEquals(t.getRange(),1);
-        assertEquals(t.fire(),4);
+        //assertEquals(t.fire(),4);
     }
+
+    /**
+     * Test that a tower is placed on the right position.
+     */
     @Test
     public void TestTowerSetPos(){
         Position p = new Position(1,2);
@@ -20,6 +27,9 @@ public class TestTower {
         assertEquals(t.getPos().getX(),1);
     }
 
+    /**
+     * Test to see that a tower adds the correct neighbours.
+     */
     @Test
     public void TestAddNeighbours(){
         Position p = new Position(2,2);
@@ -30,6 +40,9 @@ public class TestTower {
         assertFalse(t.inRange(pfalse));
     }
 
+    /**
+     * Test to see that a tower adds all neigbours in range.
+     */
     @Test
     public void TestAddNeighboursRange5() {
         Position p = new Position(10, 10);
@@ -44,6 +57,10 @@ public class TestTower {
         assertEquals(t.getNrofNeighbours(), 60);
     }
 
+    /**
+     * Testing that position outside the map don't get added as neighbours.
+     * When a tower is placed with shorter range to the egde.
+     */
     @Test
     public void TestPositionOutOfRange1() {
         Position p = new Position(0, 0);
@@ -51,33 +68,39 @@ public class TestTower {
         assertEquals(t.getNrofNeighbours(), 2);
     }
 
+    /**
+     * Testing that position outside the map don't get added as neighbours.
+     * When a tower is placed with shorter range to the egde.
+     */
     @Test
-    public void TestPositionOutOfRange() {
+    public void TestPositionOutOfRange5() {
         Position p = new Position(3, 3);
         Tower t = new Tower(4, 5, p);
         assertEquals(t.getNrofNeighbours(), 52);
     }
 
+    /**
+     * Test to shoot a tropper in range.
+     */
     @Test
-    public void TestShootTrooper1() {
+    public void TestShootTrooper() {
         Position ptower = new Position(2,2);
         Position ptrooper1 = new Position(3,3);
-        Tower t = new Tower(4,1, ptower);
-        t.setPos(ptower);
-        t.addNeighbours(1);
+        Tower t = new Tower(4,2, ptower);
         Trooper tr1 = new Trooper(10);
         tr1.setPosition(ptrooper1);
         t.update(null, tr1);
-        assertEquals(10, tr1.getHealth());
+        assertEquals(6, tr1.getHealth());
     }
 
+    /**
+     * Test to try and shoot a trooper not in range.
+     */
     @Test
-    public void TestShootTrooper2(){
+    public void TestMissTrooper(){
         Position ptower = new Position(2,2);
         Position ptrooper2 = new Position(4,4);
-        Tower t = new Tower(4,1, ptower);
-        t.setPos(ptower);
-        t.addNeighbours(1);
+        Tower t = new Tower(4,3, ptower);
         Trooper tr2 = new Trooper(10);
         tr2.setPosition(ptrooper2);
         t.update(null, tr2);

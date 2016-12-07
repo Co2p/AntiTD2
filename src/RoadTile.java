@@ -1,5 +1,6 @@
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * A tile that Troopers walk on
@@ -10,6 +11,7 @@ public class RoadTile extends Tile implements Zone {
     private RoadTile portalExit = null;
     private Object landOnModifier = null;
     private Method landOnMethod = null;
+    private ArrayList<Trooper> troopers;
 
     /**
      * Constructor for RoadTile
@@ -19,6 +21,7 @@ public class RoadTile extends Tile implements Zone {
     public RoadTile(Position p, boolean isGoal) {
         super(p);
         this.isGoal = isGoal;
+        troopers = new ArrayList<>();
     }
 
     /**
@@ -44,7 +47,8 @@ public class RoadTile extends Tile implements Zone {
         } else {
             setChanged();
             if (t != null) {
-                notifyObservers(t);
+                troopers.add(t);
+                notifyObservers(troopers);
             }
             try {
                 landOnMethod.invoke(landOnModifier,t);

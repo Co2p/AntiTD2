@@ -120,6 +120,7 @@ public class TestTrooper {
         map.put(p4, rt4);
     }
 
+
     @Test
     public void TestTrooperGetPossibleMoves() {
         pt = new PitifulTrooper();

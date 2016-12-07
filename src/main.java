@@ -7,13 +7,25 @@ import java.util.ArrayList;
 public class main {
 
     public static void main(String[] args ){
-        ArrayList levels = new ArrayList();
-        levels.add(1);
-        levels.add(2);
+
+        ArrayList<Level> levelArray = new ArrayList<Level>();
+        LevelBuilder lb;
+
+        if(args.length > 0) {
+            lb = new LevelBuilder(args[0]);
+        } else {
+            lb = new LevelBuilder();
+        }
+
+        for (int i = 0; i < lb.getNoOfLevels(); i++) {
+            Level l = lb.buildLevel(i);
+            levelArray.add(l);
+        }
 
         SwingUtilities.invokeLater(() -> {
-            Lobby lobby = new Lobby(levels);
+            Lobby lobby = new Lobby(levelArray);
             lobby.showGUI();
         });
+
     }
 }
