@@ -1,9 +1,9 @@
-import helpers.Position;
+import main.java.helpers.Position;
 import org.junit.Test;
-import tile.RoadTile;
-import tile.Tile;
-import tile.TowerTile;
-import tower.Defense;
+import main.java.tile.RoadTile;
+import main.java.tile.Tile;
+import main.java.tile.TowerTile;
+import main.java.tower.Defense;
 
 import java.util.Hashtable;
 import static junit.framework.TestCase.*;

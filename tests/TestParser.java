@@ -2,7 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
-import helpers.DOMParser;
+import main.java.helpers.DOMParser;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.

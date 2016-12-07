@@ -31,7 +31,7 @@ public class Results {
 
     /**
      * Set the amount of troopers used to complete the game.
-     * @param totalTrooperCount The trooper count
+     * @param totalTrooperCount The main.java.trooper count
      */
     public void setTotalTrooperCount(int totalTrooperCount) {
         this.totalTrooperCount = totalTrooperCount;

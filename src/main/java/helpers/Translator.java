@@ -1,4 +1,4 @@
-package helpers;
+package main.java.helpers;
 
 /**
  * Created by Simon on 2016-12-05.

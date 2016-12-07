@@ -4,7 +4,7 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.util.Objects;
 
-import helpers.Translator;
+import main.java.helpers.Translator;
 
 /**
  * Created by Simon on 2016-11-30.

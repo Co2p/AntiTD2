@@ -1,14 +1,14 @@
-package tower;
+package main.java.tower;
 
-import helpers.Position;
-import trooper.Trooper;
+import main.java.helpers.Position;
+import main.java.trooper.Trooper;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Superclass for any tower class
+ * Superclass for any main.java.tower class
  */
 public class Tower implements Observer {
     protected int damage;
@@ -19,9 +19,9 @@ public class Tower implements Observer {
     protected Trooper focusTarget;
 
     /**
-     * Super tower constructor, called by the sub-tower classes
-     * @param damage tower damage
-     * @param range tower range
+     * Super main.java.tower constructor, called by the sub-main.java.tower classes
+     * @param damage main.java.tower damage
+     * @param range main.java.tower range
      */
     public Tower(int damage, int range, Position pos){
         this.damage=damage;
@@ -32,30 +32,30 @@ public class Tower implements Observer {
     }
 
     /**
-     * fires the tower, override by subclasses
-     * @return tower damage
+     * fires the main.java.tower, override by subclasses
+     * @return main.java.tower damage
      */
     public void fire(){}
 
     /**
-     * Get tower range
-     * @return tower range
+     * Get main.java.tower range
+     * @return main.java.tower range
      */
     public int getRange() {
         return range;
     }
 
     /**
-     * helpers.Position of the tower
-     * @return tower position
+     * main.java.helpers.Position of the main.java.tower
+     * @return main.java.tower position
      */
     public Position getPos() {
         return pos;
     }
 
     /**
-     * Set the tower position
-     * @param pos a new tower position
+     * Set the main.java.tower position
+     * @param pos a new main.java.tower position
      */
     public void setPos(Position pos) {
         this.pos = pos;

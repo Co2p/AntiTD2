@@ -1,4 +1,4 @@
-package trooper;
+package main.java.trooper;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
@@ -6,7 +6,7 @@ package trooper;
 public class PitifulTrooper extends Trooper {
 
     /**
-     * Create a pitiful trooper which is just a default trooper
+     * Create a pitiful main.java.trooper which is just a default main.java.trooper
      */
     public PitifulTrooper(){
         super();

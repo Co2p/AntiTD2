@@ -1,9 +1,8 @@
-package tower;
+package main.java.tower;
 
-import helpers.Position;
-import tile.Tile;
-import tile.TowerTile;
-import tower.Tower;
+import main.java.helpers.Position;
+import main.java.tile.Tile;
+import main.java.tile.TowerTile;
 
 import java.util.*;
 

@@ -1,4 +1,4 @@
-import helpers.Translator;
+import main.java.helpers.Translator;
 
 import java.awt.*;
 

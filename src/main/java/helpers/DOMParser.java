@@ -1,4 +1,4 @@
-package helpers;
+package main.java.helpers;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -134,7 +134,7 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
-     * @return the tower spawn rate
+     * @return the main.java.tower spawn rate
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;

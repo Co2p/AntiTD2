@@ -1,4 +1,4 @@
-import helpers.DOMParser;
+import main.java.helpers.DOMParser;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
@@ -7,11 +7,8 @@ public class LevelBuilder {
 
     private DOMParser levelParser;
     private String fileName;
-<<<<<<< HEAD
-    private static String FILELOCATION = "../xml/levels.xml";
-=======
-    private static String FILELOCATION = "xml/levels.xml";
->>>>>>> master
+    private static String FILELOCATION = "../../resources/xml/levels.xml";
+
 
     public LevelBuilder (String fileName) {
         this.fileName = fileName;
@@ -23,11 +20,7 @@ public class LevelBuilder {
     }
 
     public LevelBuilder() {
-<<<<<<< HEAD
       setupParser(FILELOCATION);
-=======
-        setupParser(FILELOCATION);
->>>>>>> master
     }
 
     private void setupParser(String fileName) {

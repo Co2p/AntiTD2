@@ -1,11 +1,11 @@
 import static org.junit.Assert.*;
 
-import helpers.Position;
+import main.java.helpers.Position;
 import org.junit.Test;
-import helpers.*;
+import main.java.helpers.*;
 /**
  * Created by andreas on 2016-05-20.
- * Testprogram to see that the helpers.Position class act like it should.
+ * Testprogram to see that the main.java.helpers.Position class act like it should.
  */
 public class TestPosition {
 

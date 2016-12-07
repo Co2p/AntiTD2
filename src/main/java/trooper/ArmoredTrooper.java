@@ -1,6 +1,4 @@
-package trooper;
-
-import trooper.Trooper;
+package main.java.trooper;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.

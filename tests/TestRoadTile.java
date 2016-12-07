@@ -1,6 +1,6 @@
-import helpers.Position;
+import main.java.helpers.Position;
 import org.junit.Test;
-import tile.RoadTile;
+import main.java.tile.RoadTile;
 
 import static junit.framework.TestCase.*;
 

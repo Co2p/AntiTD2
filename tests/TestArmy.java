@@ -1,6 +1,6 @@
 import org.junit.Before;
 import org.junit.Test;
-import trooper.*;
+import main.java.trooper.*;
 
 import java.util.Hashtable;
 

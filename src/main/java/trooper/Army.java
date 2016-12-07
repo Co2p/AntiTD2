@@ -1,9 +1,9 @@
-package trooper;
+package main.java.trooper;
 
-import helpers.Direction;
-import helpers.Position;
-import tile.RoadTile;
-import tile.Tile;
+import main.java.helpers.Direction;
+import main.java.helpers.Position;
+import main.java.tile.RoadTile;
+import main.java.tile.Tile;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -30,9 +30,9 @@ public class Army {
     }
 
     /**
-     * Creates a trooper of given type.
-     * @param type enum telling which trooper to create, pitiful, teleporter
-     *             or armored trooper.
+     * Creates a main.java.trooper of given type.
+     * @param type enum telling which main.java.trooper to create, pitiful, teleporter
+     *             or armored main.java.trooper.
      */
     public void createTrooper(TrooperType type) {
         switch (type) {
@@ -51,16 +51,16 @@ public class Army {
     }
 
     /**
-     * Retrieves the trooper in front of the queue.
-     * @return returns a trooper from the queue
+     * Retrieves the main.java.trooper in front of the queue.
+     * @return returns a main.java.trooper from the queue
      */
     public Trooper getFromQueue() {
         return armyQueue.poll();
     }
 
     /**
-     * Will take a newly created trooper from the queue and add it to the list
-     * of active troopers, then it will move each trooper if they are alive and
+     * Will take a newly created main.java.trooper from the queue and add it to the list
+     * of active troopers, then it will move each main.java.trooper if they are alive and
      * check if they reach goal.
      */
     public void updateArmy() {
