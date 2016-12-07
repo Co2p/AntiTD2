@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import java.util.Hashtable;
 
+import static com.sun.xml.internal.ws.dump.LoggingDumpTube.Position.Before;
 import static junit.framework.TestCase.*;
 
 /**

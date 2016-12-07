@@ -12,6 +12,8 @@ public class Tower implements Observer {
     protected int range;
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
+    private ArrayList<Trooper> targets;
+    private Trooper focusTarget;
 
     /**
      * Super tower constructor, called by the sub-tower classes
@@ -21,16 +23,20 @@ public class Tower implements Observer {
     public Tower(int damage, int range, Position pos){
         this.damage=damage;
         this.range=range;    //Ska vi ens ha range?
+        targets = new ArrayList<>();
         setPos(pos);
-        addNeighbours(range);
+        addNeighbours();
     }
 
     /**
      * fires the tower and returns the tower damage, overridden by subclasses
      * @return tower damage
      */
-    public int fire(){
-        return damage;
+    public void fire(){
+        if (!targets.contains(focusTarget)) {
+            focusTarget = targets.get(targets.size() - 1);
+        }
+        focusTarget.receiveDamage(damage);
     }
 
     /**
@@ -59,9 +65,9 @@ public class Tower implements Observer {
 
     /**
      * Adds neighbouring tiles to the neighbours array
-     * @param range the range of the tower
+     *
      */
-    public void addNeighbours(int range) {
+    public void addNeighbours() {
         Position NPos = pos;
         Position SPos = pos;
         Position WPos = pos;
@@ -106,13 +112,11 @@ public class Tower implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        Trooper t = (Trooper)arg;
-        if(inRange(t.getPosition())){
-            t.receiveDamage(fire());
-        }
+        targets.addAll((ArrayList<Trooper>) arg);
     }
 
     public boolean inRange(Position position) {
         return neighbours.contains(position);
     }
+
 }
