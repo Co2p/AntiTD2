@@ -107,13 +107,13 @@ public class TestTrooper {
 
     private void makeMap() {
         Position p1 = new Position(0,1);
-        RoadTile rt1 = new RoadTile(p1 , false);
+        RoadTile rt1 = new RoadTile(p1 );
         Position p2 = new Position(1,1);
-        RoadTile rt2 = new RoadTile(p2 ,false);
+        RoadTile rt2 = new RoadTile(p2);
         Position p3 = new Position(2,1);
-        RoadTile rt3 = new RoadTile(p3 , false);
+        RoadTile rt3 = new RoadTile(p3 );
         Position p4 = new Position(3,2);
-        RoadTile rt4 = new RoadTile(p4, true);
+        RoadTile rt4 = new RoadTile(p4, "goal");
         map.put(p1, rt1);
         map.put(p2, rt2);
         map.put(p3, rt3);

@@ -9,7 +9,7 @@ public class TestRoadTile {
     @Test
     public void TestRoadTile(){
         Position p = new Position(1,1);
-        RoadTile t = new RoadTile(p, false);
+        RoadTile t = new RoadTile(p);
         assertFalse(t.isGoal());
 
     }

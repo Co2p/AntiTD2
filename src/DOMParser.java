@@ -115,7 +115,7 @@ public class DOMParser {
     }
 
     /**
-     * Returns the start amount of credits.
+     * Returns the squareStart amount of credits.
      * @return credits count.
      */
     public ArrayList<Long> getCredits() {

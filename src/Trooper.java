@@ -186,14 +186,14 @@ public class Trooper {
     }
 
     /*
-     * @return true if the trooper has reached the goal
+     * @return true if the trooper has reached the squareGoal
      */
     public boolean getReachedGoal(){
         return reachedGoal;
     }
 
     /**
-     * Sets that the trooper has reached the goal
+     * Sets that the trooper has reached the squareGoal
      */
     public void setReachedGoal() {
         reachedGoal = true;

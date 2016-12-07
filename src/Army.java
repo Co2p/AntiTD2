@@ -54,7 +54,7 @@ public class Army {
     /**
      * Will take a newly created trooper from the queue and add it to the list
      * of active troopers, then it will move each trooper if they are alive and
-     * check if they reach goal.
+     * check if they reach squareGoal.
      */
     public void updateArmy() {
         army.add(getFromQueue());

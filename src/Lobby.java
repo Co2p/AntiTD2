@@ -25,6 +25,7 @@ public class Lobby {
         buildNamePanel();
         mainFrame.addMouseListener(new ClickHandler());
         mainFrame.addMouseMotionListener(new ClickHandler());
+        mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public void showGUI() {

@@ -11,24 +11,19 @@ import java.util.Objects;
  */
 public class Game extends JPanel implements Runnable {
 
-
     public static int width, height;
-
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];
     public static Image[] button_images = new Image[10];
-    
-    public static Point mousePoint = new Point (0,0);
-
-    public static Shop shop;
-
-    public static Level level;
-
-    public static GameContainer gameContainer;
-
 
     public static int[][]background;
     public static int[][]air;
+
+    public static Point mousePoint = new Point (0,0);
+
+    public static Shop shop;
+    public static Level level;
+    public static GameContainer gameContainer;
 
     public String mapString =   "000000000000"+
                                 "0RR00R00R0R0"+
@@ -39,25 +34,19 @@ public class Game extends JPanel implements Runnable {
                                 "0R00R0R0R0RR"+
                                 "000000000000";
 
-
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
 
     public Game(Level level){
         this.level = level;
         thread.start();
-
     }
 
     private void define(){
 
-        //Define the gamepanel
         width = getWidth();
         height = getHeight();
-
         mapString = level.getMap();
-
-
         setupImages();
         shop = new Shop();
         gameContainer = new GameContainer();
@@ -69,12 +58,11 @@ public class Game extends JPanel implements Runnable {
         if(isFirst) {
             define();   //define the squarearray
             isFirst = false;
+            //set background color to gray
         }
 
-        //set background color to gray
         gr.setColor(new Color(149, 149, 149));
         gr.fillRect(0,0, getWidth(), getHeight());
-
         gameContainer.draw(gr);
         shop.draw(gr);
     }
@@ -133,25 +121,26 @@ public class Game extends JPanel implements Runnable {
                 //Take out the character (String-value) at specific index
                 char indexChar = mapString.charAt(
                         (y * GameContainer.columnCount) + x);
+
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
-                    air[x][y] = Translator.air;
+                    air[x][y] = Translator.indexBlank;
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;
-                    air[x][y] = Translator.air;
+                    air[x][y] = Translator.indexBlank;
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
-                    background[x][y] = Translator.squareRoad;
-                    air[x][y] = Translator.goal;
+                    background[x][y] = Translator.squareGoal;
+                    air[x][y] = Translator.indexGoal;
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
-                    background[x][y] = Translator.squareRoad;
-                    air[x][y] = Translator.start;
+                    background[x][y] = Translator.squareStart;
+                    air[x][y] = Translator.indexStart;
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
-                    background[x][y] = Translator.squareGrass;
-                    air[x][y] = Translator.towerZone;
+                    background[x][y] = Translator.squareTowerZone;
+                    air[x][y] = Translator.indexTowerZone;
                 }
             }
     }
