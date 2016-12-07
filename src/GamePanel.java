@@ -21,8 +21,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     public static Frame frame;
     public static Translator translator;
-
-
+    
     public static Point mousePoint = new Point (0,0);
 
     public static Shop shop;
