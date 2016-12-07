@@ -14,11 +14,20 @@ public class Translator {
 
     public static int squareGrass = 0;
     public static int squareRoad = 1;
+    public static int squareStart = 2;
+    public static int squareGoal = 3;
+    public static int squareTowerZone = 4;
 
-    public static int air = 0;
-    public static int towerZone = 1;
-    public static int start = 2;
-    public static int goal = 3;
+    public static int indexBlank = 0;
+    public static int indexTowerZone = 1;
+    public static int indexStart = 2;
+    public static int indexGoal = 3;
+
+
+
+
+
+
 
 
 }

@@ -10,7 +10,7 @@ public class GameContainer {
     public static int squareSize = 50;   //change this to be dynamic (square size)
 
     private Square[][] backgroundSquares;    //Array containg the ground backgroundSquares
-    private Square[][] airSquares;           //Array containing the air backgroundSquares.
+    private Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
 
     public GameContainer(){
         define();
@@ -41,6 +41,7 @@ public class GameContainer {
     }
 
     public void draw(Graphics gr){
+
         for (int y = 0; y < backgroundSquares[0].length; y++) {
             for (int x = 0; x < backgroundSquares.length; x++) {
                 backgroundSquares[x][y].drawBackground(gr, x, y);

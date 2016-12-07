@@ -59,9 +59,15 @@ public class Army {
     }
 
     /**
+<<<<<<< HEAD:src/main/java/trooper/Army.java
      * Will take a newly created main.java.trooper from the queue and add it to the list
      * of active troopers, then it will move each main.java.trooper if they are alive and
      * check if they reach goal.
+=======
+     * Will take a newly created trooper from the queue and add it to the list
+     * of active troopers, then it will move each trooper if they are alive and
+     * check if they reach squareGoal.
+>>>>>>> master:src/Army.java
      */
     public void updateArmy() {
         army.add(getFromQueue());

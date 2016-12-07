@@ -11,20 +11,31 @@ import main.java.helpers.Position;
  * Created by gordon on 2016-11-28.
  */
 public class RoadTile extends Tile implements Zone {
-    private boolean isGoal;
+    private boolean isGoal = false;
+    private boolean isStart = false;
     private RoadTile portalExit = null;
     private Object landOnModifier = null;
     private Method landOnMethod = null;
     private ArrayList<Trooper> troopers;
 
     /**
+<<<<<<< HEAD:src/main/java/tile/RoadTile.java
      * Constructor for main.java.tile.RoadTile
      * @param p, the position where the main.java.tile will be placed.
      * @param isGoal, if the main.java.tile is a goal (end main.java.tile)
+=======
+     * Constructor for RoadTile
+     * @param p, the position where the tile will be placed.
+>>>>>>> master:src/RoadTile.java
      */
-    public RoadTile(Position p, boolean isGoal) {
+    public RoadTile(Position p, String isGoalOrStart) {
         super(p);
-        this.isGoal = isGoal;
+
+        if(isGoalOrStart.equals("start")){
+            this.isStart = true;
+        }else if (isGoalOrStart.equals("goal")){
+            this.isGoal = true;
+        }
         troopers = new ArrayList<>();
     }
 
@@ -89,10 +100,17 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
+<<<<<<< HEAD:src/main/java/tile/RoadTile.java
      * Returns true if the main.java.tile is a goal.
      * @return true if the main.java.tile is a goal.
+=======
+     * Returns true if the tile is a squareGoal.
+     * @return true if the tile is a squareGoal.
+>>>>>>> master:src/RoadTile.java
      */
     public boolean isGoal() {
         return isGoal;
     }
+
+    public boolean isStart(){ return isStart;}
 }

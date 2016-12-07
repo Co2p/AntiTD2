@@ -193,14 +193,22 @@ public class Trooper {
     }
 
     /*
+<<<<<<< HEAD:src/main/java/trooper/Trooper.java
      * @return true if the main.java.trooper has reached the goal
+=======
+     * @return true if the trooper has reached the squareGoal
+>>>>>>> master:src/Trooper.java
      */
     public boolean getReachedGoal(){
         return reachedGoal;
     }
 
     /**
+<<<<<<< HEAD:src/main/java/trooper/Trooper.java
      * Sets that the main.java.trooper has reached the goal
+=======
+     * Sets that the trooper has reached the squareGoal
+>>>>>>> master:src/Trooper.java
      */
     public void setReachedGoal() {
         reachedGoal = true;

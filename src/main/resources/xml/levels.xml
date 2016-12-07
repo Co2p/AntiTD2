@@ -32,14 +32,35 @@
             <tile classpath="" > </tile> //oklart hur denna ska fungera
         </zone>
         <map>
-            <row>000000000000</row>
-            <row>000000000000</row>
-            <row>00TTRTTT0000</row>
-            <row>0000R0RRRT00</row>
-            <row>0000RRR0RT00</row>
-            <row>000TTT0TRT00</row>
-            <row>00000000RT00</row>
-            <row>00000000G000</row>
+            <row>000TTT000000</row>
+            <row>000RRRRT0000</row>
+            <row>000R00RT0000</row>
+            <row>0RRR00RT0000</row>
+            <row>0RT000R00T00</row>
+            <row>0RTTRRRRRR00</row>
+            <row>0R000000TR00</row>
+            <row>0S0000000G00</row>
+        </map>
+    </level>
+    <level name ="Level 3">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>25</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>TTTTTTTTTTGT</row>
+            <row>TRRRTRRRTTRT</row>
+            <row>TRTRRRTRRRRT</row>
+            <row>TRTTTTTTTTTT</row>
+            <row>TRRRRRRRRRRT</row>
+            <row>TTTTTTTTTTRT</row>
+            <row>SRRRRRRRRRRT</row>
+            <row>TTTTTTTTTTTT</row>
         </map>
     </level>
     <level name ="fu">
