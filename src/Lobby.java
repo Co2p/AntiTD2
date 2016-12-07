@@ -63,6 +63,8 @@ public class Lobby {
         for (int i = 0; i < levelArray.size(); i++) {
             noOfLevels++;
             JButton levelButton = new JButton("Level " + noOfLevels);
+
+
             selectLevelPanel.add(levelButton);
 
             levelButton.addActionListener(new ActionListener() {

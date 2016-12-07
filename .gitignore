@@ -2,9 +2,6 @@
 *.iml
 .idea/*
 out/*
-<<<<<<< HEAD
 *.ipr
 *.iws
-=======
 
->>>>>>> clickHandler
