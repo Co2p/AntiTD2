@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<levellist>
+    <level name ="Level 1">
+        <rules>
+            <credits>600</credits>
+            <unitstowin>10</unitstowin>
+            <towerspawnrate>25</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>00TT00000000</row>
+            <row>SRRRR0000000</row>
+            <row>00TTRTTT0000</row>
+            <row>0000R0RRRT00</row>
+            <row>0000RRR0RT00</row>
+            <row>000TTT0TRT00</row>
+            <row>00000000RT00</row>
+            <row>00000000G000</row>
+        </map>
+    </level>
+    <level name ="EKORRE">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>25</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>000000000000</row>
+            <row>000000000000</row>
+            <row>00TTRTTT0000</row>
+            <row>0000R0RRRT00</row>
+            <row>0000RRR0RT00</row>
+            <row>000TTT0TRT00</row>
+            <row>00000000RT00</row>
+            <row>00000000G000</row>
+        </map>
+    </level>
+    <level name ="fu">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>25</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00RR0RR0RR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
+        </map>
+    </level>
+</levellist>

@@ -7,7 +7,11 @@ public class LevelBuilder {
 
     private DOMParser levelParser;
     private String fileName;
+<<<<<<< HEAD
     private static String FILELOCATION = "../xml/levels.xml";
+=======
+    private static String FILELOCATION = "xml/levels.xml";
+>>>>>>> master
 
     public LevelBuilder (String fileName) {
         this.fileName = fileName;
@@ -19,7 +23,11 @@ public class LevelBuilder {
     }
 
     public LevelBuilder() {
+<<<<<<< HEAD
       setupParser(FILELOCATION);
+=======
+        setupParser(FILELOCATION);
+>>>>>>> master
     }
 
     private void setupParser(String fileName) {
