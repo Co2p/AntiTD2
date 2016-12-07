@@ -1,16 +1,14 @@
+package main.java;
+
 import main.java.helpers.Translator;
 
 import java.awt.*;
+import main.java.helpers.Position;
+import main.java.tile.Tile;
+import main.java.tile.RoadTile;
+
 
 /**
-<<<<<<< HEAD
-<<<<<<<<< Temporary merge branch 1
-=======
-<<<<<<< HEAD
-=======
-<<<<<<<<< Temporary merge branch 1
->>>>>>> master
->>>>>>> clickHandler
  * Created by Simon on 2016-11-30.
  *
  * this class defines how a square on the gameboard looks for the player.

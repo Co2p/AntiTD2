@@ -30,9 +30,9 @@ public class Army {
     }
 
     /**
-     * Creates a main.java.trooper of given type.
-     * @param type enum telling which main.java.trooper to create, pitiful, teleporter
-     *             or armored main.java.trooper.
+     * Creates a main.java.main.java.trooper of given type.
+     * @param type enum telling which main.java.main.java.trooper to create, pitiful, teleporter
+     *             or armored main.java.main.java.trooper.
      */
     public void createTrooper(TrooperType type) {
         switch (type) {
@@ -51,17 +51,17 @@ public class Army {
     }
 
     /**
-     * Retrieves the main.java.trooper in front of the queue.
-     * @return returns a main.java.trooper from the queue
+     * Retrieves the main.java.main.java.trooper in front of the queue.
+     * @return returns a main.java.main.java.trooper from the queue
      */
     public Trooper getFromQueue() {
         return armyQueue.poll();
     }
 
     /**
-<<<<<<< HEAD:src/main/java/trooper/Army.java
-     * Will take a newly created main.java.trooper from the queue and add it to the list
-     * of active troopers, then it will move each main.java.trooper if they are alive and
+<<<<<<< HEAD:src/main.java.main/java/trooper/Army.java
+     * Will take a newly created main.java.main.java.trooper from the queue and add it to the list
+     * of active troopers, then it will move each main.java.main.java.trooper if they are alive and
      * check if they reach goal.
 =======
      * Will take a newly created trooper from the queue and add it to the list

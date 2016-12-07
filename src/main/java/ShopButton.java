@@ -1,3 +1,5 @@
+package main.java;
+
 import java.awt.*;
 
 /**
@@ -14,7 +16,7 @@ public class ShopButton extends Rectangle{
         public static int height, width;
 
     /**
-     * Constructor for a ShopButton
+     * Constructor for a main.java.ShopButton
      *
      * takes the buttons position : X, Y
      * the width of a button, and an id.

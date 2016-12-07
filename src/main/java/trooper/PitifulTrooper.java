@@ -6,7 +6,7 @@ package main.java.trooper;
 public class PitifulTrooper extends Trooper {
 
     /**
-     * Create a pitiful main.java.trooper which is just a default main.java.trooper
+     * Create a pitiful main.java.main.java.trooper which is just a default main.java.main.java.trooper
      */
     public PitifulTrooper(){
         super();

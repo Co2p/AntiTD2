@@ -20,7 +20,7 @@ public class TeleportTrooper extends Trooper{
     }
 
     /**
-     * places a portal on current main.java.tile.RoadTile which teleports troopers to a main.java.tile
+     * places a portal on current main.java.main.java.tile.RoadTile which teleports troopers to a main.java.main.java.tile
      * five steps further ahead.
      * @param preferred -
      */

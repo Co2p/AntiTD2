@@ -26,7 +26,7 @@ public class Trooper {
     private boolean reachedGoal = false;
 
     /**
-     * Default constructor, crates a main.java.trooper.PitifulTrooper
+     * Default constructor, crates a main.java.main.java.trooper.PitifulTrooper
      */
     public Trooper(){
         this.maxhealth=100;
@@ -38,7 +38,7 @@ public class Trooper {
 
     /**
      * Constructor that takes in a hp value
-     * @param hp the defined hp for the main.java.trooper
+     * @param hp the defined hp for the main.java.main.java.trooper
      */
     public Trooper(int hp){
         this.maxhealth=hp;
@@ -49,9 +49,9 @@ public class Trooper {
     }
 
     /**
-     * A main.java.trooper that takes in hp and speed values
-     * @param hp main.java.trooper hp
-     * @param speed main.java.trooper speed
+     * A main.java.main.java.trooper that takes in hp and speed values
+     * @param hp main.java.main.java.trooper hp
+     * @param speed main.java.main.java.trooper speed
      */
     public Trooper(int hp, int speed){
         this.maxhealth = hp;
@@ -72,8 +72,8 @@ public class Trooper {
     }
 
     /**
-     * Adds health (heals) the main.java.trooper
-     * @param addHealth amount to heal the main.java.trooper by
+     * Adds health (heals) the main.java.main.java.trooper
+     * @param addHealth amount to heal the main.java.main.java.trooper by
      */
     public void receiveHealth(int addHealth){
         if(!hasTurned) {
@@ -94,7 +94,7 @@ public class Trooper {
 
     /**
      * Receive damage (deduct from  health)
-     * @param removeHealth amount of damage to the main.java.trooper
+     * @param removeHealth amount of damage to the main.java.main.java.trooper
      */
     public void receiveDamage(int removeHealth){
         if(!hasTurned) {
@@ -112,16 +112,16 @@ public class Trooper {
     }
 
     /**
-     * Returns true if the main.java.trooper is dead
-     * @return true if the main.java.trooper is dead
+     * Returns true if the main.java.main.java.trooper is dead
+     * @return true if the main.java.main.java.trooper is dead
      */
     public boolean isDead(){
         return isDead;
     }
 
     /**
-     * Set the prioritized direction for the main.java.trooper
-     * @param d a main.java.helpers.Direction (North, East, South, West)
+     * Set the prioritized direction for the main.java.main.java.trooper
+     * @param d a main.java.main.java.helpers.Direction (North, East, South, West)
      */
     public void setDirection(Direction d){
         if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == Direction.EAST) {
@@ -130,7 +130,7 @@ public class Trooper {
     }
 
     /**
-     * Get current prioritized direction for the main.java.trooper
+     * Get current prioritized direction for the main.java.main.java.trooper
      * @return prioritized direction
      */
     public Direction getDirection(){
@@ -138,7 +138,7 @@ public class Trooper {
     }
 
     /**
-     * Get the health of the main.java.trooper
+     * Get the health of the main.java.main.java.trooper
      * @return health
      */
     public int getHealth(){
@@ -151,7 +151,7 @@ public class Trooper {
     }
 
     /**
-     * Set the health of the main.java.trooper
+     * Set the health of the main.java.main.java.trooper
      * @param health health
      */
     public void setHealth(int health){
@@ -168,7 +168,7 @@ public class Trooper {
     }
 
     /**
-     * Set the speed of the main.java.trooper
+     * Set the speed of the main.java.main.java.trooper
      * @param speed speed
      */
     public void setSpeed(int speed){
@@ -177,15 +177,15 @@ public class Trooper {
     }
 
     /**
-     * Get main.java.trooper position
-     * @return main.java.trooper position
+     * Get main.java.main.java.trooper position
+     * @return main.java.main.java.trooper position
      */
     public Position getPosition(){
         return position;
     }
 
     /**
-     * Sets the position of the main.java.trooper to p
+     * Sets the position of the main.java.main.java.trooper to p
      * @param position the position to set
      */
     public void setPosition(Position position) {
@@ -193,8 +193,8 @@ public class Trooper {
     }
 
     /*
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
-     * @return true if the main.java.trooper has reached the goal
+<<<<<<< HEAD:src/main.java.main/java/trooper/Trooper.java
+     * @return true if the main.java.main.java.trooper has reached the goal
 =======
      * @return true if the trooper has reached the squareGoal
 >>>>>>> master:src/Trooper.java
@@ -204,8 +204,8 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
-     * Sets that the main.java.trooper has reached the goal
+<<<<<<< HEAD:src/main.java.main/java/trooper/Trooper.java
+     * Sets that the main.java.main.java.trooper has reached the goal
 =======
      * Sets that the trooper has reached the squareGoal
 >>>>>>> master:src/Trooper.java
@@ -245,15 +245,15 @@ public class Trooper {
     }
 
     //TODO !
-//    private void backTrace(Hashtable<main.java.helpers.Position,main.java.tile.RoadTile> possibleMovesTable){
+//    private void backTrace(Hashtable<main.java.main.java.helpers.Position,main.java.main.java.tile.RoadTile> possibleMovesTable){
 //        path.pop();
 //        position = path.peek();
-//        main.java.tile.RoadTile road = possibleMovesTable.get(position);
+//        main.java.main.java.tile.RoadTile road = possibleMovesTable.get(position);
 //        road.landOn(this);
 //    }
 
     /**
-     * Finds the next main.java.tile to move to and calls landOn for that main.java.tile
+     * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */

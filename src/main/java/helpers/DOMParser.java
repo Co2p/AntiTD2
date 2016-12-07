@@ -134,7 +134,7 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
-     * @return the main.java.tower spawn rate
+     * @return the main.java.main.java.tower spawn rate
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;

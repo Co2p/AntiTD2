@@ -1,3 +1,5 @@
+package main.java;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
@@ -12,6 +14,8 @@ import main.java.helpers.Translator;
  * Contains the game board. extends the JPanel
  */
 public class Game extends JPanel implements Runnable {
+
+    private String RESPATH = "src/main/res/img";
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -91,21 +95,24 @@ public class Game extends JPanel implements Runnable {
     private void setupImages(){
 
         for (int i = 0; i <square_material.length ; i++) {
-            square_material[i] = new ImageIcon("res/materials.png").getImage();
+            square_material[i] = new ImageIcon(RESPATH + "/materials.png").getImage();
             square_material[i] = createImage(new FilteredImageSource(
-                    square_material[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+                    square_material[i].getSource(), new CropImageFilter(0, 50*i,50,50)
+            ));
         }
 
         for (int i = 0; i <square_air.length ; i++) {
-            square_air[i] = new ImageIcon("res/air.png").getImage();
+            square_air[i] = new ImageIcon(RESPATH + "/air.png").getImage();
             square_air[i] = createImage(new FilteredImageSource(
-                    square_air[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+                    square_air[i].getSource(), new CropImageFilter(0, 50*i,50,50)
+            ));
         }
 
         for (int i = 0; i <button_images.length ; i++) {
-            button_images[i] = new ImageIcon("res/buttons.png").getImage();
+            button_images[i] = new ImageIcon(RESPATH + "/buttons.png").getImage();
             button_images[i] = createImage(new FilteredImageSource(
-                    button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)));
+                    button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)
+            ));
         }
 
 

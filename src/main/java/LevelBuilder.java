@@ -1,3 +1,5 @@
+package main.java;
+
 import main.java.helpers.DOMParser;
 
 /**
@@ -7,7 +9,7 @@ public class LevelBuilder {
 
     private DOMParser levelParser;
     private String fileName;
-    private static String FILELOCATION = "../../resources/xml/levels.xml";
+    private static String FILELOCATION = "../../res/xml/levels.xml";
 
 
     public LevelBuilder (String fileName) {

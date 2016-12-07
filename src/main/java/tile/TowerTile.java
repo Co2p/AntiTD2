@@ -9,7 +9,7 @@ public class TowerTile extends Tile {
 
     /**
      * Constructor to create a Towertile.
-     * @param p The main.java.helpers.Position that the main.java.tile will be placed on.
+     * @param p The main.java.main.java.helpers.Position that the main.java.main.java.tile will be placed on.
      */
     public TowerTile(Position p){
         super(p);
@@ -17,16 +17,16 @@ public class TowerTile extends Tile {
 
 
     /**
-     * Return the main.java.tower on the towertile.
-     * @return main.java.tower
+     * Return the main.java.main.java.tower on the towertile.
+     * @return main.java.main.java.tower
      */
     public Tower getTower() {
         return tower;
     }
 
     /**
-     * Add a main.java.tower on the towertile.
-     * @param tower the main.java.tower to be placed.
+     * Add a main.java.main.java.tower on the towertile.
+     * @param tower the main.java.main.java.tower to be placed.
      */
     public void setTower(Tower tower) {
         this.tower = tower;

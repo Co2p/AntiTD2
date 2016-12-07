@@ -87,7 +87,7 @@ public class TestParser {
     @Test
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
-        assertEquals("Level 1",parser.getLevelName().get(0));
+        assertEquals("main.java.Level 1",parser.getLevelName().get(0));
     }
 
     @Test

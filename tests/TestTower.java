@@ -21,7 +21,7 @@ public class TestTower {
     }
 
     /**
-     * Test that a main.java.tower is placed on the right position.
+     * Test that a main.java.main.java.tower is placed on the right position.
      */
     @Test
     public void TestTowerSetPos(){
@@ -32,7 +32,7 @@ public class TestTower {
     }
 
     /**
-     * Test to see that a main.java.tower adds the correct neighbours.
+     * Test to see that a main.java.main.java.tower adds the correct neighbours.
      */
     @Test
     public void TestAddNeighbours(){
@@ -45,7 +45,7 @@ public class TestTower {
     }
 
     /**
-     * Test to see that a main.java.tower adds all neigbours in range.
+     * Test to see that a main.java.main.java.tower adds all neigbours in range.
      */
     @Test
     public void TestAddNeighboursRange5() {
@@ -63,7 +63,7 @@ public class TestTower {
 
     /**
      * Testing that position outside the map don't get added as neighbours.
-     * When a main.java.tower is placed with shorter range to the egde.
+     * When a main.java.main.java.tower is placed with shorter range to the egde.
      */
     @Test
     public void TestPositionOutOfRange1() {
@@ -74,7 +74,7 @@ public class TestTower {
 
     /**
      * Testing that position outside the map don't get added as neighbours.
-     * When a main.java.tower is placed with shorter range to the egde.
+     * When a main.java.main.java.tower is placed with shorter range to the egde.
      */
     @Test
     public void TestPositionOutOfRange5() {
@@ -98,7 +98,7 @@ public class TestTower {
     }
 
     /**
-     * Test to try and shoot a main.java.trooper not in range.
+     * Test to try and shoot a main.java.main.java.trooper not in range.
      */
     @Test
     public void TestMissTrooper(){

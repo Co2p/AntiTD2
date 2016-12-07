@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <levellist>
-    <level name ="Level 1">
+    <level name ="main.java.Level 1">
         <rules>
             <credits>1000</credits>
             <unitstowin>30</unitstowin>

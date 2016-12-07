@@ -7,7 +7,7 @@ import main.java.trooper.Trooper;
 import main.java.helpers.Position;
 
 /**
- * A main.java.tile that Troopers walk on
+ * A main.java.main.java.tile that Troopers walk on
  * Created by gordon on 2016-11-28.
  */
 public class RoadTile extends Tile implements Zone {
@@ -19,10 +19,10 @@ public class RoadTile extends Tile implements Zone {
     private ArrayList<Trooper> troopers;
 
     /**
-<<<<<<< HEAD:src/main/java/tile/RoadTile.java
-     * Constructor for main.java.tile.RoadTile
-     * @param p, the position where the main.java.tile will be placed.
-     * @param isGoal, if the main.java.tile is a goal (end main.java.tile)
+<<<<<<< HEAD:src/main.java.main/java/tile/RoadTile.java
+     * Constructor for main.java.main.java.tile.RoadTile
+     * @param p, the position where the main.java.main.java.tile will be placed.
+     * @param isGoal, if the main.java.main.java.tile is a goal (end main.java.main.java.tile)
 =======
      * Constructor for RoadTile
      * @param p, the position where the tile will be placed.
@@ -40,8 +40,8 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Constructor for main.java.tile.RoadTile, isGoal is set to false by default.
-     * @param p, the position where the main.java.tile will be placed.
+     * Constructor for main.java.main.java.tile.RoadTile, isGoal is set to false by default.
+     * @param p, the position where the main.java.main.java.tile will be placed.
      */
     public RoadTile(Position p) {
         super(p);
@@ -49,8 +49,8 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Called when a main.java.trooper.Trooper lands on the main.java.tile.RoadTile
-     * @param t the main.java.trooper.Trooper
+     * Called when a main.java.main.java.trooper.Trooper lands on the main.java.main.java.tile.RoadTile
+     * @param t the main.java.main.java.trooper.Trooper
      */
     @Override
     public void landOn(Trooper t) {
@@ -76,33 +76,33 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Returns true if the main.java.tile has a portal on it.
-     * @return true if the main.java.tile has a portal on it.
+     * Returns true if the main.java.main.java.tile has a portal on it.
+     * @return true if the main.java.main.java.tile has a portal on it.
      */
     public boolean hasPortal() {
         return (portalExit != null);
     }
 
     /**
-     * Sets a portal on the main.java.tile
-     * @param t the main.java.tile where the portal exits
+     * Sets a portal on the main.java.main.java.tile
+     * @param t the main.java.main.java.tile where the portal exits
      */
     public void setPortal(RoadTile t) {
         portalExit = t;
     }
 
     /**
-     * Returns the exit of the portal on the main.java.tile else null.
-     * @return the exit of the portal on the main.java.tile else null.
+     * Returns the exit of the portal on the main.java.main.java.tile else null.
+     * @return the exit of the portal on the main.java.main.java.tile else null.
      */
     public Tile getPortalExit() {
         return portalExit;
     }
 
     /**
-<<<<<<< HEAD:src/main/java/tile/RoadTile.java
-     * Returns true if the main.java.tile is a goal.
-     * @return true if the main.java.tile is a goal.
+<<<<<<< HEAD:src/main.java.main/java/tile/RoadTile.java
+     * Returns true if the main.java.main.java.tile is a goal.
+     * @return true if the main.java.main.java.tile is a goal.
 =======
      * Returns true if the tile is a squareGoal.
      * @return true if the tile is a squareGoal.

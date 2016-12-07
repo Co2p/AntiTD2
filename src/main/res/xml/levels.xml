@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <levellist>
-    <level name ="Level 1">
+    <level name ="main.java.Level 1">
         <rules>
             <credits>600</credits>
             <unitstowin>10</unitstowin>
@@ -42,7 +42,7 @@
             <row>0S0000000G00</row>
         </map>
     </level>
-    <level name ="Level 3">
+    <level name ="main.java.Level 3">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
