@@ -18,10 +18,17 @@ public class Translator {
     public static int squareGoal = 3;
     public static int squareTowerZone = 4;
 
+
+    //Indexes for images in air array
     public static int indexBlank = 0;
     public static int indexTowerZone = 1;
     public static int indexStart = 2;
     public static int indexGoal = 3;
+    public static int indexTrooper = 4;
+    public static int indexArmoredTrooper = 5;
+    public static int indexTeleporter = 6;
+    public static int indexZombie = 7;
+    public static int indexTower = 8;
 
     public static int pitifullPrice = 20;
     public static int armoredTrooperPrice = 40;
