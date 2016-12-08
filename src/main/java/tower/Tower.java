@@ -16,7 +16,6 @@ public class Tower implements Observer {
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
-    protected Trooper focusTarget;
 
     /**
      * Super tower constructor, called by the sub-tower classes
