@@ -13,8 +13,9 @@ public class Trooper {
     private int maxhealth;
     private int zombiehealth;
     private int health;
-    private int speed = 2;
-    private int zombiespeed;
+    private int stepDelay = 2;
+    private int semiStep = 0;
+    private int zombiestepDelay;
     private int armor;
     private boolean hasTurned = false;
     private boolean isDead = false;
@@ -32,7 +33,7 @@ public class Trooper {
         this.maxhealth=100;
         this.zombiehealth=100;
         this.health=100;
-        this.zombiespeed=(this.speed/2);
+        this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
     }
 
@@ -44,21 +45,21 @@ public class Trooper {
         this.maxhealth=hp;
         this.zombiehealth=hp;
         this.health=hp;
-        this.zombiespeed=(this.speed/2);
+        this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
     }
 
     /**
-     * A main.java.main.java.trooper that takes in hp and speed values
+     * A main.java.main.java.trooper that takes in hp and stepDelay values
      * @param hp main.java.main.java.trooper hp
-     * @param speed main.java.main.java.trooper speed
+     * @param stepDelay number of cycles before the trooper takes a steptrooper
      */
-    public Trooper(int hp, int speed){
+    public Trooper(int hp, int stepDelay){
         this.maxhealth = hp;
         this.health=hp;
-        this.speed=speed;
+        this.stepDelay=stepDelay;
         this.zombiehealth=hp;
-        this.zombiespeed=(this.speed/2);
+        this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
 
     }
@@ -158,22 +159,22 @@ public class Trooper {
         this.health=health;
     }
 
-    public int getSpeed(){
+    public int getstepDelay(){
         if(!hasTurned) {
-            return speed;
+            return stepDelay;
         }
         else{
-            return zombiespeed;
+            return zombiestepDelay;
         }
     }
 
     /**
-     * Set the speed of the main.java.main.java.trooper
-     * @param speed speed
+     * Set the stepDelay of the main.java.main.java.trooper
+     * @param stepDelay stepDelay
      */
-    public void setSpeed(int speed){
-        this.speed=speed;
-        this.zombiespeed=(speed/2);
+    public void setstepDelay(int stepDelay){
+        this.stepDelay=stepDelay;
+        this.zombiestepDelay=(stepDelay/2);
     }
 
     /**
@@ -185,7 +186,8 @@ public class Trooper {
     }
 
     /**
-     * Sets the position of the main.java.main.java.trooper to p
+     * Sets the position of the trooper to position
+     * Don't touch unless you are testing
      * @param position the position to set
      */
     public void setPosition(Position position) {
@@ -253,11 +255,30 @@ public class Trooper {
 //    }
 
     /**
+     * Takes a step every semiStep'th of the time that move is called
+     * @param map_hashTable a map
+     * @param preferred preferred direction for the army
+     * @return the RoadTile that the trooper is on
+     */
+    public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred) {
+        RoadTile road;
+        if (semiStep <= stepDelay) {
+            road = (RoadTile) map_hashTable.get(position);
+            semiStep++;
+        } else {
+            road = forceMove(map_hashTable, preferred);
+            semiStep = 0;
+        }
+
+        return road;
+    }
+
+    /**
      * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */
-    public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred){
+    public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
         path.add(position);
