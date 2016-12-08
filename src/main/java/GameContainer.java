@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+package main.java;
+
+import main.java.trooper.Army;
+
+>>>>>>> master
 import java.awt.*;
 
 /**
@@ -51,7 +58,9 @@ public class GameContainer {
 
     }
 
-    public void move(){
+    public void move(Army army){
+
+
 
     }
 }

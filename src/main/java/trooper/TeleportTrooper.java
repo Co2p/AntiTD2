@@ -28,7 +28,7 @@ public class TeleportTrooper extends Trooper{
         RoadTile portalPlacement = (RoadTile) map.get(getPosition());
         int portalsteps = 5;
         for(int i = 0; i < portalsteps; i++) {
-            move(map,preferred);
+            forceMove(map,preferred);
             if (isReverse()) {
                 i--;
             }

@@ -18,7 +18,6 @@ import tile.RoadTile;
 public class Square extends Rectangle {
 
     public int id;
-    public Tile tile;
     public Position p;
 
     public Square(int x, int y, int width, int height, int id){
@@ -37,17 +36,14 @@ public class Square extends Rectangle {
                 == Translator.squareRoad){
             gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x,y, width, height, null);
-            tile = new RoadTile(p);
         }else if((Game.background[indexX][indexY])
                 == Translator.squareGoal) {
             gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x, y, width, height, null);
-            tile = new RoadTile(p, "goal");
         }else if((Game.background[indexX][indexY])
                 == Translator.squareStart) {
             gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x, y, width, height, null);
-            tile = new RoadTile(p, "start");
         }else if ((Game.background[indexX][indexY])
                 == Translator.squareTowerZone) {
             gr.drawImage(Game.square_material[Translator.squareGrass]

@@ -8,7 +8,11 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+<<<<<<< HEAD
  * Superclass for any mainr class
+=======
+ * Superclass for any tower class
+>>>>>>> master
  */
 public class Tower implements Observer {
     protected int damage;
@@ -16,12 +20,17 @@ public class Tower implements Observer {
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
-    protected Trooper focusTarget;
 
     /**
+<<<<<<< HEAD
      * Super mainr constructor, called by the sub-mainr classes
      * @param damage mainr damage
      * @param range mainr range
+=======
+     * Super tower constructor, called by the sub-tower classes
+     * @param damage tower damage
+     * @param range tower range
+>>>>>>> master
      */
     public Tower(int damage, int range, Position pos){
         this.damage=damage;
@@ -32,30 +41,50 @@ public class Tower implements Observer {
     }
 
     /**
+<<<<<<< HEAD
      * fires the mainr, override by subclasses
      * @return mainr damage
+=======
+     * fires the tower, override by subclasses
+     * @return tower damage
+>>>>>>> master
      */
     public void fire(){}
 
     /**
+<<<<<<< HEAD
      * Get mainr range
      * @return mainr range
+=======
+     * Get tower range
+     * @return tower range
+>>>>>>> master
      */
     public int getRange() {
         return range;
     }
 
     /**
+<<<<<<< HEAD
      * mainers.Position of the mainr
      * @return mainr position
+=======
+     * Position of the tower
+     * @return tower position
+>>>>>>> master
      */
     public Position getPos() {
         return pos;
     }
 
     /**
+<<<<<<< HEAD
      * Set the mainr position
      * @param pos a new mainr position
+=======
+     * Set the tower position
+     * @param pos a new tower position
+>>>>>>> master
      */
     public void setPos(Position pos) {
         this.pos = pos;
@@ -86,15 +115,6 @@ public class Tower implements Observer {
                 NEPos = addNeighbour(NEPos.getPosToNorthEast());
             }
         }
-        //North South West East * range
-            //for each step in range:
-                //North step range - 1:
-                    //SW
-                    //SE
-                //South step range - 1:
-                    //NW
-                    //NE
-
     }
 
     /**

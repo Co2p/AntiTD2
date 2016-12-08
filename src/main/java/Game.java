@@ -4,9 +4,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
+import java.util.Hashtable;
 import java.util.Objects;
 
+<<<<<<< HEAD
 import helpers.Translator;
+=======
+import main.java.helpers.Position;
+import main.java.tower.Defense;
+import main.java.trooper.*;
+import main.java.tile.*;
+
+import main.java.helpers.Translator;
+>>>>>>> master
 
 /**
  * Created by Simon on 2016-11-30.
@@ -15,8 +25,15 @@ import helpers.Translator;
  */
 public class Game extends JPanel implements Runnable {
 
+<<<<<<< HEAD
     private String RESPATH = "src/main/resources/img";
 
+=======
+    private String RESPATH = "src/main/res/img";
+    private Army army;
+    private Defense defense;
+    private Hashtable<Position,Tile> map = new Hashtable<>();
+>>>>>>> master
     public static int width, height;
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];
@@ -54,7 +71,10 @@ public class Game extends JPanel implements Runnable {
         height = getHeight();
         mapString = level.getMap();
         setupImages();
-        shop = new Shop();
+        setupMap();
+        this.army=new Army(map);
+        this.defense = new Defense(map,level.towerSpawnRate);
+        shop = new Shop(army);
         gameContainer = new GameContainer();
     }
 
@@ -79,7 +99,12 @@ public class Game extends JPanel implements Runnable {
 
         while(true){
             if(!isFirst){
-                gameContainer.move(); //do something to change the game
+                army.updateArmy();
+                defense.createTower();
+                defense.update();
+                System.out.println(defense.getTowerCount());
+
+                //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
             try{
@@ -114,10 +139,6 @@ public class Game extends JPanel implements Runnable {
                     button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)
             ));
         }
-
-
-        setupMap();
-
     }
 
     private void setupMap(){
@@ -134,24 +155,28 @@ public class Game extends JPanel implements Runnable {
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.indexBlank;
+
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
+                    map.put(new Position(x,y), new RoadTile(new Position(x,y)));
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
                     background[x][y] = Translator.squareGoal;
                     air[x][y] = Translator.indexGoal;
+                    map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
                     background[x][y] = Translator.squareStart;
                     air[x][y] = Translator.indexStart;
+                    map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
                     background[x][y] = Translator.squareTowerZone;
                     air[x][y] = Translator.indexTowerZone;
+                    map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
             }
     }
-
 }

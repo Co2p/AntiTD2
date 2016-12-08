@@ -1,13 +1,22 @@
 package tower;
 
+<<<<<<< HEAD
 import helpers.Position;
 import tile.Tile;
 import tile.TowerTile;
+=======
+import main.java.helpers.Position;
+import main.java.tile.Tile;
+import main.java.tile.TowerTile;
+import main.java.trooper.Trooper;
+>>>>>>> master
 
 /**
+ * A subclass of Tower, shoots one trooper at a time
  * Created by gordon on 2016-11-30.
  */
 public class LaserTower extends Tower {
+    private Trooper focusTarget;
 
     public LaserTower(TowerTile tile, Tile[] roadtiles, Position pos) {
         super(100, 2, pos);
@@ -17,6 +26,10 @@ public class LaserTower extends Tower {
         }
     }
 
+    /**
+     * Prioritizes shooting the focused trooper, otherwise gets the trooper that
+     * entered the target list last. Hopefully at the back of the line.
+     */
     @Override
     public void fire() {
         if (!super.targets.contains(focusTarget)) {

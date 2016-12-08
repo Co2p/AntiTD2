@@ -5,13 +5,13 @@
  */
 public class Level {
 
-    public String levelName;
-    public Long credits;
-    public int unitsToWin;
-    public int towerSpawnRate;
-    public int timeLimit;
-    public String className;
-    public String classPath;
+    private String levelName;
+    private Long credits;
+    private int unitsToWin;
+    int towerSpawnRate;
+    private int timeLimit;
+    private String className;
+    private String classPath;
     public String map;
 
     public String getErrorMessage() {
@@ -22,7 +22,7 @@ public class Level {
         this.errorMessage = errorMessage;
     }
 
-    public String errorMessage;
+    private String errorMessage;
 
     public Level() {
         this.levelName = "Unknown";
