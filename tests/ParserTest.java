@@ -10,9 +10,9 @@ import java.util.ArrayList;
 =======
 >>>>>>> 4ae5a0a0a6289ceefdd6eb33a9ccccdd5d7ca08b
 public class Main {
-    public static void main (String[] args) {
-        DOMParser parser = null;
-        parser = new DOMParser();
+    public static void main.java.main (String[] args) {
+        main.java.main.java.helpers.DOMParser parser = null;
+        parser = new main.java.main.java.helpers.DOMParser();
         parser.parseFile("levels.xml");
         if(parser.isError()) {
             System.out.println(parser.getErrorMessage());
@@ -20,7 +20,7 @@ public class Main {
         ArrayList<String> levelName = parser.getLevelName();
         ArrayList<Long> credits = parser.getCredits();
         ArrayList<Integer> units = parser.getUnitsToWin();
-        ArrayList<Integer> tower = parser.getTowerSpawnRate();
+        ArrayList<Integer> main.java.main.java.tower = parser.getTowerSpawnRate();
         ArrayList<Integer> time = parser.getTimeLimit();
         ArrayList<String> className = parser.getClassName();
         ArrayList<String> classPath = parser.getClassPath();
@@ -30,7 +30,7 @@ public class Main {
             System.out.println("Rules: ");
             System.out.println("Credits: "+credits.get(i));
             System.out.println("UnitsToWin: "+units.get(i));
-            System.out.println("TowerSpawnRate: "+tower.get(i));
+            System.out.println("TowerSpawnRate: "+main.java.main.java.tower.get(i));
             System.out.println("TimeLimit: "+time.get(i));
             System.out.println("Zone: ");
             System.out.println("Name of class: "+className.get(i));

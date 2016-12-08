@@ -1,4 +1,9 @@
+import main.java.helpers.Position;
 import org.junit.Test;
+import main.java.tile.RoadTile;
+import main.java.tile.Tile;
+import main.java.tile.TowerTile;
+import main.java.tower.Defense;
 
 import java.util.Hashtable;
 import static junit.framework.TestCase.*;
@@ -11,7 +16,7 @@ public class TestDefense {
 
     @Test
     public void testSetUpDefense() {
-        Hashtable<Position,Tile> map = new Hashtable<>();
+        Hashtable<Position, Tile> map = new Hashtable<>();
         Position pos = new Position(4,5);
         TowerTile t = new TowerTile(pos);
         map.put(pos,t);

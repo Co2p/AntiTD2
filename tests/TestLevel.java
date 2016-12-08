@@ -1,6 +1,6 @@
 import static org.junit.Assert.*;
 
-import com.sun.org.apache.bcel.internal.generic.INSTANCEOF;
+import main.java.Level;
 import org.junit.Test;
 
 /**
@@ -16,7 +16,7 @@ public class TestLevel {
 
     @Test
     public void TestLevelWithName() {
-        Level l = new Level("Level");
-        assertEquals(l.getLevelName(), "Level");
+        Level l = new Level("main.java.Level");
+        assertEquals(l.getLevelName(), "main.java.Level");
     }
 }

@@ -1,4 +1,7 @@
+import main.java.helpers.Position;
 import org.junit.Test;
+import main.java.tile.RoadTile;
+
 import static junit.framework.TestCase.*;
 
 /**
@@ -9,7 +12,7 @@ public class TestRoadTile {
     @Test
     public void TestRoadTile(){
         Position p = new Position(1,1);
-        RoadTile t = new RoadTile(p, false);
+        RoadTile t = new RoadTile(p);
         assertFalse(t.isGoal());
 
     }
