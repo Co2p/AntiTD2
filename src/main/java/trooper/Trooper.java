@@ -1,7 +1,6 @@
 package trooper;
 
-import tile.RoadTile;
-import tile.Tile;
+import tile.*;
 
 import java.util.ArrayList;
 import java.util.Hashtable;

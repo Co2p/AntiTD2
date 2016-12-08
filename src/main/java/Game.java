@@ -15,7 +15,7 @@ import helpers.Translator;
  */
 public class Game extends JPanel implements Runnable {
 
-    private String RESPATH = "src/main/res/img";
+    private String RESPATH = "src/main/resources/img";
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
