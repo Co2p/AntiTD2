@@ -79,8 +79,20 @@ public class Shop {
                     int j = i +1;
                     System.out.println("Button: " + j + " was clicked");
 
-                    if(i == 0 && noOfCredits!= 0){
-                        noOfCredits -= 20;
+                    if(i == 0 && !(noOfCredits - Translator.pitifullPrice < 0)){
+                        noOfCredits -= Translator.pitifullPrice;
+                        //TODO Skapa pitifulTrooper
+                    }
+                    if(i == 1 && !(noOfCredits - Translator.armoredTrooperPrice < 0)){
+                        noOfCredits -= Translator.armoredTrooperPrice;
+                        //TODO Skapa armoredTrooper
+                    }
+                    if(i == 2 && !(noOfCredits - Translator.teleporterPrice < 0)){
+                        noOfCredits -= Translator.teleporterPrice;
+                        //TODO Skapa teleportTrooper samt koppla samman med knapp 4
+                    }
+                    else{
+                        //SLUT PÅ CASH!
                     }
                 }
             }
