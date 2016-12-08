@@ -1,11 +1,11 @@
-package main.java;
 
-import main.java.helpers.Translator;
+
+import helpers.Translator;
 
 import java.awt.*;
-import main.java.helpers.Position;
-import main.java.tile.Tile;
-import main.java.tile.RoadTile;
+import helpers.Position;
+import tile.Tile;
+import tile.RoadTile;
 
 
 /**

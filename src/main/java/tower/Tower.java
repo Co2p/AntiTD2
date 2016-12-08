@@ -1,14 +1,14 @@
-package main.java.tower;
+package tower;
 
-import main.java.helpers.Position;
-import main.java.trooper.Trooper;
+import helpers.Position;
+import trooper.Trooper;
 
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Superclass for any main.java.main.java.tower class
+ * Superclass for any mainr class
  */
 public class Tower implements Observer {
     protected int damage;
@@ -19,9 +19,9 @@ public class Tower implements Observer {
     protected Trooper focusTarget;
 
     /**
-     * Super main.java.main.java.tower constructor, called by the sub-main.java.main.java.tower classes
-     * @param damage main.java.main.java.tower damage
-     * @param range main.java.main.java.tower range
+     * Super mainr constructor, called by the sub-mainr classes
+     * @param damage mainr damage
+     * @param range mainr range
      */
     public Tower(int damage, int range, Position pos){
         this.damage=damage;
@@ -32,30 +32,30 @@ public class Tower implements Observer {
     }
 
     /**
-     * fires the main.java.main.java.tower, override by subclasses
-     * @return main.java.main.java.tower damage
+     * fires the mainr, override by subclasses
+     * @return mainr damage
      */
     public void fire(){}
 
     /**
-     * Get main.java.main.java.tower range
-     * @return main.java.main.java.tower range
+     * Get mainr range
+     * @return mainr range
      */
     public int getRange() {
         return range;
     }
 
     /**
-     * main.java.main.java.helpers.Position of the main.java.main.java.tower
-     * @return main.java.main.java.tower position
+     * mainers.Position of the mainr
+     * @return mainr position
      */
     public Position getPos() {
         return pos;
     }
 
     /**
-     * Set the main.java.main.java.tower position
-     * @param pos a new main.java.main.java.tower position
+     * Set the mainr position
+     * @param pos a new mainr position
      */
     public void setPos(Position pos) {
         this.pos = pos;

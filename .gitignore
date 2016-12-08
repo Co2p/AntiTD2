@@ -1,6 +1,13 @@
-
-*.iml
-.idea/*
-out/*
-*.ipr
-*.iws
+# Created by .ignore support plugin (hsz.mobi)
+.gradle/
+.idea/
+Projekt.ipr
+Projekt.iws
+build.gradle
+build/
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+src/main/resources/
+src/test/

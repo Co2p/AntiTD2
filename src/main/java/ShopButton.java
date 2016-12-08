@@ -1,7 +1,5 @@
-package main.java;
-
 import java.awt.*;
-import main.java.helpers.*;
+import helpers.*;
 
 /**
  * Created by Simon on 2016-12-01.
@@ -17,7 +15,7 @@ public class ShopButton extends Rectangle{
         public static int height, width;
 
     /**
-     * Constructor for a main.java.ShopButton
+     * Constructor for a ShopButton
      *
      * takes the buttons position : X, Y
      * the width of a button, and an id.

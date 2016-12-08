@@ -1,4 +1,4 @@
-package main.java;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -6,7 +6,7 @@ import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
 import java.util.Objects;
 
-import main.java.helpers.Translator;
+import helpers.Translator;
 
 /**
  * Created by Simon on 2016-11-30.

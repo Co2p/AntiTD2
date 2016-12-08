@@ -1,4 +1,4 @@
-package main.java.helpers;
+package helpers;
 
 import org.w3c.dom.Document;
 import org.xml.sax.SAXException;
@@ -61,7 +61,9 @@ public class DOMParser {
         Document doc = null;
         try {
 
-            URL url = getClass().getResource(fileName);
+            URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
+            System.out.println(url);
+            System.out.println(fileName);
             if(url != null) {
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
@@ -134,7 +136,7 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
-     * @return the main.java.main.java.tower spawn rate
+     * @return the mainr spawn rate
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;
