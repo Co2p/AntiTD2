@@ -67,7 +67,7 @@
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
-            <towerspawnrate>25</towerspawnrate> //in percent.
+            <towerspawnrate>10</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
         </rules>
         <zone>
