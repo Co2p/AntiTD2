@@ -1,6 +1,7 @@
 package main.java;
 
 import java.awt.*;
+import main.java.helpers.*;
 
 /**
  * Created by Simon on 2016-12-01.
