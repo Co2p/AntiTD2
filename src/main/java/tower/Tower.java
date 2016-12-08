@@ -8,7 +8,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Superclass for any main.java.main.java.tower class
+ * Superclass for any tower class
  */
 public class Tower implements Observer {
     protected int damage;
@@ -16,12 +16,11 @@ public class Tower implements Observer {
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
-    protected Trooper focusTarget;
 
     /**
-     * Super main.java.main.java.tower constructor, called by the sub-main.java.main.java.tower classes
-     * @param damage main.java.main.java.tower damage
-     * @param range main.java.main.java.tower range
+     * Super tower constructor, called by the sub-tower classes
+     * @param damage tower damage
+     * @param range tower range
      */
     public Tower(int damage, int range, Position pos){
         this.damage=damage;
@@ -32,30 +31,30 @@ public class Tower implements Observer {
     }
 
     /**
-     * fires the main.java.main.java.tower, override by subclasses
-     * @return main.java.main.java.tower damage
+     * fires the tower, override by subclasses
+     * @return tower damage
      */
     public void fire(){}
 
     /**
-     * Get main.java.main.java.tower range
-     * @return main.java.main.java.tower range
+     * Get tower range
+     * @return tower range
      */
     public int getRange() {
         return range;
     }
 
     /**
-     * main.java.main.java.helpers.Position of the main.java.main.java.tower
-     * @return main.java.main.java.tower position
+     * Position of the tower
+     * @return tower position
      */
     public Position getPos() {
         return pos;
     }
 
     /**
-     * Set the main.java.main.java.tower position
-     * @param pos a new main.java.main.java.tower position
+     * Set the tower position
+     * @param pos a new tower position
      */
     public void setPos(Position pos) {
         this.pos = pos;
@@ -86,15 +85,6 @@ public class Tower implements Observer {
                 NEPos = addNeighbour(NEPos.getPosToNorthEast());
             }
         }
-        //North South West East * range
-            //for each step in range:
-                //North step range - 1:
-                    //SW
-                    //SE
-                //South step range - 1:
-                    //NW
-                    //NE
-
     }
 
     /**
