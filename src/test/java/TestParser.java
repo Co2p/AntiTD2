@@ -1,7 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
-import main.java.helpers.DOMParser;
-import static junit.framework.TestCase.*;
+
+import helpers.DOMParser;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
@@ -9,11 +11,11 @@ import static junit.framework.TestCase.*;
 public class TestParser {
 
     private DOMParser parser;
-    private String xmlFile = "src/main/res/xml/test.xml";
+    private String xmlFile = "test.xml";
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/main/res/xml/levelSchema.xml");
+        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
     }
 
     @Test
@@ -86,7 +88,7 @@ public class TestParser {
     @Test
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
-        System.out.println(parser.getErrorMessage());
+
         assertEquals("Level 1",parser.getLevelName().get(0));
     }
 

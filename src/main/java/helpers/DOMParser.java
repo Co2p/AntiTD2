@@ -1,4 +1,4 @@
-package main.java.helpers;
+package helpers;
 
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
@@ -94,8 +94,9 @@ public class DOMParser {
     public void parseFile(String fileName) {
         Document doc = null;
         try {
-            URL url = getClass().getResource(fileName);
-            System.out.println(url);
+
+            URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
+
             if(url != null) {
 //                File f = new File(fileName);
                 File f = new File(url.toURI());
@@ -169,7 +170,11 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
+<<<<<<< HEAD
+     * @return the mainr spawn rate
+=======
      * @return the tower spawn rate
+>>>>>>> master
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;

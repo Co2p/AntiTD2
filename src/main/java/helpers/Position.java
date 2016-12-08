@@ -1,4 +1,4 @@
-package main.java.helpers;
+package helpers;
 
 public class Position {
     private int y;
@@ -23,7 +23,7 @@ public class Position {
     }
 
     /**
-     * Get the x from a main.java.main.java.helpers.Position.
+     * Get the x from a mainers.Position.
      * @return x
      */
     public int getX(){
@@ -31,7 +31,7 @@ public class Position {
     }
 
     /**
-     * Get the y from a main.java.main.java.helpers.Position.
+     * Get the y from a mainers.Position.
      * @return y
      */
     public int getY(){
@@ -39,7 +39,7 @@ public class Position {
     }
 
     /**
-     * Set/change x of a main.java.main.java.helpers.Position.
+     * Set/change x of a mainers.Position.
      * @param i the integer you want to set as x coordinate.
      */
     public void setX(int i){
@@ -47,7 +47,7 @@ public class Position {
     }
 
     /**
-     * Set/change y of a main.java.main.java.helpers.Position.
+     * Set/change y of a mainers.Position.
      * @param j the integer you want to set as y coordinate.
      */
     public void setY(int j){
@@ -55,7 +55,7 @@ public class Position {
     }
 
     /**
-     * Converts main.java.main.java.helpers.Direction into main.java.main.java.helpers.Position
+     * Converts mainers.Direction into mainers.Position
      * @param direction the direction of travel
      * @return the position
      */
@@ -77,7 +77,7 @@ public class Position {
      * Method to get the position to left according to
      * the direction youre facing.
      * @param direction
-     * @return main.java.main.java.helpers.Position to the left.
+     * @return mainers.Position to the left.
      */
     public Position getPosToLeft(Direction direction) {
         switch (direction) {
@@ -97,7 +97,7 @@ public class Position {
      * Method to get the position to right according to
      * the direction youre facing.
      * @param direction
-     * @return main.java.main.java.helpers.Position to the right.
+     * @return mainers.Position to the right.
      */
     public Position getPosToRight(Direction direction) {
         switch (direction) {
@@ -114,7 +114,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to south of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to south of the current mainers.Position.
      * @return p
      */
     public Position getPosToSouth(){
@@ -124,7 +124,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to north of the current main.java.main.java.helpers.Position
+     * Get the mainers.Position to north of the current mainers.Position
      * @return p
      */
     public Position getPosToNorth(){
@@ -134,7 +134,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to west of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to west of the current mainers.Position.
      * @return p
      */
     public Position getPosToWest(){
@@ -144,7 +144,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to east of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to east of the current mainers.Position.
      * @return p
      */
     public Position getPosToEast(){
@@ -154,7 +154,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to north east of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to north east of the current mainers.Position.
      * @return p
      */
     public Position getPosToNorthEast() {
@@ -162,7 +162,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to north west of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to north west of the current mainers.Position.
      * @return p
      */
     public Position getPosToNorthWest() {
@@ -170,7 +170,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to south east of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to south east of the current mainers.Position.
      * @return p
      */
     public Position getPosToSouthEast() {
@@ -178,7 +178,7 @@ public class Position {
     }
 
     /**
-     * Get the main.java.main.java.helpers.Position to south west of the current main.java.main.java.helpers.Position.
+     * Get the mainers.Position to south west of the current mainers.Position.
      * @return p
      */
     public Position getPosToSouthWest() {
@@ -186,11 +186,11 @@ public class Position {
     }
 
     /**
-     * Method to se if an position is out of range.
+     * Method to se if an position is out of the map range (negative position).
      * @return true if the position is out of rage, false if not.
      */
-    public boolean outOfRange() {
-        return x < 0 || y < 0;
+    public boolean inRange() {
+        return x >= 0 && y >= 0;
     }
 
     /**
@@ -221,7 +221,7 @@ public class Position {
     }
 
     /**
-     * Creates hashcode for a main.java.main.java.helpers.Position.
+     * Creates hashcode for a mainers.Position.
      * @return hashCode
      */
     @Override

@@ -1,6 +1,7 @@
-import main.java.LevelBuilder;
 import org.junit.Assert;
 import org.junit.Test;
+import static junit.framework.TestCase.assertEquals;
+
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.

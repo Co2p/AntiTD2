@@ -1,4 +1,4 @@
-package main.java.helpers;
+package helpers;
 
 /**
  * Created by Simon on 2016-12-05.
@@ -33,11 +33,5 @@ public class Translator {
     public static int pitifullPrice = 20;
     public static int armoredTrooperPrice = 40;
     public static int teleporterPrice = 100;
-
-
-
-
-
-
 
 }

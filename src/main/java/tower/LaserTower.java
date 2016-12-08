@@ -1,9 +1,11 @@
-package main.java.tower;
+package tower;
 
-import main.java.helpers.Position;
-import main.java.tile.Tile;
-import main.java.tile.TowerTile;
-import main.java.trooper.Trooper;
+import helpers.Position;
+import tile.Tile;
+import tile.TowerTile;
+import trooper.Trooper;
+
+import java.util.Hashtable;
 
 /**
  * A subclass of Tower, shoots one trooper at a time
@@ -12,12 +14,8 @@ import main.java.trooper.Trooper;
 public class LaserTower extends Tower {
     private Trooper focusTarget;
 
-    public LaserTower(TowerTile tile, Tile[] roadtiles, Position pos) {
-        super(100, 2, pos);
-        tile.setTower(this);
-        for (Tile road: roadtiles) {
-            road.addObserver(this);
-        }
+    public LaserTower(Hashtable<Position, Tile> map_hashTable, Position pos) {
+        super(100, 2, map_hashTable, pos);
     }
 
     /**

@@ -1,6 +1,6 @@
-package main.java.tile;
+package tile;
 
-import main.java.trooper.Trooper;
+import trooper.Trooper;
 
 public interface Zone {
     public void landOn(Trooper t);

@@ -1,8 +1,8 @@
-package main.java;
+
 
 import java.awt.*;
-import main.java.helpers.*;
-import main.java.trooper.*;
+import helpers.*;
+import trooper.*;
 
 
 /**
@@ -137,7 +137,7 @@ public class Shop {
                         buttons[i].width);
             }
                 buttons[i].draw(gr, i);
-            }
+        }
 
             //Draw the stats
         for (int i = 0; i < statsElements.length ; i++) {

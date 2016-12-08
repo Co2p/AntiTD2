@@ -1,14 +1,21 @@
-package main.java.tower;
+package tower;
 
-import main.java.helpers.Position;
-import main.java.trooper.Trooper;
+import helpers.Position;
+import tile.RoadTile;
+import tile.Tile;
+import trooper.Trooper;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
+<<<<<<< HEAD
+ * Superclass for any mainr class
+=======
  * Superclass for any tower class
+>>>>>>> master
  */
 public class Tower implements Observer {
     protected int damage;
@@ -22,17 +29,22 @@ public class Tower implements Observer {
      * @param damage tower damage
      * @param range tower range
      */
-    public Tower(int damage, int range, Position pos){
+    public Tower(int damage, int range, Hashtable<Position, Tile> map_hashTable, Position pos){
         this.damage=damage;
         this.range=range;    //Ska vi ens ha range?
         targets = new ArrayList<>();
         setPos(pos);
         addNeighbours();
+        for ( int i = 0; i < neighbours.size(); i++) {
+            Tile road = map_hashTable.get(neighbours.get(i));
+            if (RoadTile.class.isInstance(road)) {
+                road.addObserver(this);
+            }
+        }
     }
 
     /**
      * fires the tower, override by subclasses
-     * @return tower damage
      */
     public void fire(){}
 
@@ -45,6 +57,7 @@ public class Tower implements Observer {
     }
 
     /**
+     * mainers.Position of the mainr
      * Position of the tower
      * @return tower position
      */
@@ -89,11 +102,11 @@ public class Tower implements Observer {
 
     /**
      * Adds the position to the neighbours list if it is in range
-     * @param pos the position that will be added
+     * @param pos the tile position that will be added
      * @return the position
      */
     private Position addNeighbour(Position pos) {
-        if (!pos.outOfRange()) {
+        if (pos.inRange()) {
             neighbours.add(pos);
         }
         return pos;
@@ -105,6 +118,7 @@ public class Tower implements Observer {
 
     @Override
     public void update(Observable o, Object arg) {
+        //TODO targets needs to be reset every new time-step
         targets.add((Trooper) arg);
     }
 
