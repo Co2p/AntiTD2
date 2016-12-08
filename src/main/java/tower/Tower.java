@@ -97,6 +97,11 @@ public class Tower implements Observer {
 
     }
 
+    /**
+     * Adds the position to the neighbours list if it is in range
+     * @param pos the position that will be added
+     * @return the position
+     */
     private Position addNeighbour(Position pos) {
         if (!pos.outOfRange()) {
             neighbours.add(pos);
