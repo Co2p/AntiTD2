@@ -19,14 +19,10 @@ public class RoadTile extends Tile implements Zone {
     private ArrayList<Trooper> troopers;
 
     /**
-<<<<<<< HEAD:src/main/java/tile/RoadTile.java
      * Constructor for main.RoadTile
      * @param p, the position where the main will be placed.
-     * @param isGoal, if the main is a goal (end main)
-=======
      * Constructor for RoadTile
      * @param p, the position where the tile will be placed.
->>>>>>> master:src/RoadTile.java
      */
     public RoadTile(Position p, String isGoalOrStart) {
         super(p);

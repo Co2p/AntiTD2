@@ -1,12 +1,8 @@
 
 
 import java.awt.*;
-<<<<<<< HEAD
 import helpers.*;
-=======
-import main.java.helpers.*;
-import main.java.trooper.*;
->>>>>>> master
+import trooper.*;
 
 
 /**

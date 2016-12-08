@@ -1,15 +1,10 @@
 import javax.xml.parsers.ParserConfigurationException;
 import java.util.ArrayList;
-import main.java.helpers.DOMParser;
+import helpers.DOMParser;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
-<<<<<<< HEAD:src/test/java/ParserTest.java
 /*
-<<<<<<< HEAD
->>>>>>> daniel
-=======
->>>>>>> 4ae5a0a0a6289ceefdd6eb33a9ccccdd5d7ca08b
 public class Main {
     public static void main (String[] args) {
         mainers.DOMParser parser = null;
@@ -92,4 +87,4 @@ public class Main {
 //        for (String str: map) {
 //            System.out.println(str);
 //}
-
+*/

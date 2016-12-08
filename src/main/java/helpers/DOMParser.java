@@ -94,13 +94,9 @@ public class DOMParser {
     public void parseFile(String fileName) {
         Document doc = null;
         try {
-<<<<<<< HEAD
 
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-=======
-            URL url = getClass().getResource(fileName);
-            System.out.println(url);
->>>>>>> master
+
             if(url != null) {
 //                File f = new File(fileName);
                 File f = new File(url.toURI());

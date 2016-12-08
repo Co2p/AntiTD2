@@ -1,14 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
-<<<<<<< HEAD:src/test/java/TestParser.java
 
 import helpers.DOMParser;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
-=======
-import main.java.helpers.DOMParser;
-import static junit.framework.TestCase.*;
->>>>>>> master:tests/TestParser.java
 
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
@@ -93,10 +88,7 @@ public class TestParser {
     @Test
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
-<<<<<<< HEAD:src/test/java/TestParser.java
-=======
-        System.out.println(parser.getErrorMessage());
->>>>>>> master:tests/TestParser.java
+
         assertEquals("Level 1",parser.getLevelName().get(0));
     }
 

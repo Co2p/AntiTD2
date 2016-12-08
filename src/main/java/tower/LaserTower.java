@@ -1,15 +1,9 @@
 package tower;
 
-<<<<<<< HEAD
 import helpers.Position;
 import tile.Tile;
 import tile.TowerTile;
-=======
-import main.java.helpers.Position;
-import main.java.tile.Tile;
-import main.java.tile.TowerTile;
-import main.java.trooper.Trooper;
->>>>>>> master
+import trooper.Trooper;
 
 /**
  * A subclass of Tower, shoots one trooper at a time

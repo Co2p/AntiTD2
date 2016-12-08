@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-=======
-package main.java;
 
-import main.java.trooper.Army;
-
->>>>>>> master
+import trooper.Army;
 import java.awt.*;
 
 /**
