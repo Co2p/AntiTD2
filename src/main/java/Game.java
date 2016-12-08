@@ -74,6 +74,11 @@ public class Game extends JPanel implements Runnable {
         //TODO in gamecontainer set -> Rowcount and columncount to
         //TODO level.getRowCount() and level.getColumnCount in order to get dynamic maps
         gameContainer = new GameContainer();
+
+//        gameContainer.rowCount = level.getRowCount();
+//        gameContainer.columnCount = level.getColumnCount();
+
+
     }
 
     //Paints the components in game
@@ -143,9 +148,6 @@ public class Game extends JPanel implements Runnable {
 
     private void setupMap(){
 
-        //TODO Change the GameContainer.rowcount to be dynamic. This value should be set when map is parsed
-
-
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
         air = new int[GameContainer.columnCount][GameContainer.rowCount];
 
@@ -154,19 +156,18 @@ public class Game extends JPanel implements Runnable {
 
                 //Take out the character (String-value) at specific index
                 char indexChar = mapString.charAt(
-                        //TODO Same thing goes for columncount.
                         (y * GameContainer.columnCount) + x);
 
-                if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
+                if (Objects.equals(Character.toString(indexChar),
+                        Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.indexBlank;
-
                 }
-                if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
+                if (Objects.equals(Character.toString(indexChar),
+                        Translator.mapRoad)) {
 
-
+                    //Random method to generate index for making holes in road
                     int randomNum = 1 + (int)(Math.random() * 100);
-
                     if(randomNum >70 && randomNum<85){
                         randomNum = 3;
                     }else if (randomNum >= 85){
@@ -181,17 +182,20 @@ public class Game extends JPanel implements Runnable {
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
                 }
-                if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
+                if (Objects.equals(Character.toString(indexChar),
+                        Translator.mapGoal)) {
                     background[x][y] = Translator.indexGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
                 }
-                if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
+                if (Objects.equals(Character.toString(indexChar),
+                        Translator.mapStart)) {
                     background[x][y] = Translator.indexStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
                 }
-                if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
+                if (Objects.equals(Character.toString(indexChar),
+                        Translator.mapTowerZone)) {
                     background[x][y] = Translator.squareTowerZone;
                     air[x][y] = Translator.indexTowerZone;
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
