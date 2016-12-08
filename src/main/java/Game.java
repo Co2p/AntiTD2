@@ -168,9 +168,6 @@ public class Game extends JPanel implements Runnable {
                     air[x][y] = Translator.indexTowerZone;
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
-
-
             }
     }
-
 }
