@@ -9,5 +9,6 @@ gradle/
 gradlew
 gradlew.bat
 settings.gradle
-src/main/resources/
-src/test/
+*.iml
+*.iws
+*.ipr

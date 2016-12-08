@@ -62,8 +62,6 @@ public class DOMParser {
         try {
 
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-            System.out.println(url);
-            System.out.println(fileName);
             if(url != null) {
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
