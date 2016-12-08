@@ -1,36 +1,52 @@
 <?xml version="1.0"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<xsd:element name="levellist" type="LevelListType"/>
+
 	<xsd:complexType name="LevelListType">
-			<xsd:sequence>
-				<xsd:element name="level" type="LevelType" minOccurs="1"/>
-			</xsd:sequence>
+        <xsd:sequence>
+            <xsd:element name="level" type="LevelType" minOccurs="1"/>
+        </xsd:sequence>
 	</xsd:complexType>
+
 	<xsd:complexType name="LevelType">
-		<xsd:sequence>
-			<xsd:element name="rules" type="RuleType"/>
-			<xsd:element name="tile" type="TileType"/>
-			<xsd:element name="map" type="MapType"/>
-		</xsd:sequence>
-	</xsd:complexType>
-	<xsd:complexType name="RuleType">
-		<xsd:sequence>
-			<xsd:element name="credits" type="xsd:long"/>
-			<xsd:element name="unitstowin" type="xsd:int"/>
-			<xsd:element name="towerspawnrate" type="xsd:int"/>
-			<xsd:element name="timelimit" type="xsd:int"/>
-		</xsd:sequence>
-	</xsd:complexType>
+        <xsd:sequence>
+            <xsd:element name="rules">
+                <xsd:complexType>
+                    <xsd:sequence>
+                        <xsd:element name="credits" type="xsd:long"/>
+                        <xsd:element name="unitstowin" type="xsd:int"/>
+                        <xsd:element name="towerspawnrate" type="xsd:int"/>
+                        <xsd:element name="timelimit" type="xsd:int"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+            <xsd:element name="tile" type="TileType">
+            </xsd:element>
+            <xsd:element name="map">
+                <xsd:complexType>
+                    <xsd:element name="size">
+                        <xsd:complexType>
+                            <xsd:sequence>
+                                <xsd:element name="column" type="xsd:int"/>
+                                <xsd:element name="row" type="xsd:int"/>
+                            </xsd:sequence>
+                        </xsd:complexType>
+                    </xsd:element>
+                    <xsd:sequence>
+                        <xsd:element name="row" type="xsd:string" minOccurs="8" maxOccurs="8"/>
+                    </xsd:sequence>
+                </xsd:complexType>
+            </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+
 	<xsd:complexType name="TileType">
 		<xsd:simpleContent>
 			<xsd:extension base="xsd:string">
-				<xsd:attribute name="classname" type="xsd:string"/>
+				<xsd:attribute name="className" type="xsd:string"/>
 			</xsd:extension>
 		</xsd:simpleContent>
 	</xsd:complexType>
-	<xsd:complexType name="MapType">
-		<xsd:sequence>
-			<xsd:element name="row" type="xsd:string" minOccurs="8" maxOccurs="8"/>
-		</xsd:sequence>
-	</xsd:complexType>
+
 </xsd:schema>

@@ -39,6 +39,8 @@ public class DOMParser {
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
     private ArrayList<String[]> map = new ArrayList<>();
+    private ArrayList<Integer> columns = new ArrayList<>();
+    private ArrayList<Integer> rows = new ArrayList<>();
 
     /**
      * Setup the parser
@@ -65,20 +67,21 @@ public class DOMParser {
             public void warning(SAXParseException exception) throws SAXException {
                 errorMessage = "An error occurred while parsing the xml" +
                         " parser returned: " + exception.getCause();
-                System.out.println(exception.getCause());
+                exception.printStackTrace();
             }
 
             @Override
             public void error(SAXParseException exception) throws SAXException {
                 errorMessage = "An error occurred while parsing the xml" +
                         " parser returned: " + exception.getCause();
-                System.out.println(exception.getCause());
+                exception.printStackTrace();
             }
 
             @Override
             public void fatalError(SAXParseException exception) throws SAXException {
                 errorMessage = "An error occurred while parsing the xml" +
                         " parser returned: " + exception.getCause();
+                exception.printStackTrace();
                 System.out.println(exception.getCause());
             }
         });
@@ -125,6 +128,8 @@ public class DOMParser {
                     unitsToWin.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/unitstowin",doc)));
                     towerSpawnRate.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/towerspawnrate",doc)));
                     timeLimit.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/timelimit",doc)));
+                    columns.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/column",doc)));
+                    rows.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/row",doc)));
                     className.add(i, path.evaluate("/levellist/level["+(i+1)+"]/tile[1]/@className",doc));
                     classPath.add(i,path.evaluate("/levellist/level["+(i+1)+"]/tile[1]",doc));
                     int rowCount = Integer.parseInt(path.evaluate("count(/levellist/level["+(i+1)+"]/map/*)",doc));
@@ -235,4 +240,13 @@ public class DOMParser {
     public int getLevelCount() {
         return levelCount;
     }
+
+    public ArrayList<Integer> getColumns() {
+        return columns;
+    }
+
+    public ArrayList<Integer> getRows() {
+        return rows;
+    }
+
 }

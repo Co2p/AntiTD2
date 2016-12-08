@@ -11,7 +11,7 @@ import static org.junit.Assert.assertFalse;
 public class TestParser {
 
     private DOMParser parser;
-    private String xmlFile = "src/main/resources/xml/test.xml";
+    private String xmlFile = "xml/test.xml";
 
     @Before
     public void createParser() {
@@ -119,6 +119,18 @@ public class TestParser {
         parser.parseFile(xmlFile);
         System.out.println(parser.getErrorMessage());
         assertEquals((Integer) 2,parser.getTimeLimit().get(0));
+    }
+
+    @Test
+    public void getRowsAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals((Integer)8,parser.getRows().get(0));
+    }
+
+    @Test
+    public void getColumnsAfterParse() {
+        parser.parseFile(xmlFile);
+        assertEquals((Integer)8,parser.getColumns().get(0));
     }
 
     @Test
