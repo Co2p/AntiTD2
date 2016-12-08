@@ -3,12 +3,11 @@
 .idea/
 Projekt.ipr
 Projekt.iws
+Projekt.iml
 build.gradle
 build/
 gradle/
 gradlew
 gradlew.bat
 settings.gradle
-*.iml
-*.iws
-*.ipr
+
