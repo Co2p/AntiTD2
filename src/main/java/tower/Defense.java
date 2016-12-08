@@ -1,6 +1,7 @@
 package tower;
 
 import helpers.Position;
+import tile.RoadTile;
 import tile.Tile;
 import tile.TowerTile;
 
@@ -18,11 +19,16 @@ public class Defense {
     }
 
     private ArrayList<TowerTile> towerMap = new ArrayList<>();
+    private Hashtable<Position, Tile> roadMap = new Hashtable<>();
+
 
     public Defense(Hashtable<Position, Tile> map, int spawnRate) {
         for(Tile tile: map.values()) {
             if (TowerTile.class.isInstance(tile)) {
                 towerMap.add((TowerTile) tile);
+            }
+            if (RoadTile.class.isInstance(tile)) {
+                roadMap.put(tile.getPosition(), tile);
             }
         }
         this.spawnRate = spawnRate;
@@ -39,7 +45,7 @@ public class Defense {
             }
             //System.out.println(towerPlacement);
             if (!towerMap.isEmpty()) {
-                Tower tower = new Tower(20,2,towerMap.get(towerPlacement).getPosition());
+                Tower tower = new Tower(20,2, roadMap, towerMap.get(towerPlacement).getPosition());
                 towers.add(tower);
                 towerMap.get(towerPlacement).setTower(tower);
                 towerMap.remove(towerPlacement);

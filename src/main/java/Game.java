@@ -95,14 +95,16 @@ public class Game extends JPanel implements Runnable {
                 army.updateArmy();
                 defense.createTower();
                 defense.update();
-                System.out.println(defense.getTowerCount());
-
+                System.out.println("Number of towes: " + defense.getTowerCount());
+               if(army.getArmySize()<0) {
+                   System.out.println("First trooper pos: " + "x " + army.getArmy().get(0).getPosition().getX() + "y: " + army.getArmy().get(0).getPosition().getX());
+               }
                 //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
             try{
 
-                thread.sleep(50);
+                thread.sleep(300);
 
             }catch(Exception e){
                 e.printStackTrace();

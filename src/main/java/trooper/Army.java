@@ -110,6 +110,9 @@ public class Army {
         return armySize;
     }
 
+    public ArrayList<Trooper> getArmy() {
+        return army;
+    }
 
     /**
      * Sets the preferred direction for the army to move,

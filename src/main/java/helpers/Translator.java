@@ -34,10 +34,4 @@ public class Translator {
     public static int armoredTrooperPrice = 40;
     public static int teleporterPrice = 100;
 
-
-
-
-
-
-
 }
