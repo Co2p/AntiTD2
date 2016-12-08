@@ -2,6 +2,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.TestCase.*;
+import main.java.helpers.DOMParser;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
@@ -86,7 +87,7 @@ public class TestParser {
     @Test
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
-        assertEquals("Level 1",parser.getLevelName().get(0));
+        assertEquals("main.java.Level 1",parser.getLevelName().get(0));
     }
 
     @Test
