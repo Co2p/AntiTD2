@@ -1,4 +1,7 @@
+import main.java.helpers.Position;
 import org.junit.Test;
+import main.java.tile.RoadTile;
+
 import static junit.framework.TestCase.*;
 
 /**

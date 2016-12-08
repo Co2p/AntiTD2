@@ -1,4 +1,10 @@
+import main.java.helpers.Direction;
+import main.java.helpers.Position;
 import org.junit.Test;
+import main.java.tile.RoadTile;
+import main.java.tile.Tile;
+import main.java.trooper.PitifulTrooper;
+import main.java.trooper.Trooper;
 
 import java.util.Hashtable;
 
