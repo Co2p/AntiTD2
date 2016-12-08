@@ -146,6 +146,8 @@ public class TestTrooper {
         rt = pt.move(map, Direction.NORTH);
         assertEquals(new Position(0,1), rt.getPosition());
         rt = pt.move(map, Direction.NORTH);
+        assertEquals(new Position(0,1), rt.getPosition());
+        rt = pt.move(map, Direction.NORTH);
         assertEquals(new Position(1,1), rt.getPosition());
     }
 }

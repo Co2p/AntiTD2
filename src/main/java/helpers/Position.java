@@ -186,11 +186,11 @@ public class Position {
     }
 
     /**
-     * Method to se if an position is out of range.
+     * Method to se if an position is out of the map range (negative position).
      * @return true if the position is out of rage, false if not.
      */
-    public boolean outOfRange() {
-        return x < 0 || y < 0;
+    public boolean inRange() {
+        return x >= 0 && y >= 0;
     }
 
     /**

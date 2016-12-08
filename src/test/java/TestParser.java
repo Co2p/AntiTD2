@@ -11,7 +11,7 @@ import static org.junit.Assert.assertFalse;
 public class TestParser {
 
     private DOMParser parser;
-    private String xmlFile = "src/main/resources/xml/test.xml";
+    private String xmlFile = "test.xml";
 
     @Before
     public void createParser() {
