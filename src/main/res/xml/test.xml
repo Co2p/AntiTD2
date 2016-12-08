@@ -7,9 +7,7 @@
             <towerspawnrate>25</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
         </rules>
-        <zone>
-            <tile className="className" >imhere</tile> //oklart hur denna ska fungera
-        </zone>
+        <tile className="className" >imhere</tile> //oklart hur denna ska fungera
         <map>
             <row>00TT00000000</row>
             <row>SRRRR0000000</row>
