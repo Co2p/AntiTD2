@@ -11,3 +11,8 @@ gradlew
 gradlew.bat
 settings.gradle
 
+*.class
+out/*
+*.iml
+AntiTD2.ipr
+*.iws
