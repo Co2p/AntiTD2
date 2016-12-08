@@ -37,7 +37,7 @@ public class Defense {
             } else {
                 towerPlacement = 0;
             }
-            System.out.println(towerPlacement);
+            //System.out.println(towerPlacement);
             if (!towerMap.isEmpty()) {
                 Tower tower = new Tower(20,2,towerMap.get(towerPlacement).getPosition());
                 towers.add(tower);
@@ -48,8 +48,10 @@ public class Defense {
     }
 
     public void update() {
-        for (Tower tower: towers) {
-            tower.fire();
+        if(towers.size() < 0 ) {
+            for (Tower tower : towers) {
+                tower.fire();
+            }
         }
     }
 
