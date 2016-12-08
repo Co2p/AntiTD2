@@ -1,15 +1,15 @@
-package main.java.tile;
+package tile;
 
 import java.util.Observable;
-import main.java.helpers.Position;
+import helpers.Position;
 
 public abstract class Tile extends Observable {
     private Position position;
     private Boolean occupied = false;
 
     /**
-     * Constructor to create a main.java.main.java.tile.Tile, this will only be used in subclasses.
-     * @param p the postion of the main.java.main.java.tile on the board
+     * Constructor to create a main.Tile, this will only be used in subclasses.
+     * @param p the postion of the main on the board
      */
     public Tile(Position p){
         this.position = p;

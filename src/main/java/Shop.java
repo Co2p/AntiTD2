@@ -1,7 +1,8 @@
-package main.java;
+
 
 import java.awt.*;
-import main.java.helpers.*;
+import helpers.*;
+import trooper.*;
 
 
 /**
@@ -19,6 +20,7 @@ public class Shop {
     private long noOfCredits = 0;
     private int noOfRed = 0;
     private int noOfGreen = 0;
+    private Army army;
 
     public ShopButton[] buttons;
     public ShopButton[] statsElements;
@@ -29,7 +31,8 @@ public class Shop {
      * Sets up an array of buttons
      *
      * */
-    public Shop(){
+    public Shop(Army army){
+        this.army=army;
         buttons = new ShopButton[noOfButtons];
         statsElements = new ShopButton[noOfElements];
         define();
@@ -84,15 +87,27 @@ public class Shop {
 
                     if(i == 0 && !(noOfCredits - Translator.pitifullPrice < 0)){
                         noOfCredits -= Translator.pitifullPrice;
+                        army.createTrooper(TrooperType.PITIFUL);
                         //TODO Skapa pitifulTrooper
                     }
                     if(i == 1 && !(noOfCredits - Translator.armoredTrooperPrice < 0)){
                         noOfCredits -= Translator.armoredTrooperPrice;
+                        army.createTrooper(TrooperType.ARMORED);
                         //TODO Skapa armoredTrooper
                     }
                     if(i == 2 && !(noOfCredits - Translator.teleporterPrice < 0)){
                         noOfCredits -= Translator.teleporterPrice;
+                        army.createTrooper(TrooperType.TELEPORTER);
                         //TODO Skapa teleportTrooper samt koppla samman med knapp 4
+                    }
+                    if(i==3){
+                        //trooper move.
+                    }
+                    if(i==4){
+                        //setprefered left
+                    }
+                    if(i==5){
+                        //set prefered right.
                     }
                     else{
                         //SLUT PÅ CASH!

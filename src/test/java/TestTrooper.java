@@ -1,10 +1,10 @@
-import main.java.helpers.Direction;
-import main.java.helpers.Position;
+import helpers.Direction;
+import helpers.Position;
 import org.junit.Test;
-import main.java.tile.RoadTile;
-import main.java.tile.Tile;
-import main.java.trooper.PitifulTrooper;
-import main.java.trooper.Trooper;
+import tile.RoadTile;
+import tile.Tile;
+import trooper.PitifulTrooper;
+import trooper.Trooper;
 
 import java.util.Hashtable;
 
@@ -19,14 +19,14 @@ public class TestTrooper {
     public void TestCreateTrooper(){
         Trooper t = new Trooper(10,1);
         assertEquals(t.getHealth(),10);
-        assertEquals(t.getSpeed(), 1);
+        assertEquals(t.getstepDelay(), 1);
     }
 
     @Test
     public void TestCreateTrooperOnlyHp(){
         Trooper t = new Trooper(10);
         assertEquals(t.getHealth(),10);
-        assertEquals(t.getSpeed(), 2);
+        assertEquals(t.getstepDelay(), 2);
     }
 
     @Test
@@ -57,8 +57,8 @@ public class TestTrooper {
     @Test
     public void TestSetSpeed(){
         Trooper t = new Trooper(10,1);
-        t.setSpeed(2);
-        assertEquals(2, t.getSpeed());
+        t.setstepDelay(2);
+        assertEquals(2, t.getstepDelay());
     }
 
     @Test
@@ -142,6 +142,10 @@ public class TestTrooper {
         pt.setPosition(new Position(0,1));
         makeMap();
         RoadTile rt = pt.move(map, Direction.NORTH);
+        assertEquals(new Position(0,1), rt.getPosition());
+        rt = pt.move(map, Direction.NORTH);
+        assertEquals(new Position(0,1), rt.getPosition());
+        rt = pt.move(map, Direction.NORTH);
         assertEquals(new Position(1,1), rt.getPosition());
     }
 }

@@ -1,8 +1,9 @@
 import org.junit.Before;
 import org.junit.Test;
 
-import static junit.framework.TestCase.*;
-import main.java.helpers.DOMParser;
+import helpers.DOMParser;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
@@ -10,11 +11,11 @@ import main.java.helpers.DOMParser;
 public class TestParser {
 
     private DOMParser parser;
-    private String xmlFile = "xml/test.xml";
+    private String xmlFile = "src/main/resources/xml/test.xml";
 
     @Before
     public void createParser() {
-        parser = new DOMParser();
+        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
     }
 
     @Test
@@ -87,43 +88,50 @@ public class TestParser {
     @Test
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
-        assertEquals("main.java.Level 1",parser.getLevelName().get(0));
+
+        assertEquals("Level 1",parser.getLevelName().get(0));
     }
 
     @Test
     public void getCreditsAfterParse() {
         parser.parseFile(xmlFile);
         long cred = 1000;
+        System.out.println(parser.getErrorMessage());
         assertEquals((Long)cred,parser.getCredits().get(0));
     }
 
     @Test
     public void getUnitsAfterParse() {
         parser.parseFile(xmlFile);
+        System.out.println(parser.getErrorMessage());
         assertEquals((Integer) 30,parser.getUnitsToWin().get(0));
     }
 
     @Test
     public void getTowersAfterParse() {
         parser.parseFile(xmlFile);
+        System.out.println(parser.getErrorMessage());
         assertEquals((Integer) 25,parser.getTowerSpawnRate().get(0));
     }
 
     @Test
     public void getTimeAfterParse() {
         parser.parseFile(xmlFile);
+        System.out.println(parser.getErrorMessage());
         assertEquals((Integer) 2,parser.getTimeLimit().get(0));
     }
 
     @Test
     public void getClassNameAfterParse() {
         parser.parseFile(xmlFile);
+        System.out.println(parser.getErrorMessage());
         assertEquals("className",parser.getClassName().get(0));
     }
 
     @Test
     public void getClassPathAfterParse() {
         parser.parseFile(xmlFile);
+        System.out.println(parser.getErrorMessage());
         assertEquals("imhere",parser.getClassPath().get(0));
     }
 

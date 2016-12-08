@@ -1,7 +1,7 @@
-import main.java.Player;
-import main.java.Results;
 import org.junit.Test;
-import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
+import static junit.framework.TestCase.assertNotNull;
+import static junit.framework.TestCase.assertNotSame;
 
 
 public class TestPlayer {
@@ -14,33 +14,33 @@ public class TestPlayer {
 
     @Test
     public void TestCreatePlayerWithName(){
-        Player p = new Player("main.java.Player");
-        assertEquals(p.getName(), "main.java.Player");
+        Player p = new Player("Player");
+        assertEquals(p.getName(), "Player");
     }
 
     @Test
     public void TestCreatePlayerWithNameCahanged(){
-        Player p = new Player("main.java.Player");
+        Player p = new Player("Player");
         assertNotSame(p.getName(), "Unknown");
     }
 
     @Test
     public void TestSetPlayerNoName(){
         Player p = new Player();
-        p.setName("main.java.Player");
-        assertEquals(p.getName(), "main.java.Player");
+        p.setName("Player");
+        assertEquals(p.getName(), "Player");
     }
 
     @Test
     public void TestSetPlayerNoNameChanged(){
         Player p = new Player();
-        p.setName("main.java.Player");
+        p.setName("Player");
         assertNotSame(p.getName(), "Unknown");
     }
 
     @Test
     public void TestSetNewPlayerName(){
-        Player p = new Player("main.java.Player");
+        Player p = new Player("Player");
         p.setName("NewName");
         assertEquals(p.getName(), "NewName");
     }

@@ -1,10 +1,11 @@
 import org.junit.Before;
 import org.junit.Test;
-import main.java.trooper.*;
+import trooper.*;
 
 import java.util.Hashtable;
 
 import static junit.framework.TestCase.*;
+import static junit.framework.TestCase.assertEquals;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.

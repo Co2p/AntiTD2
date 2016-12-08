@@ -1,8 +1,8 @@
-import main.java.helpers.Position;
+import helpers.Position;
 import org.junit.Test;
-import main.java.tile.RoadTile;
+import tile.RoadTile;
 
-import static junit.framework.TestCase.*;
+import static org.junit.Assert.assertFalse;
 
 /**
  * Created by andreas on 2016-12-01.

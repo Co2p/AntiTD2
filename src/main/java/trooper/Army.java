@@ -1,9 +1,9 @@
-package main.java.trooper;
+package trooper;
 
-import main.java.helpers.Direction;
-import main.java.helpers.Position;
-import main.java.tile.RoadTile;
-import main.java.tile.Tile;
+import helpers.Direction;
+import helpers.Position;
+import tile.RoadTile;
+import tile.Tile;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -21,6 +21,7 @@ public class Army {
     private Direction preferred;
     private static int TELEPORTERHEALTH = 75;
     private static int ARMOREDHEALTH = 150;
+    private int armySize =0;
 
 
     public Army (Hashtable<Position, Tile> map) {
@@ -30,9 +31,15 @@ public class Army {
     }
 
     /**
+<<<<<<< HEAD
+     * Creates a mainper of given type.
+     * @param type enum telling which mainper to create, pitiful, teleporter
+     *             or armored mainper.
+=======
      * Creates a trooper of given type.
      * @param type enum telling which trooper to create, pitiful, teleporter
      *             or armored trooper.
+>>>>>>> master
      */
     public void createTrooper(TrooperType type) {
         switch (type) {
@@ -48,20 +55,32 @@ public class Army {
                 armyQueue.add(trooper);
                 break;
         }
+        armySize++;
     }
 
     /**
+<<<<<<< HEAD
+     * Retrieves the mainper in front of the queue.
+     * @return returns a mainper from the queue
+=======
      * Retrieves the trooper in front of the queue.
      * @return returns a trooper from the queue
+>>>>>>> master
      */
     public Trooper getFromQueue() {
         return armyQueue.poll();
     }
 
     /**
+<<<<<<< HEAD
+<<<<<<< HEAD:src/main/java/trooper/Army.java
+     * Will take a newly created mainper from the queue and add it to the list
+     * of active troopers, then it will move each mainper if they are alive and
+=======
 <<<<<<< HEAD:src/main.java.main/java/trooper/Army.java
      * Will take a newly created trooper from the queue and add it to the list
      * of active troopers, then it will move each trooper if they are alive and
+>>>>>>> master
      * check if they reach goal.
 =======
      * Will take a newly created trooper from the queue and add it to the list
@@ -71,19 +90,26 @@ public class Army {
      */
     public void updateArmy() {
         army.add(getFromQueue());
-        for (Trooper trooper: army) {
-            if (!trooper.isDead()) {
-                RoadTile road = trooper.move(map, preferred);
-                road.landOn(trooper);
-                if (trooper.getReachedGoal()) {
+        if(armySize < 0) {
+            for (Trooper trooper : army) {
+                if (!trooper.isDead()) {
+                    RoadTile road = trooper.move(map, preferred);
+                    road.landOn(trooper);
+                    if (trooper.getReachedGoal()) {
+                        army.remove(trooper);
+                        reachedGoal++;
+                    }
+                } else {
                     army.remove(trooper);
-                    reachedGoal++;
                 }
-            } else {
-                army.remove(trooper);
             }
         }
     }
+
+    public int getArmySize() {
+        return armySize;
+    }
+
 
     /**
      * Sets the preferred direction for the army to move,

@@ -1,6 +1,6 @@
-package main.java;
 
-import main.java.helpers.DOMParser;
+
+import helpers.DOMParser;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
@@ -9,8 +9,7 @@ public class LevelBuilder {
 
     private DOMParser levelParser;
     private String fileName;
-    private static String FILELOCATION = "../../res/xml/levels.xml";
-
+    private static String FILELOCATION = "xml/levels.xml";
 
     public LevelBuilder (String fileName) {
         this.fileName = fileName;
@@ -26,7 +25,7 @@ public class LevelBuilder {
     }
 
     private void setupParser(String fileName) {
-        levelParser = new DOMParser();
+        levelParser = new DOMParser("src/main/resources/xml/levelSchema.xml");
         levelParser.parseFile(fileName);
     }
 

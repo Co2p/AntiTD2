@@ -1,5 +1,3 @@
-package main.java;
-
 /**
  * Created by Alexander Nyström(dv15anm) on 24/11/2016.
  */
@@ -33,7 +31,7 @@ public class Results {
 
     /**
      * Set the amount of troopers used to complete the game.
-     * @param totalTrooperCount The main.java.main.java.trooper count
+     * @param totalTrooperCount The mainper count
      */
     public void setTotalTrooperCount(int totalTrooperCount) {
         this.totalTrooperCount = totalTrooperCount;

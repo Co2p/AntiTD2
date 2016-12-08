@@ -1,11 +1,16 @@
-package main.java.helpers;
+package helpers;
 
 import org.w3c.dom.Document;
+import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.stream.StreamSource;
+import javax.xml.validation.Schema;
+import javax.xml.validation.SchemaFactory;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
@@ -20,7 +25,7 @@ import java.util.ArrayList;
  */
 public class DOMParser {
 
-    private DocumentBuilder builder;
+    private DocumentBuilder parser;
     private XPath path;
     private boolean error = false;
     private  String errorMessage = "";
@@ -38,16 +43,45 @@ public class DOMParser {
     /**
      * Setup the parser
      */
-    public DOMParser(){
-        DocumentBuilderFactory dbfactory
-                = DocumentBuilderFactory.newInstance();
+    public DOMParser(String schemaFile){
+        String schemaLang = "http://www.w3.org/2001/XMLSchema";
+        SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
         try {
-            builder = dbfactory.newDocumentBuilder();
+            Schema schema = schemaFactory.newSchema(
+                                new StreamSource(schemaFile));
+            DocumentBuilderFactory dbfactory
+                    = DocumentBuilderFactory.newInstance();
+            dbfactory.setSchema(schema);
+            parser = dbfactory.newDocumentBuilder();
+        } catch (SAXException e) {
+            e.printStackTrace();
         } catch (ParserConfigurationException e) {
             error = true;
-            errorMessage = "Error when creating the document builder. Could" +
+            errorMessage = "Error when creating the document parser. Could" +
                     " not parse the xml.";
         }
+        parser.setErrorHandler(new ErrorHandler() {
+            @Override
+            public void warning(SAXParseException exception) throws SAXException {
+                errorMessage = "An error occurred while parsing the xml" +
+                        " parser returned: " + exception.getCause();
+                System.out.println(exception.getCause());
+            }
+
+            @Override
+            public void error(SAXParseException exception) throws SAXException {
+                errorMessage = "An error occurred while parsing the xml" +
+                        " parser returned: " + exception.getCause();
+                System.out.println(exception.getCause());
+            }
+
+            @Override
+            public void fatalError(SAXParseException exception) throws SAXException {
+                errorMessage = "An error occurred while parsing the xml" +
+                        " parser returned: " + exception.getCause();
+                System.out.println(exception.getCause());
+            }
+        });
         XPathFactory xpfactory = XPathFactory.newInstance();
         path = xpfactory.newXPath();
 
@@ -61,11 +95,13 @@ public class DOMParser {
         Document doc = null;
         try {
 
-            URL url = getClass().getResource(fileName);
+            URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
+
             if(url != null) {
+//                File f = new File(fileName);
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
-                    doc = builder.parse(url.openStream());
+                    doc = parser.parse(url.openStream());
                 } else {
                     errorMessage = "Could not find file: "+fileName;
                 }
@@ -89,8 +125,8 @@ public class DOMParser {
                     unitsToWin.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/unitstowin",doc)));
                     towerSpawnRate.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/towerspawnrate",doc)));
                     timeLimit.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/timelimit",doc)));
-                    className.add(i, path.evaluate("/levellist/level["+(i+1)+"]/zone[1]/tile[1]/@className",doc));
-                    classPath.add(i,path.evaluate("/levellist/level["+(i+1)+"]/zone[1]/tile[1]",doc));
+                    className.add(i, path.evaluate("/levellist/level["+(i+1)+"]/tile[1]/@className",doc));
+                    classPath.add(i,path.evaluate("/levellist/level["+(i+1)+"]/tile[1]",doc));
                     int rowCount = Integer.parseInt(path.evaluate("count(/levellist/level["+(i+1)+"]/map/*)",doc));
                     String[] str = new String[8];
                     for(int j = 0; j < rowCount; j++) {
@@ -134,7 +170,11 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
-     * @return the main.java.main.java.tower spawn rate
+<<<<<<< HEAD
+     * @return the mainr spawn rate
+=======
+     * @return the tower spawn rate
+>>>>>>> master
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;

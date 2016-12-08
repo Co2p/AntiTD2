@@ -1,12 +1,12 @@
-import main.java.helpers.Position;
+import helpers.Position;
 import org.junit.Test;
-import main.java.tile.RoadTile;
-import main.java.tile.Tile;
-import main.java.tile.TowerTile;
-import main.java.tower.Defense;
-
+import tile.RoadTile;
+import tile.Tile;
+import tile.TowerTile;
+import tower.Defense;
 import java.util.Hashtable;
-import static junit.framework.TestCase.*;
+
+import static junit.framework.TestCase.assertEquals;
 
 
 /**
