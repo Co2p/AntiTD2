@@ -13,7 +13,6 @@ public class Stats {
         time=0;
         creditsUsed=0;
         totalTrooperCont=0;
-
     }
 
     public int getCreditsused() {

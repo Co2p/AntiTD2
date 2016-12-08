@@ -1,6 +1,7 @@
 package main.java;
 
 import java.awt.*;
+import main.java.helpers.*;
 
 /**
  * Created by Simon on 2016-12-01.
@@ -46,10 +47,19 @@ public class ShopButton extends Rectangle{
 
                 //Draw the image on the "button"
 
-                gr.drawImage(Game.button_images[i],x, y, null);
+                gr.drawImage(Game.button_images[i],x, y,null);
             gr.setColor(Color.red);
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSizeButtons));
-            gr.drawString(Integer.toString(300), x, y);
+            if(i==0){
+                gr.drawString(Integer.toString(Translator.pitifullPrice), x, y);
+            }
+            if(i==1){
+                gr.drawString(Integer.toString(Translator.armoredTrooperPrice), x, y);
+            }
+            if(i==2){
+                gr.drawString(Integer.toString(Translator.teleporterPrice), x, y);
+            }
+
 
         }
 

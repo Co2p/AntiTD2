@@ -23,6 +23,9 @@ public class Translator {
     public static int indexStart = 2;
     public static int indexGoal = 3;
 
+    public static int pitifullPrice = 20;
+    public static int armoredTrooperPrice = 40;
+    public static int teleporterPrice = 100;
 
 
 
