@@ -11,11 +11,11 @@ import static org.junit.Assert.assertFalse;
 public class TestParser {
 
     private DOMParser parser;
-    private String xmlFile = "src/main/res/xml/test.xml";
+    private String xmlFile = "src/main/resources/xml/test.xml";
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/main/res/xml/levelSchema.xml");
+        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
     }
 
     @Test

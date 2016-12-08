@@ -25,7 +25,7 @@ public class LevelBuilder {
     }
 
     private void setupParser(String fileName) {
-        levelParser = new DOMParser("");
+        levelParser = new DOMParser("src/main/resources/xml/levelSchema.xml");
         levelParser.parseFile(fileName);
     }
 
