@@ -21,6 +21,7 @@ public class Army {
     private Direction preferred;
     private static int TELEPORTERHEALTH = 75;
     private static int ARMOREDHEALTH = 150;
+    private int armySize =0;
 
 
     public Army (Hashtable<Position, Tile> map) {
@@ -48,6 +49,7 @@ public class Army {
                 armyQueue.add(trooper);
                 break;
         }
+        armySize++;
     }
 
     /**
@@ -71,18 +73,24 @@ public class Army {
      */
     public void updateArmy() {
         army.add(getFromQueue());
-        for (Trooper trooper: army) {
-            if (!trooper.isDead()) {
-                RoadTile road = trooper.move(map, preferred);
-                road.landOn(trooper);
-                if (trooper.getReachedGoal()) {
+        if(armySize < 0) {
+            for (Trooper trooper : army) {
+                if (!trooper.isDead()) {
+                    RoadTile road = trooper.move(map, preferred);
+                    road.landOn(trooper);
+                    if (trooper.getReachedGoal()) {
+                        army.remove(trooper);
+                        reachedGoal++;
+                    }
+                } else {
                     army.remove(trooper);
-                    reachedGoal++;
                 }
-            } else {
-                army.remove(trooper);
             }
         }
+    }
+
+    public int getArmySize() {
+        return armySize;
     }
 
     /**
