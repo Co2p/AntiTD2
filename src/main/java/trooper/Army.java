@@ -93,6 +93,7 @@ public class Army {
         return armySize;
     }
 
+
     /**
      * Sets the preferred direction for the army to move,
      * @param preferred enum telling the army if they should try to move left

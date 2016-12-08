@@ -93,6 +93,8 @@ public class Game extends JPanel implements Runnable {
                 army.updateArmy();
                 defense.createTower();
                 defense.update();
+                System.out.println(defense.getTowerCount());
+
                 //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
