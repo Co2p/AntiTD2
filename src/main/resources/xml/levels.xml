@@ -6,6 +6,7 @@
             <unitstowin>10</unitstowin>
             <towerspawnrate>10</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
+            <columns>12</columns>
         </rules>
         <zone>
             <tile classpath="" > </tile> //oklart hur denna ska fungera
@@ -27,6 +28,7 @@
             <unitstowin>30</unitstowin>
             <towerspawnrate>10</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
+            <columns>12</columns>
         </rules>
         <zone>
             <tile classpath="" > </tile> //oklart hur denna ska fungera
@@ -48,6 +50,7 @@
             <unitstowin>30</unitstowin>
             <towerspawnrate>15</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
+            <columns>12</columns>
         </rules>
         <zone>
             <tile classpath="" > </tile> //oklart hur denna ska fungera
@@ -69,19 +72,20 @@
             <unitstowin>30</unitstowin>
             <towerspawnrate>10</towerspawnrate> //in percent.
             <timelimit>2</timelimit>
+            <columns>16</columns>
         </rules>
         <zone>
             <tile classpath="" > </tile> //oklart hur denna ska fungera
         </zone>
         <map>
-            <row>00000RR00000</row>
-            <row>00000RR00000</row>
-            <row>00000RR00000</row>
-            <row>00000RR00000</row>
-            <row>00RR0RR0RR00</row>
-            <row>00RRRRRRRR00</row>
-            <row>00RRRRRRRR00</row>
-            <row>00RRRRRRRR00</row>
+            <row>00000RR000000000</row>
+            <row>00000RR000000000</row>
+            <row>00000RR000000000</row>
+            <row>00000RR000000000</row>
+            <row>00RR0RR0RR000000</row>
+            <row>00RRRRRRRR000000</row>
+            <row>00RRRRRRRR000000</row>
+            <row>00RRRRRRRR000000</row>
         </map>
     </level>
 </levellist>

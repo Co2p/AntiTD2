@@ -37,11 +37,19 @@ public class Square extends Rectangle {
             gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x,y, width, height, null);
         }else if((Game.background[indexX][indexY])
-                == Translator.squareGoal) {
+                == Translator.squareRoad2){
+            gr.drawImage(Game.square_material[Translator.squareRoad2]
+                    , x,y, width, height, null);
+        }else if((Game.background[indexX][indexY])
+                == Translator.squareRoad3){
+            gr.drawImage(Game.square_material[Translator.squareRoad3]
+                    , x,y, width, height, null);
+        }else if((Game.background[indexX][indexY])
+                == Translator.indexGoal) {
             gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x, y, width, height, null);
         }else if((Game.background[indexX][indexY])
-                == Translator.squareStart) {
+                == Translator.indexStart) {
             gr.drawImage(Game.square_material[Translator.squareRoad]
                     , x, y, width, height, null);
         }else if ((Game.background[indexX][indexY])

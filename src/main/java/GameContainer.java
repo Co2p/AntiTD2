@@ -7,6 +7,12 @@ import java.awt.*;
  */
 public class GameContainer {
 
+
+    /**
+     *
+     * Column and Row count should be dynamic. depending on the map size.
+     *
+     * */
     public static int columnCount = 12;   //define number of columns
     public static int rowCount = 8;       //define numer of rows
     public static int squareSize = 50;   //change this to be dynamic (square size)

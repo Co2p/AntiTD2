@@ -41,14 +41,16 @@ public class Game extends JPanel implements Runnable {
     public static Level level;
     public static GameContainer gameContainer;
 
-    public String mapString =   "000000000000"+
-                                "0RR00R00R0R0"+
-                                "0R00R0R0R0R0"+
-                                "0RR0R0R0R0R0"+
-                                "0R00RRR0R0R0"+
-                                "0R00R0R0R0R0"+
-                                "0R00R0R0R0RR"+
-                                "000000000000";
+    public String mapString =   "00000000000000000000"+
+                                "0RR00R00R0R000000000"+
+                                "0R00R0R0R0R0T0000000"+
+                                "0RR0R0R0R0R0T0000000"+
+                                "0R00RRR0R0R0T0000000"+
+                                "0R00R0R0R0R0T0000000"+
+                                "0R00R0R0R0RRT0000000"+
+                                "0R00R0R0R0RR00000000"+
+                                "0R00R0R0R0RRRRRG0000"+
+                                "00000000000000000000";
 
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
@@ -68,6 +70,9 @@ public class Game extends JPanel implements Runnable {
         this.army=new Army(map);
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
+
+        //TODO in gamecontainer set -> Rowcount and columncount to
+        //TODO level.getRowCount() and level.getColumnCount in order to get dynamic maps
         gameContainer = new GameContainer();
     }
 
@@ -104,7 +109,7 @@ public class Game extends JPanel implements Runnable {
             repaint();  // repaint the graphics in the gameframe.
             try{
 
-                thread.sleep(300);
+                thread.sleep(50);
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -137,6 +142,10 @@ public class Game extends JPanel implements Runnable {
     }
 
     private void setupMap(){
+
+        //TODO Change the GameContainer.rowcount to be dynamic. This value should be set when map is parsed
+
+
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
         air = new int[GameContainer.columnCount][GameContainer.rowCount];
 
@@ -145,6 +154,7 @@ public class Game extends JPanel implements Runnable {
 
                 //Take out the character (String-value) at specific index
                 char indexChar = mapString.charAt(
+                        //TODO Same thing goes for columncount.
                         (y * GameContainer.columnCount) + x);
 
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
@@ -153,17 +163,31 @@ public class Game extends JPanel implements Runnable {
 
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
-                    background[x][y] = Translator.squareRoad;
+
+
+                    int randomNum = 1 + (int)(Math.random() * 100);
+
+                    if(randomNum >70 && randomNum<85){
+                        randomNum = 3;
+                    }else if (randomNum >= 85){
+                        randomNum = 2;
+                    }else{
+                        randomNum = 1;
+                    }
+
+                    background[x][y] = randomNum;
+
+                   // background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
-                    background[x][y] = Translator.squareGoal;
+                    background[x][y] = Translator.indexGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
-                    background[x][y] = Translator.squareStart;
+                    background[x][y] = Translator.indexStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
                 }
