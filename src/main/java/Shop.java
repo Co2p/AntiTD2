@@ -87,18 +87,16 @@ public class Shop {
 
                     if(i == 0 && !(noOfCredits - Translator.pitifullPrice < 0)){
                         noOfCredits -= Translator.pitifullPrice;
-                        army.createTrooper(TrooperType.PITIFUL);
-                        //TODO Skapa pitifulTrooper
+                        army.addToArmyQueue(TrooperType.PITIFUL);
+
                     }
                     if(i == 1 && !(noOfCredits - Translator.armoredTrooperPrice < 0)){
                         noOfCredits -= Translator.armoredTrooperPrice;
-                        army.createTrooper(TrooperType.ARMORED);
-                        //TODO Skapa armoredTrooper
+                        army.addToArmyQueue(TrooperType.ARMORED);
                     }
                     if(i == 2 && !(noOfCredits - Translator.teleporterPrice < 0)){
                         noOfCredits -= Translator.teleporterPrice;
-                        army.createTrooper(TrooperType.TELEPORTER);
-                        //TODO Skapa teleportTrooper samt koppla samman med knapp 4
+                        army.addToArmyQueue(TrooperType.TELEPORTER);
                     }
                     if(i==3){
                         //trooper move.

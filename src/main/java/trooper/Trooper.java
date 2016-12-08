@@ -8,6 +8,8 @@ import java.util.Stack;
 import helpers.Position;
 import helpers.Direction;
 
+import static helpers.Direction.EAST;
+
 public class Trooper {
     private int maxhealth;
     private int zombiehealth;
@@ -34,6 +36,7 @@ public class Trooper {
         this.health=100;
         this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
+        this.direction = EAST;
     }
 
     /**
@@ -46,6 +49,7 @@ public class Trooper {
         this.health=hp;
         this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
+        this.direction = EAST;
     }
 
     /**
@@ -66,7 +70,7 @@ public class Trooper {
         this.zombiehealth=hp;
         this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
-
+        this.direction = EAST;
     }
 
     /**
@@ -130,7 +134,7 @@ public class Trooper {
      * @param d a mainers.Direction (North, East, South, West)
      */
     public void setDirection(Direction d){
-        if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == Direction.EAST) {
+        if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == EAST) {
             this.direction = d;
         }
     }
@@ -350,7 +354,7 @@ public class Trooper {
         Position nextPosition = null;
         if (ignore != Direction.NORTH && possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-        } else if (ignore != Direction.EAST && possibleMovesTable.containsKey(position.getPosToEast())) {
+        } else if (ignore != EAST && possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
         } else if (ignore != Direction.SOUTH && possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();

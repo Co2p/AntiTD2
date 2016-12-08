@@ -24,6 +24,7 @@ public class Game extends JPanel implements Runnable {
     private String RESPATH = "src/main/resources/img";
 
     private Army army;
+    public Position startPosition;
     private Defense defense;
     private Hashtable<Position,Tile> map = new Hashtable<>();
 
@@ -64,8 +65,9 @@ public class Game extends JPanel implements Runnable {
         height = getHeight();
         mapString = level.getMap();
         setupImages();
+        startPosition = new Position();
         setupMap();
-        this.army=new Army(map);
+        this.army = new Army(map, startPosition);
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
@@ -95,8 +97,10 @@ public class Game extends JPanel implements Runnable {
                 army.updateArmy();
                 defense.createTower();
                 defense.update();
-                System.out.println(defense.getTowerCount());
-
+                if(army.getArmySize() > 0) {
+                    System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
+                    + " y " + army.getArmy().get(0).getPosition().getY());
+                }
                 //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
@@ -134,7 +138,7 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void setupMap(){
+    public void setupMap(){
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
         air = new int[GameContainer.columnCount][GameContainer.rowCount];
 
@@ -164,6 +168,8 @@ public class Game extends JPanel implements Runnable {
                     background[x][y] = Translator.squareStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
+                    startPosition.setX(x);
+                    startPosition.setY(y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
                     background[x][y] = Translator.squareTowerZone;
@@ -171,5 +177,9 @@ public class Game extends JPanel implements Runnable {
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
             }
+    }
+
+    public Hashtable<Position,Tile>  getMap() {
+        return map;
     }
 }
