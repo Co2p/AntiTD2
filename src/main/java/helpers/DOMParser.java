@@ -38,7 +38,7 @@ public class DOMParser {
     private ArrayList<Integer> timeLimit = new ArrayList<>();
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
-    private ArrayList<String[]> map = new ArrayList<>();
+    private ArrayList<ArrayList<String>> map = new ArrayList<>();
     private ArrayList<Integer> columns = new ArrayList<>();
     private ArrayList<Integer> rows = new ArrayList<>();
 
@@ -65,24 +65,26 @@ public class DOMParser {
         parser.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(SAXParseException exception) throws SAXException {
-                errorMessage = "An error occurred while parsing the xml" +
-                        " parser returned: " + exception.getCause();
-                exception.printStackTrace();
+                errorMessage = "At line: " + exception.getLineNumber() +
+                                "column: " + exception.getColumnNumber() +
+                                "Following error was found " +
+                                exception.getMessage();
             }
 
             @Override
             public void error(SAXParseException exception) throws SAXException {
-                errorMessage = "An error occurred while parsing the xml" +
-                        " parser returned: " + exception.getCause();
-                exception.printStackTrace();
+                errorMessage = "At line: " + exception.getLineNumber() +
+                                "column: " + exception.getColumnNumber() +
+                                "Following error was found " +
+                                exception.getMessage();
             }
 
             @Override
             public void fatalError(SAXParseException exception) throws SAXException {
-                errorMessage = "An error occurred while parsing the xml" +
-                        " parser returned: " + exception.getCause();
-                exception.printStackTrace();
-                System.out.println(exception.getCause());
+                errorMessage = "At line: " + exception.getLineNumber() +
+                                "column: " + exception.getColumnNumber() +
+                                "Following error was found " +
+                                exception.getMessage();
             }
         });
         XPathFactory xpfactory = XPathFactory.newInstance();
@@ -128,14 +130,14 @@ public class DOMParser {
                     unitsToWin.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/unitstowin",doc)));
                     towerSpawnRate.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/towerspawnrate",doc)));
                     timeLimit.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/timelimit",doc)));
-                    columns.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/column",doc)));
-                    rows.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/row",doc)));
+                    columns.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/map[1]/size[1]/column",doc)));
+                    rows.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/map[1]/size[1]/row",doc)));
                     className.add(i, path.evaluate("/levellist/level["+(i+1)+"]/tile[1]/@className",doc));
                     classPath.add(i,path.evaluate("/levellist/level["+(i+1)+"]/tile[1]",doc));
                     int rowCount = Integer.parseInt(path.evaluate("count(/levellist/level["+(i+1)+"]/map/*)",doc));
-                    String[] str = new String[8];
+                    ArrayList<String> str = new ArrayList<>();
                     for(int j = 0; j < rowCount; j++) {
-                        str[j] = path.evaluate("/levellist/level["+(i+1)+"]/map[1]/row["+(j+1)+"]",doc);
+                        str.add(path.evaluate("/levellist/level["+(i+1)+"]/map[1]/row["+(j+1)+"]",doc));
                     }
                     map.add(i,str);
                 }
@@ -213,7 +215,7 @@ public class DOMParser {
      * Returns an arraylist containing the maps for the levels
      * @return list containing maps
      */
-    public ArrayList<String[]> getMap() {
+    public ArrayList<ArrayList<String>> getMap() {
         return map;
     }
 

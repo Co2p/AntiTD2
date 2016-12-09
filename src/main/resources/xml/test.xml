@@ -10,7 +10,7 @@
         <tile className="className">imhere</tile>
         <map>
             <size>
-                <column>8</column>
+                <column>12</column>
                 <row>8</row>
             </size>
             <row>00TT00000000</row>
