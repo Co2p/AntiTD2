@@ -297,6 +297,10 @@ public class Trooper {
         return road;
     }
 
+    public boolean hasTurned() {
+        return hasTurned;
+    }
+
     /**
      * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
 >>>>>>> master

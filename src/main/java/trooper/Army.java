@@ -62,6 +62,7 @@ public class Army {
 
 
     public void updateArmy() {
+        reachedGoal = 0;
         if(!armyQueue.isEmpty()) {
             army.add(createTrooper(getFromQueue()));
         }
@@ -73,8 +74,10 @@ public class Army {
                     RoadTile road = trooper.move(map, preferred);
                     road.landOn(trooper);
                     if (trooper.getReachedGoal()) {
+                        if(trooper.hasTurned()) {
+                            reachedGoal++;
+                        }
                         iterator.remove();
-                        reachedGoal++;
                         armySize--;
                     }
                 } else {
@@ -114,5 +117,9 @@ public class Army {
      */
     public void setPreferred(Direction preferred) {
         this.preferred = preferred;
+    }
+
+    public int getReachedGoal() {
+        return reachedGoal;
     }
 }

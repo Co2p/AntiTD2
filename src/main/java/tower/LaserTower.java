@@ -15,7 +15,7 @@ public class LaserTower extends Tower {
     private Trooper focusTarget;
 
     public LaserTower(Hashtable<Position, Tile> map_hashTable, Position pos) {
-        super(25, 2, map_hashTable, pos);
+        super(12, 2, map_hashTable, pos);
     }
 
     /**

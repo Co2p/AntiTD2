@@ -92,10 +92,12 @@ public class Game extends JPanel implements Runnable {
 
     @Override
     public void run() {
-
-        while(true){
+        int totalReached = 0;
+        while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
+                shop.subtractUnitsToWin(army.getReachedGoal());
+                totalReached += army.getReachedGoal();
                 defense.createTower();
                 defense.update();
                 if(army.getArmySize() > 0) {
