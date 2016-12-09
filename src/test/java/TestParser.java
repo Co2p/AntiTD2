@@ -11,11 +11,7 @@ import static org.junit.Assert.assertFalse;
 public class TestParser {
 
     private DOMParser parser;
-<<<<<<< HEAD
     private String xmlFile = "test.xml";
-=======
-    private String xmlFile = "xml/test.xml";
->>>>>>> origin/master
 
     @Before
     public void createParser() {

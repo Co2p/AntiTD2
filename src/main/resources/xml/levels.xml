@@ -73,11 +73,7 @@
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
-<<<<<<< HEAD
             <towerspawnrate>10</towerspawnrate> //in percent.
-=======
-            <towerspawnrate>25</towerspawnrate>
->>>>>>> origin/master
             <timelimit>2</timelimit>
         </rules>
         <tile className="" > </tile>
