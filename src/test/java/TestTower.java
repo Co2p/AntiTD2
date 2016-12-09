@@ -7,6 +7,7 @@ import tower.LaserTower;
 import tower.Tower;
 import trooper.Trooper;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 
 import static org.junit.Assert.*;
@@ -109,8 +110,10 @@ public class TestTower {
         Position ptrooper2 = new Position(4,4);
         Tower t = new Tower(4,3, map, ptower);
         Trooper tr2 = new Trooper(10);
+        ArrayList<Trooper> trp = new ArrayList<>();
+        trp.add(tr2);
         tr2.setPosition(ptrooper2);
-        t.update(null, tr2);
+        t.update(null, trp);
         assertEquals(10, tr2.getHealth());
     }
 
