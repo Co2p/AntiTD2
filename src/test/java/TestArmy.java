@@ -14,13 +14,13 @@ import static junit.framework.TestCase.assertEquals;
 public class TestArmy {
 
 
-    private Army army;
-
-    @Before
-    public void createArmy() {
-        Hashtable temp = new Hashtable();
-        army = new Army(temp);
-    }
+//    private Army army;
+//
+//    @Before
+//    public void createArmy() {
+//        Hashtable temp = new Hashtable();
+//        army = new Army(temp);
+//    }
 //
 //    @Test
 //    public void createPitifulTrooper() {
