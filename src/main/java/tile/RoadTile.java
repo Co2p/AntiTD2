@@ -62,7 +62,7 @@ public class RoadTile extends Tile implements Zone {
             portalExit.landOn(t);
         } else {
             setChanged();
-            if (t != null) {
+            if (t != null && countObservers() > 0) {
                 troopers.add(t);
                 notifyObservers(troopers);
             }

@@ -159,16 +159,19 @@ public class Game extends JPanel implements Runnable {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
+                    System.out.println("Utskrift i Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
                     background[x][y] = Translator.squareGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
+                    System.out.println("Utskrift i Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
                     background[x][y] = Translator.squareStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
+                    System.out.println("Utskrift i Game.setupMap: Start = X: " + x + " Y: " + y);
                     startPosition.setX(x);
                     startPosition.setY(y);
                 }

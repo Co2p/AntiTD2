@@ -5,19 +5,14 @@ import helpers.Position;
 import tile.RoadTile;
 import tile.Tile;
 
-import java.util.ArrayList;
-import java.util.Hashtable;
-import java.util.LinkedList;
-
-import static helpers.Direction.EAST;
-import static helpers.Direction.WEST;
+import java.util.*;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
 public class Army {
 
-    private ArrayList<Trooper> army;
+    private List<Trooper> army;
     private LinkedList<TrooperType> armyQueue;
     private int reachedGoal = 0;
     private Hashtable<Position, Tile> map;
@@ -29,7 +24,7 @@ public class Army {
 
 
     public Army (Hashtable<Position, Tile> map, Position startPosition) {
-        army = new ArrayList<>();
+        army = Collections.synchronizedList(new ArrayList<Trooper>());
         armyQueue = new LinkedList<>();
         this.map = map;
         System.out.println("Map in constructor: " + map);
@@ -72,12 +67,15 @@ public class Army {
             army.add(createTrooper(getFromQueue()));
         }
         if(armySize > 0) {
-            for (Trooper trooper : army) {
+            Iterator<Trooper> iterator = army.iterator();
+            while(iterator.hasNext()){
+                Trooper trooper = iterator.next();
                 if (!trooper.isDead()) {
                     RoadTile road = trooper.move(map, preferred);
                     road.landOn(trooper);
                     if (trooper.getReachedGoal()) {
                         army.remove(trooper);
+                        iterator=army.iterator();
                         reachedGoal++;
                         armySize--;
                     }
@@ -106,7 +104,7 @@ public class Army {
         return armySize;
     }
 
-    public ArrayList<Trooper> getArmy() {
+    public List<Trooper> getArmy() {
         return army;
     }
 

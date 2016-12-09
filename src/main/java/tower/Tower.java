@@ -119,7 +119,7 @@ public class Tower implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         //TODO targets needs to be reset every new time-step
-        targets.add((Trooper) arg);
+        targets.addAll((ArrayList<Trooper>) arg);
     }
 
     public boolean inRange(Position position) {
