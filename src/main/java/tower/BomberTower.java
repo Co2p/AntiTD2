@@ -24,6 +24,7 @@ public class BomberTower extends Tower {
         for (Trooper t: targets) {
             t.receiveDamage(damage);
         }
+        super.fire();
     }
 
 }
