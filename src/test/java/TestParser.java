@@ -70,7 +70,7 @@ public class TestParser {
 
     @Test
     public void emptyErrorMessage() {
-        assertEquals(0,parser.getErrorMessage().length());
+        assertEquals(0,parser.getErrorMessage().getSize());
     }
 
     @Test

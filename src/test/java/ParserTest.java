@@ -10,7 +10,7 @@ import helpers.DOMParser;
 //        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
 //        parser.parseFile("xml/test.xml");
 //        if (parser.isError()) {
-//            System.out.println(parser.getErrorMessage());
+//            System.out.println(parser.getErrorMessage().toString);
 //        } else {
 //            ArrayList<String> levelName = parser.getLevelName();
 //            ArrayList<Long> credits = parser.getCredits();
