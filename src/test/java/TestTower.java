@@ -64,10 +64,8 @@ public class TestTower {
         Tower t = new Tower(4,1, map, p);
         Position ptrue = new Position(1,2);
         Position pfalse = new Position(5,5);
-        System.out.println(t.getNrofNeighbours());
         assertTrue(t.inRange(ptrue));
         assertFalse(t.inRange(pfalse));
-        //TODO check that neighbours are in range
     }
 
     /**
@@ -78,7 +76,6 @@ public class TestTower {
         Position p = new Position(6, 6);
         Tower t = new Tower(4, 5, map, p);
         assertEquals(60, t.getNrofNeighbours());
-        System.out.println(t.getNrofNeighbours());
     }
 
     /**
