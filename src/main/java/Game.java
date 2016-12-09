@@ -1,4 +1,4 @@
-package main.java;
+
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,12 +7,12 @@ import java.awt.image.FilteredImageSource;
 import java.util.Hashtable;
 import java.util.Objects;
 
-import main.java.helpers.Position;
-import main.java.tower.Defense;
-import main.java.trooper.*;
-import main.java.tile.*;
+import helpers.Translator;
+import helpers.Position;
+import tower.Defense;
+import trooper.*;
+import tile.*;
 
-import main.java.helpers.Translator;
 
 /**
  * Created by Simon on 2016-11-30.
@@ -21,10 +21,12 @@ import main.java.helpers.Translator;
  */
 public class Game extends JPanel implements Runnable {
 
-    private String RESPATH = "src/main/res/img";
+    private String RESPATH = "src/main/resources/img";
+
     private Army army;
     private Defense defense;
     private Hashtable<Position,Tile> map = new Hashtable<>();
+
     public static int width, height;
     public static Image[] square_material = new Image[50];
     public static Image[] square_air = new Image[50];

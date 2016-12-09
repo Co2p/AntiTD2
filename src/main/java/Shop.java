@@ -1,8 +1,8 @@
-package main.java;
+
 
 import java.awt.*;
-import main.java.helpers.*;
-import main.java.trooper.*;
+import helpers.*;
+import trooper.*;
 
 
 /**

@@ -1,13 +1,12 @@
-package main.java.trooper;
+package trooper;
 
-import main.java.tile.RoadTile;
-import main.java.tile.Tile;
+import tile.*;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
-import main.java.helpers.Position;
-import main.java.helpers.Direction;
+import helpers.Position;
+import helpers.Direction;
 
 public class Trooper {
     private int maxhealth;
@@ -27,7 +26,7 @@ public class Trooper {
     private boolean reachedGoal = false;
 
     /**
-     * Default constructor, crates a main.java.main.java.trooper.PitifulTrooper
+     * Default constructor, crates a mainper.PitifulTrooper
      */
     public Trooper(){
         this.maxhealth=100;
@@ -39,7 +38,7 @@ public class Trooper {
 
     /**
      * Constructor that takes in a hp value
-     * @param hp the defined hp for the main.java.main.java.trooper
+     * @param hp the defined hp for the mainper
      */
     public Trooper(int hp){
         this.maxhealth=hp;
@@ -50,9 +49,15 @@ public class Trooper {
     }
 
     /**
+<<<<<<< HEAD
+     * A mainper that takes in hp and speed values
+     * @param hp mainper hp
+     * @param speed mainper speed
+=======
      * A main.java.main.java.trooper that takes in hp and stepDelay values
      * @param hp main.java.main.java.trooper hp
      * @param stepDelay number of cycles before the trooper takes a steptrooper
+>>>>>>> master
      */
     public Trooper(int hp, int stepDelay){
         this.maxhealth = hp;
@@ -73,8 +78,8 @@ public class Trooper {
     }
 
     /**
-     * Adds health (heals) the main.java.main.java.trooper
-     * @param addHealth amount to heal the main.java.main.java.trooper by
+     * Adds health (heals) the mainper
+     * @param addHealth amount to heal the mainper by
      */
     public void receiveHealth(int addHealth){
         if(!hasTurned) {
@@ -95,7 +100,7 @@ public class Trooper {
 
     /**
      * Receive damage (deduct from  health)
-     * @param removeHealth amount of damage to the main.java.main.java.trooper
+     * @param removeHealth amount of damage to the mainper
      */
     public void receiveDamage(int removeHealth){
         if(!hasTurned) {
@@ -113,16 +118,16 @@ public class Trooper {
     }
 
     /**
-     * Returns true if the main.java.main.java.trooper is dead
-     * @return true if the main.java.main.java.trooper is dead
+     * Returns true if the mainper is dead
+     * @return true if the mainper is dead
      */
     public boolean isDead(){
         return isDead;
     }
 
     /**
-     * Set the prioritized direction for the main.java.main.java.trooper
-     * @param d a main.java.main.java.helpers.Direction (North, East, South, West)
+     * Set the prioritized direction for the mainper
+     * @param d a mainers.Direction (North, East, South, West)
      */
     public void setDirection(Direction d){
         if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == Direction.EAST) {
@@ -131,7 +136,7 @@ public class Trooper {
     }
 
     /**
-     * Get current prioritized direction for the main.java.main.java.trooper
+     * Get current prioritized direction for the mainper
      * @return prioritized direction
      */
     public Direction getDirection(){
@@ -139,7 +144,7 @@ public class Trooper {
     }
 
     /**
-     * Get the health of the main.java.main.java.trooper
+     * Get the health of the mainper
      * @return health
      */
     public int getHealth(){
@@ -152,7 +157,7 @@ public class Trooper {
     }
 
     /**
-     * Set the health of the main.java.main.java.trooper
+     * Set the health of the mainper
      * @param health health
      */
     public void setHealth(int health){
@@ -169,8 +174,13 @@ public class Trooper {
     }
 
     /**
+<<<<<<< HEAD
+     * Set the speed of the mainper
+     * @param speed speed
+=======
      * Set the stepDelay of the main.java.main.java.trooper
      * @param stepDelay stepDelay
+>>>>>>> master
      */
     public void setstepDelay(int stepDelay){
         this.stepDelay=stepDelay;
@@ -178,16 +188,20 @@ public class Trooper {
     }
 
     /**
-     * Get main.java.main.java.trooper position
-     * @return main.java.main.java.trooper position
+     * Get mainper position
+     * @return mainper position
      */
     public Position getPosition(){
         return position;
     }
 
     /**
+<<<<<<< HEAD
+     * Sets the position of the mainper to p
+=======
      * Sets the position of the trooper to position
      * Don't touch unless you are testing
+>>>>>>> master
      * @param position the position to set
      */
     public void setPosition(Position position) {
@@ -195,8 +209,8 @@ public class Trooper {
     }
 
     /*
-<<<<<<< HEAD:src/main.java.main/java/trooper/Trooper.java
-     * @return true if the main.java.main.java.trooper has reached the goal
+<<<<<<< HEAD:src/main/java/trooper/Trooper.java
+     * @return true if the mainper has reached the goal
 =======
      * @return true if the trooper has reached the squareGoal
 >>>>>>> master:src/Trooper.java
@@ -206,8 +220,8 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD:src/main.java.main/java/trooper/Trooper.java
-     * Sets that the main.java.main.java.trooper has reached the goal
+<<<<<<< HEAD:src/main/java/trooper/Trooper.java
+     * Sets that the mainper has reached the goal
 =======
      * Sets that the trooper has reached the squareGoal
 >>>>>>> master:src/Trooper.java
@@ -247,14 +261,17 @@ public class Trooper {
     }
 
     //TODO !
-//    private void backTrace(Hashtable<main.java.main.java.helpers.Position,main.java.main.java.tile.RoadTile> possibleMovesTable){
+//    private void backTrace(Hashtable<mainers.Position,main.RoadTile> possibleMovesTable){
 //        path.pop();
 //        position = path.peek();
-//        main.java.main.java.tile.RoadTile road = possibleMovesTable.get(position);
+//        main.RoadTile road = possibleMovesTable.get(position);
 //        road.landOn(this);
 //    }
 
     /**
+<<<<<<< HEAD
+     * Finds the next main to move to and calls landOn for that main
+=======
      * Takes a step every semiStep'th of the time that move is called
      * @param map_hashTable a map
      * @param preferred preferred direction for the army
@@ -275,6 +292,7 @@ public class Trooper {
 
     /**
      * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
+>>>>>>> master
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */

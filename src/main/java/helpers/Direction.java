@@ -1,4 +1,4 @@
-package main.java.helpers;
+package helpers;
 
 /**
  * Enum representing a direction
