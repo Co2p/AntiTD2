@@ -23,4 +23,27 @@
             <row>00000000G000</row>
         </map>
     </level>
+    <level name ="Level 2">
+        <rules>
+            <credits>1000</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>25</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="className">imhere</tile>
+        <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>00TT00000000</row>
+            <row>SRRRR0000000</row>
+            <row>00TTRTTT0000</row>
+            <row>0000R0RRRT00</row>
+            <row>0000RRR0RT00</row>
+            <row>000TTT0TRT00</row>
+            <row>00000000RT00</row>
+            <row>00000000G000</row>
+        </map>
+    </level>
 </levellist>

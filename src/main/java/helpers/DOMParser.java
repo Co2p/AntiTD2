@@ -38,7 +38,7 @@ public class DOMParser {
     private ArrayList<Integer> timeLimit = new ArrayList<>();
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
-    private ArrayList<ArrayList<String>> map = new ArrayList<>();
+    private ArrayList<String[]> map = new ArrayList<>();
     private ArrayList<Integer> columns = new ArrayList<>();
     private ArrayList<Integer> rows = new ArrayList<>();
 
@@ -65,26 +65,32 @@ public class DOMParser {
         parser.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(SAXParseException exception) throws SAXException {
+                error = true;
                 errorMessage = "At line: " + exception.getLineNumber() +
                                 "column: " + exception.getColumnNumber() +
                                 "Following error was found " +
                                 exception.getMessage();
+//                System.exit(1);
             }
 
             @Override
             public void error(SAXParseException exception) throws SAXException {
+                error = true;
                 errorMessage = "At line: " + exception.getLineNumber() +
-                                "column: " + exception.getColumnNumber() +
-                                "Following error was found " +
+                                " column: " + exception.getColumnNumber() +
+                                " Following error was found " +
                                 exception.getMessage();
+//                System.exit(1);
             }
 
             @Override
             public void fatalError(SAXParseException exception) throws SAXException {
+                error = true;
                 errorMessage = "At line: " + exception.getLineNumber() +
                                 "column: " + exception.getColumnNumber() +
                                 "Following error was found " +
                                 exception.getMessage();
+//                System.exit(1);
             }
         });
         XPathFactory xpfactory = XPathFactory.newInstance();
@@ -135,9 +141,9 @@ public class DOMParser {
                     className.add(i, path.evaluate("/levellist/level["+(i+1)+"]/tile[1]/@className",doc));
                     classPath.add(i,path.evaluate("/levellist/level["+(i+1)+"]/tile[1]",doc));
                     int rowCount = Integer.parseInt(path.evaluate("count(/levellist/level["+(i+1)+"]/map/*)",doc));
-                    ArrayList<String> str = new ArrayList<>();
+                    String [] str = new String[rowCount];
                     for(int j = 0; j < rowCount; j++) {
-                        str.add(path.evaluate("/levellist/level["+(i+1)+"]/map[1]/row["+(j+1)+"]",doc));
+                        str[j] = path.evaluate("/levellist/level["+(i+1)+"]/map[1]/row["+(j+1)+"]",doc);
                     }
                     map.add(i,str);
                 }
@@ -145,10 +151,22 @@ public class DOMParser {
             } catch (XPathExpressionException e) {
                 error = true;
                 errorMessage = e.getCause().toString();
+            } catch (NumberFormatException e) {
+                error = true;
             }
 
         }
 
+    }
+
+
+
+    /**
+     * Returns an arraylist containing the maps for the levels
+     * @return list containing maps
+     */
+    public ArrayList<String[]> getMap() {
+        return map;
     }
 
     /**
@@ -209,14 +227,6 @@ public class DOMParser {
      */
     public ArrayList<String> getClassPath() {
         return classPath;
-    }
-
-    /**
-     * Returns an arraylist containing the maps for the levels
-     * @return list containing maps
-     */
-    public ArrayList<ArrayList<String>> getMap() {
-        return map;
     }
 
     /**
