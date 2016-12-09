@@ -1,3 +1,4 @@
+import helpers.Position;
 import org.junit.Before;
 import org.junit.Test;
 import trooper.*;
@@ -19,7 +20,7 @@ public class TestArmy {
     @Before
     public void createArmy() {
         Hashtable temp = new Hashtable();
-        army = new Army(temp);
+        army = new Army(temp, new Position());
     }
 //
 //    @Test
