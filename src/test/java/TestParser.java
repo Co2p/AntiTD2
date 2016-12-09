@@ -76,13 +76,13 @@ public class TestParser {
     @Test
     public void parseEmptyName() {
         parser.parseFile("");
-        assertEquals("Could not find file: ",parser.getErrorMessage());
+        assertEquals("Could not find file: ",parser.getErrorMessage().getFileError());
     }
 
     @Test
     public void parseNonExistingXml() {
         parser.parseFile("notExisting.xml");
-        assertEquals("Could not find file: notExisting.xml",parser.getErrorMessage());
+        assertEquals("Could not find file: notExisting.xml",parser.getErrorMessage().getFileError());
     }
 
     @Test
@@ -96,7 +96,6 @@ public class TestParser {
     public void getCreditsAfterParse() {
         parser.parseFile(xmlFile);
         long cred = 1000;
-        System.out.println(parser.getErrorMessage());
         assertEquals(2,parser.getCredits().size());
         assertEquals((Long)cred,parser.getCredits().get(0));
     }
@@ -104,7 +103,6 @@ public class TestParser {
     @Test
     public void getUnitsAfterParse() {
         parser.parseFile(xmlFile);
-        System.out.println(parser.getErrorMessage());
         assertEquals(2,parser.getUnitsToWin().size());
         assertEquals((Integer) 30,parser.getUnitsToWin().get(0));
     }
@@ -112,7 +110,6 @@ public class TestParser {
     @Test
     public void getTowersAfterParse() {
         parser.parseFile(xmlFile);
-        System.out.println(parser.getErrorMessage());
         assertEquals(2,parser.getTowerSpawnRate().size());
         assertEquals((Integer) 25,parser.getTowerSpawnRate().get(0));
     }
@@ -120,7 +117,6 @@ public class TestParser {
     @Test
     public void getTimeAfterParse() {
         parser.parseFile(xmlFile);
-        System.out.println(parser.getErrorMessage());
         assertEquals(2,parser.getTimeLimit().size());
         assertEquals((Integer) 2,parser.getTimeLimit().get(0));
     }
@@ -142,7 +138,6 @@ public class TestParser {
     @Test
     public void getClassNameAfterParse() {
         parser.parseFile(xmlFile);
-        System.out.println(parser.getErrorMessage());
         assertEquals(2,parser.getClassName().size());
         assertEquals("className",parser.getClassName().get(0));
     }
@@ -150,7 +145,6 @@ public class TestParser {
     @Test
     public void getClassPathAfterParse() {
         parser.parseFile(xmlFile);
-        System.out.println(parser.getErrorMessage());
         assertEquals(2,parser.getClassPath().size());
         assertEquals("imhere",parser.getClassPath().get(0));
     }
