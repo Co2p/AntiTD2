@@ -47,7 +47,6 @@ public class Army {
                 t.setArmor(5000000);
                 break;
         }
-        System.out.println("Start Position: " + startPosition.getX() + startPosition.getY());
         t.setPosition(startPosition);
         armySize++;
         return t;
@@ -74,13 +73,12 @@ public class Army {
                     RoadTile road = trooper.move(map, preferred);
                     road.landOn(trooper);
                     if (trooper.getReachedGoal()) {
-                        army.remove(trooper);
-                        iterator=army.iterator();
+                        iterator.remove();
                         reachedGoal++;
                         armySize--;
                     }
                 } else {
-                    army.remove(trooper);
+                    iterator.remove();
                     armySize--;
                 }
             }

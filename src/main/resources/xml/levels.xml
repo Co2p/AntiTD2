@@ -84,4 +84,25 @@
             <row>00RRRRRRRR00</row>
         </map>
     </level>
+    <level name ="Återvändsgränden">
+        <rules>
+            <credits>600</credits>
+            <unitstowin>10</unitstowin>
+            <towerspawnrate>10</towerspawnrate> //in percent.
+            <timelimit>2</timelimit>
+        </rules>
+        <zone>
+            <tile classpath="" > </tile> //oklart hur denna ska fungera
+        </zone>
+        <map>
+            <row>00TT00000000</row>
+            <row>SRRRRRRRR000</row>
+            <row>00TTRTTT0000</row>
+            <row>0000R0000000</row>
+            <row>000000000000</row>
+            <row>000000000000</row>
+            <row>000000000000</row>
+            <row>000000000000</row>
+        </map>
+    </level>
 </levellist>

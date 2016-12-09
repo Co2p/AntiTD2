@@ -335,11 +335,13 @@ public class Trooper {
             reverse = false;
         }
 
-        if(nextPosition == null) {
-            System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg");
+        if(nextPosition == null || reverse) {
+            System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
             reverse = true;
             path.pop();
             position = path.peek();
+            path.pop();
+            System.out.println("Till "+ position.toString());
             nextPosition = position;
 //            backTrace(possibleMovesTable);
         }
@@ -352,26 +354,20 @@ public class Trooper {
     /**
      * Brute force all directions except forwards //TODO this could be so much neater
      * @param possibleMovesTable a table of roadtiles
-     * @param ignore the direction to ignore
      * @return the first roadtile that was found clockwise starting in north
      */
     private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable) {
         Position nextPosition = null;
         if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-            System.out.println("Utskrft i getDefaultNextPos: north");
         } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
-            System.out.println("Utskrft i getDefaultNextPos: east");
         } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
-            System.out.println("Utskrft i getDefaultNextPos: south");
         } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
-            System.out.println("Utskrft i getDefaultNextPos: west");
         }
         else nextPosition=null;
-        System.out.println("Utskrft i getDefaultNextPos: kommer till slut");
         return nextPosition;
     }
 }
