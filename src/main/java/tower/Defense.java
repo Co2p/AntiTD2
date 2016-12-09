@@ -45,7 +45,7 @@ public class Defense {
             }
             //System.out.println(towerPlacement);
             if (!towerMap.isEmpty()) {
-                Tower tower = new Tower(20,2, roadMap, towerMap.get(towerPlacement).getPosition());
+                Tower tower = new LaserTower(roadMap, towerMap.get(towerPlacement).getPosition());
                 towers.add(tower);
                 towerMap.get(towerPlacement).setTower(tower);
                 towerMap.remove(towerPlacement);
@@ -54,7 +54,7 @@ public class Defense {
     }
 
     public void update() {
-        if(towers.size() < 0 ) {
+        if(towers.size() > 0 ) {
             for (Tower tower : towers) {
                 tower.fire();
             }
