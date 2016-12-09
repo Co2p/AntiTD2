@@ -24,18 +24,25 @@ public class LaserTower extends Tower {
      */
     @Override
     public void fire() {
+        setFocusedTarget();
+        //TODO REMOVE SOUT
         System.out.println("Focustarget = " + focusTarget);
-        if (focusTarget != null && !super.targets.contains(focusTarget)) {
-            focusTarget = targets.get(targets.size() - 1);
-        }
-        if (focusTarget != null){
+        if (focusTarget != null && super.targets.contains(focusTarget) &&
+                !focusTarget.isDead()) {
+            //TODO REMOVE SOUT!
+            System.out.println("Fired!");
             focusTarget.receiveDamage(damage);
         }
+        else{
+            focusTarget = null;
+        }
+        super.fire();
     }
 
-    @Override
-    public void setFocusedTarget(Trooper focusTarget) {
-        this.focusTarget = focusTarget;
+    public void setFocusedTarget() {
+        if(!targets.isEmpty() && focusTarget == null){
+            focusTarget = targets.get(targets.size() - 1);
+        }
     }
 
     public Trooper getFocusTarget() {

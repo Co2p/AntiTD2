@@ -78,6 +78,7 @@ public class Army {
                         armySize--;
                     }
                 } else {
+                    System.out.println("Im dead!");
                     iterator.remove();
                     armySize--;
                 }

@@ -119,6 +119,8 @@ public class Trooper {
                 isDead = true;
             }
         }
+        //TODO REMOVE SOUT
+        System.out.println("Target hp: " + getHealth());
     }
 
     /**

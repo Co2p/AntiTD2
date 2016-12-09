@@ -48,7 +48,9 @@ public class Tower implements Observer {
     /**
      * fires the tower, override by subclasses
      */
-    public void fire(){}
+    public void fire(){
+        targets.clear();
+    }
 
     /**
      * Get tower range
@@ -126,11 +128,7 @@ public class Tower implements Observer {
     public void update(Observable o, Object arg) {
         //TODO targets needs to be reset every new time-step
         targets.addAll((ArrayList<Trooper>) arg);
-        System.out.println("Target hp: " + targets.get(0).getHealth());
-        setFocusedTarget(targets.get(0));
     }
-
-    public void setFocusedTarget(Trooper t) {}
 
     public boolean inRange(Position position) {
         return neighbours.contains(position);
