@@ -44,7 +44,7 @@ public class Army {
                 break;
             case ARMORED:
                 t = new ArmoredTrooper(ARMOREDHEALTH, 1);
-                t.setArmor(5000000);
+                t.setArmor(500);
                 break;
         }
         t.setPosition(startPosition);

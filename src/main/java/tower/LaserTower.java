@@ -15,7 +15,7 @@ public class LaserTower extends Tower {
     private Trooper focusTarget;
 
     public LaserTower(Hashtable<Position, Tile> map_hashTable, Position pos) {
-        super(100, 2, map_hashTable, pos);
+        super(25, 2, map_hashTable, pos);
     }
 
     /**
@@ -24,9 +24,21 @@ public class LaserTower extends Tower {
      */
     @Override
     public void fire() {
-        if (!super.targets.contains(focusTarget)) {
+        System.out.println("Focustarget = " + focusTarget);
+        if (focusTarget != null && !super.targets.contains(focusTarget)) {
             focusTarget = targets.get(targets.size() - 1);
         }
-        focusTarget.receiveDamage(damage);
+        if (focusTarget != null){
+            focusTarget.receiveDamage(damage);
+        }
+    }
+
+    @Override
+    public void setFocusedTarget(Trooper focusTarget) {
+        this.focusTarget = focusTarget;
+    }
+
+    public Trooper getFocusTarget() {
+        return focusTarget;
     }
 }

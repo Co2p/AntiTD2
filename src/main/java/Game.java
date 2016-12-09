@@ -10,6 +10,7 @@ import java.util.Objects;
 import helpers.Translator;
 import helpers.Position;
 import tower.Defense;
+import tower.LaserTower;
 import trooper.*;
 import tile.*;
 
@@ -98,8 +99,9 @@ public class Game extends JPanel implements Runnable {
                 defense.createTower();
                 defense.update();
                 if(army.getArmySize() > 0) {
-                    System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
-                    + " y " + army.getArmy().get(0).getPosition().getY());
+                    //System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
+                    //+ " y " + army.getArmy().get(0).getPosition().getY());
+                    //System.out.println("HP = " + army.getArmy().get(0).getHealth());
                 }
 
                 //gameContainer.move(army); //do something to change the game

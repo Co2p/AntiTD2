@@ -306,9 +306,6 @@ public class Trooper {
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
         for (Object o : possibleMovesTable.values()) {
             RoadTile tile = (RoadTile)o;
-            System.out.println("ForceMove:");
-            System.out.println("POSITION " + tile.getPosition().toString());
-
         }
         path.add(position);
         visited.add(position);
