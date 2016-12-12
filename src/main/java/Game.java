@@ -9,6 +9,7 @@ import java.util.Objects;
 
 import helpers.Translator;
 import helpers.Position;
+import javafx.geometry.Pos;
 import tower.Defense;
 import tower.LaserTower;
 import trooper.*;
@@ -103,9 +104,20 @@ public class Game extends JPanel implements Runnable {
                     //TODO MAKE A TOWER VISIBLE!
 
                     air[p.getX()][p.getY()] = Translator.indexTower;
+
                 }
                 defense.update();
                 if(army.getArmySize() > 0) {
+                    for (Trooper trooper : army.getArmy()) {
+                        if(!trooper.getPosition().equals(startPosition)) {
+                            if(!trooper.hasTurned()) {
+                                air[trooper.getPosition().getX()][trooper.getPosition().getY()] = Translator.indexTrooper;
+                            }
+                            else{
+                                air[trooper.getPosition().getX()][trooper.getPosition().getY()] = Translator.indexZombie;
+                            }
+                        }
+                    }
                     //System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
                     //+ " y " + army.getArmy().get(0).getPosition().getY());
                     //System.out.println("HP = " + army.getArmy().get(0).getHealth());
@@ -165,6 +177,7 @@ public class Game extends JPanel implements Runnable {
 
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
+                    //todo ändra squareRoad till indexRoad
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
