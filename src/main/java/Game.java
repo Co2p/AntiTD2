@@ -177,21 +177,39 @@ public class Game extends JPanel implements Runnable {
 
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
+
+                    //Random method to generate index for making holes in road
+                    int randomNum = 1 + (int)(Math.random() * 100);
+                    if(randomNum >70 && randomNum<85){
+                        randomNum = 3;
+                    }else if (randomNum >= 85){
+                        randomNum = 2;
+                    }else{
+                        randomNum = 1;
+                    }
+
+                    background[x][y] = randomNum;
+
+                    // background[x][y] = Translator.squareRoad;
+
+
+
+
                     //todo ändra squareRoad till indexRoad
-                    background[x][y] = Translator.squareRoad;
+                   // background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
                     //TODO REMOVE SOUTS
                     System.out.println("Utskrift i Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
-                    background[x][y] = Translator.squareGoal;
+                    background[x][y] = Translator.indexGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
                     System.out.println("Utskrift i Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
-                    background[x][y] = Translator.squareStart;
+                    background[x][y] = Translator.indexStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
                     System.out.println("Utskrift i Game.setupMap: Start = X: " + x + " Y: " + y);
