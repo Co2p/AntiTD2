@@ -324,13 +324,17 @@ public class Trooper {
      */
     private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable) {
         Position nextPosition = null;
-        if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
+        if (!visited.contains(position.getPosToNorth()) &&
+                possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-        } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
+        } else if (!visited.contains(position.getPosToEast()) &&
+                possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
-        } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
+        } else if (!visited.contains(position.getPosToSouth()) &&
+                possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
-        } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
+        } else if (!visited.contains(position.getPosToWest()) &&
+                possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
         }
         else nextPosition=null;
