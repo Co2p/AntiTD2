@@ -17,7 +17,6 @@ public class Trooper {
     private int stepDelay = 2;
     private int semiStep = 0;
     private int zombiestepDelay;
-    private int armor;
     private boolean hasTurned = false;
     private boolean isDead = false;
     private Direction direction;
@@ -35,7 +34,6 @@ public class Trooper {
         this.zombiehealth=100;
         this.health=100;
         this.zombiestepDelay=(this.stepDelay/2);
-        this.armor=0;
         this.direction = NORTH;
     }
 
@@ -48,7 +46,6 @@ public class Trooper {
         this.zombiehealth=hp;
         this.health=hp;
         this.zombiestepDelay=(this.stepDelay/2);
-        this.armor=0;
         this.direction = NORTH;
     }
 
@@ -63,16 +60,7 @@ public class Trooper {
         this.stepDelay=stepDelay;
         this.zombiehealth=hp;
         this.zombiestepDelay=(this.stepDelay/2);
-        this.armor=0;
         this.direction = NORTH;
-    }
-
-    /**
-     * Sets the armour strength
-     * @param armor armour strength
-     */
-    public void setArmor(int armor) {
-        this.armor = armor;
     }
 
     /**
@@ -102,13 +90,13 @@ public class Trooper {
      */
     public void receiveDamage(int removeHealth){
         if(!hasTurned) {
-            this.health = (this.health - (removeHealth-armor));
+            this.health = (this.health - removeHealth);
             if(this.health < 1 ){
                 hasTurned = true;
             }
         }
         else{
-            this.zombiehealth = (this.zombiehealth - (removeHealth-(armor/2)));
+            this.zombiehealth = (this.zombiehealth - removeHealth);
             if(this.zombiehealth < 1){
                 isDead = true;
             }
