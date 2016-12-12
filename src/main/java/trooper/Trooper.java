@@ -53,15 +53,9 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD
-     * A mainper that takes in hp and speed values
-     * @param hp mainper hp
-     * @param speed mainper speed
-=======
-     * A main.java.main.java.trooper that takes in hp and stepDelay values
+     * A trooper that takes in hp and stepDelay values
      * @param hp main.java.main.java.trooper hp
      * @param stepDelay number of cycles before the trooper takes a steptrooper
->>>>>>> master
      */
     public Trooper(int hp, int stepDelay){
         this.maxhealth = hp;
@@ -180,13 +174,8 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD
-     * Set the speed of the mainper
-     * @param speed speed
-=======
      * Set the stepDelay of the main.java.main.java.trooper
      * @param stepDelay stepDelay
->>>>>>> master
      */
     public void setstepDelay(int stepDelay){
         this.stepDelay=stepDelay;
@@ -202,35 +191,22 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD
-     * Sets the position of the mainper to p
-=======
-     * Sets the position of the trooper to position
-     * Don't touch unless you are testing
->>>>>>> master
+     * Sets the position of the trooper to position, avoid if the trooper is mooving using normal behaviour
      * @param position the position to set
      */
     public void setPosition(Position position) {
         this.position = position;
     }
 
-    /*
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
-     * @return true if the mainper has reached the goal
-=======
+    /**
      * @return true if the trooper has reached the squareGoal
->>>>>>> master:src/Trooper.java
      */
     public boolean getReachedGoal(){
         return reachedGoal;
     }
 
     /**
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
-     * Sets that the mainper has reached the goal
-=======
      * Sets that the trooper has reached the squareGoal
->>>>>>> master:src/Trooper.java
      */
     public void setReachedGoal() {
         reachedGoal = true;
@@ -266,18 +242,8 @@ public class Trooper {
         return possibleMovesTable;
     }
 
-    //TODO !
-//    private void backTrace(Hashtable<mainers.Position,main.RoadTile> possibleMovesTable){
-//        path.pop();
-//        position = path.peek();
-//        main.RoadTile road = possibleMovesTable.get(position);
-//        road.landOn(this);
-//    }
 
     /**
-<<<<<<< HEAD
-     * Finds the next main to move to and calls landOn for that main
-=======
      * Takes a step every semiStep'th of the time that move is called
      * @param map_hashTable a map
      * @param preferred preferred direction for the army
@@ -303,7 +269,6 @@ public class Trooper {
 
     /**
      * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
->>>>>>> master
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */
@@ -346,12 +311,10 @@ public class Trooper {
             path.pop();
             System.out.println("Till "+ position.toString());
             nextPosition = position;
-//            backTrace(possibleMovesTable);
         }
         RoadTile t = possibleMovesTable.get(nextPosition);
         setPosition(nextPosition);
         return t;
-//        t.landOn(this);
     }
 
     /**
@@ -361,13 +324,17 @@ public class Trooper {
      */
     private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable) {
         Position nextPosition = null;
-        if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
+        if (!visited.contains(position.getPosToNorth()) &&
+                possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-        } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
+        } else if (!visited.contains(position.getPosToEast()) &&
+                possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
-        } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
+        } else if (!visited.contains(position.getPosToSouth()) &&
+                possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
-        } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
+        } else if (!visited.contains(position.getPosToWest()) &&
+                possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
         }
         else nextPosition=null;
