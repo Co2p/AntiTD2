@@ -220,11 +220,7 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
-<<<<<<< HEAD
-     * @return the mainr spawn rate
-=======
      * @return the tower spawn rate
->>>>>>> master
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;
