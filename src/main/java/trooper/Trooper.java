@@ -263,9 +263,6 @@ public class Trooper {
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
-        for (Object o : possibleMovesTable.values()) {
-            RoadTile tile = (RoadTile)o;
-        }
         path.add(position);
         visited.add(position);
         if (preferred == direction &&
