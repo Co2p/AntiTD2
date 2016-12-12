@@ -2,10 +2,14 @@ package trooper;
 
 import helpers.Direction;
 import helpers.Position;
+import helpers.Translator;
 import tile.RoadTile;
 import tile.Tile;
+import Game.Square;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
@@ -121,5 +125,29 @@ public class Army {
 
     public int getReachedGoal() {
         return reachedGoal;
+    }
+
+    public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
+        for (Trooper t: army) {
+            if(!t.isDead()) {
+
+                int x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
+                int y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
+                System.out.println("Square x: " + x);
+                System.out.println("Square y: " + y);
+
+                if (t.hasTurned()) {
+                    g.drawImage(square_air[Translator.indexZombie], x, y,
+                            null, null);
+                } else {
+                    g.drawImage(square_air[Translator.indexTrooper], x, y,
+                            null, null);
+                }
+            }
+
+            else {
+
+            }
+        }
     }
 }

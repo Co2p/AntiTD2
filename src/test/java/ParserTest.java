@@ -5,9 +5,9 @@ import helpers.DOMParser;
  */
 
 //public class ParserTest {
-//    public static void main(String[] args) {
+//    public static void Game.main(String[] args) {
 //        DOMParser parser = null;
-//        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
+//        parser = new DOMParser("src/Game.main/resources/xml/levelSchema.xml");
 //        parser.parseFile("xml/test.xml");
 //        if (parser.isError()) {
 //            System.out.println(parser.getErrorMessage().toString);
@@ -47,10 +47,10 @@ import helpers.DOMParser;
 //}
 //=======
 //public class ParserTest {
-//    public static void main (String[] args) {
+//    public static void Game.main (String[] args) {
 //        DOMParser parser = null;
-//        parser = new DOMParser("src/main/res/xml/levelSchema");
-//        parser.parseFile("src/main/res/xml/test.xml");
+//        parser = new DOMParser("src/Game.main/res/xml/levelSchema");
+//        parser.parseFile("src/Game.main/res/xml/test.xml");
 //        if (parser.isError()) {
 //            System.out.println(parser.getErrorMessage());
 //        }

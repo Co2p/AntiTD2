@@ -1,11 +1,9 @@
-
+package Game;
 
 import helpers.Translator;
 
 import java.awt.*;
 import helpers.Position;
-import tile.Tile;
-import tile.RoadTile;
 
 
 /**
@@ -63,6 +61,10 @@ public class Square extends Rectangle {
         gr.drawImage(Game.square_air[(Game.air[indexX][indexY])]
                 , x,y, width, height, null);
 
+    }
+
+    public Position getSquarePosition() {
+        return p;
     }
 
 }

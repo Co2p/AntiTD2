@@ -20,7 +20,7 @@ public class TeleportTrooper extends Trooper{
     }
 
     /**
-     * places a portal on current main.RoadTile which teleports troopers to a main
+     * places a portal on current Game.main.RoadTile which teleports troopers to a Game.main
      * five steps further ahead.
      * @param preferred -
      */

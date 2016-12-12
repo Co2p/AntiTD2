@@ -15,7 +15,7 @@ public class TestParser {
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
+        parser = new DOMParser("src/Game.main/resources/xml/levelSchema.xml");
     }
 
     @Test
@@ -89,7 +89,7 @@ public class TestParser {
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getLevelName().size());
-        assertEquals("Level 1",parser.getLevelName().get(0));
+        assertEquals("Game.Level 1",parser.getLevelName().get(0));
     }
 
     @Test

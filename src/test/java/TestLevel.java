@@ -1,3 +1,4 @@
+import Game.Level;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 
@@ -14,7 +15,7 @@ public class TestLevel {
 
     @Test
     public void TestLevelWithName() {
-        Level l = new Level("Level");
-        assertEquals(l.getLevelName(), "Level");
+        Level l = new Level("Game.Level");
+        assertEquals(l.getLevelName(), "Game.Level");
     }
 }

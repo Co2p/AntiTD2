@@ -1,4 +1,4 @@
-
+package Game;
 
 import helpers.DOMParser;
 
