@@ -104,13 +104,8 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-<<<<<<< HEAD:src/main/java/tile/RoadTile.java
      * Returns true if the main is a goal.
      * @return true if the main is a goal.
-=======
-     * Returns true if the tile is a squareGoal.
-     * @return true if the tile is a squareGoal.
->>>>>>> master:src/RoadTile.java
      */
     public boolean isGoal() {
         return isGoal;
