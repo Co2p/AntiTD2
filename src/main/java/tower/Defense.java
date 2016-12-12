@@ -1,6 +1,7 @@
 package tower;
 
 import helpers.Position;
+import sun.misc.PostVMInitHook;
 import tile.RoadTile;
 import tile.Tile;
 import tile.TowerTile;
@@ -34,8 +35,9 @@ public class Defense {
         this.spawnRate = spawnRate;
     }
 
-    public void createTower() {
+    public Position createTower() {
         Random rand = new Random();
+        Position pos = null;
         if(rand.nextInt(100+1) <= spawnRate) {
             int towerPlacement;
             if (towerMap.size() > 1) {
@@ -43,14 +45,15 @@ public class Defense {
             } else {
                 towerPlacement = 0;
             }
-            //System.out.println(towerPlacement);
             if (!towerMap.isEmpty()) {
-                Tower tower = new LaserTower(roadMap, towerMap.get(towerPlacement).getPosition());
+                pos = towerMap.get(towerPlacement).getPosition();
+                Tower tower = new LaserTower(roadMap, pos);
                 towers.add(tower);
                 towerMap.get(towerPlacement).setTower(tower);
                 towerMap.remove(towerPlacement);
             }
         }
+        return pos;
     }
 
     public void update() {
