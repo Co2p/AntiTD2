@@ -53,6 +53,14 @@ public class GameContainer {
 
     }
 
+    public static void setColumnCount(int columnCount) {
+        GameContainer.columnCount = columnCount;
+    }
+
+    public static void setRowCount(int rowCount) {
+        GameContainer.rowCount = rowCount;
+    }
+
     public void move(Army army){
 
 
