@@ -266,18 +266,8 @@ public class Trooper {
         return possibleMovesTable;
     }
 
-    //TODO !
-//    private void backTrace(Hashtable<mainers.Position,main.RoadTile> possibleMovesTable){
-//        path.pop();
-//        position = path.peek();
-//        main.RoadTile road = possibleMovesTable.get(position);
-//        road.landOn(this);
-//    }
 
     /**
-<<<<<<< HEAD
-     * Finds the next main to move to and calls landOn for that main
-=======
      * Takes a step every semiStep'th of the time that move is called
      * @param map_hashTable a map
      * @param preferred preferred direction for the army
@@ -303,7 +293,6 @@ public class Trooper {
 
     /**
      * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
->>>>>>> master
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */
