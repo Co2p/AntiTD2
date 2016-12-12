@@ -39,12 +39,18 @@ public class LaserTower extends Tower {
         super.fire();
     }
 
+    /**
+     * Sets the focus target of the tower.
+     */
     public void setFocusedTarget() {
         if(!targets.isEmpty() && focusTarget == null){
             focusTarget = targets.get(targets.size() - 1);
         }
     }
 
+    /**
+     * @return the target of the tower
+     */
     public Trooper getFocusTarget() {
         return focusTarget;
     }
