@@ -17,7 +17,10 @@ public class BearTrap implements Zone {
         Random rand = new Random();
 
         if(rand.nextInt(100+1) < 5) {
-            t.receiveDamage(rand.nextInt(230)+20);
+            int damage = rand.nextInt(230)+20;
+            t.receiveDamage(damage);
+            //TODO remove Print
+            System.out.println("Trooper was horibly mutilated by a bear trap, recieved " + damage + " damage");
         }
     }
 }
