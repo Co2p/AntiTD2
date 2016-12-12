@@ -8,8 +8,8 @@ public abstract class Tile extends Observable {
     private Boolean occupied = false;
 
     /**
-     * Constructor to create a main.Tile, this will only be used in subclasses.
-     * @param p the postion of the main on the board
+     * Constructor to create a Game.main.Tile, this will only be used in subclasses.
+     * @param p the postion of the Game.main on the board
      */
     public Tile(Position p){
         this.position = p;

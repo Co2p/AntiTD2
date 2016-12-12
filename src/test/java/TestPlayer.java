@@ -1,3 +1,5 @@
+import Game.Player;
+import Game.Results;
 import org.junit.Test;
 import static junit.framework.TestCase.assertEquals;
 import static junit.framework.TestCase.assertNotNull;
@@ -14,33 +16,33 @@ public class TestPlayer {
 
     @Test
     public void TestCreatePlayerWithName(){
-        Player p = new Player("Player");
-        assertEquals(p.getName(), "Player");
+        Player p = new Player("Game.Player");
+        assertEquals(p.getName(), "Game.Player");
     }
 
     @Test
     public void TestCreatePlayerWithNameCahanged(){
-        Player p = new Player("Player");
+        Player p = new Player("Game.Player");
         assertNotSame(p.getName(), "Unknown");
     }
 
     @Test
     public void TestSetPlayerNoName(){
         Player p = new Player();
-        p.setName("Player");
-        assertEquals(p.getName(), "Player");
+        p.setName("Game.Player");
+        assertEquals(p.getName(), "Game.Player");
     }
 
     @Test
     public void TestSetPlayerNoNameChanged(){
         Player p = new Player();
-        p.setName("Player");
+        p.setName("Game.Player");
         assertNotSame(p.getName(), "Unknown");
     }
 
     @Test
     public void TestSetNewPlayerName(){
-        Player p = new Player("Player");
+        Player p = new Player("Game.Player");
         p.setName("NewName");
         assertEquals(p.getName(), "NewName");
     }

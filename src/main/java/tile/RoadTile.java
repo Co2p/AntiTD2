@@ -7,7 +7,7 @@ import trooper.Trooper;
 import helpers.Position;
 
 /**
- * A main that Troopers walk on
+ * A Game.main that Troopers walk on
  * Created by gordon on 2016-11-28.
  */
 public class RoadTile extends Tile implements Zone {
@@ -19,8 +19,8 @@ public class RoadTile extends Tile implements Zone {
     private ArrayList<Trooper> troopers;
 
     /**
-     * Constructor for main.RoadTile
-     * @param p, the position where the main will be placed.
+     * Constructor for Game.main.RoadTile
+     * @param p, the position where the Game.main will be placed.
      * Constructor for RoadTile
      * @param p, the position where the tile will be placed.
      */
@@ -36,8 +36,8 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Constructor for main.RoadTile, isGoal is set to false by default.
-     * @param p, the position where the main will be placed.
+     * Constructor for Game.main.RoadTile, isGoal is set to false by default.
+     * @param p, the position where the Game.main will be placed.
      */
     public RoadTile(Position p) {
         super(p);
@@ -50,7 +50,7 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Called when a mainper.Trooper lands on the main.RoadTile
+     * Called when a mainper.Trooper lands on the Game.main.RoadTile
      * @param t the mainper.Trooper
      */
     @Override
@@ -77,33 +77,33 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Returns true if the main has a portal on it.
-     * @return true if the main has a portal on it.
+     * Returns true if the Game.main has a portal on it.
+     * @return true if the Game.main has a portal on it.
      */
     public boolean hasPortal() {
         return (portalExit != null);
     }
 
     /**
-     * Sets a portal on the main
-     * @param t the main where the portal exits
+     * Sets a portal on the Game.main
+     * @param t the Game.main where the portal exits
      */
     public void setPortal(RoadTile t) {
         portalExit = t;
     }
 
     /**
-     * Returns the exit of the portal on the main else null.
-     * @return the exit of the portal on the main else null.
+     * Returns the exit of the portal on the Game.main else null.
+     * @return the exit of the portal on the Game.main else null.
      */
     public Tile getPortalExit() {
         return portalExit;
     }
 
     /**
-<<<<<<< HEAD:src/main/java/tile/RoadTile.java
-     * Returns true if the main is a goal.
-     * @return true if the main is a goal.
+<<<<<<< HEAD:src/Game.main/java/tile/RoadTile.java
+     * Returns true if the Game.main is a goal.
+     * @return true if the Game.main is a goal.
 =======
      * Returns true if the tile is a squareGoal.
      * @return true if the tile is a squareGoal.

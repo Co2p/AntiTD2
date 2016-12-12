@@ -58,8 +58,8 @@ public class Trooper {
      * @param hp mainper hp
      * @param speed mainper speed
 =======
-     * A main.java.main.java.trooper that takes in hp and stepDelay values
-     * @param hp main.java.main.java.trooper hp
+     * A Game.main.java.Game.main.java.trooper that takes in hp and stepDelay values
+     * @param hp Game.main.java.Game.main.java.trooper hp
      * @param stepDelay number of cycles before the trooper takes a steptrooper
 >>>>>>> master
      */
@@ -184,7 +184,7 @@ public class Trooper {
      * Set the speed of the mainper
      * @param speed speed
 =======
-     * Set the stepDelay of the main.java.main.java.trooper
+     * Set the stepDelay of the Game.main.java.Game.main.java.trooper
      * @param stepDelay stepDelay
 >>>>>>> master
      */
@@ -215,7 +215,7 @@ public class Trooper {
     }
 
     /*
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
+<<<<<<< HEAD:src/Game.main/java/trooper/Trooper.java
      * @return true if the mainper has reached the goal
 =======
      * @return true if the trooper has reached the squareGoal
@@ -226,7 +226,7 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
+<<<<<<< HEAD:src/Game.main/java/trooper/Trooper.java
      * Sets that the mainper has reached the goal
 =======
      * Sets that the trooper has reached the squareGoal
@@ -267,16 +267,16 @@ public class Trooper {
     }
 
     //TODO !
-//    private void backTrace(Hashtable<mainers.Position,main.RoadTile> possibleMovesTable){
+//    private void backTrace(Hashtable<mainers.Position,Game.main.RoadTile> possibleMovesTable){
 //        path.pop();
 //        position = path.peek();
-//        main.RoadTile road = possibleMovesTable.get(position);
+//        Game.main.RoadTile road = possibleMovesTable.get(position);
 //        road.landOn(this);
 //    }
 
     /**
 <<<<<<< HEAD
-     * Finds the next main to move to and calls landOn for that main
+     * Finds the next Game.main to move to and calls landOn for that Game.main
 =======
      * Takes a step every semiStep'th of the time that move is called
      * @param map_hashTable a map
@@ -302,7 +302,7 @@ public class Trooper {
     }
 
     /**
-     * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
+     * Finds the next Game.main.java.Game.main.java.tile to move to and calls landOn for that Game.main.java.Game.main.java.tile
 >>>>>>> master
      * @param map_hashTable a map
      * @param preferred preferred direction of the army

@@ -42,15 +42,15 @@ public class TestArmy {
 
 //    @Test
 //    public void TestGetArmyStartPos() {
-//        ArrayList<Level> levelArray = new ArrayList<Level>();
-//        LevelBuilder lb = new LevelBuilder();
+//        ArrayList<Game.Level> levelArray = new ArrayList<Game.Level>();
+//        Game.LevelBuilder lb = new Game.LevelBuilder();
 //
 //        for (int i = 0; i < lb.getNoOfLevels(); i++) {
-//            Level l = lb.buildLevel(i);
+//            Game.Level l = lb.buildLevel(i);
 //            levelArray.add(l);
 //        }
 //
-//        Game g = new Game(levelArray.get(0));
+//        Game.Game g = new Game.Game(levelArray.get(0));
 //        g.setupMap();
 //        Army a = new Army(g.getMap());
 //        a.getArmy().add(a.createTrooper(TrooperType.ARMORED));

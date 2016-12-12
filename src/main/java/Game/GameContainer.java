@@ -1,6 +1,5 @@
+package Game;
 
-import helpers.Position;
-import helpers.Translator;
 import trooper.Army;
 import java.awt.*;
 
@@ -22,7 +21,7 @@ public class GameContainer {
 
     public void define(){
 
-        //Setup the squares (Game pane) of the gui.
+        //Setup the squares (Game.Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
 
         airSquares = new Square[columnCount][rowCount];    //Setup the square array
@@ -60,7 +59,9 @@ public class GameContainer {
 
     public void move(Army army){
 
+    }
 
-
+    public Square[][] getAirSquares() {
+        return airSquares;
     }
 }

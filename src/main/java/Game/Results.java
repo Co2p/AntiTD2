@@ -1,3 +1,5 @@
+package Game;
+
 /**
  * Created by Alexander Nyström(dv15anm) on 24/11/2016.
  */
