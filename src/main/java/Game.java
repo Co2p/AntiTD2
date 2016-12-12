@@ -10,6 +10,7 @@ import java.util.Objects;
 import helpers.Translator;
 import helpers.Position;
 import tower.Defense;
+import tower.LaserTower;
 import trooper.*;
 import tile.*;
 
@@ -24,6 +25,7 @@ public class Game extends JPanel implements Runnable {
     private String RESPATH = "src/main/resources/img";
 
     private Army army;
+    public Position startPosition;
     private Defense defense;
     private Hashtable<Position,Tile> map = new Hashtable<>();
 
@@ -64,8 +66,9 @@ public class Game extends JPanel implements Runnable {
         height = getHeight();
         mapString = level.getMap();
         setupImages();
+        startPosition = new Position();
         setupMap();
-        this.army=new Army(map);
+        this.army = new Army(map, startPosition);
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
@@ -89,16 +92,20 @@ public class Game extends JPanel implements Runnable {
 
     @Override
     public void run() {
-
-        while(true){
+        int totalReached = 0;
+        while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
+                shop.subtractUnitsToWin(army.getReachedGoal());
+                totalReached += army.getReachedGoal();
                 defense.createTower();
                 defense.update();
-                System.out.println("Number of towes: " + defense.getTowerCount());
-               if(army.getArmySize()<0) {
-                   System.out.println("First trooper pos: " + "x " + army.getArmy().get(0).getPosition().getX() + "y: " + army.getArmy().get(0).getPosition().getX());
-               }
+                if(army.getArmySize() > 0) {
+                    //System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
+                    //+ " y " + army.getArmy().get(0).getPosition().getY());
+                    //System.out.println("HP = " + army.getArmy().get(0).getHealth());
+                }
+
                 //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
@@ -136,7 +143,7 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void setupMap(){
+    public void setupMap(){
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
         air = new int[GameContainer.columnCount][GameContainer.rowCount];
 
@@ -156,16 +163,21 @@ public class Game extends JPanel implements Runnable {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
+                    System.out.println("Utskrift i Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
                     background[x][y] = Translator.squareGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
+                    System.out.println("Utskrift i Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
                     background[x][y] = Translator.squareStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
+                    System.out.println("Utskrift i Game.setupMap: Start = X: " + x + " Y: " + y);
+                    startPosition.setX(x);
+                    startPosition.setY(y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
                     background[x][y] = Translator.squareTowerZone;
@@ -173,5 +185,9 @@ public class Game extends JPanel implements Runnable {
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
             }
+    }
+
+    public Hashtable<Position,Tile>  getMap() {
+        return map;
     }
 }

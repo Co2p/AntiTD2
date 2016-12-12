@@ -23,6 +23,7 @@ public class Tower implements Observer {
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
+    public int observedTiles=0;
 
     /**
      * Super tower constructor, called by the sub-tower classes
@@ -38,6 +39,7 @@ public class Tower implements Observer {
         for ( int i = 0; i < neighbours.size(); i++) {
             Tile road = map_hashTable.get(neighbours.get(i));
             if (RoadTile.class.isInstance(road)) {
+                observedTiles++;
                 road.addObserver(this);
             }
         }
@@ -46,7 +48,9 @@ public class Tower implements Observer {
     /**
      * fires the tower, override by subclasses
      */
-    public void fire(){}
+    public void fire(){
+        targets.clear();
+    }
 
     /**
      * Get tower range
@@ -116,10 +120,13 @@ public class Tower implements Observer {
         return neighbours.size();
     }
 
+    public int getObservedTiles() {
+        return observedTiles;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
-        //TODO targets needs to be reset every new time-step
-        targets.add((Trooper) arg);
+        targets.addAll((ArrayList<Trooper>) arg);
     }
 
     public boolean inRange(Position position) {

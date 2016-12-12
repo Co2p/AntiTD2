@@ -231,5 +231,8 @@ public class Position {
         return result;
     }
 
+    public String toString(){
+        return "X: " + x + " Y: " + y;
+    }
 
 }

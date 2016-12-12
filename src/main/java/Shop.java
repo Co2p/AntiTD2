@@ -18,8 +18,8 @@ public class Shop {
 
     //Maybe this stats should not be declaired inside of the shop.
     private long noOfCredits = 0;
-    private int noOfRed = 0;
-    private int noOfGreen = 0;
+    private int timeLimit = 0;
+    private int unitsToWin = 0;
     private Army army;
 
     public ShopButton[] buttons;
@@ -45,8 +45,8 @@ public class Shop {
     public void define(){
 
         noOfCredits = Game.level.getCredits();
-        noOfGreen = Game.level.getUnitsToWin();
-        noOfRed = Game.level.getTimeLimit();
+        unitsToWin = Game.level.getUnitsToWin();
+        timeLimit = Game.level.getTimeLimit();
 
         for (int i = 0; i <buttons.length ; i++) {
             buttons[i] = new ShopButton((Game.width/2) -
@@ -87,18 +87,16 @@ public class Shop {
 
                     if(i == 0 && !(noOfCredits - Translator.pitifullPrice < 0)){
                         noOfCredits -= Translator.pitifullPrice;
-                        army.createTrooper(TrooperType.PITIFUL);
-                        //TODO Skapa pitifulTrooper
+                        army.addToArmyQueue(TrooperType.PITIFUL);
+
                     }
                     if(i == 1 && !(noOfCredits - Translator.armoredTrooperPrice < 0)){
                         noOfCredits -= Translator.armoredTrooperPrice;
-                        army.createTrooper(TrooperType.ARMORED);
-                        //TODO Skapa armoredTrooper
+                        army.addToArmyQueue(TrooperType.ARMORED);
                     }
                     if(i == 2 && !(noOfCredits - Translator.teleporterPrice < 0)){
                         noOfCredits -= Translator.teleporterPrice;
-                        army.createTrooper(TrooperType.TELEPORTER);
-                        //TODO Skapa teleportTrooper samt koppla samman med knapp 4
+                        army.addToArmyQueue(TrooperType.TELEPORTER);
                     }
                     if(i==3){
                         //trooper move.
@@ -144,10 +142,14 @@ public class Shop {
             if(i == 0) {
                 statsElements[i].drawStats(gr, i + 6, (int) noOfCredits);
             }else if (i ==1){
-                statsElements[i].drawStats(gr, i + 6, noOfRed);
+                statsElements[i].drawStats(gr, i + 6, timeLimit);
             }else if( i == 2){
-                statsElements[i].drawStats(gr, i + 6, noOfGreen);
+                statsElements[i].drawStats(gr, i + 6, unitsToWin);
             }
         }
+    }
+
+    public void subtractUnitsToWin(int unitsToWin) {
+         this.unitsToWin -= unitsToWin;
     }
 }
