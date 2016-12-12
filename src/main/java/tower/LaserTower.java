@@ -14,6 +14,11 @@ import java.util.Hashtable;
 public class LaserTower extends Tower {
     private Trooper focusTarget;
 
+    /**
+     * Constructs a new LaserTower
+     * @param map_hashTable the active map
+     * @param pos the position of the tower on the map
+     */
     public LaserTower(Hashtable<Position, Tile> map_hashTable, Position pos) {
         super(12, 2, map_hashTable, pos);
     }

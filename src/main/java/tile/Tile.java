@@ -31,6 +31,9 @@ public abstract class Tile extends Observable {
         occupied = b;
     }
 
+    /**
+     * @return the position of the tile as a Position object
+     */
     public Position getPosition() {
         return position;
     }

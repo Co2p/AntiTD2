@@ -8,6 +8,11 @@ public class ArmoredTrooper extends Trooper {
     private int armor;
     private int zombieArmor;
 
+    /**
+     * 
+     * @param hp
+     * @param speed
+     */
     public ArmoredTrooper(int hp, int speed) {
         super(hp, speed);
         armor = 15;
