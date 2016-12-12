@@ -28,7 +28,7 @@ public class DOMParser {
     private DocumentBuilder parser;
     private XPath path;
     private boolean error = false;
-    private  String errorMessage = "";
+    private  ErrorMessages errorMessage;
 
     private int levelCount;
     private ArrayList<String> levelName = new ArrayList<>();
@@ -39,11 +39,14 @@ public class DOMParser {
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
     private ArrayList<String[]> map = new ArrayList<>();
+    private ArrayList<Integer> columns = new ArrayList<>();
+    private ArrayList<Integer> rows = new ArrayList<>();
 
     /**
      * Setup the parser
      */
     public DOMParser(String schemaFile){
+        errorMessage = new ErrorMessages();
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
         try {
@@ -57,29 +60,35 @@ public class DOMParser {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
             error = true;
-            errorMessage = "Error when creating the document parser. Could" +
-                    " not parse the xml.";
+            errorMessage.setParseConfigException("Error when creating the" +
+                    " document parser. Could not parse the xml.");
         }
         parser.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(SAXParseException exception) throws SAXException {
-                errorMessage = "An error occurred while parsing the xml" +
-                        " parser returned: " + exception.getCause();
-                System.out.println(exception.getCause());
+                error = true;
+                errorMessage.setSaxParsWarning("At line: " + exception.getLineNumber() +
+                        "column: " + exception.getColumnNumber() +
+                        "Following error was found " +
+                        exception.getMessage());
             }
 
             @Override
             public void error(SAXParseException exception) throws SAXException {
-                errorMessage = "An error occurred while parsing the xml" +
-                        " parser returned: " + exception.getCause();
-                System.out.println(exception.getCause());
+                error = true;
+                errorMessage.setSaxParsError("At line: " + exception.getLineNumber() +
+                        " column: " + exception.getColumnNumber() +
+                        " Following error was found " +
+                        exception.getMessage());
             }
 
             @Override
             public void fatalError(SAXParseException exception) throws SAXException {
-                errorMessage = "An error occurred while parsing the xml" +
-                        " parser returned: " + exception.getCause();
-                System.out.println(exception.getCause());
+                error = true;
+                errorMessage.setSaxParsFatalError("At line: " + exception.getLineNumber() +
+                        "column: " + exception.getColumnNumber() +
+                        "Following error was found " +
+                        exception.getMessage());
             }
         });
         XPathFactory xpfactory = XPathFactory.newInstance();
@@ -98,50 +107,94 @@ public class DOMParser {
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
 
             if(url != null) {
-//                File f = new File(fileName);
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
                     doc = parser.parse(url.openStream());
                 } else {
-                    errorMessage = "Could not find file: "+fileName;
+                    error = true;
+                    errorMessage.setFileError("Could not find file: "
+                                                + fileName);
                 }
             } else {
-                errorMessage = "Could not find file: "+fileName;
+                error = true;
+                errorMessage.setFileError("Could not find file: " + fileName);
             }
 
-        } catch (SAXException | IOException | IllegalArgumentException | NullPointerException e) {
+        } catch (SAXException | IOException | IllegalArgumentException |
+                    NullPointerException | URISyntaxException e) {
             error = true;
-            errorMessage = e.getMessage();
-        } catch (URISyntaxException e) {
-           errorMessage = e.getMessage();
+            errorMessage.setParsError(e.getMessage());
         }
 
         if(doc != null) {
             try {
-                levelCount = Integer.parseInt(path.evaluate("count(/levellist/level)",doc));
+                levelCount = Integer.parseInt(path.evaluate(
+                        "count(/levellist/level)",doc));
+
                 for (int i = 0; i < levelCount;i++) {
-                    levelName.add(i, path.evaluate("/levellist/level["+(i+1)+"]/@name",doc));
-                    credits.add(i,Long.parseLong(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/credits",doc)));
-                    unitsToWin.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/unitstowin",doc)));
-                    towerSpawnRate.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/towerspawnrate",doc)));
-                    timeLimit.add(i,Integer.parseInt(path.evaluate("/levellist/level["+(i+1)+"]/rules[1]/timelimit",doc)));
-                    className.add(i, path.evaluate("/levellist/level["+(i+1)+"]/tile[1]/@className",doc));
-                    classPath.add(i,path.evaluate("/levellist/level["+(i+1)+"]/tile[1]",doc));
-                    int rowCount = Integer.parseInt(path.evaluate("count(/levellist/level["+(i+1)+"]/map/*)",doc));
-                    String[] str = new String[8];
+                    levelName.add(i, path.evaluate(
+                            "/levellist/level["+(i+1)+"]/@name",doc));
+
+                    credits.add(i,Long.parseLong(path.evaluate(
+                            "/levellist/level["+(i+1)+"]/rules[1]" +
+                                    "/credits",doc)));
+
+                    unitsToWin.add(i,Integer.parseInt(path.evaluate(
+                            "/levellist/level["+(i+1)+"]/rules[1]" +
+                                    "/unitstowin",doc)));
+
+                    towerSpawnRate.add(i,Integer.parseInt(path.evaluate(
+                            "/levellist/level["+(i+1)+"]/rules[1]" +
+                                    "/towerspawnrate",doc)));
+
+                    timeLimit.add(i,Integer.parseInt(path.evaluate(
+                            "/levellist/level["+(i+1)+"]/rules[1]" +
+                                    "/timelimit",doc)));
+
+                    columns.add(i,Integer.parseInt(path.evaluate(
+                            "/levellist/level["+(i+1)+"]/map[1]" +
+                                    "/size[1]/column",doc)));
+
+                    rows.add(i,Integer.parseInt(path.evaluate(
+                            "/levellist/level["+(i+1)+"]" +
+                                    "/map[1]/size[1]/row",doc)));
+
+                    className.add(i, path.evaluate("/levellist/level["+
+                                            (i+1)+"]/tile[1]/@className",doc));
+
+                    classPath.add(i,path.evaluate("/levellist/level["+
+                                                    (i+1)+"]/tile[1]",doc));
+
+                    int rowCount = Integer.parseInt(path.evaluate("" +
+                            "count(/levellist/level["+(i+1)+"]/map/*)",doc));
+                    String [] str = new String[rowCount];
                     for(int j = 0; j < rowCount; j++) {
-                        str[j] = path.evaluate("/levellist/level["+(i+1)+"]/map[1]/row["+(j+1)+"]",doc);
+                        str[j] = path.evaluate("/levellist/level["+
+                                        (i+1)+"]/map[1]/row["+(j+1)+"]",doc);
                     }
                     map.add(i,str);
                 }
 
             } catch (XPathExpressionException e) {
                 error = true;
-                errorMessage = e.getCause().toString();
+                errorMessage.setXpathException(e.getMessage());
+            } catch (NumberFormatException e) {
+                error = true;
+                errorMessage.setNumberFormat(e.getMessage());
             }
 
         }
 
+    }
+
+
+
+    /**
+     * Returns an arraylist containing the maps for the levels
+     * @return list containing maps
+     */
+    public ArrayList<String[]> getMap() {
+        return map;
     }
 
     /**
@@ -205,14 +258,6 @@ public class DOMParser {
     }
 
     /**
-     * Returns an arraylist containing the maps for the levels
-     * @return list containing maps
-     */
-    public ArrayList<String[]> getMap() {
-        return map;
-    }
-
-    /**
      *
      * @return true if an error occurred
      */
@@ -224,7 +269,7 @@ public class DOMParser {
      *
      * @return The error message generated by an error
      */
-    public String getErrorMessage() {
+    public ErrorMessages getErrorMessage() {
         return errorMessage;
     }
 
@@ -235,4 +280,13 @@ public class DOMParser {
     public int getLevelCount() {
         return levelCount;
     }
+
+    public ArrayList<Integer> getColumns() {
+        return columns;
+    }
+
+    public ArrayList<Integer> getRows() {
+        return rows;
+    }
+
 }

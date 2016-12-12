@@ -1,9 +1,12 @@
 package tower;
 
 import helpers.Position;
+import tile.RoadTile;
+import tile.Tile;
 import trooper.Trooper;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -20,71 +23,55 @@ public class Tower implements Observer {
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
+    public int observedTiles=0;
 
     /**
-<<<<<<< HEAD
-     * Super mainr constructor, called by the sub-mainr classes
-     * @param damage mainr damage
-     * @param range mainr range
-=======
      * Super tower constructor, called by the sub-tower classes
      * @param damage tower damage
      * @param range tower range
->>>>>>> master
      */
-    public Tower(int damage, int range, Position pos){
+    public Tower(int damage, int range, Hashtable<Position, Tile> map_hashTable, Position pos){
         this.damage=damage;
         this.range=range;    //Ska vi ens ha range?
         targets = new ArrayList<>();
         setPos(pos);
         addNeighbours();
+        for ( int i = 0; i < neighbours.size(); i++) {
+            Tile road = map_hashTable.get(neighbours.get(i));
+            if (RoadTile.class.isInstance(road)) {
+                observedTiles++;
+                road.addObserver(this);
+            }
+        }
     }
 
     /**
-<<<<<<< HEAD
-     * fires the mainr, override by subclasses
-     * @return mainr damage
-=======
      * fires the tower, override by subclasses
-     * @return tower damage
->>>>>>> master
      */
-    public void fire(){}
+    public void fire(){
+        targets.clear();
+    }
 
     /**
-<<<<<<< HEAD
-     * Get mainr range
-     * @return mainr range
-=======
      * Get tower range
      * @return tower range
->>>>>>> master
      */
     public int getRange() {
         return range;
     }
 
     /**
-<<<<<<< HEAD
      * mainers.Position of the mainr
-     * @return mainr position
-=======
      * Position of the tower
      * @return tower position
->>>>>>> master
      */
     public Position getPos() {
         return pos;
     }
 
     /**
-<<<<<<< HEAD
-     * Set the mainr position
-     * @param pos a new mainr position
-=======
      * Set the tower position
      * @param pos a new tower position
->>>>>>> master
      */
     public void setPos(Position pos) {
         this.pos = pos;
@@ -119,11 +106,11 @@ public class Tower implements Observer {
 
     /**
      * Adds the position to the neighbours list if it is in range
-     * @param pos the position that will be added
+     * @param pos the tile position that will be added
      * @return the position
      */
     private Position addNeighbour(Position pos) {
-        if (!pos.outOfRange()) {
+        if (pos.inRange()) {
             neighbours.add(pos);
         }
         return pos;
@@ -133,9 +120,13 @@ public class Tower implements Observer {
         return neighbours.size();
     }
 
+    public int getObservedTiles() {
+        return observedTiles;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
-        targets.add((Trooper) arg);
+        targets.addAll((ArrayList<Trooper>) arg);
     }
 
     public boolean inRange(Position position) {

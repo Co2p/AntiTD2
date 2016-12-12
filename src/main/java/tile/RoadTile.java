@@ -32,7 +32,7 @@ public class RoadTile extends Tile implements Zone {
         }else if (isGoalOrStart.equals("goal")){
             this.isGoal = true;
         }
-        troopers = new ArrayList<>();
+        initTroopersArray();
     }
 
     /**
@@ -42,6 +42,11 @@ public class RoadTile extends Tile implements Zone {
     public RoadTile(Position p) {
         super(p);
         isGoal = false;
+        initTroopersArray();
+    }
+
+    private void initTroopersArray() {
+        troopers = new ArrayList<>();
     }
 
     /**
@@ -57,17 +62,17 @@ public class RoadTile extends Tile implements Zone {
             portalExit.landOn(t);
         } else {
             setChanged();
-            if (t != null) {
+            if (t != null && countObservers() > 0) {
                 troopers.add(t);
                 notifyObservers(troopers);
             }
-            try {
-                landOnMethod.invoke(landOnModifier,t);
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                landOnMethod.invoke(landOnModifier,t);
+//            } catch (IllegalAccessException e) {
+//                e.printStackTrace();
+//            } catch (InvocationTargetException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 

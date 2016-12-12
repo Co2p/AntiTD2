@@ -4,21 +4,22 @@
         <rules>
             <credits>600</credits>
             <unitstowin>10</unitstowin>
-            <towerspawnrate>10</towerspawnrate> //in percent.
+            <towerspawnrate>10</towerspawnrate>
             <timelimit>2</timelimit>
-            <columns>12</columns>
         </rules>
-        <zone>
-            <tile classpath="" > </tile> //oklart hur denna ska fungera
-        </zone>
+        <tile className="" > </tile>
         <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
             <row>00TT00000000</row>
             <row>SRRRR0000000</row>
-            <row>00TTRTTT0000</row>
-            <row>0000R0RRRT00</row>
-            <row>0000RRR0RT00</row>
-            <row>000TTT0TRT00</row>
-            <row>00000000RT00</row>
+            <row>0000R0000000</row>
+            <row>0000R0RRR000</row>
+            <row>0000RRR0R000</row>
+            <row>00000000R000</row>
+            <row>00000000R000</row>
             <row>00000000G000</row>
         </map>
     </level>
@@ -26,14 +27,15 @@
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
-            <towerspawnrate>10</towerspawnrate> //in percent.
+            <towerspawnrate>10</towerspawnrate>
             <timelimit>2</timelimit>
-            <columns>12</columns>
         </rules>
-        <zone>
-            <tile classpath="" > </tile> //oklart hur denna ska fungera
-        </zone>
+        <tile className="" > </tile>
         <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
             <row>000TTT000000</row>
             <row>000RRRRT0000</row>
             <row>000R00RT0000</row>
@@ -48,14 +50,15 @@
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
-            <towerspawnrate>15</towerspawnrate> //in percent.
+            <towerspawnrate>15</towerspawnrate>
             <timelimit>2</timelimit>
-            <columns>12</columns>
         </rules>
-        <zone>
-            <tile classpath="" > </tile> //oklart hur denna ska fungera
-        </zone>
+        <tile className="" > </tile>
         <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
             <row>TTTTTTTTTTGT</row>
             <row>TRRRTRRRTTRT</row>
             <row>TRTRRRTRRRRT</row>
@@ -70,22 +73,23 @@
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
-            <towerspawnrate>10</towerspawnrate> //in percent.
+            <towerspawnrate>10</towerspawnrate>
             <timelimit>2</timelimit>
-            <columns>16</columns>
         </rules>
-        <zone>
-            <tile classpath="" > </tile> //oklart hur denna ska fungera
-        </zone>
+        <tile className="" > </tile>
         <map>
-            <row>00000RR000000000</row>
-            <row>00000RR000000000</row>
-            <row>00000RR000000000</row>
-            <row>00000RR000000000</row>
-            <row>00RR0RR0RR000000</row>
-            <row>00RRRRRRRR000000</row>
-            <row>00RRRRRRRR000000</row>
-            <row>00RRRRRRRR000000</row>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00RR0RR0RR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
         </map>
     </level>
 </levellist>

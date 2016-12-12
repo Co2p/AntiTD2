@@ -8,6 +8,8 @@ import java.util.Stack;
 import helpers.Position;
 import helpers.Direction;
 
+import static helpers.Direction.*;
+
 public class Trooper {
     private int maxhealth;
     private int zombiehealth;
@@ -34,6 +36,7 @@ public class Trooper {
         this.health=100;
         this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
+        this.direction = NORTH;
     }
 
     /**
@@ -46,6 +49,7 @@ public class Trooper {
         this.health=hp;
         this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
+        this.direction = NORTH;
     }
 
     /**
@@ -66,7 +70,7 @@ public class Trooper {
         this.zombiehealth=hp;
         this.zombiestepDelay=(this.stepDelay/2);
         this.armor=0;
-
+        this.direction = NORTH;
     }
 
     /**
@@ -115,6 +119,8 @@ public class Trooper {
                 isDead = true;
             }
         }
+        //TODO REMOVE SOUT
+        System.out.println("Target hp: " + getHealth());
     }
 
     /**
@@ -284,10 +290,15 @@ public class Trooper {
             semiStep++;
         } else {
             road = forceMove(map_hashTable, preferred);
+            position=road.getPosition();
             semiStep = 0;
         }
 
         return road;
+    }
+
+    public boolean hasTurned() {
+        return hasTurned;
     }
 
     /**
@@ -299,6 +310,9 @@ public class Trooper {
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
+        for (Object o : possibleMovesTable.values()) {
+            RoadTile tile = (RoadTile)o;
+        }
         path.add(position);
         visited.add(position);
         if (preferred == direction &&
@@ -320,17 +334,17 @@ public class Trooper {
             reverse = false;
         }
         else {
-            nextPosition = getDefaultNextPosition(possibleMovesTable, direction);
-            if (visited.contains(nextPosition)) {
-                nextPosition = null;
-            }
+            nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
 
-        if(nextPosition == null) {
+        if(nextPosition == null || reverse) {
+            System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
             reverse = true;
             path.pop();
             position = path.peek();
+            path.pop();
+            System.out.println("Till "+ position.toString());
             nextPosition = position;
 //            backTrace(possibleMovesTable);
         }
@@ -343,20 +357,20 @@ public class Trooper {
     /**
      * Brute force all directions except forwards //TODO this could be so much neater
      * @param possibleMovesTable a table of roadtiles
-     * @param ignore the direction to ignore
      * @return the first roadtile that was found clockwise starting in north
      */
-    private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable, Direction ignore) {
+    private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable) {
         Position nextPosition = null;
-        if (ignore != Direction.NORTH && possibleMovesTable.containsKey(position.getPosToNorth())) {
+        if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-        } else if (ignore != Direction.EAST && possibleMovesTable.containsKey(position.getPosToEast())) {
+        } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
-        } else if (ignore != Direction.SOUTH && possibleMovesTable.containsKey(position.getPosToSouth())) {
+        } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
-        } else if (ignore != Direction.WEST && possibleMovesTable.containsKey(position.getPosToWest())) {
+        } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
         }
+        else nextPosition=null;
         return nextPosition;
     }
 }

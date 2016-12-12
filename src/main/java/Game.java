@@ -10,6 +10,7 @@ import java.util.Objects;
 import helpers.Translator;
 import helpers.Position;
 import tower.Defense;
+import tower.LaserTower;
 import trooper.*;
 import tile.*;
 
@@ -24,6 +25,7 @@ public class Game extends JPanel implements Runnable {
     private String RESPATH = "src/main/resources/img";
 
     private Army army;
+    public Position startPosition;
     private Defense defense;
     private Hashtable<Position,Tile> map = new Hashtable<>();
 
@@ -41,16 +43,14 @@ public class Game extends JPanel implements Runnable {
     public static Level level;
     public static GameContainer gameContainer;
 
-    public String mapString =   "00000000000000000000"+
-                                "0RR00R00R0R000000000"+
-                                "0R00R0R0R0R0T0000000"+
-                                "0RR0R0R0R0R0T0000000"+
-                                "0R00RRR0R0R0T0000000"+
-                                "0R00R0R0R0R0T0000000"+
-                                "0R00R0R0R0RRT0000000"+
-                                "0R00R0R0R0RR00000000"+
-                                "0R00R0R0R0RRRRRG0000"+
-                                "00000000000000000000";
+    public String mapString =   "000000000000"+
+                                "0RR00R00R0R0"+
+                                "0R00R0R0R0R0"+
+                                "0RR0R0R0R0R0"+
+                                "0R00RRR0R0R0"+
+                                "0R00R0R0R0R0"+
+                                "0R00R0R0R0RR"+
+                                "000000000000";
 
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
@@ -66,19 +66,12 @@ public class Game extends JPanel implements Runnable {
         height = getHeight();
         mapString = level.getMap();
         setupImages();
+        startPosition = new Position();
         setupMap();
-        this.army=new Army(map);
+        this.army = new Army(map, startPosition);
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
-
-        //TODO in gamecontainer set -> Rowcount and columncount to
-        //TODO level.getRowCount() and level.getColumnCount in order to get dynamic maps
         gameContainer = new GameContainer();
-
-//        gameContainer.rowCount = level.getRowCount();
-//        gameContainer.columnCount = level.getColumnCount();
-
-
     }
 
     //Paints the components in game
@@ -99,22 +92,31 @@ public class Game extends JPanel implements Runnable {
 
     @Override
     public void run() {
-
-        while(true){
+        int totalReached = 0;
+        while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
-                defense.createTower();
+                shop.subtractUnitsToWin(army.getReachedGoal());
+                totalReached += army.getReachedGoal();
+                Position p = defense.createTower();
+                if(p != null){
+                    //TODO MAKE A TOWER VISIBLE!
+
+                    air[p.getX()][p.getY()] = Translator.indexTower;
+                }
                 defense.update();
-                System.out.println("Number of towes: " + defense.getTowerCount());
-               if(army.getArmySize()<0) {
-                   System.out.println("First trooper pos: " + "x " + army.getArmy().get(0).getPosition().getX() + "y: " + army.getArmy().get(0).getPosition().getX());
-               }
+                if(army.getArmySize() > 0) {
+                    //System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
+                    //+ " y " + army.getArmy().get(0).getPosition().getY());
+                    //System.out.println("HP = " + army.getArmy().get(0).getHealth());
+                }
+
                 //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
             try{
 
-                thread.sleep(50);
+                thread.sleep(300);
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -146,8 +148,7 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
-    private void setupMap(){
-
+    public void setupMap(){
         background = new int[GameContainer.columnCount][GameContainer.rowCount];
         air = new int[GameContainer.columnCount][GameContainer.rowCount];
 
@@ -158,48 +159,41 @@ public class Game extends JPanel implements Runnable {
                 char indexChar = mapString.charAt(
                         (y * GameContainer.columnCount) + x);
 
-                if (Objects.equals(Character.toString(indexChar),
-                        Translator.mapGrass)) {
+                if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.indexBlank;
+
                 }
-                if (Objects.equals(Character.toString(indexChar),
-                        Translator.mapRoad)) {
-
-                    //Random method to generate index for making holes in road
-                    int randomNum = 1 + (int)(Math.random() * 100);
-                    if(randomNum >70 && randomNum<85){
-                        randomNum = 3;
-                    }else if (randomNum >= 85){
-                        randomNum = 2;
-                    }else{
-                        randomNum = 1;
-                    }
-
-                    background[x][y] = randomNum;
-
-                   // background[x][y] = Translator.squareRoad;
+                if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
+                    background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
+                    //TODO REMOVE SOUTS
+                    System.out.println("Utskrift i Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
-                if (Objects.equals(Character.toString(indexChar),
-                        Translator.mapGoal)) {
-                    background[x][y] = Translator.indexGoal;
+                if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
+                    background[x][y] = Translator.squareGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
+                    System.out.println("Utskrift i Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
-                if (Objects.equals(Character.toString(indexChar),
-                        Translator.mapStart)) {
-                    background[x][y] = Translator.indexStart;
+                if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
+                    background[x][y] = Translator.squareStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
+                    System.out.println("Utskrift i Game.setupMap: Start = X: " + x + " Y: " + y);
+                    startPosition.setX(x);
+                    startPosition.setY(y);
                 }
-                if (Objects.equals(Character.toString(indexChar),
-                        Translator.mapTowerZone)) {
+                if (Objects.equals(Character.toString(indexChar), Translator.mapTowerZone)) {
                     background[x][y] = Translator.squareTowerZone;
                     air[x][y] = Translator.indexTowerZone;
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
             }
+    }
+
+    public Hashtable<Position,Tile>  getMap() {
+        return map;
     }
 }
