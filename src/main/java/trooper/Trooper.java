@@ -53,15 +53,9 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD
-     * A mainper that takes in hp and speed values
-     * @param hp mainper hp
-     * @param speed mainper speed
-=======
-     * A main.java.main.java.trooper that takes in hp and stepDelay values
+     * A trooper that takes in hp and stepDelay values
      * @param hp main.java.main.java.trooper hp
      * @param stepDelay number of cycles before the trooper takes a steptrooper
->>>>>>> master
      */
     public Trooper(int hp, int stepDelay){
         this.maxhealth = hp;
@@ -180,13 +174,8 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD
-     * Set the speed of the mainper
-     * @param speed speed
-=======
      * Set the stepDelay of the main.java.main.java.trooper
      * @param stepDelay stepDelay
->>>>>>> master
      */
     public void setstepDelay(int stepDelay){
         this.stepDelay=stepDelay;
@@ -202,35 +191,22 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD
-     * Sets the position of the mainper to p
-=======
-     * Sets the position of the trooper to position
-     * Don't touch unless you are testing
->>>>>>> master
+     * Sets the position of the trooper to position, avoid if the trooper is mooving using normal behaviour
      * @param position the position to set
      */
     public void setPosition(Position position) {
         this.position = position;
     }
 
-    /*
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
-     * @return true if the mainper has reached the goal
-=======
+    /**
      * @return true if the trooper has reached the squareGoal
->>>>>>> master:src/Trooper.java
      */
     public boolean getReachedGoal(){
         return reachedGoal;
     }
 
     /**
-<<<<<<< HEAD:src/main/java/trooper/Trooper.java
-     * Sets that the mainper has reached the goal
-=======
      * Sets that the trooper has reached the squareGoal
->>>>>>> master:src/Trooper.java
      */
     public void setReachedGoal() {
         reachedGoal = true;
@@ -335,12 +311,10 @@ public class Trooper {
             path.pop();
             System.out.println("Till "+ position.toString());
             nextPosition = position;
-//            backTrace(possibleMovesTable);
         }
         RoadTile t = possibleMovesTable.get(nextPosition);
         setPosition(nextPosition);
         return t;
-//        t.landOn(this);
     }
 
     /**
