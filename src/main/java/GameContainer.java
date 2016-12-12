@@ -1,4 +1,6 @@
 
+import helpers.Position;
+import helpers.Translator;
 import trooper.Army;
 import java.awt.*;
 
@@ -41,6 +43,9 @@ public class GameContainer {
         }
 
     }
+    /*public void drawTower(Position p, Graphics gr){
+        airSquares[p.getX()][p.getY()].drawGraphics(, p.getX(), p.getY());
+    }*/
 
     public void draw(Graphics gr){
 

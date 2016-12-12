@@ -98,7 +98,12 @@ public class Game extends JPanel implements Runnable {
                 army.updateArmy();
                 shop.subtractUnitsToWin(army.getReachedGoal());
                 totalReached += army.getReachedGoal();
-                defense.createTower();
+                Position p = defense.createTower();
+                if(p != null){
+                    //TODO MAKE A TOWER VISIBLE!
+
+                    air[p.getX()][p.getY()] = Translator.indexTower;
+                }
                 defense.update();
                 if(army.getArmySize() > 0) {
                     //System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
@@ -163,6 +168,7 @@ public class Game extends JPanel implements Runnable {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
+                    //TODO REMOVE SOUTS
                     System.out.println("Utskrift i Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
