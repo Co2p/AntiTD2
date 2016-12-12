@@ -23,14 +23,25 @@ public class Army {
     private Position startPosition;
 
 
+    /**
+     * Constructor for the army object
+     * @param map the active map
+     * @param startPosition the position of the start tile
+     */
     public Army (Hashtable<Position, Tile> map, Position startPosition) {
         army = Collections.synchronizedList(new ArrayList<Trooper>());
         armyQueue = new LinkedList<>();
         this.map = map;
+        //TODO remove Print
         System.out.println("Map in constructor: " + map);
         this.startPosition = startPosition;
     }
 
+    /**
+     * Create a new trooper
+     * @param type the type of trooper that will be created
+     * @return A new trooper object
+     */
     public Trooper createTrooper(TrooperType type) {
 
         Trooper t = new Trooper();
@@ -53,6 +64,10 @@ public class Army {
         return t;
     }
 
+    /**
+     * Adds a TrooperType Enum to the queue of troopers that will spawn
+     * @param tt a TrooperType that will be spawned
+     */
     public void addToArmyQueue(TrooperType tt) {
         armyQueue.add(tt);
     }

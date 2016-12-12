@@ -6,19 +6,24 @@ package trooper;
 public class ArmoredTrooper extends Trooper {
 
     private int armor;
+    private int zombieArmor;
 
     public ArmoredTrooper(int hp, int speed) {
         super(hp, speed);
-        setArmor(15);
+        armor = 15;
+    }
+
+    public ArmoredTrooper(int hp, int speed, int armor) {
+        super(hp, speed);
+        this.armor = armor;
+        zombieArmor = (armor/2);
     }
 
     public void receiveDamage(int removeHealth){
-        if(hasTurned())
-        {
-            removeHealth = Math.abs(removeHealth - (armor/2));
-        } else {
-            removeHealth = Math.abs(removeHealth - armor);
+        if(hasTurned()) {
+            armor =  zombieArmor;
         }
+        removeHealth = removeHealth - (removeHealth * armor/100);
 
         super.receiveDamage(removeHealth);
         //TODO REMOVE SOUT
