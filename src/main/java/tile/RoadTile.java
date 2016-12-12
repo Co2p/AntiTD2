@@ -17,6 +17,7 @@ public class RoadTile extends Tile implements Zone {
     private Object landOnModifier = null;
     private Method landOnMethod = null;
     private ArrayList<Trooper> troopers;
+    private boolean gotLandOn = false;
 
     /**
      * Constructor for main.RoadTile
@@ -66,13 +67,15 @@ public class RoadTile extends Tile implements Zone {
                 troopers.add(t);
                 notifyObservers(troopers);
             }
-//            try {
-//                landOnMethod.invoke(landOnModifier,t);
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            } catch (InvocationTargetException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                if(gotLandOn) {
+                    landOnMethod.invoke(landOnModifier,t);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -114,4 +117,10 @@ public class RoadTile extends Tile implements Zone {
     }
 
     public boolean isStart(){ return isStart;}
+
+    public void setLandOnModifier(Object zone, Method landOn) {
+        landOnModifier = zone;
+        landOnMethod = landOn;
+        gotLandOn = true;
+    }
 }

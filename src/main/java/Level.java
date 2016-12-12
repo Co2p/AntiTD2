@@ -1,4 +1,4 @@
-
+import java.lang.reflect.Method;
 
 /**
  * Created by Daniel on 2016-12-05.
@@ -10,9 +10,10 @@ public class Level {
     private int unitsToWin;
     int towerSpawnRate;
     private int timeLimit;
-    private String className;
-    private String classPath;
+    private Object zone;
+    private Method landOn;
     public String map;
+    private boolean gotLandOn;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -26,10 +27,12 @@ public class Level {
 
     public Level() {
         this.levelName = "Unknown";
+        gotLandOn = false;
     }
 
     public Level(String levelName) {
         this.levelName = levelName;
+        gotLandOn = false;
     }
 
     public String getLevelName() {
@@ -72,20 +75,21 @@ public class Level {
         this.timeLimit = timeLimit;
     }
 
-    public String getClassName() {
-        return className;
+    public Object getZone() {
+        return zone;
     }
 
-    public void setClassName(String className) {
-        this.className = className;
+    public void setZone(Object zone) {
+        this.zone = zone;
+        gotLandOn = true;
     }
 
-    public String getClassPath() {
-        return classPath;
+    public Method getLandOn() {
+        return landOn;
     }
 
-    public void setClassPath(String classPath) {
-        this.classPath = classPath;
+    public void setLandOn(Method landOn) {
+        this.landOn = landOn;
     }
 
     public String getMap() {
@@ -94,5 +98,9 @@ public class Level {
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public boolean gotLandon() {
+        return gotLandOn;
     }
 }
