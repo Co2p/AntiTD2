@@ -3,6 +3,7 @@ import helpers.Position;
 import org.junit.Test;
 import tile.RoadTile;
 import tile.Tile;
+import trooper.ArmoredTrooper;
 import trooper.PitifulTrooper;
 import trooper.Trooper;
 
@@ -77,20 +78,19 @@ public class TestTrooper {
         assertEquals(10,t.getHealth());
     }
 
+    //TODO redo the tests
     @Test
     public void TestArmorSaveHuman(){
         Trooper t = new Trooper(10,1);
-        t.setArmor(2);
         t.receiveDamage(11);
         assertFalse(t.isDead());
         assertEquals(1,t.getHealth());
     }
 
-
+//TODO removed setArmor that does not exist anymore
     @Test
     public void TestIsDeadWithArmor(){
         Trooper t = new Trooper(10,1);
-        t.setArmor(4);
         t.receiveDamage(20);
         t.receiveDamage(11);
         assertEquals(1,t.getHealth());

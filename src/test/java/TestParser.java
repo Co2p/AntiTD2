@@ -1,8 +1,8 @@
 import helpers.ErrorMessages;
+import helpers.LevelParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import helpers.DOMParser;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -11,12 +11,12 @@ import static org.junit.Assert.assertFalse;
  */
 public class TestParser {
 
-    private DOMParser parser;
+    private LevelParser parser;
     private String xmlFile = "test.xml";
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
+        parser = new LevelParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
     }
 
     @Test

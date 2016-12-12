@@ -1,6 +1,6 @@
 
 
-import helpers.DOMParser;
+import helpers.LevelParser;
 import helpers.ErrorMessages;
 import helpers.ZoneLoader;
 
@@ -9,7 +9,7 @@ import helpers.ZoneLoader;
  */
 public class LevelBuilder {
 
-    private DOMParser levelParser;
+    private LevelParser levelParser;
     private ZoneLoader zoneLoader;
     private ErrorMessages errorMessages;
     private String fileName;
@@ -33,7 +33,7 @@ public class LevelBuilder {
     }
 
     private void setupParser(String fileName) {
-        levelParser = new DOMParser("src/main/resources/xml/levelSchema.xml",errorMessages);
+        levelParser = new LevelParser("src/main/resources/xml/levelSchema.xml",errorMessages);
         levelParser.parseFile(fileName);
     }
 

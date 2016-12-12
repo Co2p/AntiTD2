@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
-public class DOMParser {
+public class LevelParser {
 
     private DocumentBuilder parser;
     private XPath path;
@@ -45,7 +45,7 @@ public class DOMParser {
     /**
      * Setup the parser
      */
-    public DOMParser(String schemaFile, ErrorMessages errorMessage){
+    public LevelParser(String schemaFile, ErrorMessages errorMessage){
         this.errorMessage = errorMessage;
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
@@ -105,7 +105,6 @@ public class DOMParser {
         try {
 
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-            System.out.println(url);
             if(url != null) {
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
