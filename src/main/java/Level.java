@@ -14,6 +14,8 @@ public class Level {
     private Method landOn;
     public String map;
     private boolean gotLandOn;
+    private int rows;
+    private int columns;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -102,5 +104,21 @@ public class Level {
 
     public boolean gotLandon() {
         return gotLandOn;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
     }
 }

@@ -51,6 +51,8 @@ public class LevelBuilder {
             }
         }
         level.setMap(stringArrayToString(levelParser.getMap().get(i)));
+        level.setColumns(levelParser.getColumns().get(i));
+        level.setRows(levelParser.getRows().get(i));
         return level;
     }
 
