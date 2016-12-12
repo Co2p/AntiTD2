@@ -1,3 +1,4 @@
+import helpers.ErrorMessages;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +16,7 @@ public class TestParser {
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
+        parser = new DOMParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
     }
 
     @Test
@@ -140,13 +141,6 @@ public class TestParser {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getClassName().size());
         assertEquals("className",parser.getClassName().get(0));
-    }
-
-    @Test
-    public void getClassPathAfterParse() {
-        parser.parseFile(xmlFile);
-        assertEquals(2,parser.getClassPath().size());
-        assertEquals("imhere",parser.getClassPath().get(0));
     }
 
 

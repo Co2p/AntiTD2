@@ -72,6 +72,7 @@ public class Army {
                 Trooper trooper = iterator.next();
                 if (!trooper.isDead()) {
                     RoadTile road = trooper.move(map, preferred);
+                    System.out.println("Trooper "+trooper.getPosition());
                     road.landOn(trooper);
                     if (trooper.getReachedGoal()) {
                         if(trooper.hasTurned()) {

@@ -13,6 +13,13 @@ public class ErrorMessages {
     private String numberFormat;
     private String fileError;
     private String parsError;
+    private String instantiationException;
+    private String illegalAccessException;
+    private String interFaceError;
+    private String constructorError;
+    private String classNotFoundException;
+    private String noClassDefFoundError;
+    private String implementationError;
     private int size;
 
     public ErrorMessages() {
@@ -116,6 +123,69 @@ public class ErrorMessages {
                 "\n '" + numberFormat + '\'' +
                 "\n '" + fileError + '\'' +
                 "\n '" + parsError + '\'' +
+                "\n '" + instantiationException + '\'' +
+                "\n '" + illegalAccessException + '\'' +
+                "\n '" + interFaceError + "\'" +
+                "\n '" + constructorError + "\'" +
+                "\n '" + classNotFoundException + '\'' +
+                "\n '" + noClassDefFoundError + '\'' +
+                "\n '" + implementationError + '\'' +
                 '}';
+    }
+
+    public String getInstantiationException() {
+        return instantiationException;
+    }
+
+    public void setInstantiationException(String instantiationException) {
+        this.instantiationException = instantiationException;
+    }
+
+    public String getIllegalAccessException() {
+        return illegalAccessException;
+    }
+
+    public void setIllegalAccessException(String illegalAccessException) {
+        this.illegalAccessException = illegalAccessException;
+    }
+
+    public String getInterFaceError() {
+        return interFaceError;
+    }
+
+    public void setInterFaceError(String interFaceError) {
+        this.interFaceError = interFaceError;
+    }
+
+    public String getConstructorError() {
+        return constructorError;
+    }
+
+    public void setConstructorError(String constructorError) {
+        this.constructorError = constructorError;
+    }
+
+    public String getClassNotFoundException() {
+        return classNotFoundException;
+    }
+
+    public void setClassNotFoundException(String classNotFoundException) {
+        this.classNotFoundException = classNotFoundException;
+    }
+
+    public String getNoClassDefFoundError() {
+        return noClassDefFoundError;
+    }
+
+    public void setNoClassDefFoundError(String noClassDefFoundError) {
+        this.noClassDefFoundError = noClassDefFoundError;
+    }
+
+    public String getImplementationError() {
+        return implementationError;
+    }
+
+    public void setImplementationError(String implementationError) {
+        this.implementationError = implementationError;
     }
 }

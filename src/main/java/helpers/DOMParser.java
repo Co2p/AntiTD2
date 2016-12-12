@@ -45,8 +45,8 @@ public class DOMParser {
     /**
      * Setup the parser
      */
-    public DOMParser(String schemaFile){
-        errorMessage = new ErrorMessages();
+    public DOMParser(String schemaFile, ErrorMessages errorMessage){
+        this.errorMessage = errorMessage;
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
         try {
@@ -105,7 +105,7 @@ public class DOMParser {
         try {
 
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-
+            System.out.println(url);
             if(url != null) {
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
@@ -160,10 +160,7 @@ public class DOMParser {
                                     "/map[1]/size[1]/row",doc)));
 
                     className.add(i, path.evaluate("/levellist/level["+
-                                            (i+1)+"]/tile[1]/@className",doc));
-
-                    classPath.add(i,path.evaluate("/levellist/level["+
-                                                    (i+1)+"]/tile[1]",doc));
+                                            (i+1)+"]/tile[1]",doc));
 
                     int rowCount = Integer.parseInt(path.evaluate("" +
                             "count(/levellist/level["+(i+1)+"]/map/*)",doc));
