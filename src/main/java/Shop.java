@@ -185,6 +185,14 @@ public class Shop {
         }
     }
 
+    public long getNoOfCredits() {
+        return noOfCredits;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
     class MyCounterTask extends TimerTask
     {
         int counter;

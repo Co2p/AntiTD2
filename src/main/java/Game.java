@@ -29,6 +29,8 @@ public class Game extends JPanel implements Runnable {
     public Position startPosition;
     private Defense defense;
     private Hashtable<Position,Tile> map = new Hashtable<>();
+    private Player player;
+    private Results results;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -56,9 +58,11 @@ public class Game extends JPanel implements Runnable {
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
 
-    public Game(Level level){
+    public Game(Level level, Player player){
         this.level = level;
         thread.start();
+        this.player = player;
+        results = new Results();
     }
 
     private void define(){
@@ -126,6 +130,12 @@ public class Game extends JPanel implements Runnable {
             }
         }
         shop.stopTime();
+        results.setCreditsused(shop.getNoOfCredits());
+        results.setLevelName(level.getLevelName());
+        results.setTime(shop.getTime());
+        player.setResult(results);
+        System.out.println(results);
+
     }
 
     private void setupImages(){

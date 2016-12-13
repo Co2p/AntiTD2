@@ -67,7 +67,7 @@ public class Lobby {
             selectLevelPanel.add(levelButton);
 
             levelButton.addActionListener(
-                    new LevelSelectButtonListener(mainFrame,levelArray.get(i)));
+                    new LevelSelectButtonListener(mainFrame,levelArray.get(i),player));
         }
 
         selectLevelPanel.add(instructionLabel);

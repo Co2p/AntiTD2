@@ -1,14 +1,15 @@
-
+import java.util.ArrayList;
 
 public class Player {
     private String name;
-    private Results result;
+    private ArrayList<Results> result;
 
     /**
      * Constructor without name, name will then be set to "Unknown".
      */
     public Player() {
         this.name = "Unknown";
+        result = new ArrayList<>();
     }
 
     /**
@@ -17,6 +18,7 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
+        result = new ArrayList<>();
     }
 
     /**
@@ -40,11 +42,11 @@ public class Player {
      * @param r the results.
      */
     public void setResult(Results r) {
-        this.result = r;
+        result.add(r);
 
     }
 
-    public Results getResult() {
+    public ArrayList<Results> getResult() {
         return result;
     }
 }

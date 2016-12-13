@@ -6,7 +6,7 @@
             <unitstowin>10</unitstowin>
             <towerspawnrate>10</towerspawnrate>
         </rules>
-        <tile>BearTrap</tile>
+        <!--<tile>BearTrap</tile>-->
         <map>
             <size>
                 <column>12</column>
