@@ -13,12 +13,12 @@ public class ArmoredTrooper extends Trooper {
      * @param hp
      * @param speed
      */
-    public ArmoredTrooper(int hp, int speed) {
+    public ArmoredTrooper(int hp) {
         super(hp);
         armor = 15;
     }
 
-    public ArmoredTrooper(int hp, int speed, int armor) {
+    public ArmoredTrooper(int hp, int armor) {
         super(hp);
         this.armor = armor;
         zombieArmor = (armor/2);
