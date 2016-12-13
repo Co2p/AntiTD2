@@ -12,7 +12,7 @@
                 <column>12</column>
                 <row>8</row>
             </size>
-            <row>00TT00000000</row>
+            <row>00T000000000</row>
             <row>SRRRR0000000</row>
             <row>0000R0000000</row>
             <row>0000R0RRR000</row>
@@ -99,12 +99,12 @@
                 <row>10</row>
             </size>
             <row>000000000000</row>
-            <row>0000000RRRRG</row>
-            <row>0000000R0000</row>
-            <row>0000000R0000</row>
-            <row>0000000R0000</row>
-            <row>0000000R0000</row>
-            <row>SRRRRRRR0000</row>
+            <row>0RRRR00RRRR0</row>
+            <row>0R00R00R0000</row>
+            <row>0000RR0R0R00</row>
+            <row>0RRRR00R0R00</row>
+            <row>0000RRRRRR00</row>
+            <row>SRRRR0GR0000</row>
             <row>000000000000</row>
         </map>
     </level>

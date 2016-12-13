@@ -2,6 +2,7 @@ package trooper;
 
 import Game.*;
 import Game.GameContainer;
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
 import helpers.Translator;
 import javafx.geometry.Pos;
 import tile.*;
@@ -28,6 +29,7 @@ public class Trooper {
     private Position position = null;
     private Position nextPosition = null;
     public  Position graphicPosition = new Position(0,0);
+    private Stack<Direction> pathDirection = new Stack<>();
     private Stack<Position> path = new Stack<>();
     private ArrayList<Position> visited = new ArrayList<>();
     private boolean reverse = false;
@@ -38,9 +40,9 @@ public class Trooper {
      * Default constructor, crates a mainper.PitifulTrooper
      */
     public Trooper(){
-        this.maxhealth=100;
-        this.zombiehealth=100;
-        this.health=100;
+        this.maxhealth=1000;
+        this.zombiehealth=1000;
+        this.health=1000;
         this.zombiestepDelay=(this.stepDelay);
         this.armor=0;
         this.direction = EAST;
@@ -146,6 +148,10 @@ public class Trooper {
         else{
             return zombiehealth;
         }
+    }
+
+    public int getMaxhealth(){
+        return maxhealth;
     }
 
     /**
@@ -274,13 +280,6 @@ public class Trooper {
         return possibleMovesTable;
     }
 
-    //TODO !
-//    private void backTrace(Hashtable<mainers.Position,Game.main.RoadTile> possibleMovesTable){
-//        path.pop();
-//        position = path.peek();
-//        Game.main.RoadTile road = possibleMovesTable.get(position);
-//        road.landOn(this);
-//    }
 
     /**
 <<<<<<< HEAD
@@ -300,7 +299,6 @@ public class Trooper {
 
             //Find out nexposition
             if(semiStep == 0) {
-                System.out.println("Trooper.move() set next position");
                 road2 = (RoadTile) forceMove(map_hashTable, preferred);
                 nextPosition = road2.getPosition();
             }
@@ -335,6 +333,7 @@ public class Trooper {
         for (Object o : possibleMovesTable.values()) {
             RoadTile tile = (RoadTile)o;
         }
+
         path.add(position);
         visited.add(position);
         if (preferred == direction &&
@@ -359,21 +358,51 @@ public class Trooper {
             nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
+        pathDirection.add(getOppociteDirection(direction));
 
         if(nextPosition == null || reverse) {
+
             System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
-            reverse = true;
+
             path.pop();
+            pathDirection.pop();
+            direction = pathDirection.peek();
             position = path.peek();
             path.pop();
+
             System.out.println("Till "+ position.toString());
             nextPosition = position;
-//            backTrace(possibleMovesTable);
+
+            if(!reverse){
+                pathDirection.pop();
+            }
+            reverse = true;
+
         }
         RoadTile t = possibleMovesTable.get(nextPosition);
         setPosition(nextPosition);
         return t;
-//        t.landOn(this);
+    }
+
+    private Direction getOppociteDirection(Direction direction){
+
+        Direction d = null;
+
+        switch (direction){
+            case NORTH:
+                d = SOUTH;
+                break;
+            case SOUTH:
+                d = NORTH;
+                break;
+            case EAST:
+                d = WEST;
+                break;
+            case WEST:
+                d = EAST;
+                break;
+        }
+        return d;
     }
 
     /**

@@ -115,15 +115,6 @@ public class Game extends JPanel implements Runnable {
                     buildTowers(towerPosition);
                 }
                 defense.update();
-                if(army.getArmySize() > 0) {
-                    for (Trooper trooper : army.getArmy()) {
-                        if(!trooper.getPosition().equals(startPosition)) {
-                            //cycle(trooper);
-                        }
-                    }
-                }
-
-                //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
             try{
@@ -134,11 +125,6 @@ public class Game extends JPanel implements Runnable {
                 e.printStackTrace();
             }
         }
-    }
-
-
-    private void cycle(Trooper t) {
-
     }
 
 
