@@ -78,6 +78,7 @@ public class Game extends JPanel implements Runnable {
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
+        
         x = startPosition.getX();
         y = startPosition.getY();
     }
@@ -196,13 +197,13 @@ public class Game extends JPanel implements Runnable {
                     System.out.println("Utskrift i Game.Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
-                    background[x][y] = Translator.squareGoal;
+                    background[x][y] = Translator.indexGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
                     System.out.println("Utskrift i Game.Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
-                    background[x][y] = Translator.squareStart;
+                    background[x][y] = Translator.indexStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
                     System.out.println("Utskrift i Game.Game.setupMap: Start = X: " + x + " Y: " + y);

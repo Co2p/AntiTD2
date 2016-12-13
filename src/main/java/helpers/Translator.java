@@ -6,6 +6,8 @@ package helpers;
  */
 public class Translator {
 
+    public static int squareSize = 50;
+
     public static String mapRoad = "R";
     public static String mapGrass= "0";
     public static String mapGoal = "G";

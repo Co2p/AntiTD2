@@ -5,8 +5,8 @@ package trooper;
  */
 public class ArmoredTrooper extends Trooper {
 
-    public ArmoredTrooper(int hp, int speed) {
-        super(hp, speed);
+    public ArmoredTrooper(int hp) {
+        super(hp);
         setArmor(hp/2);
     }
 }

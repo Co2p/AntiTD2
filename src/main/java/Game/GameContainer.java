@@ -19,7 +19,7 @@ public class GameContainer {
     public static int squareSize = 50;   //change this to be dynamic (square size)
 
     private Square[][] backgroundSquares;    //Array containg the ground backgroundSquares
-    private Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
+    public static Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
 
     public GameContainer(){
         define();

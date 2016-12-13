@@ -1,5 +1,9 @@
 package trooper;
 
+import Game.Game;
+import Game.GameContainer;
+import helpers.Translator;
+import javafx.geometry.Pos;
 import tile.*;
 
 import java.util.ArrayList;
@@ -14,7 +18,7 @@ public class Trooper {
     private int maxhealth;
     private int zombiehealth;
     private int health;
-    private int stepDelay = 2;
+    private int stepDelay = 25;
     private int semiStep = 0;
     private int zombiestepDelay;
     private int armor;
@@ -22,10 +26,13 @@ public class Trooper {
     private boolean isDead = false;
     private Direction direction;
     private Position position = null;
+    private Position nextPosition = null;
+    public  Position graphicPosition = new Position(0,0);
     private Stack<Position> path = new Stack<>();
     private ArrayList<Position> visited = new ArrayList<>();
     private boolean reverse = false;
     private boolean reachedGoal = false;
+    private boolean firstStep = true;
 
     /**
      * Default constructor, crates a mainper.PitifulTrooper
@@ -34,9 +41,9 @@ public class Trooper {
         this.maxhealth=100;
         this.zombiehealth=100;
         this.health=100;
-        this.zombiestepDelay=(this.stepDelay/2);
+        this.zombiestepDelay=(this.stepDelay);
         this.armor=0;
-        this.direction = NORTH;
+        this.direction = EAST;
     }
 
     /**
@@ -47,30 +54,9 @@ public class Trooper {
         this.maxhealth=hp;
         this.zombiehealth=hp;
         this.health=hp;
-        this.zombiestepDelay=(this.stepDelay/2);
+        this.zombiestepDelay=(this.stepDelay);
         this.armor=0;
-        this.direction = NORTH;
-    }
-
-    /**
-<<<<<<< HEAD
-     * A mainper that takes in hp and speed values
-     * @param hp mainper hp
-     * @param speed mainper speed
-=======
-     * A Game.main.java.Game.main.java.trooper that takes in hp and stepDelay values
-     * @param hp Game.main.java.Game.main.java.trooper hp
-     * @param stepDelay number of cycles before the trooper takes a steptrooper
->>>>>>> master
-     */
-    public Trooper(int hp, int stepDelay){
-        this.maxhealth = hp;
-        this.health=hp;
-        this.stepDelay=stepDelay;
-        this.zombiehealth=hp;
-        this.zombiestepDelay=(this.stepDelay/2);
-        this.armor=0;
-        this.direction = NORTH;
+        this.direction = EAST;
     }
 
     /**
@@ -179,6 +165,10 @@ public class Trooper {
         }
     }
 
+    public int getSemiStep(){
+        return semiStep;
+    }
+
     /**
 <<<<<<< HEAD
      * Set the speed of the mainper
@@ -199,6 +189,24 @@ public class Trooper {
      */
     public Position getPosition(){
         return position;
+    }
+
+
+    //TODO dessa två är nya. skapa tester
+    public Position getGraphicPosition(){
+        return graphicPosition;
+    }
+
+    public void setGraphicPosition(Position position){
+        graphicPosition = position;
+    }
+
+    public Position getNextPosition(){
+        return  nextPosition;
+    }
+
+    public void setNextPosition(Position p){
+        nextPosition = p;
     }
 
     /**
@@ -284,16 +292,30 @@ public class Trooper {
      * @return the RoadTile that the trooper is on
      */
     public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred) {
-        RoadTile road;
-        if (semiStep <= stepDelay) {
+        RoadTile road, road2;
+
+
+        if (semiStep < stepDelay-1) {
             road = (RoadTile) map_hashTable.get(position);
-            semiStep++;
+
+            //Find out nexposition
+            if(semiStep == 0) {
+                System.out.println("Trooper.move() set next position");
+                road2 = (RoadTile) forceMove(map_hashTable, preferred);
+                nextPosition = road2.getPosition();
+            }
+            if(!firstStep) {
+                semiStep++;
+            }else{
+                firstStep = false;
+            }
+            return road;
         } else {
-            road = forceMove(map_hashTable, preferred);
-            position=road.getPosition();
+             road = forceMove(map_hashTable, preferred);
+            //position=road.getPosition();
+            position = nextPosition;
             semiStep = 0;
         }
-
         return road;
     }
 
@@ -363,14 +385,20 @@ public class Trooper {
         Position nextPosition = null;
         if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
+            direction = NORTH;
         } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
+            direction = EAST;
         } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
+            direction = SOUTH;
         } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
+            direction = WEST;
         }
+
         else nextPosition=null;
+
         return nextPosition;
     }
 }

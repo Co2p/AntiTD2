@@ -1,5 +1,6 @@
 package trooper;
 
+import Game.GameContainer;
 import helpers.Direction;
 import helpers.Position;
 import helpers.Translator;
@@ -47,7 +48,7 @@ public class Army {
                 t = new TeleportTrooper(TELEPORTERHEALTH, map);
                 break;
             case ARMORED:
-                t = new ArmoredTrooper(ARMOREDHEALTH, 1);
+                t = new ArmoredTrooper(ARMOREDHEALTH);
                 t.setArmor(500);
                 break;
         }
@@ -68,7 +69,14 @@ public class Army {
     public void updateArmy() {
         reachedGoal = 0;
         if(!armyQueue.isEmpty()) {
-            army.add(createTrooper(getFromQueue()));
+
+            //Set the troopers graphical position to match start in gamecontainer
+            int x = GameContainer.airSquares[startPosition.getX()][startPosition.getY()].getSquarePosition().getX();
+            int y = GameContainer.airSquares[startPosition.getX()][startPosition.getY()].getSquarePosition().getY();
+            Position p = new Position(x,y);
+            Trooper t = createTrooper(getFromQueue());
+            t.setGraphicPosition(p);
+            army.add(t);        //Add trooper to army
         }
         if(armySize > 0) {
             Iterator<Trooper> iterator = army.iterator();
@@ -131,10 +139,59 @@ public class Army {
         for (Trooper t: army) {
             if(!t.isDead()) {
 
-                int x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
-                int y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
-                System.out.println("Square x: " + x);
-                System.out.println("Square y: " + y);
+                //Translate trooper position from 1:0 to square positions.
+                int value;
+
+                int x = t.getGraphicPosition().getX();
+                int y = t.getGraphicPosition().getY();
+                System.out.println("X start =" +x);
+                System.out.println("Y start =" +y);
+
+                System.out.println("semistep is : " + t.getSemiStep());
+
+                if (t.getSemiStep() == 0) {
+                    x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
+                    y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
+
+                    System.out.println("X from logic =" + x);
+                    System.out.println("Y from logic =" + y);
+                    t.setGraphicPosition(new Position(x, y));
+                }else {
+
+                    Direction direction = t.getDirection();
+                    switch (direction) {
+                        case NORTH:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            x = x - value;
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                        case SOUTH:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            x = x + value;
+
+                            System.out.println("X from graphics =" + x);
+                            System.out.println("Y from graphics =" + y);
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                        case EAST:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            y = y + value;
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                        case WEST:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            y = y - value;
+                            System.out.println("X from graphics =" + x);
+                            System.out.println("Y from graphics =" + y);
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                    }
+                }
+
+//
+//                int x = t.getGraphicPosition().getX();
+//                int y = t.getGraphicPosition().getY();
+
 
                 if (t.hasTurned()) {
                     g.drawImage(square_air[Translator.indexZombie], x, y,
@@ -143,6 +200,7 @@ public class Army {
                     g.drawImage(square_air[Translator.indexTrooper], x, y,
                             null, null);
                 }
+                System.out.println("Draw");
             }
 
             else {
