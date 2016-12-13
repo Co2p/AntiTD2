@@ -82,6 +82,8 @@ public class Game extends JPanel implements Runnable {
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
+        gameContainer.setColumnCount(level.getColumns());
+        gameContainer.setRowCount(level.getRows());
         x = startPosition.getX();
         y = startPosition.getY();
     }
@@ -105,26 +107,44 @@ public class Game extends JPanel implements Runnable {
     @Override
     public void run() {
         int totalReached = 0;
-
+        ArrayList<Trooper> refunds;
         while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
-                totalReached = updateZombieCounter(totalReached);
+                refunds = army.getFinished();
+                for(Trooper trooper: refunds) {
+                    shop.refund(trooper);
+                }
+                shop.subtractUnitsToWin(army.getReachedGoal());
+                totalReached += army.getReachedGoal();
                 Position towerPosition = defense.createTower();
                 if(towerPosition != null){
                     buildTowers(towerPosition);
                 }
                 defense.update();
+
+                //gameContainer.move(army); //do something to change the game
             }
             repaint();  // repaint the graphics in the gameframe.
             try{
 
                 thread.sleep(GAMETIMER);
 
-            }catch(InterruptedException e){
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }
+        shop.stopTime();
+        results.setCreditsused(shop.getNoOfCredits());
+        results.setLevelName(level.getLevelName());
+        results.setTime(shop.getTime());
+        player.setResult(results);
+        System.out.println(results);
+    }
+
+
+    private void cycle(Trooper t) {
+
     }
 
 

@@ -26,6 +26,7 @@ public class Army {
     private static int ARMOREDHEALTH = 1500;
     private int armySize =0;
     private Position startPosition;
+    private ArrayList<Trooper> finished;
 
 
     public Army (Hashtable<Position, Tile> map, Position startPosition) {
@@ -48,8 +49,9 @@ public class Army {
                 t = new TeleportTrooper(TELEPORTERHEALTH, map);
                 break;
             case ARMORED:
-                t = new ArmoredTrooper(ARMOREDHEALTH);
-                t.setArmor(500);
+                ArmoredTrooper tp = new ArmoredTrooper(ARMOREDHEALTH);
+                tp.setArmor(50);
+                t = tp;
                 break;
         }
         t.setPosition(startPosition);
@@ -68,6 +70,7 @@ public class Army {
 
     public void updateArmy() {
         reachedGoal = 0;
+        finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
 
             //Set the troopers graphical position to match start in gamecontainer
@@ -89,6 +92,7 @@ public class Army {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
                         }
+                        finished.add(trooper);
                         iterator.remove();
                         armySize--;
                     }
@@ -144,11 +148,17 @@ public class Army {
 
                 int x = t.getGraphicPosition().getX();
                 int y = t.getGraphicPosition().getY();
+                System.out.println("X start =" +x);
+                System.out.println("Y start =" +y);
+
+                System.out.println("semistep is : " + t.getSemiStep());
 
                 if (t.getSemiStep() == 0) {
                     x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
                     y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
 
+                    System.out.println("X from logic =" + x);
+                    System.out.println("Y from logic =" + y);
                     t.setGraphicPosition(new Position(x, y));
                 }else {
 
@@ -156,39 +166,45 @@ public class Army {
                     switch (direction) {
                         case NORTH:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            y = y - value;
+                            x = x - value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case SOUTH:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            y = y + value;
+                            x = x + value;
+
+                            System.out.println("X from graphics =" + x);
+                            System.out.println("Y from graphics =" + y);
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case EAST:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            x = x + value;
+                            y = y + value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case WEST:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            x = x - value;
+                            y = y - value;
+                            System.out.println("X from graphics =" + x);
+                            System.out.println("Y from graphics =" + y);
                             t.setGraphicPosition(new Position(x, y));
                             break;
                     }
                 }
 
+//
+//                int x = t.getGraphicPosition().getX();
+//                int y = t.getGraphicPosition().getY();
+
 
                 if (t.hasTurned()) {
-
                     g.drawImage(square_air[Translator.indexZombie], x, y,
                             null, null);
-                    drawHpBar(g,x,y,t);
                 } else {
-
                     g.drawImage(square_air[Translator.indexTrooper], x, y,
                             null, null);
-                    drawHpBar(g,x,y, t);
                 }
+                System.out.println("Draw");
             }
 
             else {
@@ -197,24 +213,11 @@ public class Army {
         }
     }
 
-    public void drawHpBar(Graphics g, int x, int y, Trooper t){
+    public ArrayList<Trooper> getFinished() {
+        return finished;
+    }
 
-        float yellowBarWidth = 0;
-        float greenBarWidth = 0;
-
-        if(t.hasTurned()){
-            greenBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
-        }else{
-            yellowBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
-            greenBarWidth = Translator.squareSize;
-        }
-
-        g.setColor(Color.red);
-        g.fillRect(x,y-3,Translator.squareSize,5);
-        g.setColor(Color.green);
-        g.fillRect(x,y-3,(int)greenBarWidth,5);
-        g.setColor(Color.yellow);
-        g.fillRect(x,y-3,(int)yellowBarWidth,5);
-        g.drawString(t.getDirection().toString(),x,y);
+    public Direction getPreferred() {
+        return preferred;
     }
 }
