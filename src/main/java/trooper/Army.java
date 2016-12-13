@@ -21,6 +21,7 @@ public class Army {
     private static int ARMOREDHEALTH = 150;
     private int armySize =0;
     private Position startPosition;
+    private ArrayList<Trooper> finished;
 
 
     /**
@@ -79,6 +80,7 @@ public class Army {
 
     public void updateArmy() {
         reachedGoal = 0;
+        finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
             army.add(createTrooper(getFromQueue()));
         }
@@ -94,6 +96,7 @@ public class Army {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
                         }
+                        finished.add(trooper);
                         iterator.remove();
                         armySize--;
                     }
@@ -138,5 +141,9 @@ public class Army {
 
     public int getReachedGoal() {
         return reachedGoal;
+    }
+
+    public ArrayList<Trooper> getFinished() {
+        return finished;
     }
 }

@@ -50,11 +50,6 @@ public class TestParser {
     }
 
     @Test
-    public void emptyTime() {
-        assertEquals(0,parser.getTimeLimit().size());
-    }
-
-    @Test
     public void emptyClassName() {
         assertEquals(0,parser.getClassName().size());
     }
@@ -113,13 +108,6 @@ public class TestParser {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getTowerSpawnRate().size());
         assertEquals((Integer) 25,parser.getTowerSpawnRate().get(0));
-    }
-
-    @Test
-    public void getTimeAfterParse() {
-        parser.parseFile(xmlFile);
-        assertEquals(2,parser.getTimeLimit().size());
-        assertEquals((Integer) 2,parser.getTimeLimit().get(0));
     }
 
     @Test

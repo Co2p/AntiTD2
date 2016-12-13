@@ -9,7 +9,6 @@ public class Level {
     private Long credits;
     private int unitsToWin;
     int towerSpawnRate;
-    private int timeLimit;
     private Object zone;
     private Method landOn;
     public String map;
@@ -67,14 +66,6 @@ public class Level {
 
     public void setTowerSpawnRate(int towerSpawnRate) {
         this.towerSpawnRate = towerSpawnRate;
-    }
-
-    public int getTimeLimit() {
-        return timeLimit;
-    }
-
-    public void setTimeLimit(int timeLimit) {
-        this.timeLimit = timeLimit;
     }
 
     public Object getZone() {

@@ -43,7 +43,6 @@ public class LevelBuilder {
         level.setCredits(levelParser.getCredits().get(i));
         level.setUnitsToWin(levelParser.getUnitsToWin().get(i));
         level.setTowerSpawnRate(levelParser.getTowerSpawnRate().get(i));
-        level.setTimeLimit(levelParser.getTimeLimit().get(i));
         if(levelParser.getClassName().get(i) != null) {
             if (zoneLoader.loadZone(levelParser.getClassName().get(i))) {
                 level.setZone(zoneLoader.getZone());

@@ -35,7 +35,6 @@ public class LevelParser {
     private ArrayList<Long> credits = new ArrayList<>();
     private ArrayList<Integer> unitsToWin = new ArrayList<>();
     private ArrayList<Integer> towerSpawnRate = new ArrayList<>();
-    private ArrayList<Integer> timeLimit = new ArrayList<>();
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
     private ArrayList<String[]> map = new ArrayList<>();
@@ -146,9 +145,6 @@ public class LevelParser {
                             "/levellist/level["+(i+1)+"]/rules[1]" +
                                     "/towerspawnrate",doc)));
 
-                    timeLimit.add(i,Integer.parseInt(path.evaluate(
-                            "/levellist/level["+(i+1)+"]/rules[1]" +
-                                    "/timelimit",doc)));
 
                     columns.add(i,Integer.parseInt(path.evaluate(
                             "/levellist/level["+(i+1)+"]/map[1]" +
@@ -223,14 +219,6 @@ public class LevelParser {
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;
-    }
-
-    /**
-     * Returns the time limit for this level
-     * @return the time limit
-     */
-    public ArrayList<Integer> getTimeLimit() {
-        return timeLimit;
     }
 
     /**

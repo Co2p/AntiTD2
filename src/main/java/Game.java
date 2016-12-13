@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -95,9 +96,14 @@ public class Game extends JPanel implements Runnable {
     @Override
     public void run() {
         int totalReached = 0;
+        ArrayList<Trooper> refunds;
         while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
+                refunds = army.getFinished();
+                for(Trooper trooper: refunds) {
+                    shop.refund(trooper);
+                }
                 shop.subtractUnitsToWin(army.getReachedGoal());
                 totalReached += army.getReachedGoal();
                 defense.createTower();
@@ -119,6 +125,7 @@ public class Game extends JPanel implements Runnable {
                 e.printStackTrace();
             }
         }
+        shop.stopTime();
     }
 
     private void setupImages(){

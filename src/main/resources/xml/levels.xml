@@ -5,7 +5,6 @@
             <credits>600</credits>
             <unitstowin>10</unitstowin>
             <towerspawnrate>10</towerspawnrate>
-            <timelimit>2</timelimit>
         </rules>
         <tile>BearTrap</tile>
         <map>
@@ -28,7 +27,6 @@
             <credits>500</credits>
             <unitstowin>30</unitstowin>
             <towerspawnrate>10</towerspawnrate>
-            <timelimit>2</timelimit>
         </rules>
         <map>
             <size>
@@ -50,7 +48,6 @@
             <credits>500</credits>
             <unitstowin>30</unitstowin>
             <towerspawnrate>15</towerspawnrate>
-            <timelimit>2</timelimit>
         </rules>
         <map>
             <size>
@@ -72,7 +69,6 @@
             <credits>500</credits>
             <unitstowin>30</unitstowin>
             <towerspawnrate>10</towerspawnrate>
-            <timelimit>2</timelimit>
         </rules>
         <map>
             <size>
