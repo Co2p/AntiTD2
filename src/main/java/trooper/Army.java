@@ -49,8 +49,9 @@ public class Army {
                 t = new TeleportTrooper(TELEPORTERHEALTH, map);
                 break;
             case ARMORED:
-                t = new ArmoredTrooper(ARMOREDHEALTH);
-                t.setArmor(500);
+                ArmoredTrooper tp = new ArmoredTrooper(ARMOREDHEALTH);
+                tp.setArmor(50);
+                t = tp;
                 break;
         }
         t.setPosition(startPosition);
