@@ -7,7 +7,7 @@ import trooper.Trooper;
 import helpers.Position;
 
 /**
- * A Game.main that Troopers walk on
+ * A main that Troopers walk on
  * Created by gordon on 2016-11-28.
  */
 public class RoadTile extends Tile implements Zone {
@@ -17,10 +17,11 @@ public class RoadTile extends Tile implements Zone {
     private Object landOnModifier = null;
     private Method landOnMethod = null;
     private ArrayList<Trooper> troopers;
+    private boolean gotLandOn = false;
 
     /**
-     * Constructor for Game.main.RoadTile
-     * @param p, the position where the Game.main will be placed.
+     * Constructor for main.RoadTile
+     * @param p, the position where the main will be placed.
      * Constructor for RoadTile
      * @param p, the position where the tile will be placed.
      */
@@ -36,8 +37,8 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Constructor for Game.main.RoadTile, isGoal is set to false by default.
-     * @param p, the position where the Game.main will be placed.
+     * Constructor for main.RoadTile, isGoal is set to false by default.
+     * @param p, the position where the main will be placed.
      */
     public RoadTile(Position p) {
         super(p);
@@ -50,7 +51,7 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Called when a mainper.Trooper lands on the Game.main.RoadTile
+     * Called when a mainper.Trooper lands on the main.RoadTile
      * @param t the mainper.Trooper
      */
     @Override
@@ -66,52 +67,55 @@ public class RoadTile extends Tile implements Zone {
                 troopers.add(t);
                 notifyObservers(troopers);
             }
-//            try {
-//                landOnMethod.invoke(landOnModifier,t);
-//            } catch (IllegalAccessException e) {
-//                e.printStackTrace();
-//            } catch (InvocationTargetException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                if(gotLandOn) {
+                    landOnMethod.invoke(landOnModifier,t);
+                }
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     /**
-     * Returns true if the Game.main has a portal on it.
-     * @return true if the Game.main has a portal on it.
+     * Returns true if the main has a portal on it.
+     * @return true if the main has a portal on it.
      */
     public boolean hasPortal() {
         return (portalExit != null);
     }
 
     /**
-     * Sets a portal on the Game.main
-     * @param t the Game.main where the portal exits
+     * Sets a portal on the main
+     * @param t the main where the portal exits
      */
     public void setPortal(RoadTile t) {
         portalExit = t;
     }
 
     /**
-     * Returns the exit of the portal on the Game.main else null.
-     * @return the exit of the portal on the Game.main else null.
+     * Returns the exit of the portal on the main else null.
+     * @return the exit of the portal on the main else null.
      */
     public Tile getPortalExit() {
         return portalExit;
     }
 
     /**
-<<<<<<< HEAD:src/Game.main/java/tile/RoadTile.java
-     * Returns true if the Game.main is a goal.
-     * @return true if the Game.main is a goal.
-=======
-     * Returns true if the tile is a squareGoal.
-     * @return true if the tile is a squareGoal.
->>>>>>> master:src/RoadTile.java
+     * Returns true if the main is a goal.
+     * @return true if the main is a goal.
      */
     public boolean isGoal() {
         return isGoal;
     }
 
     public boolean isStart(){ return isStart;}
+
+    public void setLandOnModifier(Object zone, Method landOn) {
+        landOnModifier = zone;
+        landOnMethod = landOn;
+        gotLandOn = true;
+    }
 }

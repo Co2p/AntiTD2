@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import helpers.DOMParser;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
 
 //public class ParserTest {
-//    public static void Game.main(String[] args) {
-//        DOMParser parser = null;
-//        parser = new DOMParser("src/Game.main/resources/xml/levelSchema.xml");
+//    public static void main(String[] args) {
+//        LevelParser parser = null;
+//        parser = new LevelParser("src/main/resources/xml/levelSchema.xml");
 //        parser.parseFile("xml/test.xml");
 //        if (parser.isError()) {
 //            System.out.println(parser.getErrorMessage().toString);
@@ -47,10 +45,10 @@ import helpers.DOMParser;
 //}
 //=======
 //public class ParserTest {
-//    public static void Game.main (String[] args) {
-//        DOMParser parser = null;
-//        parser = new DOMParser("src/Game.main/res/xml/levelSchema");
-//        parser.parseFile("src/Game.main/res/xml/test.xml");
+//    public static void main (String[] args) {
+//        LevelParser parser = null;
+//        parser = new LevelParser("src/main/res/xml/levelSchema");
+//        parser.parseFile("src/main/res/xml/test.xml");
 //        if (parser.isError()) {
 //            System.out.println(parser.getErrorMessage());
 //        }

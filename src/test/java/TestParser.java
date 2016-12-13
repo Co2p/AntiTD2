@@ -1,7 +1,8 @@
+import helpers.ErrorMessages;
+import helpers.LevelParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import helpers.DOMParser;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -10,12 +11,12 @@ import static org.junit.Assert.assertFalse;
  */
 public class TestParser {
 
-    private DOMParser parser;
+    private LevelParser parser;
     private String xmlFile = "test.xml";
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/Game.main/resources/xml/levelSchema.xml");
+        parser = new LevelParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
     }
 
     @Test
@@ -46,11 +47,6 @@ public class TestParser {
     @Test
     public void emptyTowers() {
         assertEquals(0,parser.getTowerSpawnRate().size());
-    }
-
-    @Test
-    public void emptyTime() {
-        assertEquals(0,parser.getTimeLimit().size());
     }
 
     @Test
@@ -89,7 +85,7 @@ public class TestParser {
     public void getLevelNameAfterParse() {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getLevelName().size());
-        assertEquals("Game.Level 1",parser.getLevelName().get(0));
+        assertEquals("Level 1",parser.getLevelName().get(0));
     }
 
     @Test
@@ -115,13 +111,6 @@ public class TestParser {
     }
 
     @Test
-    public void getTimeAfterParse() {
-        parser.parseFile(xmlFile);
-        assertEquals(2,parser.getTimeLimit().size());
-        assertEquals((Integer) 2,parser.getTimeLimit().get(0));
-    }
-
-    @Test
     public void getRowsAfterParse() {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getRows().size());
@@ -140,13 +129,6 @@ public class TestParser {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getClassName().size());
         assertEquals("className",parser.getClassName().get(0));
-    }
-
-    @Test
-    public void getClassPathAfterParse() {
-        parser.parseFile(xmlFile);
-        assertEquals(2,parser.getClassPath().size());
-        assertEquals("imhere",parser.getClassPath().get(0));
     }
 
 

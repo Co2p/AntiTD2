@@ -12,6 +12,11 @@ import java.util.Hashtable;
  */
 public class BomberTower extends Tower {
 
+    /**
+     * Constructor for a bomber tower
+     * @param map_hashTable the active map
+     * @param pos a position for the tower
+     */
     public BomberTower(Hashtable<Position, Tile> map_hashTable, Position pos) {
         super(100, 1, map_hashTable, pos);
     }
