@@ -1,15 +1,17 @@
-package Game;
+
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
 
 import helpers.Translator;
 import helpers.Position;
 import tower.Defense;
+import tower.LaserTower;
 import trooper.*;
 import tile.*;
 
@@ -27,6 +29,8 @@ public class Game extends JPanel implements Runnable {
     public Position startPosition;
     private Defense defense;
     private Hashtable<Position,Tile> map = new Hashtable<>();
+    private Player player;
+    private Results results;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -42,13 +46,6 @@ public class Game extends JPanel implements Runnable {
     public static Level level;
     public static GameContainer gameContainer;
 
-
-
-    //DRAW UNIT
-    private int x, y;
-
-    private final int GAMETIMER = 50;
-
     public String mapString =   "000000000000"+
                                 "0RR00R00R0R0"+
                                 "0R00R0R0R0R0"+
@@ -61,9 +58,11 @@ public class Game extends JPanel implements Runnable {
     private Thread thread = new Thread(this);//thread that runs the game
     private static boolean isFirst = true; //first time the game opens = true
 
-    public Game(Level level){
+    public Game(Level level, Player player){
         this.level = level;
         thread.start();
+        this.player = player;
+        results = new Results();
     }
 
     private void define(){
@@ -78,9 +77,8 @@ public class Game extends JPanel implements Runnable {
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
-
-        x = startPosition.getX();
-        y = startPosition.getY();
+        gameContainer.setColumnCount(level.getColumns());
+        gameContainer.setRowCount(level.getRows());
     }
 
     //Paints the components in game
@@ -96,28 +94,28 @@ public class Game extends JPanel implements Runnable {
         gr.fillRect(0,0, getWidth(), getHeight());
         gameContainer.draw(gr);
         shop.draw(gr);
-        army.draw(gr, square_air, gameContainer.getAirSquares());
     }
+
 
     @Override
     public void run() {
         int totalReached = 0;
-
+        ArrayList<Trooper> refunds;
         while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
-                totalReached = updateZombieCounter(totalReached);
-                Position towerPosition = defense.createTower();
-                if(towerPosition != null){
-                    buildTowers(towerPosition);
+                refunds = army.getFinished();
+                for(Trooper trooper: refunds) {
+                    shop.refund(trooper);
                 }
+                shop.subtractUnitsToWin(army.getReachedGoal());
+                totalReached += army.getReachedGoal();
+                defense.createTower();
                 defense.update();
                 if(army.getArmySize() > 0) {
-                    for (Trooper trooper : army.getArmy()) {
-                        if(!trooper.getPosition().equals(startPosition)) {
-                            //cycle(trooper);
-                        }
-                    }
+                    //System.out.println("First trooper pos: x " + army.getArmy().get(0).getPosition().getX()
+                    //+ " y " + army.getArmy().get(0).getPosition().getY());
+                    //System.out.println("HP = " + army.getArmy().get(0).getHealth());
                 }
 
                 //gameContainer.move(army); //do something to change the game
@@ -125,27 +123,19 @@ public class Game extends JPanel implements Runnable {
             repaint();  // repaint the graphics in the gameframe.
             try{
 
-                thread.sleep(GAMETIMER);
+                thread.sleep(300);
 
-            }catch(InterruptedException e){
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }
-    }
+        shop.stopTime();
+        results.setCreditsused(shop.getNoOfCredits());
+        results.setLevelName(level.getLevelName());
+        results.setTime(shop.getTime());
+        player.setResult(results);
+        System.out.println(results);
 
-
-    private void cycle(Trooper t) {
-
-    }
-
-
-    private void buildTowers(Position towerPosition) {
-        air[towerPosition.getX()][towerPosition.getY()] = Translator.indexTower;
-    }
-
-    private int updateZombieCounter(int totalReached) {
-        shop.subtractUnitsToWin(army.getReachedGoal());
-        return army.getReachedGoal();
     }
 
     private void setupImages(){
@@ -191,21 +181,28 @@ public class Game extends JPanel implements Runnable {
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
-                    map.put(new Position(x,y), new RoadTile(new Position(x,y)));
-                    //TODO REMOVE SOUTS
-                    System.out.println("Utskrift i Game.Game.setupMap: Väg = X: " + x + " Y: " + y);
+                    RoadTile road = new RoadTile(new Position(x,y));
+                    if(level.gotLandon()){
+                        road.setLandOnModifier(level.getZone(),level.getLandOn());
+                    }
+                    map.put(new Position(x,y), road);
+                    System.out.println("Utskrift i Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
-                    background[x][y] = Translator.indexGoal;
+                    background[x][y] = Translator.squareGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
-                    System.out.println("Utskrift i Game.Game.setupMap: MÅL = X: " + x + " Y: " + y);
+                    System.out.println("Utskrift i Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
-                    background[x][y] = Translator.indexStart;
+                    background[x][y] = Translator.squareStart;
                     air[x][y] = Translator.indexStart;
-                    map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
-                    System.out.println("Utskrift i Game.Game.setupMap: Start = X: " + x + " Y: " + y);
+                    RoadTile road = new RoadTile(new Position(x,y), "start");
+                    if(level.gotLandon()){
+                        road.setLandOnModifier(level.getZone(),level.getLandOn());
+                    }
+                    map.put(new Position(x,y), road);
+                    System.out.println("Utskrift i Game.setupMap: Start = X: " + x + " Y: " + y);
                     startPosition.setX(x);
                     startPosition.setY(y);
                 }

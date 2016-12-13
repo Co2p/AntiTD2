@@ -14,6 +14,11 @@ public class TeleportTrooper extends Trooper{
 
     private Hashtable<Position, Tile> map;
 
+    /**
+     * Constructs a teleporttrooper
+     * @param hp trooper hp
+     * @param map the active map
+     */
     public TeleportTrooper(int hp, Hashtable<Position,Tile> map) {
         super(hp);
         this.map = map;

@@ -11,19 +11,15 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
-<<<<<<< HEAD
- * Superclass for any mainr class
-=======
  * Superclass for any tower class
->>>>>>> master
  */
 public class Tower implements Observer {
     protected int damage;
     protected int range;
     protected Position pos;
-    protected ArrayList<Position> neighbours = new ArrayList<>();
+    protected ArrayList<Position> neighbours = new ArrayList<>(); // a array of ALL tiles within the range of the tower
     protected ArrayList<Trooper> targets;
-    public int observedTiles=0;
+    public int observedTiles=0; // number of tiles with observers attached by the tower
 
     /**
      * Super tower constructor, called by the sub-tower classes
@@ -61,7 +57,6 @@ public class Tower implements Observer {
     }
 
     /**
-     * mainers.Position of the mainr
      * Position of the tower
      * @return tower position
      */
@@ -79,7 +74,6 @@ public class Tower implements Observer {
 
     /**
      * Adds neighbouring tiles to the neighbours array
-     *
      */
     public void addNeighbours() {
         Position NPos = pos;
@@ -116,19 +110,37 @@ public class Tower implements Observer {
         return pos;
     }
 
+    /**
+     * Gets the total of the tiles in the tower range (including non RoadTiles), used in tests
+     * @return number of tiles innrange
+     */
     public int getNrofNeighbours() {
         return neighbours.size();
     }
 
+    /**
+     * Number of tiles with observers attached (RoadTiles in range)
+     * @return RoadTiles in the tower range
+     */
     public int getObservedTiles() {
         return observedTiles;
     }
 
+    /**
+     * Called by the Observed Observable RoadTile in landOn
+     * @param o the Observable
+     * @param arg the Trooper
+     */
     @Override
     public void update(Observable o, Object arg) {
         targets.addAll((ArrayList<Trooper>) arg);
     }
 
+    /**
+     * Returns if the requested position is in range
+     * @param position requested position
+     * @return if the position is in range
+     */
     public boolean inRange(Position position) {
         return neighbours.contains(position);
     }

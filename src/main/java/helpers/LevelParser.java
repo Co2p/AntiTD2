@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
-public class DOMParser {
+public class LevelParser {
 
     private DocumentBuilder parser;
     private XPath path;
@@ -35,7 +35,6 @@ public class DOMParser {
     private ArrayList<Long> credits = new ArrayList<>();
     private ArrayList<Integer> unitsToWin = new ArrayList<>();
     private ArrayList<Integer> towerSpawnRate = new ArrayList<>();
-    private ArrayList<Integer> timeLimit = new ArrayList<>();
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
     private ArrayList<String[]> map = new ArrayList<>();
@@ -45,8 +44,8 @@ public class DOMParser {
     /**
      * Setup the parser
      */
-    public DOMParser(String schemaFile){
-        errorMessage = new ErrorMessages();
+    public LevelParser(String schemaFile, ErrorMessages errorMessage){
+        this.errorMessage = errorMessage;
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
         try {
@@ -105,7 +104,6 @@ public class DOMParser {
         try {
 
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-
             if(url != null) {
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
@@ -147,9 +145,6 @@ public class DOMParser {
                             "/levellist/level["+(i+1)+"]/rules[1]" +
                                     "/towerspawnrate",doc)));
 
-                    timeLimit.add(i,Integer.parseInt(path.evaluate(
-                            "/levellist/level["+(i+1)+"]/rules[1]" +
-                                    "/timelimit",doc)));
 
                     columns.add(i,Integer.parseInt(path.evaluate(
                             "/levellist/level["+(i+1)+"]/map[1]" +
@@ -160,10 +155,7 @@ public class DOMParser {
                                     "/map[1]/size[1]/row",doc)));
 
                     className.add(i, path.evaluate("/levellist/level["+
-                                            (i+1)+"]/tile[1]/@className",doc));
-
-                    classPath.add(i,path.evaluate("/levellist/level["+
-                                                    (i+1)+"]/tile[1]",doc));
+                                            (i+1)+"]/tile[1]",doc));
 
                     int rowCount = Integer.parseInt(path.evaluate("" +
                             "count(/levellist/level["+(i+1)+"]/map/*)",doc));
@@ -223,22 +215,10 @@ public class DOMParser {
 
     /**
      * Returns the spawn rate for the towers.
-<<<<<<< HEAD
-     * @return the mainr spawn rate
-=======
      * @return the tower spawn rate
->>>>>>> master
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;
-    }
-
-    /**
-     * Returns the time limit for this level
-     * @return the time limit
-     */
-    public ArrayList<Integer> getTimeLimit() {
-        return timeLimit;
     }
 
     /**
