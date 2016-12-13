@@ -107,23 +107,21 @@ public class Game extends JPanel implements Runnable {
     @Override
     public void run() {
         int totalReached = 0;
-
+        ArrayList<Trooper> refunds;
         while(totalReached < level.getUnitsToWin()){
             if(!isFirst){
                 army.updateArmy();
-                totalReached = updateZombieCounter(totalReached);
+                refunds = army.getFinished();
+                for(Trooper trooper: refunds) {
+                    shop.refund(trooper);
+                }
+                shop.subtractUnitsToWin(army.getReachedGoal());
+                totalReached += army.getReachedGoal();
                 Position towerPosition = defense.createTower();
                 if(towerPosition != null){
                     buildTowers(towerPosition);
                 }
                 defense.update();
-                if(army.getArmySize() > 0) {
-                    for (Trooper trooper : army.getArmy()) {
-                        if(!trooper.getPosition().equals(startPosition)) {
-                            //cycle(trooper);
-                        }
-                    }
-                }
 
                 //gameContainer.move(army); //do something to change the game
             }
@@ -132,10 +130,16 @@ public class Game extends JPanel implements Runnable {
 
                 thread.sleep(GAMETIMER);
 
-            }catch(InterruptedException e){
+            }catch(Exception e){
                 e.printStackTrace();
             }
         }
+        shop.stopTime();
+        results.setCreditsused(shop.getNoOfCredits());
+        results.setLevelName(level.getLevelName());
+        results.setTime(shop.getTime());
+        player.setResult(results);
+        System.out.println(results);
     }
 
 

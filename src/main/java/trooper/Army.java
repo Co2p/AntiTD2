@@ -22,10 +22,11 @@ public class Army {
     private int reachedGoal = 0;
     private Hashtable<Position, Tile> map;
     private Direction preferred;
-    private static int TELEPORTERHEALTH = 75;
-    private static int ARMOREDHEALTH = 150;
+    private static int TELEPORTERHEALTH = 750;
+    private static int ARMOREDHEALTH = 1500;
     private int armySize =0;
     private Position startPosition;
+    private ArrayList<Trooper> finished;
 
 
     public Army (Hashtable<Position, Tile> map, Position startPosition) {
@@ -68,6 +69,7 @@ public class Army {
 
     public void updateArmy() {
         reachedGoal = 0;
+        finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
 
             //Set the troopers graphical position to match start in gamecontainer
@@ -89,6 +91,7 @@ public class Army {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
                         }
+                        finished.add(trooper);
                         iterator.remove();
                         armySize--;
                     }
@@ -207,5 +210,9 @@ public class Army {
 
             }
         }
+    }
+
+    public ArrayList<Trooper> getFinished() {
+        return finished;
     }
 }

@@ -38,9 +38,9 @@ public class Trooper {
      * Default constructor, crates a mainper.PitifulTrooper
      */
     public Trooper(){
-        this.maxhealth=100;
-        this.zombiehealth=100;
-        this.health=100;
+        this.maxhealth=1000;
+        this.zombiehealth=1000;
+        this.health=1000;
         this.zombiestepDelay=(this.stepDelay);
         this.armor=0;
         this.direction = EAST;
