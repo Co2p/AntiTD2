@@ -282,7 +282,6 @@ public class Trooper {
     public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred) {
         RoadTile road, road2;
 
-
         if (semiStep < stepDelay-1) {
             road = (RoadTile) map_hashTable.get(position);
 

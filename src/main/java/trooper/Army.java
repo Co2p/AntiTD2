@@ -166,12 +166,12 @@ public class Army {
                     switch (direction) {
                         case NORTH:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            x = x - value;
+                            y = y - value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case SOUTH:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            x = x + value;
+                            y = y + value;
 
                             System.out.println("X from graphics =" + x);
                             System.out.println("Y from graphics =" + y);
@@ -179,12 +179,12 @@ public class Army {
                             break;
                         case EAST:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            y = y + value;
+                            x = x + value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case WEST:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
-                            y = y - value;
+                            x = x - value;
                             System.out.println("X from graphics =" + x);
                             System.out.println("Y from graphics =" + y);
                             t.setGraphicPosition(new Position(x, y));
@@ -192,17 +192,24 @@ public class Army {
                     }
                 }
 
-//
-//                int x = t.getGraphicPosition().getX();
-//                int y = t.getGraphicPosition().getY();
-
-
                 if (t.hasTurned()) {
                     g.drawImage(square_air[Translator.indexZombie], x, y,
                             null, null);
+                    drawHpBar(g,x,y,t);
                 } else {
-                    g.drawImage(square_air[Translator.indexTrooper], x, y,
-                            null, null);
+
+                    if(t.getClass().equals(PitifulTrooper.class)){
+                        g.drawImage(square_air[Translator.indexTrooper], x, y,
+                                null, null);
+                    }else if(t.getClass().equals(ArmoredTrooper.class)) {
+
+                        g.drawImage(square_air[Translator.indexArmoredTrooper], x, y,
+                                null, null);
+                    }else if (t.getClass().equals(TeleportTrooper.class)){
+                        g.drawImage(square_air[Translator.indexTeleporter], x, y,
+                                null, null);
+                    }
+                    drawHpBar(g, x, y, t);
                 }
                 System.out.println("Draw");
             }
@@ -220,4 +227,27 @@ public class Army {
     public Direction getPreferred() {
         return preferred;
     }
+
+    public void drawHpBar(Graphics g, int x, int y, Trooper t){
+
+        float yellowBarWidth = 0;
+        float greenBarWidth = 0;
+
+        if(t.hasTurned()){
+            greenBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
+        }else{
+            yellowBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
+            greenBarWidth = Translator.squareSize;
+        }
+
+        g.setColor(Color.red);
+        g.fillRect(x,y-3,Translator.squareSize,5);
+        g.setColor(Color.green);
+        g.fillRect(x,y-3,(int)greenBarWidth,5);
+        g.setColor(Color.yellow);
+        g.fillRect(x,y-3,(int)yellowBarWidth,5);
+        g.drawString(t.getDirection().toString(),x,y);
+    }
+
+
 }
