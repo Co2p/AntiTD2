@@ -215,4 +215,8 @@ public class Army {
     public ArrayList<Trooper> getFinished() {
         return finished;
     }
+
+    public Direction getPreferred() {
+        return preferred;
+    }
 }

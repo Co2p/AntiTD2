@@ -85,7 +85,6 @@ public class Shop {
 
         if(mouseButton ==1){
             for (int i = 0; i <buttons.length ; i++) {
-
                 //if click was registered on a button
                 if(buttons[i].contains(Game.mousePoint)){
                     int j = i +1;
@@ -96,25 +95,44 @@ public class Shop {
                         army.addToArmyQueue(TrooperType.PITIFUL);
 
                     }
-                    if(i == 1 && !(noOfCredits - Translator.armoredTrooperPrice < 0)){
+                    if(i == 1 && !(noOfCredits -
+                            Translator.armoredTrooperPrice < 0)){
                         noOfCredits -= Translator.armoredTrooperPrice;
                         army.addToArmyQueue(TrooperType.ARMORED);
                     }
-                    if(i == 2 && !(noOfCredits - Translator.teleporterPrice < 0)){
+                    if(i == 2 && !(noOfCredits -
+                            Translator.teleporterPrice < 0)){
                         noOfCredits -= Translator.teleporterPrice;
                         army.addToArmyQueue(TrooperType.TELEPORTER);
                     }
                     if(i==3){
-                        //trooper move.
+                        for (Trooper t:army.getArmy()) {
+                            if(t.getClass().equals(TeleportTrooper.class)){
+                                TeleportTrooper tp = (TeleportTrooper)t;
+                                Game.air[t.getPosition().getX()][t.getPosition()
+                                        .getY()] = Translator.indexTeleportZone;
+                                tp.placePortal(tp.getDirection());
+                                Game.air[t.getPosition().getX()][t.getPosition()
+                                        .getY()] = Translator.indexTeleportZone;
+                            }
+                        }
                     }
                     if(i==4){
-                        //setprefered left
+
+                        if(army != null && army.getPreferred() == null) {
+                            army.setPreferred(Direction.LEFT);
+                        }
+                        else if(army.getPreferred().equals(Direction.LEFT)){
+                            army.setPreferred(null);
+                        }
                     }
                     if(i==5){
-                        //set prefered right.
-                    }
-                    else{
-                        //SLUT PÅ CASH!
+                        if(army != null && army.getPreferred() == null) {
+                            army.setPreferred(Direction.RIGHT);
+                        }
+                        else if(army.getPreferred().equals(Direction.RIGHT)){
+                            army.setPreferred(null);
+                        }
                     }
                 }
             }
