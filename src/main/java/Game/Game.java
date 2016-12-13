@@ -82,6 +82,8 @@ public class Game extends JPanel implements Runnable {
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
+        gameContainer.setColumnCount(level.getColumns());
+        gameContainer.setRowCount(level.getRows());
         x = startPosition.getX();
         y = startPosition.getY();
     }
