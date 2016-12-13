@@ -78,7 +78,7 @@ public class Game extends JPanel implements Runnable {
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
-        
+
         x = startPosition.getX();
         y = startPosition.getY();
     }
@@ -98,7 +98,6 @@ public class Game extends JPanel implements Runnable {
         shop.draw(gr);
         army.draw(gr, square_air, gameContainer.getAirSquares());
     }
-
 
     @Override
     public void run() {

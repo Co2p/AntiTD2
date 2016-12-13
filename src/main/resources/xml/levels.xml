@@ -105,6 +105,29 @@
                 <column>20</column>
                 <row>10</row>
             </size>
+            <row>000000000000</row>
+            <row>0000000RRRRG</row>
+            <row>0000000R0000</row>
+            <row>0000000R0000</row>
+            <row>0000000R0000</row>
+            <row>0000000R0000</row>
+            <row>SRRRRRRR0000</row>
+            <row>000000000000</row>
+        </map>
+    </level>
+    <level name ="No towers 20x10">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>20</column>
+                <row>10</row>
+            </size>
             <row>000000000000000000</row>
             <row>0000000RRRRG000000</row>
             <row>0000000R0000000000</row>
