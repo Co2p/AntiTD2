@@ -1,8 +1,9 @@
-package main.java.tower;
+package tower;
 
-import main.java.helpers.Position;
-import main.java.tile.Tile;
-import main.java.tile.TowerTile;
+import helpers.Position;
+import tile.RoadTile;
+import tile.Tile;
+import tile.TowerTile;
 
 import java.util.*;
 
@@ -18,37 +19,45 @@ public class Defense {
     }
 
     private ArrayList<TowerTile> towerMap = new ArrayList<>();
+    private Hashtable<Position, Tile> roadMap = new Hashtable<>();
+
 
     public Defense(Hashtable<Position, Tile> map, int spawnRate) {
         for(Tile tile: map.values()) {
             if (TowerTile.class.isInstance(tile)) {
                 towerMap.add((TowerTile) tile);
             }
+            if (RoadTile.class.isInstance(tile)) {
+                roadMap.put(tile.getPosition(), tile);
+            }
         }
         this.spawnRate = spawnRate;
     }
 
-    public void createTower() {
+    public Position createTower() {
         Random rand = new Random();
+        Position pos = null;
         if(rand.nextInt(100+1) <= spawnRate) {
-            int towerPlacement;
+            int towerPlacement = 0;
             if (towerMap.size() > 1) {
                 towerPlacement = rand.nextInt(towerMap.size());
             } else {
                 towerPlacement = 0;
             }
-            //System.out.println(towerPlacement);
             if (!towerMap.isEmpty()) {
-                Tower tower = new Tower(20,2,towerMap.get(towerPlacement).getPosition());
+                System.out.println("Torn spawnas.");
+                pos = towerMap.get(towerPlacement).getPosition();
+                Tower tower = new LaserTower(roadMap, pos);
                 towers.add(tower);
                 towerMap.get(towerPlacement).setTower(tower);
                 towerMap.remove(towerPlacement);
             }
         }
+        return pos;
     }
 
     public void update() {
-        if(towers.size() < 0 ) {
+        if(towers.size() > 0 ) {
             for (Tower tower : towers) {
                 tower.fire();
             }

@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<levellist>
+    <level name ="Game.Level 1">
+        <rules>
+            <credits>600</credits>
+            <unitstowin>10</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>00TT00000000</row>
+            <row>SRRRR0000000</row>
+            <row>0000R0000000</row>
+            <row>0000R0RRR000</row>
+            <row>0000RRR0R000</row>
+            <row>00000000R000</row>
+            <row>00000000R000</row>
+            <row>00000000G000</row>
+        </map>
+    </level>
+    <level name ="EKORRE">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>000TTT000000</row>
+            <row>000RRRRT0000</row>
+            <row>000R00RT0000</row>
+            <row>0RRR00RT0000</row>
+            <row>0RT000R00T00</row>
+            <row>0RTTRRRRRR00</row>
+            <row>0R000000TR00</row>
+            <row>0S0000000G00</row>
+        </map>
+    </level>
+    <level name ="Game.Level 3">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>15</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>TTTTTTTTTTGT</row>
+            <row>TRRRTRRRTTRT</row>
+            <row>TRTRRRTRRRRT</row>
+            <row>TRTTTTTTTTTT</row>
+            <row>TRRRRRRRRRRT</row>
+            <row>TTTTTTTTTTRT</row>
+            <row>SRRRRRRRRRRT</row>
+            <row>TTTTTTTTTTTT</row>
+        </map>
+    </level>
+    <level name ="fu">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00000RR00000</row>
+            <row>00RR0RR0RR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
+            <row>00RRRRRRRR00</row>
+        </map>
+    </level>
+    <level name ="No towers">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>20</column>
+                <row>10</row>
+            </size>
+            <row>000000000000</row>
+            <row>0000000RRRRG</row>
+            <row>0000000R0000</row>
+            <row>0000000R0000</row>
+            <row>0000000R0000</row>
+            <row>0000000R0000</row>
+            <row>SRRRRRRR0000</row>
+            <row>000000000000</row>
+        </map>
+    </level>
+    <level name ="No towers 20x10">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>30</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>20</column>
+                <row>10</row>
+            </size>
+            <row>000000000000000000</row>
+            <row>0000000RRRRG000000</row>
+            <row>0000000R0000000000</row>
+            <row>0000000R0000000000</row>
+            <row>0000000R0000000000</row>
+            <row>0000000R0000000000</row>
+            <row>SRRRRRRR0000000000</row>
+            <row>000000000000000000</row>
+            <row>000000000000000000</row>
+            <row>000000000000000000</row>
+        </map>
+    </level>
+</levellist>

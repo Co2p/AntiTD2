@@ -1,10 +1,12 @@
-package main.java.helpers;
+package helpers;
 
 /**
  * Created by Simon on 2016-12-05.
  * Class for declaring names as numbers.
  */
 public class Translator {
+
+    public static int squareSize = 50;
 
     public static String mapRoad = "R";
     public static String mapGrass= "0";
@@ -14,8 +16,8 @@ public class Translator {
 
     public static int squareGrass = 0;
     public static int squareRoad = 1;
-    public static int squareStart = 2;
-    public static int squareGoal = 3;
+    public static int squareRoad2 = 2;
+    public static int squareRoad3 = 3;
     public static int squareTowerZone = 4;
 
 
@@ -33,11 +35,5 @@ public class Translator {
     public static int pitifullPrice = 20;
     public static int armoredTrooperPrice = 40;
     public static int teleporterPrice = 100;
-
-
-
-
-
-
 
 }

@@ -1,66 +1,62 @@
-package main.java.trooper;
+package trooper;
 
-import main.java.tile.RoadTile;
-import main.java.tile.Tile;
+import Game.Game;
+import Game.GameContainer;
+import helpers.Translator;
+import javafx.geometry.Pos;
+import tile.*;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
-import main.java.helpers.Position;
-import main.java.helpers.Direction;
+import helpers.Position;
+import helpers.Direction;
+
+import static helpers.Direction.*;
 
 public class Trooper {
     private int maxhealth;
     private int zombiehealth;
     private int health;
-    private int speed = 2;
-    private int zombiespeed;
+    private int stepDelay = 25;
+    private int semiStep = 0;
+    private int zombiestepDelay;
     private int armor;
     private boolean hasTurned = false;
     private boolean isDead = false;
     private Direction direction;
     private Position position = null;
+    private Position nextPosition = null;
+    public  Position graphicPosition = new Position(0,0);
     private Stack<Position> path = new Stack<>();
     private ArrayList<Position> visited = new ArrayList<>();
     private boolean reverse = false;
     private boolean reachedGoal = false;
+    private boolean firstStep = true;
 
     /**
-     * Default constructor, crates a main.java.main.java.trooper.PitifulTrooper
+     * Default constructor, crates a mainper.PitifulTrooper
      */
     public Trooper(){
         this.maxhealth=100;
         this.zombiehealth=100;
         this.health=100;
-        this.zombiespeed=(this.speed/2);
+        this.zombiestepDelay=(this.stepDelay);
         this.armor=0;
+        this.direction = EAST;
     }
 
     /**
      * Constructor that takes in a hp value
-     * @param hp the defined hp for the main.java.main.java.trooper
+     * @param hp the defined hp for the mainper
      */
     public Trooper(int hp){
         this.maxhealth=hp;
         this.zombiehealth=hp;
         this.health=hp;
-        this.zombiespeed=(this.speed/2);
+        this.zombiestepDelay=(this.stepDelay);
         this.armor=0;
-    }
-
-    /**
-     * A main.java.main.java.trooper that takes in hp and speed values
-     * @param hp main.java.main.java.trooper hp
-     * @param speed main.java.main.java.trooper speed
-     */
-    public Trooper(int hp, int speed){
-        this.maxhealth = hp;
-        this.health=hp;
-        this.speed=speed;
-        this.zombiehealth=hp;
-        this.zombiespeed=(this.speed/2);
-        this.armor=0;
-
+        this.direction = EAST;
     }
 
     /**
@@ -72,8 +68,8 @@ public class Trooper {
     }
 
     /**
-     * Adds health (heals) the main.java.main.java.trooper
-     * @param addHealth amount to heal the main.java.main.java.trooper by
+     * Adds health (heals) the mainper
+     * @param addHealth amount to heal the mainper by
      */
     public void receiveHealth(int addHealth){
         if(!hasTurned) {
@@ -94,7 +90,7 @@ public class Trooper {
 
     /**
      * Receive damage (deduct from  health)
-     * @param removeHealth amount of damage to the main.java.main.java.trooper
+     * @param removeHealth amount of damage to the mainper
      */
     public void receiveDamage(int removeHealth){
         if(!hasTurned) {
@@ -109,19 +105,21 @@ public class Trooper {
                 isDead = true;
             }
         }
+        //TODO REMOVE SOUT
+        System.out.println("Target hp: " + getHealth());
     }
 
     /**
-     * Returns true if the main.java.main.java.trooper is dead
-     * @return true if the main.java.main.java.trooper is dead
+     * Returns true if the mainper is dead
+     * @return true if the mainper is dead
      */
     public boolean isDead(){
         return isDead;
     }
 
     /**
-     * Set the prioritized direction for the main.java.main.java.trooper
-     * @param d a main.java.main.java.helpers.Direction (North, East, South, West)
+     * Set the prioritized direction for the mainper
+     * @param d a mainers.Direction (North, East, South, West)
      */
     public void setDirection(Direction d){
         if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == Direction.EAST) {
@@ -130,7 +128,7 @@ public class Trooper {
     }
 
     /**
-     * Get current prioritized direction for the main.java.main.java.trooper
+     * Get current prioritized direction for the mainper
      * @return prioritized direction
      */
     public Direction getDirection(){
@@ -138,7 +136,7 @@ public class Trooper {
     }
 
     /**
-     * Get the health of the main.java.main.java.trooper
+     * Get the health of the mainper
      * @return health
      */
     public int getHealth(){
@@ -151,41 +149,73 @@ public class Trooper {
     }
 
     /**
-     * Set the health of the main.java.main.java.trooper
+     * Set the health of the mainper
      * @param health health
      */
     public void setHealth(int health){
         this.health=health;
     }
 
-    public int getSpeed(){
+    public int getstepDelay(){
         if(!hasTurned) {
-            return speed;
+            return stepDelay;
         }
         else{
-            return zombiespeed;
+            return zombiestepDelay;
         }
     }
 
-    /**
-     * Set the speed of the main.java.main.java.trooper
-     * @param speed speed
-     */
-    public void setSpeed(int speed){
-        this.speed=speed;
-        this.zombiespeed=(speed/2);
+    public int getSemiStep(){
+        return semiStep;
     }
 
     /**
-     * Get main.java.main.java.trooper position
-     * @return main.java.main.java.trooper position
+<<<<<<< HEAD
+     * Set the speed of the mainper
+     * @param speed speed
+=======
+     * Set the stepDelay of the Game.main.java.Game.main.java.trooper
+     * @param stepDelay stepDelay
+>>>>>>> master
+     */
+    public void setstepDelay(int stepDelay){
+        this.stepDelay=stepDelay;
+        this.zombiestepDelay=(stepDelay/2);
+    }
+
+    /**
+     * Get mainper position
+     * @return mainper position
      */
     public Position getPosition(){
         return position;
     }
 
+
+    //TODO dessa två är nya. skapa tester
+    public Position getGraphicPosition(){
+        return graphicPosition;
+    }
+
+    public void setGraphicPosition(Position position){
+        graphicPosition = position;
+    }
+
+    public Position getNextPosition(){
+        return  nextPosition;
+    }
+
+    public void setNextPosition(Position p){
+        nextPosition = p;
+    }
+
     /**
-     * Sets the position of the main.java.main.java.trooper to p
+<<<<<<< HEAD
+     * Sets the position of the mainper to p
+=======
+     * Sets the position of the trooper to position
+     * Don't touch unless you are testing
+>>>>>>> master
      * @param position the position to set
      */
     public void setPosition(Position position) {
@@ -193,8 +223,8 @@ public class Trooper {
     }
 
     /*
-<<<<<<< HEAD:src/main.java.main/java/trooper/Trooper.java
-     * @return true if the main.java.main.java.trooper has reached the goal
+<<<<<<< HEAD:src/Game.main/java/trooper/Trooper.java
+     * @return true if the mainper has reached the goal
 =======
      * @return true if the trooper has reached the squareGoal
 >>>>>>> master:src/Trooper.java
@@ -204,8 +234,8 @@ public class Trooper {
     }
 
     /**
-<<<<<<< HEAD:src/main.java.main/java/trooper/Trooper.java
-     * Sets that the main.java.main.java.trooper has reached the goal
+<<<<<<< HEAD:src/Game.main/java/trooper/Trooper.java
+     * Sets that the mainper has reached the goal
 =======
      * Sets that the trooper has reached the squareGoal
 >>>>>>> master:src/Trooper.java
@@ -245,21 +275,66 @@ public class Trooper {
     }
 
     //TODO !
-//    private void backTrace(Hashtable<main.java.main.java.helpers.Position,main.java.main.java.tile.RoadTile> possibleMovesTable){
+//    private void backTrace(Hashtable<mainers.Position,Game.main.RoadTile> possibleMovesTable){
 //        path.pop();
 //        position = path.peek();
-//        main.java.main.java.tile.RoadTile road = possibleMovesTable.get(position);
+//        Game.main.RoadTile road = possibleMovesTable.get(position);
 //        road.landOn(this);
 //    }
 
     /**
-     * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
+<<<<<<< HEAD
+     * Finds the next Game.main to move to and calls landOn for that Game.main
+=======
+     * Takes a step every semiStep'th of the time that move is called
+     * @param map_hashTable a map
+     * @param preferred preferred direction for the army
+     * @return the RoadTile that the trooper is on
+     */
+    public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred) {
+        RoadTile road, road2;
+
+
+        if (semiStep < stepDelay-1) {
+            road = (RoadTile) map_hashTable.get(position);
+
+            //Find out nexposition
+            if(semiStep == 0) {
+                System.out.println("Trooper.move() set next position");
+                road2 = (RoadTile) forceMove(map_hashTable, preferred);
+                nextPosition = road2.getPosition();
+            }
+            if(!firstStep) {
+                semiStep++;
+            }else{
+                firstStep = false;
+            }
+            return road;
+        } else {
+             road = forceMove(map_hashTable, preferred);
+            //position=road.getPosition();
+            position = nextPosition;
+            semiStep = 0;
+        }
+        return road;
+    }
+
+    public boolean hasTurned() {
+        return hasTurned;
+    }
+
+    /**
+     * Finds the next Game.main.java.Game.main.java.tile to move to and calls landOn for that Game.main.java.Game.main.java.tile
+>>>>>>> master
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */
-    public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred){
+    public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
+        for (Object o : possibleMovesTable.values()) {
+            RoadTile tile = (RoadTile)o;
+        }
         path.add(position);
         visited.add(position);
         if (preferred == direction &&
@@ -281,17 +356,17 @@ public class Trooper {
             reverse = false;
         }
         else {
-            nextPosition = getDefaultNextPosition(possibleMovesTable, direction);
-            if (visited.contains(nextPosition)) {
-                nextPosition = null;
-            }
+            nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
 
-        if(nextPosition == null) {
+        if(nextPosition == null || reverse) {
+            System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
             reverse = true;
             path.pop();
             position = path.peek();
+            path.pop();
+            System.out.println("Till "+ position.toString());
             nextPosition = position;
 //            backTrace(possibleMovesTable);
         }
@@ -304,20 +379,26 @@ public class Trooper {
     /**
      * Brute force all directions except forwards //TODO this could be so much neater
      * @param possibleMovesTable a table of roadtiles
-     * @param ignore the direction to ignore
      * @return the first roadtile that was found clockwise starting in north
      */
-    private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable, Direction ignore) {
+    private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable) {
         Position nextPosition = null;
-        if (ignore != Direction.NORTH && possibleMovesTable.containsKey(position.getPosToNorth())) {
+        if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-        } else if (ignore != Direction.EAST && possibleMovesTable.containsKey(position.getPosToEast())) {
+            direction = NORTH;
+        } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
-        } else if (ignore != Direction.SOUTH && possibleMovesTable.containsKey(position.getPosToSouth())) {
+            direction = EAST;
+        } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
-        } else if (ignore != Direction.WEST && possibleMovesTable.containsKey(position.getPosToWest())) {
+            direction = SOUTH;
+        } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
+            direction = WEST;
         }
+
+        else nextPosition=null;
+
         return nextPosition;
     }
 }

@@ -1,14 +1,21 @@
-package main.java.tower;
+package tower;
 
-import main.java.helpers.Position;
-import main.java.trooper.Trooper;
+import helpers.Position;
+import tile.RoadTile;
+import tile.Tile;
+import trooper.Trooper;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Observable;
 import java.util.Observer;
 
 /**
- * Superclass for any main.java.main.java.tower class
+<<<<<<< HEAD
+ * Superclass for any mainr class
+=======
+ * Superclass for any tower class
+>>>>>>> master
  */
 public class Tower implements Observer {
     protected int damage;
@@ -16,46 +23,55 @@ public class Tower implements Observer {
     protected Position pos;
     protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
-    protected Trooper focusTarget;
+    public int observedTiles=0;
 
     /**
-     * Super main.java.main.java.tower constructor, called by the sub-main.java.main.java.tower classes
-     * @param damage main.java.main.java.tower damage
-     * @param range main.java.main.java.tower range
+     * Super tower constructor, called by the sub-tower classes
+     * @param damage tower damage
+     * @param range tower range
      */
-    public Tower(int damage, int range, Position pos){
+    public Tower(int damage, int range, Hashtable<Position, Tile> map_hashTable, Position pos){
         this.damage=damage;
         this.range=range;    //Ska vi ens ha range?
         targets = new ArrayList<>();
         setPos(pos);
         addNeighbours();
+        for ( int i = 0; i < neighbours.size(); i++) {
+            Tile road = map_hashTable.get(neighbours.get(i));
+            if (RoadTile.class.isInstance(road)) {
+                observedTiles++;
+                road.addObserver(this);
+            }
+        }
     }
 
     /**
-     * fires the main.java.main.java.tower, override by subclasses
-     * @return main.java.main.java.tower damage
+     * fires the tower, override by subclasses
      */
-    public void fire(){}
+    public void fire(){
+        targets.clear();
+    }
 
     /**
-     * Get main.java.main.java.tower range
-     * @return main.java.main.java.tower range
+     * Get tower range
+     * @return tower range
      */
     public int getRange() {
         return range;
     }
 
     /**
-     * main.java.main.java.helpers.Position of the main.java.main.java.tower
-     * @return main.java.main.java.tower position
+     * mainers.Position of the mainr
+     * Position of the tower
+     * @return tower position
      */
     public Position getPos() {
         return pos;
     }
 
     /**
-     * Set the main.java.main.java.tower position
-     * @param pos a new main.java.main.java.tower position
+     * Set the tower position
+     * @param pos a new tower position
      */
     public void setPos(Position pos) {
         this.pos = pos;
@@ -86,24 +102,15 @@ public class Tower implements Observer {
                 NEPos = addNeighbour(NEPos.getPosToNorthEast());
             }
         }
-        //North South West East * range
-            //for each step in range:
-                //North step range - 1:
-                    //SW
-                    //SE
-                //South step range - 1:
-                    //NW
-                    //NE
-
     }
 
     /**
      * Adds the position to the neighbours list if it is in range
-     * @param pos the position that will be added
+     * @param pos the tile position that will be added
      * @return the position
      */
     private Position addNeighbour(Position pos) {
-        if (!pos.outOfRange()) {
+        if (pos.inRange()) {
             neighbours.add(pos);
         }
         return pos;
@@ -113,9 +120,13 @@ public class Tower implements Observer {
         return neighbours.size();
     }
 
+    public int getObservedTiles() {
+        return observedTiles;
+    }
+
     @Override
     public void update(Observable o, Object arg) {
-        targets.add((Trooper) arg);
+        targets.addAll((ArrayList<Trooper>) arg);
     }
 
     public boolean inRange(Position position) {

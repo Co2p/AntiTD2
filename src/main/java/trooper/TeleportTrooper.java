@@ -1,9 +1,9 @@
-package main.java.trooper;
+package trooper;
 
-import main.java.tile.RoadTile;
-import main.java.tile.Tile;
-import main.java.helpers.Direction;
-import main.java.helpers.Position;
+import tile.RoadTile;
+import tile.Tile;
+import helpers.Direction;
+import helpers.Position;
 
 import java.util.Hashtable;
 
@@ -20,7 +20,7 @@ public class TeleportTrooper extends Trooper{
     }
 
     /**
-     * places a portal on current main.java.main.java.tile.RoadTile which teleports troopers to a main.java.main.java.tile
+     * places a portal on current Game.main.RoadTile which teleports troopers to a Game.main
      * five steps further ahead.
      * @param preferred -
      */
@@ -28,7 +28,7 @@ public class TeleportTrooper extends Trooper{
         RoadTile portalPlacement = (RoadTile) map.get(getPosition());
         int portalsteps = 5;
         for(int i = 0; i < portalsteps; i++) {
-            move(map,preferred);
+            forceMove(map,preferred);
             if (isReverse()) {
                 i--;
             }

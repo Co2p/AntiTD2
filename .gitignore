@@ -1,6 +1,14 @@
-
-*.iml
-.idea/*
-out/*
+# Created by .ignore support plugin (hsz.mobi)
+.gradle/
+.idea/
 *.ipr
 *.iws
+*.iml
+build.gradle
+build/
+gradle/
+gradlew
+gradlew.bat
+settings.gradle
+*.class
+
