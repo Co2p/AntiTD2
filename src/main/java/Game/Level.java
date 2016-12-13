@@ -1,5 +1,7 @@
 package Game;
 
+import java.lang.reflect.Method;
+
 /**
  * Created by Daniel on 2016-12-05.
  */
@@ -13,6 +15,10 @@ public class Level {
     private String className;
     private String classPath;
     public String map;
+    private Method landOn;
+    private Object zone;
+    private int rows;
+    private int columns;
 
     public String getErrorMessage() {
         return errorMessage;
@@ -94,5 +100,37 @@ public class Level {
 
     public void setMap(String map) {
         this.map = map;
+    }
+
+    public Method getLandOn() {
+        return landOn;
+    }
+
+    public void setLandOn(Method landOn) {
+        this.landOn = landOn;
+    }
+
+    public Object getZone() {
+        return zone;
+    }
+
+    public void setZone(Object zone) {
+        this.zone = zone;
+    }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public void setRows(int rows) {
+        this.rows = rows;
+    }
+
+    public int getColumns() {
+        return columns;
+    }
+
+    public void setColumns(int columns) {
+        this.columns = columns;
     }
 }
