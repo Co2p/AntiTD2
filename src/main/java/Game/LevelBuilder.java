@@ -44,14 +44,14 @@ public class LevelBuilder {
         level.setUnitsToWin(levelParser.getUnitsToWin().get(i));
         level.setTowerSpawnRate(levelParser.getTowerSpawnRate().get(i));
         if(levelParser.getClassName().get(i) != null) {
-            if (zoneLoader.loadZone(levelParser.getClassName().get(i))) {
-                level.setZone(zoneLoader.getZone());
-                level.setLandOn(zoneLoader.getLandOn());
-            }
+//            if (zoneLoader.loadZone(levelParser.getClassName().get(i))) {
+//                //level.setZone(zoneLoader.getZone());
+//                //level.setLandOn(zoneLoader.getLandOn());
+//            }
         }
         level.setMap(stringArrayToString(levelParser.getMap().get(i)));
-        level.setColumns(levelParser.getColumns().get(i));
-        level.setRows(levelParser.getRows().get(i));
+        //level.setColumns(levelParser.getColumns().get(i));
+       // level.setRows(levelParser.getRows().get(i));
         return level;
     }
 

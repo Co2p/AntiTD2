@@ -1,6 +1,6 @@
 package trooper;
 
-import Game.Game;
+import Game.*;
 import Game.GameContainer;
 import helpers.Translator;
 import javafx.geometry.Pos;
