@@ -35,16 +35,24 @@ public class TeleportTrooper extends Trooper{
     public void placePortal(Direction preferred) {
         if (hasTeleport) {
             hasTeleport = false;
+            boolean portalPlaced = false;
             RoadTile portalPlacement = null;
             int portalsteps = 5;
             for (int i = 0; i < portalsteps; i++) {
-                if (i ==1){
+                if (i ==1 && !isReverse() && !portalPlaced){
                     portalPlacement = (RoadTile) map.get(getPosition());
+                    portalPlaced = true;
                 }
                 RoadTile road = forceMove(map, preferred);
-                pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
                 if (isReverse()) {
+                    if(!portalPlaced) {
+                        portalPlacement = (RoadTile) map.get(getPosition());
+                        System.out.println("plaserade en portal på " + getPosition().toString());
+                        portalPlaced = true;
+                    }
                     i--;
+                }else {
+                    pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
                 }
             }
             setSemiStep(0);

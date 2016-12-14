@@ -50,7 +50,7 @@ public class Defense {
     public Position createTower() {
         Random rand = new Random();
         Position pos = null;
-        if(rand.nextInt(100) + 1 <= spawnRate) {
+        if(rand.nextInt(1000) + 1 <= spawnRate) {
             int towerPlacement;
             if (towerMap.size() > 1) {
                 towerPlacement = rand.nextInt(towerMap.size());

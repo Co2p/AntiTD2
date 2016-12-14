@@ -142,7 +142,12 @@ public class Army {
     }
 
     public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
-        for (Trooper t: army) {
+        ArrayList<Trooper> armyReverse = new ArrayList<>();
+
+        for(int i = army.size()-1; i>=0; i--){
+            armyReverse.add(army.get(i));
+        }
+        for (Trooper t: armyReverse) {
             if(!t.isDead()) {
 
                 //Translate trooper position from 1:0 to square positions.
