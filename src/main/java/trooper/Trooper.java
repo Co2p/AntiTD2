@@ -164,6 +164,10 @@ public class Trooper {
         return semiStep;
     }
 
+    public void setSemiStep(int semiStep) {
+        this.semiStep = semiStep;
+    }
+
     /**
 <<<<<<< HEAD
      * Set the speed of the mainper
@@ -287,7 +291,7 @@ public class Trooper {
 
             //Find out nexposition
             if(semiStep == 0) {
-                road2 = (RoadTile) forceMove(map_hashTable, preferred);
+                road2 = (RoadTile)forceMove(map_hashTable, preferred);
                 nextPosition = road2.getPosition();
             }
             if(!firstStep) {
@@ -297,6 +301,7 @@ public class Trooper {
             }
             return road;
         } else {
+            System.out.println("forcemove");
              road = forceMove(map_hashTable, preferred);
             //position=road.getPosition();
             position = nextPosition;

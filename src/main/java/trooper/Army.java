@@ -148,20 +148,12 @@ public class Army {
 
                 int x = t.getGraphicPosition().getX();
                 int y = t.getGraphicPosition().getY();
-                System.out.println("X start =" +x);
-                System.out.println("Y start =" +y);
-
-                System.out.println("semistep is : " + t.getSemiStep());
 
                 if (t.getSemiStep() == 0) {
                     x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
                     y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
-
-                    System.out.println("X from logic =" + x);
-                    System.out.println("Y from logic =" + y);
                     t.setGraphicPosition(new Position(x, y));
                 }else {
-
                     Direction direction = t.getDirection();
                     switch (direction) {
                         case NORTH:
@@ -172,9 +164,6 @@ public class Army {
                         case SOUTH:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
                             y = y + value;
-
-                            System.out.println("X from graphics =" + x);
-                            System.out.println("Y from graphics =" + y);
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case EAST:
@@ -185,8 +174,6 @@ public class Army {
                         case WEST:
                             value = Math.round(Translator.squareSize / t.getstepDelay());
                             x = x - value;
-                            System.out.println("X from graphics =" + x);
-                            System.out.println("Y from graphics =" + y);
                             t.setGraphicPosition(new Position(x, y));
                             break;
                     }
@@ -211,11 +198,6 @@ public class Army {
                     }
                     drawHpBar(g, x, y, t);
                 }
-                System.out.println("Draw");
-            }
-
-            else {
-
             }
         }
     }
@@ -246,7 +228,7 @@ public class Army {
         g.fillRect(x,y-3,(int)greenBarWidth,5);
         g.setColor(Color.yellow);
         g.fillRect(x,y-3,(int)yellowBarWidth,5);
-        g.drawString(t.getDirection().toString(),x,y);
+       // g.drawString(t.getDirection().toString(),x,y);
     }
 
 

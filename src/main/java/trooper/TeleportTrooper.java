@@ -1,5 +1,6 @@
 package trooper;
 
+import Game.GameContainer;
 import tile.RoadTile;
 import tile.Tile;
 import helpers.Direction;
@@ -31,6 +32,7 @@ public class TeleportTrooper extends Trooper{
      */
     public void placePortal(Direction preferred) {
         RoadTile portalPlacement = (RoadTile) map.get(getPosition());
+        //setSemiStep(0);
         int portalsteps = 5;
         for(int i = 0; i < portalsteps; i++) {
             forceMove(map,preferred);
@@ -38,7 +40,9 @@ public class TeleportTrooper extends Trooper{
                 i--;
             }
         }
-
+        setSemiStep(0);
+        //TODO FIX THIS MOVE!
+        setGraphicPosition(GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
         portalPlacement.setPortal((RoadTile)map.get(getPosition()));
     }
 
