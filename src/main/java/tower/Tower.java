@@ -133,7 +133,9 @@ public class Tower implements Observer {
      */
     @Override
     public void update(Observable o, Object arg) {
-        targets.addAll((ArrayList<Trooper>) arg);
+        ArrayList<Trooper> tmp = (ArrayList<Trooper>) arg;
+        targets.addAll(tmp);
+        tmp.clear();
     }
 
     /**

@@ -352,9 +352,8 @@ public class Trooper {
             reverse = false;
         }
         pathDirection.add(getOppociteDirection(direction));
-
+        System.out.println("path size: "+path.size()+" direction size: "+pathDirection.size());
         if(nextPosition == null || reverse) {
-
             System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
 
             path.pop();
