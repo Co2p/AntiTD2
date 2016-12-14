@@ -31,7 +31,7 @@ public class LaserTower extends Tower {
     public void fire() {
         setFocusedTarget();
         if ( focusTarget != null && inRange(focusTarget.getPosition())  &&
-                !focusTarget.isDead()) {
+                !focusTarget.isDead() && !focusTarget.getReachedGoal()) {
             //TODO REMOVE SOUT!
             System.out.println("Fired!");
             focusTarget.receiveDamage(damage);
