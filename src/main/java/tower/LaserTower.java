@@ -13,6 +13,7 @@ import java.util.Hashtable;
  */
 public class LaserTower extends Tower {
     private Trooper focusTarget;
+    private Position graphicPosition = new Position(0,0);
 
     /**
      * Constructs a new LaserTower
@@ -56,5 +57,20 @@ public class LaserTower extends Tower {
      */
     public Trooper getFocusTarget() {
         return focusTarget;
+    }
+
+    public boolean hasFocusTarget(){
+        if(focusTarget != null){
+            return true;
+        }
+        return false;
+    }
+
+    public Position getGraphicPosition(){
+        return graphicPosition;
+    }
+
+    public void setGraphicPosition(Position position){
+        graphicPosition = position;
     }
 }

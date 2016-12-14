@@ -292,7 +292,9 @@ public class Trooper {
             //Find out nexposition
             if(semiStep == 0) {
                 road2 = (RoadTile)forceMove(map_hashTable, preferred);
+                System.out.println(road2.getPosition().toString());
                 nextPosition = road2.getPosition();
+
             }
             if(!firstStep) {
                 semiStep++;
@@ -320,15 +322,11 @@ public class Trooper {
      * @param preferred preferred direction of the army
      */
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
-        System.out.println("forcemove");
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
         for (Object o : possibleMovesTable.values()) {
             RoadTile tile = (RoadTile)o;
         }
-
-        path.add(position);
-        visited.add(position);
         if (preferred == direction &&
                 possibleMovesTable.containsKey(position.getPosToDirection(direction)) &&
                 !visited.contains(position.getPosToDirection(direction))){
@@ -351,10 +349,12 @@ public class Trooper {
             nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
+        path.add(position);
+        visited.add(position);
         pathDirection.add(getOppociteDirection(direction));
         System.out.println("path size: "+path.size()+" direction size: "+pathDirection.size());
         if(nextPosition == null || reverse) {
-            System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
+            System.out.print("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
 
             path.pop();
             pathDirection.pop();
@@ -362,7 +362,7 @@ public class Trooper {
             position = path.peek();
             path.pop();
 
-            System.out.println("Till "+ position.toString());
+            System.out.println(" Till "+ position.toString());
             nextPosition = position;
 
             if(!reverse){
@@ -421,5 +421,9 @@ public class Trooper {
         else nextPosition=null;
 
         return nextPosition;
+    }
+
+    public Stack<Position> getPath() {
+        return path;
     }
 }
