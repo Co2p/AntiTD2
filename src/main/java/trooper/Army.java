@@ -228,7 +228,7 @@ public class Army {
         g.fillRect(x,y-3,(int)greenBarWidth,5);
         g.setColor(Color.yellow);
         g.fillRect(x,y-3,(int)yellowBarWidth,5);
-       // g.drawString(t.getDirection().toString(),x,y);
+        g.drawString(t.getDirection().toString(),x,y);
     }
 
 
