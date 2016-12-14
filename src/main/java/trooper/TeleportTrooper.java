@@ -1,7 +1,5 @@
 package trooper;
 
-//TODO Kan inte placera portal under backtrace!
-
 import Game.GameContainer;
 import tile.RoadTile;
 import tile.Tile;
