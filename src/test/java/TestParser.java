@@ -1,8 +1,8 @@
 import helpers.ErrorMessages;
+import helpers.LevelParser;
 import org.junit.Before;
 import org.junit.Test;
 
-import helpers.DOMParser;
 import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertFalse;
 
@@ -11,12 +11,12 @@ import static org.junit.Assert.assertFalse;
  */
 public class TestParser {
 
-    private DOMParser parser;
+    private LevelParser parser;
     private String xmlFile = "test.xml";
 
     @Before
     public void createParser() {
-        parser = new DOMParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
+        parser = new LevelParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
     }
 
     @Test
@@ -47,11 +47,6 @@ public class TestParser {
     @Test
     public void emptyTowers() {
         assertEquals(0,parser.getTowerSpawnRate().size());
-    }
-
-    @Test
-    public void emptyTime() {
-        assertEquals(0,parser.getTimeLimit().size());
     }
 
     @Test
@@ -113,13 +108,6 @@ public class TestParser {
         parser.parseFile(xmlFile);
         assertEquals(2,parser.getTowerSpawnRate().size());
         assertEquals((Integer) 25,parser.getTowerSpawnRate().get(0));
-    }
-
-    @Test
-    public void getTimeAfterParse() {
-        parser.parseFile(xmlFile);
-        assertEquals(2,parser.getTimeLimit().size());
-        assertEquals((Integer) 2,parser.getTimeLimit().get(0));
     }
 
     @Test

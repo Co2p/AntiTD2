@@ -119,7 +119,8 @@ public class Position {
      */
     public Position getPosToSouth(){
         Position p = new Position(this.x,this.y);
-        p.setX(this.x+1);
+        p.setY(this.y+1);
+       // p.setX(this.x+1);
         return p;
     }
 
@@ -129,7 +130,8 @@ public class Position {
      */
     public Position getPosToNorth(){
         Position p = new Position(this.x,this.y);
-        p.setX(this.x-1);
+        //p.setX(this.x-1);
+        p.setY(this.y-1);
         return p;
     }
 
@@ -139,7 +141,8 @@ public class Position {
      */
     public Position getPosToWest(){
         Position p = new Position(this.x,this.y);
-        p.setY(this.y-1);
+        p.setX(this.x-1);
+        //p.setY(this.y-1);
         return p;
     }
 
@@ -149,7 +152,8 @@ public class Position {
      */
     public Position getPosToEast(){
         Position p = new Position(this.x,this.y);
-        p.setY(this.y+1);
+        p.setX(this.x+1);
+        //p.setY(this.y+1);
         return p;
     }
 

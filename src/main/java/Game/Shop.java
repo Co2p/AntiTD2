@@ -1,6 +1,9 @@
-
+package Game;
 
 import java.awt.*;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import helpers.*;
 import trooper.*;
 
@@ -16,11 +19,13 @@ public class Shop {
     public int smallSpace = 3;
     public int largeSpace = 60;
 
+
     //Maybe this stats should not be declaired inside of the shop.
     private long noOfCredits = 0;
-    private int timeLimit = 0;
+    private int time = 0;
     private int unitsToWin = 0;
     private Army army;
+    private Timer timer;
 
     public ShopButton[] buttons;
     public ShopButton[] statsElements;
@@ -35,6 +40,8 @@ public class Shop {
         this.army=army;
         buttons = new ShopButton[noOfButtons];
         statsElements = new ShopButton[noOfElements];
+        timer = new Timer();
+        timer.scheduleAtFixedRate(new MyCounterTask(),0,1000);
         define();
 
     }
@@ -46,7 +53,6 @@ public class Shop {
 
         noOfCredits = Game.level.getCredits();
         unitsToWin = Game.level.getUnitsToWin();
-        timeLimit = Game.level.getTimeLimit();
 
         for (int i = 0; i <buttons.length ; i++) {
             buttons[i] = new ShopButton((Game.width/2) -
@@ -79,7 +85,6 @@ public class Shop {
 
         if(mouseButton ==1){
             for (int i = 0; i <buttons.length ; i++) {
-
                 //if click was registered on a button
                 if(buttons[i].contains(Game.mousePoint)){
                     int j = i +1;
@@ -90,25 +95,46 @@ public class Shop {
                         army.addToArmyQueue(TrooperType.PITIFUL);
 
                     }
-                    if(i == 1 && !(noOfCredits - Translator.armoredTrooperPrice < 0)){
+                    if(i == 1 && !(noOfCredits -
+                            Translator.armoredTrooperPrice < 0)){
                         noOfCredits -= Translator.armoredTrooperPrice;
                         army.addToArmyQueue(TrooperType.ARMORED);
                     }
-                    if(i == 2 && !(noOfCredits - Translator.teleporterPrice < 0)){
+                    if(i == 2 && !(noOfCredits -
+                            Translator.teleporterPrice < 0)){
                         noOfCredits -= Translator.teleporterPrice;
                         army.addToArmyQueue(TrooperType.TELEPORTER);
                     }
                     if(i==3){
-                        //trooper move.
+                        for (Trooper t:army.getArmy()) {
+                            if(t.getClass().equals(TeleportTrooper.class)){
+                                TeleportTrooper tp = (TeleportTrooper)t;
+                                if(tp.hasTeleport()) {
+                                    Game.air[t.getPosition().getX()][t.getPosition()
+                                            .getY()] = Translator.indexTeleportZone;
+                                    tp.placePortal(tp.getDirection());
+                                    Game.air[t.getPosition().getX()][t.getPosition()
+                                            .getY()] = Translator.indexTeleportZone;
+                                }
+                            }
+                        }
                     }
                     if(i==4){
-                        //setprefered left
+
+                        if(army != null && army.getPreferred() == null) {
+                            army.setPreferred(Direction.LEFT);
+                        }
+                        else if(army.getPreferred().equals(Direction.LEFT)){
+                            army.setPreferred(null);
+                        }
                     }
                     if(i==5){
-                        //set prefered right.
-                    }
-                    else{
-                        //SLUT PÅ CASH!
+                        if(army != null && army.getPreferred() == null) {
+                            army.setPreferred(Direction.RIGHT);
+                        }
+                        else if(army.getPreferred().equals(Direction.RIGHT)){
+                            army.setPreferred(null);
+                        }
                     }
                 }
             }
@@ -142,7 +168,7 @@ public class Shop {
             if(i == 0) {
                 statsElements[i].drawStats(gr, i + 6, (int) noOfCredits);
             }else if (i ==1){
-                statsElements[i].drawStats(gr, i + 6, timeLimit);
+                statsElements[i].drawStats(gr, i + 6, time);
             }else if( i == 2){
                 statsElements[i].drawStats(gr, i + 6, unitsToWin);
             }
@@ -152,4 +178,60 @@ public class Shop {
     public void subtractUnitsToWin(int unitsToWin) {
          this.unitsToWin -= unitsToWin;
     }
+
+    /**
+     * Refunds money depending on what type of trooper has reached the goal
+     * and if he had turned to a zombie or not. If the trooper was a zombie
+     * 200% will be refunded, if it was still human 100% will be refunded.
+     * @param t the trooper that reached goal.
+     */
+    public void refund(Trooper t) {
+        if(t.hasTurned()) {
+            if(ArmoredTrooper.class.isInstance(t)) {
+                noOfCredits = noOfCredits + (2 * Translator.armoredTrooperPrice);
+            } else if(PitifulTrooper.class.isInstance(t)) {
+                noOfCredits = noOfCredits + (2 * Translator.pitifullPrice);
+            } else if(TeleportTrooper.class.isInstance(t)) {
+                noOfCredits = noOfCredits + (2 * Translator.teleporterPrice);
+            }
+        } else {
+            if(ArmoredTrooper.class.isInstance(t)) {
+                noOfCredits = noOfCredits + Translator.armoredTrooperPrice;
+            } else if(PitifulTrooper.class.isInstance(t)) {
+                noOfCredits = noOfCredits + Translator.pitifullPrice;
+            } else if(TeleportTrooper.class.isInstance(t)) {
+                noOfCredits = noOfCredits + Translator.teleporterPrice;
+            }
+        }
+    }
+
+    public long getNoOfCredits() {
+        return noOfCredits;
+    }
+
+    public int getTime() {
+        return time;
+    }
+
+    class MyCounterTask extends TimerTask
+    {
+        int counter;
+
+        public MyCounterTask()
+        {
+            counter = 0;
+        }
+
+        public void run()
+        {
+            time = counter;
+            counter++;
+        }
+    }
+
+    public void stopTime() {
+        timer.cancel();
+        timer.purge();
+    }
 }
+

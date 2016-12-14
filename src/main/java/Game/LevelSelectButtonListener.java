@@ -1,4 +1,4 @@
-
+package Game;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,16 +14,18 @@ public class LevelSelectButtonListener implements ActionListener {
 
     private Frame frame;
     private Level level;
+    private Player player;
 
-    public LevelSelectButtonListener(Frame frame, Level level){
+    public LevelSelectButtonListener(Frame frame, Level level, Player player){
         super();
         this.frame = frame;
         this.level = level;
+        this.player = player;
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        frame.add(new Game(level), BorderLayout.CENTER);
+        frame.add(new Game(level, player), BorderLayout.CENTER);
         frame.setVisible(true);
     }
 }

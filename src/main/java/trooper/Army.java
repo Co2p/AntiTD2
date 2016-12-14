@@ -1,11 +1,16 @@
 package trooper;
 
+import Game.GameContainer;
 import helpers.Direction;
 import helpers.Position;
+import helpers.Translator;
 import tile.RoadTile;
 import tile.Tile;
+import Game.Square;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
@@ -17,31 +22,21 @@ public class Army {
     private int reachedGoal = 0;
     private Hashtable<Position, Tile> map;
     private Direction preferred;
-    private static int TELEPORTERHEALTH = 75;
-    private static int ARMOREDHEALTH = 150;
+    private static int TELEPORTERHEALTH = 750;
+    private static int ARMOREDHEALTH = 1500;
     private int armySize =0;
     private Position startPosition;
+    private ArrayList<Trooper> finished;
 
 
-    /**
-     * Constructor for the army object
-     * @param map the active map
-     * @param startPosition the position of the start tile
-     */
     public Army (Hashtable<Position, Tile> map, Position startPosition) {
         army = Collections.synchronizedList(new ArrayList<Trooper>());
         armyQueue = new LinkedList<>();
         this.map = map;
-        //TODO remove Print
         System.out.println("Map in constructor: " + map);
         this.startPosition = startPosition;
     }
 
-    /**
-     * Create a new trooper
-     * @param type the type of trooper that will be created
-     * @return A new trooper object
-     */
     public Trooper createTrooper(TrooperType type) {
 
         Trooper t = new Trooper();
@@ -54,7 +49,7 @@ public class Army {
                 t = new TeleportTrooper(TELEPORTERHEALTH, map);
                 break;
             case ARMORED:
-                ArmoredTrooper tp = new ArmoredTrooper(ARMOREDHEALTH, 1);
+                ArmoredTrooper tp = new ArmoredTrooper(ARMOREDHEALTH);
                 tp.setArmor(50);
                 t = tp;
                 break;
@@ -64,10 +59,6 @@ public class Army {
         return t;
     }
 
-    /**
-     * Adds a TrooperType Enum to the queue of troopers that will spawn
-     * @param tt a TrooperType that will be spawned
-     */
     public void addToArmyQueue(TrooperType tt) {
         armyQueue.add(tt);
     }
@@ -79,8 +70,16 @@ public class Army {
 
     public void updateArmy() {
         reachedGoal = 0;
+        finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
-            army.add(createTrooper(getFromQueue()));
+
+            //Set the troopers graphical position to match start in gamecontainer
+            int x = GameContainer.airSquares[startPosition.getX()][startPosition.getY()].getSquarePosition().getX();
+            int y = GameContainer.airSquares[startPosition.getX()][startPosition.getY()].getSquarePosition().getY();
+            Position p = new Position(x,y);
+            Trooper t = createTrooper(getFromQueue());
+            t.setGraphicPosition(p);
+            army.add(t);        //Add trooper to army
         }
         if(armySize > 0) {
             Iterator<Trooper> iterator = army.iterator();
@@ -88,12 +87,12 @@ public class Army {
                 Trooper trooper = iterator.next();
                 if (!trooper.isDead()) {
                     RoadTile road = trooper.move(map, preferred);
-                    System.out.println("Trooper "+trooper.getPosition());
                     road.landOn(trooper);
                     if (trooper.getReachedGoal()) {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
                         }
+                        finished.add(trooper);
                         iterator.remove();
                         armySize--;
                     }
@@ -139,4 +138,98 @@ public class Army {
     public int getReachedGoal() {
         return reachedGoal;
     }
+
+    public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
+        for (Trooper t: army) {
+            if(!t.isDead()) {
+
+                //Translate trooper position from 1:0 to square positions.
+                int value;
+
+                int x = t.getGraphicPosition().getX();
+                int y = t.getGraphicPosition().getY();
+
+                if (t.getSemiStep() == 0) {
+                    x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
+                    y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
+                    t.setGraphicPosition(new Position(x, y));
+                }else {
+                    Direction direction = t.getDirection();
+                    switch (direction) {
+                        case NORTH:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            y = y - value;
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                        case SOUTH:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            y = y + value;
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                        case EAST:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            x = x + value;
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                        case WEST:
+                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            x = x - value;
+                            t.setGraphicPosition(new Position(x, y));
+                            break;
+                    }
+                }
+
+                if (t.hasTurned()) {
+                    g.drawImage(square_air[Translator.indexZombie], x, y,
+                            null, null);
+                    drawHpBar(g,x,y,t);
+                } else {
+
+                    if(t.getClass().equals(PitifulTrooper.class)){
+                        g.drawImage(square_air[Translator.indexTrooper], x, y,
+                                null, null);
+                    }else if(t.getClass().equals(ArmoredTrooper.class)) {
+
+                        g.drawImage(square_air[Translator.indexArmoredTrooper], x, y,
+                                null, null);
+                    }else if (t.getClass().equals(TeleportTrooper.class)){
+                        g.drawImage(square_air[Translator.indexTeleporter], x, y,
+                                null, null);
+                    }
+                    drawHpBar(g, x, y, t);
+                }
+            }
+        }
+    }
+
+    public ArrayList<Trooper> getFinished() {
+        return finished;
+    }
+
+    public Direction getPreferred() {
+        return preferred;
+    }
+
+    public void drawHpBar(Graphics g, int x, int y, Trooper t){
+
+        float yellowBarWidth = 0;
+        float greenBarWidth = 0;
+
+        if(t.hasTurned()){
+            greenBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
+        }else{
+            yellowBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
+            greenBarWidth = Translator.squareSize;
+        }
+
+        g.setColor(Color.red);
+        g.fillRect(x,y-3,Translator.squareSize,5);
+        g.setColor(Color.green);
+        g.fillRect(x,y-3,(int)greenBarWidth,5);
+        g.setColor(Color.yellow);
+        g.fillRect(x,y-3,(int)yellowBarWidth,5);
+       // g.drawString(t.getDirection().toString(),x,y);
+    }
+
+
 }

@@ -30,10 +30,8 @@ public class LaserTower extends Tower {
     @Override
     public void fire() {
         setFocusedTarget();
-        //TODO REMOVE SOUT
-        System.out.println("Focustarget = " + focusTarget);
-        if (focusTarget != null && super.targets.contains(focusTarget) &&
-                !focusTarget.isDead()) {
+        if ( focusTarget != null && inRange(focusTarget.getPosition())  &&
+                !focusTarget.isDead() && !focusTarget.getReachedGoal()) {
             //TODO REMOVE SOUT!
             System.out.println("Fired!");
             focusTarget.receiveDamage(damage);
@@ -49,7 +47,7 @@ public class LaserTower extends Tower {
      */
     public void setFocusedTarget() {
         if(!targets.isEmpty() && focusTarget == null){
-            focusTarget = targets.get(targets.size() - 1);
+                focusTarget = targets.get(targets.size() - 1);
         }
     }
 

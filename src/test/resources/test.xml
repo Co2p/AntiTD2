@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <levellist>
-    <level name ="Level 1">
+    <level name ="Game.Level 1">
         <rules>
             <credits>1000</credits>
             <unitstowin>30</unitstowin>
             <towerspawnrate>25</towerspawnrate>
-            <timelimit>2</timelimit>
         </rules>
         <tile>className</tile>
         <map>
@@ -23,14 +22,13 @@
             <row>00000000G000</row>
         </map>
     </level>
-    <level name ="Level 2">
+    <level name ="Game.Level 2">
         <rules>
             <credits>1000</credits>
             <unitstowin>30</unitstowin>
             <towerspawnrate>25</towerspawnrate>
-            <timelimit>2</timelimit>
         </rules>
-        <tile className="className">imhere</tile>
+        <tile>className</tile>
         <map>
             <size>
                 <column>12</column>

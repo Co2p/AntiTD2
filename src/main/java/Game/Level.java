@@ -1,3 +1,5 @@
+package Game;
+
 import java.lang.reflect.Method;
 
 /**
@@ -10,10 +12,11 @@ public class Level {
     private int unitsToWin;
     int towerSpawnRate;
     private int timeLimit;
-    private Object zone;
-    private Method landOn;
+    private String className;
+    private String classPath;
     public String map;
-    private boolean gotLandOn;
+    private Method landOn;
+    private Object zone;
     private int rows;
     private int columns;
 
@@ -29,12 +32,10 @@ public class Level {
 
     public Level() {
         this.levelName = "Unknown";
-        gotLandOn = false;
     }
 
     public Level(String levelName) {
         this.levelName = levelName;
-        gotLandOn = false;
     }
 
     public String getLevelName() {
@@ -77,21 +78,20 @@ public class Level {
         this.timeLimit = timeLimit;
     }
 
-    public Object getZone() {
-        return zone;
+    public String getClassName() {
+        return className;
     }
 
-    public void setZone(Object zone) {
-        this.zone = zone;
-        gotLandOn = true;
+    public void setClassName(String className) {
+        this.className = className;
     }
 
-    public Method getLandOn() {
-        return landOn;
+    public String getClassPath() {
+        return classPath;
     }
 
-    public void setLandOn(Method landOn) {
-        this.landOn = landOn;
+    public void setClassPath(String classPath) {
+        this.classPath = classPath;
     }
 
     public String getMap() {
@@ -102,8 +102,20 @@ public class Level {
         this.map = map;
     }
 
-    public boolean gotLandon() {
-        return gotLandOn;
+    public Method getLandOn() {
+        return landOn;
+    }
+
+    public void setLandOn(Method landOn) {
+        this.landOn = landOn;
+    }
+
+    public Object getZone() {
+        return zone;
+    }
+
+    public void setZone(Object zone) {
+        this.zone = zone;
     }
 
     public int getRows() {

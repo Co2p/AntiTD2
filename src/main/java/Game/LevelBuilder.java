@@ -1,6 +1,6 @@
+package Game;
 
-
-import helpers.DOMParser;
+import helpers.LevelParser;
 import helpers.ErrorMessages;
 import helpers.ZoneLoader;
 
@@ -9,7 +9,7 @@ import helpers.ZoneLoader;
  */
 public class LevelBuilder {
 
-    private DOMParser levelParser;
+    private LevelParser levelParser;
     private ZoneLoader zoneLoader;
     private ErrorMessages errorMessages;
     private String fileName;
@@ -33,7 +33,7 @@ public class LevelBuilder {
     }
 
     private void setupParser(String fileName) {
-        levelParser = new DOMParser("src/main/resources/xml/levelSchema.xml",errorMessages);
+        levelParser = new LevelParser("src/main/resources/xml/levelSchema.xml",errorMessages);
         levelParser.parseFile(fileName);
     }
 
@@ -43,16 +43,15 @@ public class LevelBuilder {
         level.setCredits(levelParser.getCredits().get(i));
         level.setUnitsToWin(levelParser.getUnitsToWin().get(i));
         level.setTowerSpawnRate(levelParser.getTowerSpawnRate().get(i));
-        level.setTimeLimit(levelParser.getTimeLimit().get(i));
         if(levelParser.getClassName().get(i) != null) {
-            if (zoneLoader.loadZone(levelParser.getClassName().get(i))) {
-                level.setZone(zoneLoader.getZone());
-                level.setLandOn(zoneLoader.getLandOn());
-            }
+//            if (zoneLoader.loadZone(levelParser.getClassName().get(i))) {
+//                //level.setZone(zoneLoader.getZone());
+//                //level.setLandOn(zoneLoader.getLandOn());
+//            }
         }
         level.setMap(stringArrayToString(levelParser.getMap().get(i)));
-        level.setColumns(levelParser.getColumns().get(i));
-        level.setRows(levelParser.getRows().get(i));
+        //level.setColumns(levelParser.getColumns().get(i));
+       // level.setRows(levelParser.getRows().get(i));
         return level;
     }
 

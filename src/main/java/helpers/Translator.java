@@ -6,6 +6,8 @@ package helpers;
  */
 public class Translator {
 
+    public static int squareSize = 50;
+
     public static String mapRoad = "R";
     public static String mapGrass= "0";
     public static String mapGoal = "G";
@@ -14,8 +16,8 @@ public class Translator {
 
     public static int squareGrass = 0;
     public static int squareRoad = 1;
-    public static int squareStart = 2;
-    public static int squareGoal = 3;
+    public static int squareRoad2 = 2;
+    public static int squareRoad3 = 3;
     public static int squareTowerZone = 4;
 
 
@@ -29,7 +31,7 @@ public class Translator {
     public static int indexTeleporter = 6;
     public static int indexZombie = 7;
     public static int indexTower = 8;
-
+    public static int indexTeleportZone = 9;
     public static int pitifullPrice = 20;
     public static int armoredTrooperPrice = 40;
     public static int teleporterPrice = 100;

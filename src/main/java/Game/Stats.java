@@ -1,4 +1,4 @@
-
+package Game;
 
 /**
  * Created by andreas on 2016-11-30.
@@ -6,13 +6,13 @@
 public class Stats {
     private int time;
     private int creditsUsed;
-    private int totalTrooperCont;
+    private String playerName;
+    private String levelName;
 
 
     public Stats() {
         time=0;
         creditsUsed=0;
-        totalTrooperCont=0;
     }
 
     public int getCreditsused() {
@@ -23,12 +23,20 @@ public class Stats {
         this.creditsUsed = creditsused;
     }
 
-    public int getTotalTrooperCont() {
-        return totalTrooperCont;
+    public void setLevelName(String levelName) {
+        this.levelName = levelName;
     }
 
-    public void setTotalTrooperCont(int totalTrooperCont) {
-        this.totalTrooperCont = totalTrooperCont;
+    public String getLevelName() {
+        return levelName;
+    }
+
+    public void setPlayerName(String playerName) {
+        this.playerName = playerName;
+    }
+
+    public String getPlayerName() {
+        return playerName;
     }
 
     public int getTime() {

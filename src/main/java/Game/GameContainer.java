@@ -1,3 +1,4 @@
+package Game;
 
 import trooper.Army;
 import java.awt.*;
@@ -7,12 +8,18 @@ import java.awt.*;
  */
 public class GameContainer {
 
+
+    /**
+     *
+     * Column and Row count should be dynamic. depending on the map size.
+     *
+     * */
     public static int columnCount = 12;   //define number of columns
     public static int rowCount = 8;       //define numer of rows
     public static int squareSize = 50;   //change this to be dynamic (square size)
 
     private Square[][] backgroundSquares;    //Array containg the ground backgroundSquares
-    private Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
+    public static Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
 
     public GameContainer(){
         define();
@@ -20,7 +27,7 @@ public class GameContainer {
 
     public void define(){
 
-        //Setup the squares (Game pane) of the gui.
+        //Setup the squares (Game.Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
 
         airSquares = new Square[columnCount][rowCount];    //Setup the square array
@@ -41,6 +48,9 @@ public class GameContainer {
         }
 
     }
+    /*public void drawTower(Position p, Graphics gr){
+        airSquares[p.getX()][p.getY()].drawGraphics(, p.getX(), p.getY());
+    }*/
 
     public void draw(Graphics gr){
 
@@ -63,7 +73,9 @@ public class GameContainer {
 
     public void move(Army army){
 
+    }
 
-
+    public Square[][] getAirSquares() {
+        return airSquares;
     }
 }

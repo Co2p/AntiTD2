@@ -23,7 +23,7 @@ import java.util.ArrayList;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
-public class DOMParser {
+public class LevelParser {
 
     private DocumentBuilder parser;
     private XPath path;
@@ -35,7 +35,6 @@ public class DOMParser {
     private ArrayList<Long> credits = new ArrayList<>();
     private ArrayList<Integer> unitsToWin = new ArrayList<>();
     private ArrayList<Integer> towerSpawnRate = new ArrayList<>();
-    private ArrayList<Integer> timeLimit = new ArrayList<>();
     private ArrayList<String> className = new ArrayList<>();
     private ArrayList<String> classPath = new ArrayList<>();
     private ArrayList<String[]> map = new ArrayList<>();
@@ -45,7 +44,7 @@ public class DOMParser {
     /**
      * Setup the parser
      */
-    public DOMParser(String schemaFile, ErrorMessages errorMessage){
+    public LevelParser(String schemaFile, ErrorMessages errorMessage){
         this.errorMessage = errorMessage;
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
@@ -105,7 +104,6 @@ public class DOMParser {
         try {
 
             URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-            System.out.println(url);
             if(url != null) {
                 File f = new File(url.toURI());
                 if(f.exists() && !f.isDirectory()) {
@@ -147,9 +145,6 @@ public class DOMParser {
                             "/levellist/level["+(i+1)+"]/rules[1]" +
                                     "/towerspawnrate",doc)));
 
-                    timeLimit.add(i,Integer.parseInt(path.evaluate(
-                            "/levellist/level["+(i+1)+"]/rules[1]" +
-                                    "/timelimit",doc)));
 
                     columns.add(i,Integer.parseInt(path.evaluate(
                             "/levellist/level["+(i+1)+"]/map[1]" +
@@ -224,14 +219,6 @@ public class DOMParser {
      */
     public ArrayList<Integer> getTowerSpawnRate() {
         return towerSpawnRate;
-    }
-
-    /**
-     * Returns the time limit for this level
-     * @return the time limit
-     */
-    public ArrayList<Integer> getTimeLimit() {
-        return timeLimit;
     }
 
     /**

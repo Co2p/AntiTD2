@@ -1,5 +1,10 @@
 package trooper;
 
+import Game.*;
+import Game.GameContainer;
+import com.sun.org.apache.bcel.internal.generic.BREAKPOINT;
+import helpers.Translator;
+import javafx.geometry.Pos;
 import tile.*;
 
 import java.util.ArrayList;
@@ -14,27 +19,31 @@ public class Trooper {
     private int maxhealth;
     private int zombiehealth;
     private int health;
-    private int stepDelay = 2;
+    private int stepDelay = 25;
     private int semiStep = 0;
     private int zombiestepDelay;
     private boolean hasTurned = false;
     private boolean isDead = false;
     private Direction direction;
     private Position position = null;
+    private Position nextPosition = null;
+    public  Position graphicPosition = new Position(0,0);
+    private Stack<Direction> pathDirection = new Stack<>();
     private Stack<Position> path = new Stack<>();
     private ArrayList<Position> visited = new ArrayList<>();
     private boolean reverse = false;
     private boolean reachedGoal = false;
+    private boolean firstStep = true;
 
     /**
      * Default constructor, crates a mainper.PitifulTrooper
      */
     public Trooper(){
-        this.maxhealth=100;
-        this.zombiehealth=100;
-        this.health=100;
-        this.zombiestepDelay=(this.stepDelay/2);
-        this.direction = NORTH;
+        this.maxhealth=1000;
+        this.zombiehealth=1000;
+        this.health=1000;
+        this.zombiestepDelay=(this.stepDelay);
+        this.direction = EAST;
     }
 
     /**
@@ -45,22 +54,8 @@ public class Trooper {
         this.maxhealth=hp;
         this.zombiehealth=hp;
         this.health=hp;
-        this.zombiestepDelay=(this.stepDelay/2);
-        this.direction = NORTH;
-    }
-
-    /**
-     * A trooper that takes in hp and stepDelay values
-     * @param hp main.java.main.java.trooper hp
-     * @param stepDelay number of cycles before the trooper takes a steptrooper
-     */
-    public Trooper(int hp, int stepDelay){
-        this.maxhealth = hp;
-        this.health=hp;
-        this.stepDelay=stepDelay;
-        this.zombiehealth=hp;
-        this.zombiestepDelay=(this.stepDelay/2);
-        this.direction = NORTH;
+        this.zombiestepDelay=(this.stepDelay);
+        this.direction = EAST;
     }
 
     /**
@@ -90,13 +85,13 @@ public class Trooper {
      */
     public void receiveDamage(int removeHealth){
         if(!hasTurned) {
-            this.health = (this.health - removeHealth);
+            this.health = this.health - removeHealth;
             if(this.health < 1 ){
                 hasTurned = true;
             }
         }
         else{
-            this.zombiehealth = (this.zombiehealth - removeHealth);
+            this.zombiehealth = this.zombiehealth - removeHealth;
             if(this.zombiehealth < 1){
                 isDead = true;
             }
@@ -144,6 +139,10 @@ public class Trooper {
         }
     }
 
+    public int getMaxhealth(){
+        return maxhealth;
+    }
+
     /**
      * Set the health of the mainper
      * @param health health
@@ -161,9 +160,22 @@ public class Trooper {
         }
     }
 
+    public int getSemiStep(){
+        return semiStep;
+    }
+
+    public void setSemiStep(int semiStep) {
+        this.semiStep = semiStep;
+    }
+
     /**
-     * Set the stepDelay of the main.java.main.java.trooper
+<<<<<<< HEAD
+     * Set the speed of the mainper
+     * @param speed speed
+=======
+     * Set the stepDelay of the Game.main.java.Game.main.java.trooper
      * @param stepDelay stepDelay
+>>>>>>> master
      */
     public void setstepDelay(int stepDelay){
         this.stepDelay=stepDelay;
@@ -178,23 +190,54 @@ public class Trooper {
         return position;
     }
 
+
+    //TODO dessa två är nya. skapa tester
+    public Position getGraphicPosition(){
+        return graphicPosition;
+    }
+
+    public void setGraphicPosition(Position position){
+        graphicPosition = position;
+    }
+
+    public Position getNextPosition(){
+        return  nextPosition;
+    }
+
+    public void setNextPosition(Position p){
+        nextPosition = p;
+    }
+
     /**
-     * Sets the position of the trooper to position, avoid if the trooper is mooving using normal behaviour
+<<<<<<< HEAD
+     * Sets the position of the mainper to p
+=======
+     * Sets the position of the trooper to position
+     * Don't touch unless you are testing
+>>>>>>> master
      * @param position the position to set
      */
     public void setPosition(Position position) {
         this.position = position;
     }
 
-    /**
+    /*
+<<<<<<< HEAD:src/Game.main/java/trooper/Trooper.java
+     * @return true if the mainper has reached the goal
+=======
      * @return true if the trooper has reached the squareGoal
+>>>>>>> master:src/Trooper.java
      */
     public boolean getReachedGoal(){
         return reachedGoal;
     }
 
     /**
+<<<<<<< HEAD:src/Game.main/java/trooper/Trooper.java
+     * Sets that the mainper has reached the goal
+=======
      * Sets that the trooper has reached the squareGoal
+>>>>>>> master:src/Trooper.java
      */
     public void setReachedGoal() {
         reachedGoal = true;
@@ -232,22 +275,37 @@ public class Trooper {
 
 
     /**
+<<<<<<< HEAD
+     * Finds the next Game.main to move to and calls landOn for that Game.main
+=======
      * Takes a step every semiStep'th of the time that move is called
      * @param map_hashTable a map
      * @param preferred preferred direction for the army
      * @return the RoadTile that the trooper is on
      */
     public RoadTile move(Hashtable<Position, Tile> map_hashTable, Direction preferred) {
-        RoadTile road;
-        if (semiStep <= stepDelay) {
+        RoadTile road, road2;
+
+        if (semiStep < stepDelay-1) {
             road = (RoadTile) map_hashTable.get(position);
-            semiStep++;
+
+            //Find out nexposition
+            if(semiStep == 0) {
+                road2 = (RoadTile)forceMove(map_hashTable, preferred);
+                nextPosition = road2.getPosition();
+            }
+            if(!firstStep) {
+                semiStep++;
+            }else{
+                firstStep = false;
+            }
+            return road;
         } else {
-            road = forceMove(map_hashTable, preferred);
-            position=road.getPosition();
+             road = forceMove(map_hashTable, preferred);
+            //position=road.getPosition();
+            position = nextPosition;
             semiStep = 0;
         }
-
         return road;
     }
 
@@ -256,13 +314,19 @@ public class Trooper {
     }
 
     /**
-     * Finds the next main.java.main.java.tile to move to and calls landOn for that main.java.main.java.tile
+     * Finds the next Game.main.java.Game.main.java.tile to move to and calls landOn for that Game.main.java.Game.main.java.tile
+>>>>>>> master
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
      */
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
+        System.out.println("forcemove");
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
+        for (Object o : possibleMovesTable.values()) {
+            RoadTile tile = (RoadTile)o;
+        }
+
         path.add(position);
         visited.add(position);
         if (preferred == direction &&
@@ -287,19 +351,50 @@ public class Trooper {
             nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
-
+        pathDirection.add(getOppociteDirection(direction));
+        System.out.println("path size: "+path.size()+" direction size: "+pathDirection.size());
         if(nextPosition == null || reverse) {
             System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
-            reverse = true;
+
             path.pop();
+            pathDirection.pop();
+            direction = pathDirection.peek();
             position = path.peek();
             path.pop();
+
             System.out.println("Till "+ position.toString());
             nextPosition = position;
+
+            if(!reverse){
+                pathDirection.pop();
+            }
+            reverse = true;
+
         }
         RoadTile t = possibleMovesTable.get(nextPosition);
         setPosition(nextPosition);
         return t;
+    }
+
+    private Direction getOppociteDirection(Direction direction){
+
+        Direction d = null;
+
+        switch (direction){
+            case NORTH:
+                d = SOUTH;
+                break;
+            case SOUTH:
+                d = NORTH;
+                break;
+            case EAST:
+                d = WEST;
+                break;
+            case WEST:
+                d = EAST;
+                break;
+        }
+        return d;
     }
 
     /**
@@ -309,20 +404,22 @@ public class Trooper {
      */
     private Position getDefaultNextPosition(Hashtable<Position, RoadTile> possibleMovesTable) {
         Position nextPosition = null;
-        if (!visited.contains(position.getPosToNorth()) &&
-                possibleMovesTable.containsKey(position.getPosToNorth())) {
+        if (!visited.contains(position.getPosToNorth()) && possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
-        } else if (!visited.contains(position.getPosToEast()) &&
-                possibleMovesTable.containsKey(position.getPosToEast())) {
+            direction = NORTH;
+        } else if (!visited.contains(position.getPosToEast()) && possibleMovesTable.containsKey(position.getPosToEast())) {
             nextPosition = position.getPosToEast();
-        } else if (!visited.contains(position.getPosToSouth()) &&
-                possibleMovesTable.containsKey(position.getPosToSouth())) {
+            direction = EAST;
+        } else if (!visited.contains(position.getPosToSouth()) && possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
-        } else if (!visited.contains(position.getPosToWest()) &&
-                possibleMovesTable.containsKey(position.getPosToWest())) {
+            direction = SOUTH;
+        } else if (!visited.contains(position.getPosToWest()) && possibleMovesTable.containsKey(position.getPosToWest())) {
             nextPosition = position.getPosToWest();
+            direction = WEST;
         }
+
         else nextPosition=null;
+
         return nextPosition;
     }
 }

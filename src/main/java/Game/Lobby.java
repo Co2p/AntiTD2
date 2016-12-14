@@ -1,4 +1,4 @@
-
+package Game;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -22,7 +22,8 @@ public class Lobby {
     }
 
     private void setUpGUI() {
-        mainFrame = new JFrame();
+        mainFrame = new JFrame("Move Shoot Kill Repeat");
+        addJMenuBar(mainFrame);
         mainFrame.setSize(1080,720);
         buildNamePanel();
         mainFrame.addMouseListener(new ClickHandler());
@@ -32,6 +33,11 @@ public class Lobby {
 
     public void showGUI() {
         mainFrame.setVisible(true);
+    }
+
+    private void addJMenuBar(JFrame frame){
+        MenuBar menu = new MenuBar();
+        frame.setJMenuBar(menu.getMenuBar());
     }
 
     private void buildNamePanel() {
@@ -67,7 +73,7 @@ public class Lobby {
             selectLevelPanel.add(levelButton);
 
             levelButton.addActionListener(
-                    new LevelSelectButtonListener(mainFrame,levelArray.get(i)));
+                    new LevelSelectButtonListener(mainFrame,levelArray.get(i),player));
         }
 
         selectLevelPanel.add(instructionLabel);

@@ -1,13 +1,11 @@
-import java.util.ArrayList;
-import helpers.DOMParser;
 /**
  * Created by Alexander Nyström(dv15anm) on 30/11/2016.
  */
 
 //public class ParserTest {
 //    public static void main(String[] args) {
-//        DOMParser parser = null;
-//        parser = new DOMParser("src/main/resources/xml/levelSchema.xml");
+//        LevelParser parser = null;
+//        parser = new LevelParser("src/main/resources/xml/levelSchema.xml");
 //        parser.parseFile("xml/test.xml");
 //        if (parser.isError()) {
 //            System.out.println(parser.getErrorMessage().toString);
@@ -48,8 +46,8 @@ import helpers.DOMParser;
 //=======
 //public class ParserTest {
 //    public static void main (String[] args) {
-//        DOMParser parser = null;
-//        parser = new DOMParser("src/main/res/xml/levelSchema");
+//        LevelParser parser = null;
+//        parser = new LevelParser("src/main/res/xml/levelSchema");
 //        parser.parseFile("src/main/res/xml/test.xml");
 //        if (parser.isError()) {
 //            System.out.println(parser.getErrorMessage());
