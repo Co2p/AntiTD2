@@ -44,10 +44,10 @@ public class TestPosition {
     @Test
     public void testGetPosToDirection() {
         Position p = new Position(1, 1);
-        assertEquals(new Position(2,1), p.getPosToDirection(Direction.SOUTH));
-        assertEquals(new Position(0,1), p.getPosToDirection(Direction.NORTH));
-        assertEquals(new Position(1,0), p.getPosToDirection(Direction.WEST));
-        assertEquals(new Position(1,2), p.getPosToDirection(Direction.EAST));
+        assertEquals(new Position(1,2), p.getPosToDirection(Direction.SOUTH));
+        assertEquals(new Position(1,0), p.getPosToDirection(Direction.NORTH));
+        assertEquals(new Position(0,1), p.getPosToDirection(Direction.WEST));
+        assertEquals(new Position(2,1), p.getPosToDirection(Direction.EAST));
     }
 
     /**
@@ -61,8 +61,8 @@ public class TestPosition {
         p = p.getPosToWest();
         x=p.getX();
         y=p.getY();
-        assertEquals(x,1);
-        assertEquals(y,0);
+        assertEquals(x,0);
+        assertEquals(y,1);
     }
 
     /**
@@ -76,8 +76,8 @@ public class TestPosition {
         p = p.getPosToEast();
         x=p.getX();
         y=p.getY();
-        assertEquals(1,x);
-        assertEquals(2,y);
+        assertEquals(2,x);
+        assertEquals(1,y);
     }
 
     @Test
@@ -105,8 +105,8 @@ public class TestPosition {
         p = p.getPosToNorth();
         x=p.getX();
         y=p.getY();
-        assertEquals(x,0);
-        assertEquals(y,1);
+        assertEquals(1, x);
+        assertEquals(0, y);
     }
 
     /**
@@ -120,8 +120,8 @@ public class TestPosition {
         p = p.getPosToSouth();
         x=p.getX();
         y=p.getY();
-        assertEquals(x,2);
-        assertEquals(y,1);
+        assertEquals(1, x);
+        assertEquals(2, y);
     }
 
     /**

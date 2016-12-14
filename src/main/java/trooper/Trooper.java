@@ -292,9 +292,7 @@ public class Trooper {
             //Find out nexposition
             if(semiStep == 0) {
                 road2 = (RoadTile)forceMove(map_hashTable, preferred);
-                System.out.println(road2.getPosition().toString());
                 nextPosition = road2.getPosition();
-
             }
             if(!firstStep) {
                 semiStep++;
@@ -352,9 +350,8 @@ public class Trooper {
         path.add(position);
         visited.add(position);
         pathDirection.add(getOppociteDirection(direction));
-        System.out.println("path size: "+path.size()+" direction size: "+pathDirection.size());
         if(nextPosition == null || reverse) {
-            System.out.print("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
+            System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
 
             path.pop();
             pathDirection.pop();
@@ -362,7 +359,7 @@ public class Trooper {
             position = path.peek();
             path.pop();
 
-            System.out.println(" Till "+ position.toString());
+            System.out.println("Till "+ position.toString());
             nextPosition = position;
 
             if(!reverse){
@@ -376,7 +373,7 @@ public class Trooper {
         return t;
     }
 
-    private Direction getOppociteDirection(Direction direction){
+    public Direction getOppociteDirection(Direction direction){
 
         Direction d = null;
 
@@ -423,7 +420,8 @@ public class Trooper {
         return nextPosition;
     }
 
-    public Stack<Position> getPath() {
-        return path;
+    public void pushToBackTrack(Position pos, Direction dir) {
+        path.push(pos);
+        pathDirection.push(dir);
     }
 }
