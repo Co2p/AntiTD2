@@ -18,89 +18,90 @@ public class TestTrooper {
 
     @Test
     public void TestCreateTrooper(){
-        Trooper t = new Trooper(10,1);
-        assertEquals(t.getHealth(),10);
-        assertEquals(t.getstepDelay(), 1);
+        Trooper t = new Trooper();
+        assertEquals(1000, t.getHealth());
+        assertEquals(25, t.getstepDelay());
     }
 
     @Test
     public void TestCreateTrooperOnlyHp(){
         Trooper t = new Trooper(10);
-        assertEquals(t.getHealth(),10);
-        assertEquals(t.getstepDelay(), 2);
+        assertEquals(10, t.getHealth());
+        assertEquals(25, t.getstepDelay());
     }
 
     @Test
     public void TestRecieveHealth(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.receiveDamage(4);
-        assertEquals(t.getHealth(),6);
+        assertEquals(996, t.getHealth());
         t.receiveHealth(2);
-        assertEquals(t.getHealth(), 8);
+        assertEquals(998, t.getHealth());
         t.receiveHealth(4);
-        assertEquals(t.getHealth(), 10);
+        assertEquals(1000, t.getHealth());
     }
 
     @Test
     public void TestDecrementHp(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.receiveDamage(2);
-        assertEquals(t.getHealth(), 8);
+        assertEquals(t.getHealth(), 998);
     }
 
     @Test
     public void TestSetDirection(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.setDirection(Direction.SOUTH);
         assertEquals(Direction.SOUTH, t.getDirection());
     }
 
     @Test
     public void TestSetSpeed(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.setstepDelay(2);
         assertEquals(2, t.getstepDelay());
     }
 
     @Test
     public void TestTakingFatalDamage(){
-        Trooper t = new Trooper(10,1);
-        t.receiveDamage(11);
-        t.receiveDamage(11);
+        Trooper t = new Trooper();
+        t.receiveDamage(1001);
+        t.receiveDamage(1001);
         assertTrue(t.isDead());
     }
 
     @Test
     public void TestIsZombieWithFullHealth(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.receiveDamage(11);
         assertFalse(t.isDead());
-        assertEquals(10,t.getHealth());
+        assertEquals(989,t.getHealth());
     }
 
     //TODO redo the tests
     @Test
     public void TestArmorSaveHuman(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.receiveDamage(11);
         assertFalse(t.isDead());
-        assertEquals(1,t.getHealth());
+        assertEquals(989,t.getHealth());
     }
 
 //TODO removed setArmor that does not exist anymore
     @Test
     public void TestIsDeadWithArmor(){
-        Trooper t = new Trooper(10,1);
-        t.receiveDamage(20);
-        t.receiveDamage(11);
-        assertEquals(1,t.getHealth());
+        Trooper t = new ArmoredTrooper(10, 2);
+        t.receiveDamage(12);
+        assertTrue(t.hasTurned());
+        t.receiveDamage(10);
+        assertEquals(0, t.getHealth());
         t.receiveDamage(4);
         assertTrue(t.isDead());
     }
 
     @Test
     public void TestSetHp(){
-        Trooper t = new Trooper(10,1);
+        Trooper t = new Trooper();
         t.setHealth(-2);
         assertEquals(t.getHealth(), -2);
     }
@@ -144,10 +145,10 @@ public class TestTrooper {
         RoadTile rt = pt.move(map, Direction.NORTH);
         assertEquals(new Position(0,1), rt.getPosition());
         rt = pt.move(map, Direction.NORTH);
-        assertEquals(new Position(0,1), rt.getPosition());
-        rt = pt.move(map, Direction.NORTH);
-        assertEquals(new Position(0,1), rt.getPosition());
-        rt = pt.move(map, Direction.NORTH);
         assertEquals(new Position(1,1), rt.getPosition());
+        rt = pt.move(map, Direction.NORTH);
+        assertEquals(new Position(2,1), rt.getPosition());
+        rt = pt.move(map, Direction.NORTH);
+        assertEquals(new Position(2,1), rt.getPosition());
     }
 }
