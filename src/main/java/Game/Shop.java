@@ -109,11 +109,13 @@ public class Shop {
                         for (Trooper t:army.getArmy()) {
                             if(t.getClass().equals(TeleportTrooper.class)){
                                 TeleportTrooper tp = (TeleportTrooper)t;
-                                Game.air[t.getPosition().getX()][t.getPosition()
-                                        .getY()] = Translator.indexTeleportZone;
-                                tp.placePortal(tp.getDirection());
-                                Game.air[t.getPosition().getX()][t.getPosition()
-                                        .getY()] = Translator.indexTeleportZone;
+                                if(tp.hasTeleport()) {
+                                    Game.air[t.getPosition().getX()][t.getPosition()
+                                            .getY()] = Translator.indexTeleportZone;
+                                    tp.placePortal(tp.getDirection());
+                                    Game.air[t.getPosition().getX()][t.getPosition()
+                                            .getY()] = Translator.indexTeleportZone;
+                                }
                             }
                         }
                     }

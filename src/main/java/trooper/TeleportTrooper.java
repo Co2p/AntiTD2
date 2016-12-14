@@ -14,6 +14,7 @@ import java.util.Hashtable;
 public class TeleportTrooper extends Trooper{
 
     private Hashtable<Position, Tile> map;
+    private boolean hasTeleport;
 
     /**
      * Constructs a teleporttrooper
@@ -23,6 +24,7 @@ public class TeleportTrooper extends Trooper{
     public TeleportTrooper(int hp, Hashtable<Position,Tile> map) {
         super(hp);
         this.map = map;
+        hasTeleport = true;
     }
 
     /**
@@ -31,21 +33,26 @@ public class TeleportTrooper extends Trooper{
      * @param preferred -
      */
     public void placePortal(Direction preferred) {
-        RoadTile portalPlacement = (RoadTile) map.get(getPosition());
-        //setSemiStep(0);
-        int portalsteps = 5;
-        RoadTile road;
-        for(int i = 0; i < portalsteps; i++) {
-            road = forceMove(map,preferred);
-            pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
-            if (isReverse()) {
-                i--;
+        if (hasTeleport) {
+            hasTeleport = false;
+            RoadTile portalPlacement = (RoadTile) map.get(getPosition());
+            //setSemiStep(0);
+            int portalsteps = 5;
+            for (int i = 0; i < portalsteps; i++) {
+                RoadTile road = forceMove(map, preferred);
+                pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
+                if (isReverse()) {
+                    i--;
+                }
             }
+            setSemiStep(0);
+            //TODO FIX THIS MOVE!
+            setGraphicPosition(GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
+            portalPlacement.setPortal((RoadTile) map.get(getPosition()),map);
         }
-        setSemiStep(0);
-        //TODO FIX THIS MOVE!
-        setGraphicPosition(GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
-        portalPlacement.setPortal((RoadTile)map.get(getPosition()),map);
     }
 
+    public boolean hasTeleport() {
+        return hasTeleport;
+    }
 }
