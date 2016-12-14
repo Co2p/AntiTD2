@@ -301,7 +301,6 @@ public class Trooper {
             }
             return road;
         } else {
-            System.out.println("forcemove");
              road = forceMove(map_hashTable, preferred);
             //position=road.getPosition();
             position = nextPosition;
@@ -321,6 +320,7 @@ public class Trooper {
      * @param preferred preferred direction of the army
      */
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
+        System.out.println("forcemove");
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
         for (Object o : possibleMovesTable.values()) {
