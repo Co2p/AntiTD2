@@ -13,13 +13,14 @@ public class Results {
 
     public Results() {
         creditsLeft =0;
+        time = LocalTime.of(0,0,0);
     }
 
-    public long getCreditsused() {
+    public long getCreditsUsed() {
         return creditsLeft;
     }
 
-    public void setCreditsused(long creditsused) {
+    public void setCreditsUsed(long creditsused) {
         this.creditsLeft = creditsused;
     }
 

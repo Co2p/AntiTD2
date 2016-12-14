@@ -47,14 +47,15 @@ public class TestPlayer {
         assertEquals(p.getName(), "NewName");
     }
 
-    @Test
-    public void TestPlayerResults(){
-        Player p = new Player();
-        Results r = new Results();
-        p.setResult(r);
-        assertEquals(p.getResult().getTime(),0);
-        assertEquals(p.getResult().getCreditsUsed(),0);
-        assertEquals(p.getResult().getTotalTrooperCount(),0);
-        assertNotNull(p.getResult());
-    }
+    //TODO do we need this??
+//    @Test
+//    public void TestPlayerResults(){
+//        Player p = new Player();
+//        Results r = new Results();
+//        p.setResult(r);
+//        assertEquals(p.getResult().getTime(),0);
+//        assertEquals(p.getResult().getCreditsUsed(),0);
+//        assertEquals(p.getResult().getTotalTrooperCount(),0);
+//        assertNotNull(p.getResult());
+//    }
 }
