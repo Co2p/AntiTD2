@@ -11,7 +11,6 @@ import java.util.Objects;
 import helpers.Translator;
 import helpers.Position;
 import tower.Defense;
-import tower.LaserTower;
 import trooper.*;
 import tile.*;
 
@@ -135,7 +134,7 @@ public class Game extends JPanel implements Runnable {
             }
         }
         shop.stopTime();
-        results.setCreditsused(shop.getNoOfCredits());
+        results.setCreditsUsed(shop.getNoOfCredits());
         results.setLevelName(level.getLevelName());
         results.setTime(shop.getTime());
         player.setResult(results);
