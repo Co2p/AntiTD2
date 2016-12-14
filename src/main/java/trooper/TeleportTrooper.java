@@ -1,5 +1,7 @@
 package trooper;
 
+//TODO Kan inte placera portal under backtrace!
+
 import Game.GameContainer;
 import tile.RoadTile;
 import tile.Tile;
@@ -35,10 +37,12 @@ public class TeleportTrooper extends Trooper{
     public void placePortal(Direction preferred) {
         if (hasTeleport) {
             hasTeleport = false;
-            RoadTile portalPlacement = (RoadTile) map.get(getPosition());
-            //setSemiStep(0);
+            RoadTile portalPlacement = null;
             int portalsteps = 5;
             for (int i = 0; i < portalsteps; i++) {
+                if (i ==1){
+                    portalPlacement = (RoadTile) map.get(getPosition());
+                }
                 RoadTile road = forceMove(map, preferred);
                 pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
                 if (isReverse()) {
@@ -46,7 +50,6 @@ public class TeleportTrooper extends Trooper{
                 }
             }
             setSemiStep(0);
-            //TODO FIX THIS MOVE!
             setGraphicPosition(GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
             portalPlacement.setPortal((RoadTile) map.get(getPosition()),map);
         }

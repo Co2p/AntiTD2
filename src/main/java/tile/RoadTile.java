@@ -65,7 +65,7 @@ public class RoadTile extends Tile implements Zone {
         } else if(portalExit != null) {
 //            t.setPosition(portalExit.getPosition());
 //            t.pushToBackTrack(portalExit.getPosition(),t.getDirection());
-            for (int i = 0; i < 6; i++) {
+            for (int i = 0; i < 5; i++) {
                 t.forceMove(map,t.getDirection());
                 t.pushToBackTrack(t.getPosition(),t.getOppociteDirection(t.getDirection()));
             }
