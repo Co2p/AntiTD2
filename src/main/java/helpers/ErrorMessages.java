@@ -323,23 +323,55 @@ public class ErrorMessages {
      */
     @Override
     public String toString() {
-        return "ErrorMessages{" +
-                "'" + saxException + '\'' +
-                "\n '" + parseConfigException + '\'' +
-                "\n '" + saxParsWarning + '\'' +
-                "\n '" + saxParsError + '\'' +
-                "\n '" + saxParsFatalError + '\'' +
-                "\n '" + xpathException + '\'' +
-                "\n '" + numberFormat + '\'' +
-                "\n '" + fileError + '\'' +
-                "\n '" + parsError + '\'' +
-                "\n '" + instantiationException + '\'' +
-                "\n '" + illegalAccessException + '\'' +
-                "\n '" + interFaceError + "\'" +
-                "\n '" + constructorError + "\'" +
-                "\n '" + classNotFoundException + '\'' +
-                "\n '" + noClassDefFoundError + '\'' +
-                "\n '" + implementationError + '\'' +
-                '}';
+        String error = "";
+        if(saxException != null) {
+         error = error.concat("'"+saxException+'\'');
+        }
+        if(parseConfigException != null) {
+            error = error.concat("\n '" + parseConfigException + '\'');
+        }
+        if (saxParsWarning != null) {
+            error = error.concat("\n '" + saxParsWarning + '\'');
+        }
+        if (saxParsError != null) {
+            error = error.concat("\n '" + saxParsError + '\'');
+        }
+        if (saxParsFatalError != null) {
+            error = error.concat("\n '" + saxParsFatalError + '\'');
+        }
+        if (xpathException != null) {
+            error = error.concat("\n '" + xpathException + '\'');
+        }
+        if (numberFormat != null) {
+            error = error.concat("\n '" + numberFormat + '\'');
+        }
+        if (fileError != null) {
+            error = error.concat("\n '" + fileError + '\'');
+        }
+        if (parsError != null) {
+            error = error.concat("\n '" + parsError + '\'');
+        }
+        if (instantiationException != null) {
+            error = error.concat("\n '" + instantiationException + '\'');
+        }
+        if (illegalAccessException != null) {
+            error = error.concat("\n '" + illegalAccessException + '\'');
+        }
+        if (interFaceError != null) {
+            error = error.concat("\n '" + interFaceError + "\'");
+        }
+        if (constructorError != null) {
+            error = error.concat("\n '" + constructorError + "\'");
+        }
+        if (classNotFoundException != null) {
+            error = error.concat("\n '" + classNotFoundException + '\'');
+        }
+        if (noClassDefFoundError != null) {
+            error = error.concat("\n '" + classNotFoundException + '\'');
+        }
+        if (implementationError != null) {
+            error = error.concat("\n '" + implementationError + '\'');
+        }
+        return error;
     }
 }

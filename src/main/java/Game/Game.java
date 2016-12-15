@@ -77,13 +77,14 @@ public class Game extends JPanel implements Runnable {
         mapString = level.getMap();
         setupImages();
         startPosition = new Position();
-        setupMap();
         this.army = new Army(map, startPosition);
         this.defense = new Defense(map,level.towerSpawnRate);
         shop = new Shop(army);
         gameContainer = new GameContainer();
-        gameContainer.setColumnCount(level.getColumns());
-        gameContainer.setRowCount(level.getRows());
+        GameContainer.setColumnCount(level.getColumns());
+        GameContainer.setRowCount(level.getRows());
+        gameContainer.define();
+        setupMap();
         x = startPosition.getX();
         y = startPosition.getY();
         System.out.println("Thread i game: " + thread);
