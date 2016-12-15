@@ -12,7 +12,6 @@ public class main {
 
         ArrayList<Level> levelArray = new ArrayList<Level>();
         LevelBuilder lb;
-
         if(args.length > 0) {
             lb = new LevelBuilder(args[0]);
         } else {

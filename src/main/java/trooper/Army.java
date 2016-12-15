@@ -73,9 +73,11 @@ public class Army {
         finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
 
-            //Set the troopers graphical position to match start in gamecontainer
-            int x = GameContainer.airSquares[startPosition.getX()][startPosition.getY()].getSquarePosition().getX();
-            int y = GameContainer.airSquares[startPosition.getX()][startPosition.getY()].getSquarePosition().getY();
+            //Set the troopers graphical position to match start in gcontainer
+            int x = GameContainer.airSquares[startPosition.getX()]
+                    [startPosition.getY()].getSquarePosition().getX();
+            int y = GameContainer.airSquares[startPosition.getX()]
+                    [startPosition.getY()].getSquarePosition().getY();
             Position p = new Position(x,y);
             Trooper t = createTrooper(getFromQueue());
             t.setGraphicPosition(p);
@@ -140,7 +142,12 @@ public class Army {
     }
 
     public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
-        for (Trooper t: army) {
+        ArrayList<Trooper> armyReverse = new ArrayList<>();
+
+        for(int i = army.size()-1; i>=0; i--){
+            armyReverse.add(army.get(i));
+        }
+        for (Trooper t: armyReverse) {
             if(!t.isDead()) {
 
                 //Translate trooper position from 1:0 to square positions.
@@ -150,29 +157,35 @@ public class Army {
                 int y = t.getGraphicPosition().getY();
 
                 if (t.getSemiStep() == 0) {
-                    x = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getX();
-                    y = sq[t.getPosition().getX()][t.getPosition().getY()].getSquarePosition().getY();
+                    x = sq[t.getPosition().getX()][t.getPosition().getY()]
+                            .getSquarePosition().getX();
+                    y = sq[t.getPosition().getX()][t.getPosition().getY()]
+                            .getSquarePosition().getY();
                     t.setGraphicPosition(new Position(x, y));
                 }else {
                     Direction direction = t.getDirection();
                     switch (direction) {
                         case NORTH:
-                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            value = Math.round(Translator.squareSize /
+                                    t.getstepDelay());
                             y = y - value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case SOUTH:
-                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            value = Math.round(Translator.squareSize /
+                                    t.getstepDelay());
                             y = y + value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case EAST:
-                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            value = Math.round(Translator.squareSize /
+                                    t.getstepDelay());
                             x = x + value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
                         case WEST:
-                            value = Math.round(Translator.squareSize / t.getstepDelay());
+                            value = Math.round(Translator.squareSize /
+                                    t.getstepDelay());
                             x = x - value;
                             t.setGraphicPosition(new Position(x, y));
                             break;
@@ -190,11 +203,11 @@ public class Army {
                                 null, null);
                     }else if(t.getClass().equals(ArmoredTrooper.class)) {
 
-                        g.drawImage(square_air[Translator.indexArmoredTrooper], x, y,
-                                null, null);
+                        g.drawImage(square_air[Translator.indexArmoredTrooper]
+                                , x, y,null, null);
                     }else if (t.getClass().equals(TeleportTrooper.class)){
-                        g.drawImage(square_air[Translator.indexTeleporter], x, y,
-                                null, null);
+                        g.drawImage(square_air[Translator.indexTeleporter],
+                                x, y,null, null);
                     }
                     drawHpBar(g, x, y, t);
                 }
@@ -216,9 +229,11 @@ public class Army {
         float greenBarWidth = 0;
 
         if(t.hasTurned()){
-            greenBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
+            greenBarWidth = (float)Translator.squareSize * ((float)
+                    t.getHealth() / (float)t.getMaxhealth());
         }else{
-            yellowBarWidth = (float)Translator.squareSize * ((float) t.getHealth() / (float)t.getMaxhealth());
+            yellowBarWidth = (float)Translator.squareSize * ((float)
+                    t.getHealth() / (float)t.getMaxhealth());
             greenBarWidth = Translator.squareSize;
         }
 
@@ -228,7 +243,6 @@ public class Army {
         g.fillRect(x,y-3,(int)greenBarWidth,5);
         g.setColor(Color.yellow);
         g.fillRect(x,y-3,(int)yellowBarWidth,5);
-       // g.drawString(t.getDirection().toString(),x,y);
     }
 
 

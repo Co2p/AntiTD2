@@ -302,7 +302,6 @@ public class Trooper {
             return road;
         } else {
              road = forceMove(map_hashTable, preferred);
-            //position=road.getPosition();
             position = nextPosition;
             semiStep = 0;
         }
@@ -320,15 +319,11 @@ public class Trooper {
      * @param preferred preferred direction of the army
      */
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable, Direction preferred){
-        System.out.println("forcemove");
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable = getPossibleMoves(map_hashTable);
-        for (Object o : possibleMovesTable.values()) {
-            RoadTile tile = (RoadTile)o;
-        }
-
-        path.add(position);
-        visited.add(position);
+        //for (Object o : possibleMovesTable.values()) {
+        //    RoadTile tile = (RoadTile)o;
+        //}
         if (preferred == direction &&
                 possibleMovesTable.containsKey(position.getPosToDirection(direction)) &&
                 !visited.contains(position.getPosToDirection(direction))){
@@ -351,8 +346,9 @@ public class Trooper {
             nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
+        path.add(position);
+        visited.add(position);
         pathDirection.add(getOppociteDirection(direction));
-        System.out.println("path size: "+path.size()+" direction size: "+pathDirection.size());
         if(nextPosition == null || reverse) {
             System.out.println("Utskrift i Trooper.move: Gjorde ett backtrace steg " + position.toString());
 
@@ -376,7 +372,7 @@ public class Trooper {
         return t;
     }
 
-    private Direction getOppociteDirection(Direction direction){
+    public Direction getOppociteDirection(Direction direction){
 
         Direction d = null;
 
@@ -421,5 +417,10 @@ public class Trooper {
         else nextPosition=null;
 
         return nextPosition;
+    }
+
+    public void pushToBackTrack(Position pos, Direction dir) {
+        path.push(pos);
+        pathDirection.push(dir);
     }
 }

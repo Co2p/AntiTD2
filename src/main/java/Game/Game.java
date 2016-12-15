@@ -101,6 +101,7 @@ public class Game extends JPanel implements Runnable {
         gameContainer.draw(gr);
         shop.draw(gr);
         army.draw(gr, square_air, gameContainer.getAirSquares());
+        defense.draw(gr, gameContainer.getAirSquares());
     }
 
     @Override

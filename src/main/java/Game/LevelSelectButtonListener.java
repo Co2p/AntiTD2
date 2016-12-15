@@ -12,11 +12,11 @@ import java.awt.event.ActionListener;
  */
 public class LevelSelectButtonListener implements ActionListener {
 
-    private Frame frame;
+    private Lobby frame;
     private Level level;
     private Player player;
 
-    public LevelSelectButtonListener(Frame frame, Level level, Player player){
+    public LevelSelectButtonListener(Lobby frame, Level level, Player player){
         super();
         this.frame = frame;
         this.level = level;
@@ -25,7 +25,7 @@ public class LevelSelectButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        frame.add(new Game(level, player), BorderLayout.CENTER);
-        frame.setVisible(true);
+        frame.setMainFrameGame(new Game(level, player));
+        frame.setCurrentLevel(level);
     }
 }

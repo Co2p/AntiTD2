@@ -1,6 +1,28 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <levellist>
-    <level name ="Game.Level 1">
+    <level name ="Introlevel">
+        <rules>
+            <credits>1000</credits>
+            <unitstowin>3</unitstowin>
+            <towerspawnrate>1000</towerspawnrate>
+        </rules>
+        <!--<tile>BearTrap</tile>-->
+        <map>
+            <size>
+                <column>12</column>
+                <row>8</row>
+            </size>
+            <row>000000000000</row>
+            <row>000000000000</row>
+            <row>0000T0000000</row>
+            <row>SRRRRRRRRRRG</row>
+            <row>0000000T0000</row>
+            <row>000000000000</row>
+            <row>000000000000</row>
+            <row>000000000000</row>
+        </map>
+    </level>
+    <level name ="Level 1">
         <rules>
             <credits>600</credits>
             <unitstowin>10</unitstowin>
@@ -15,14 +37,14 @@
             <row>00T000000000</row>
             <row>SRRRR0000000</row>
             <row>0000R0000000</row>
-            <row>0000R0RRR000</row>
+            <row>000TR0RRR000</row>
             <row>0000RRR0R000</row>
+            <row>0000000TRT00</row>
             <row>00000000R000</row>
-            <row>00000000RT00</row>
             <row>00000000G000</row>
         </map>
     </level>
-    <level name ="EKORRE">
+    <level name ="Level 2">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
@@ -43,7 +65,7 @@
             <row>0S0000000G00</row>
         </map>
     </level>
-    <level name ="Game.Level 3">
+    <level name ="Level 3">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
@@ -82,10 +104,10 @@
             <row>00RR0RR0RR00</row>
             <row>00RRRRRRRR00</row>
             <row>00RRRRRRRR00</row>
-            <row>00RRRRRRRR00</row>
+            <row>00SRRRRRRG00</row>
         </map>
     </level>
-    <level name ="No towers">
+    <level name ="No towers, testmap">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
@@ -131,6 +153,29 @@
             <row>000000000000000000</row>
             <row>000000000000000000</row>
             <row>000000000000000000</row>
+        </map>
+    </level>
+    <level name ="Level ??">
+        <rules>
+            <credits>500</credits>
+            <unitstowin>5</unitstowin>
+            <towerspawnrate>10</towerspawnrate>
+            <timelimit>2</timelimit>
+        </rules>
+        <tile className="" > </tile>
+        <map>
+            <size>
+                <column>20</column>
+                <row>10</row>
+            </size>
+            <row>SRRR00RRRRRR</row>
+            <row>00TR00R0T00R</row>
+            <row>000RTTRRRR0R</row>
+            <row>000RRR000R0R</row>
+            <row>00000R000RTR</row>
+            <row>RRRRRR000R0R</row>
+            <row>R00T00000RTR</row>
+            <row>RRRRRRRRRR0G</row>
         </map>
     </level>
 </levellist>

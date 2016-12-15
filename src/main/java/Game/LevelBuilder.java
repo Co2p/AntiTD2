@@ -22,7 +22,7 @@ public class LevelBuilder {
         setupParser(fileName);
         if(levelParser.isError()) {
             //Set error message to view.
-            levelParser.parseFile(FILELOCATION);
+            levelParser.parseFile(fileName);
         }
     }
 

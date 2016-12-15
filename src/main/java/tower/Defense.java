@@ -1,11 +1,15 @@
 package tower;
 
+import Game.Square;
 import helpers.Position;
+import helpers.Translator;
 import sun.misc.PostVMInitHook;
 import tile.RoadTile;
 import tile.Tile;
 import tile.TowerTile;
 
+import javax.swing.text.StyledEditorKit;
+import java.awt.*;
 import java.util.*;
 
 /**
@@ -46,7 +50,7 @@ public class Defense {
     public Position createTower() {
         Random rand = new Random();
         Position pos = null;
-        if(rand.nextInt(100) + 1 <= spawnRate) {
+        if(rand.nextInt(1000) + 1 <= spawnRate) {
             int towerPlacement;
             if (towerMap.size() > 1) {
                 towerPlacement = rand.nextInt(towerMap.size());
@@ -82,6 +86,30 @@ public class Defense {
      */
     public int getTowerCount() {
         return towers.size();
+    }
+
+    public void draw(Graphics g, Square[][] sq){
+        for (Tower t : towers) {
+            if(t.getClass().equals(LaserTower.class)){
+                LaserTower lt = (LaserTower) t;
+                if(lt.hasFocusTarget()){
+                    int x = sq[lt.getPos().getX()][lt.getPos().getY()]
+                            .getSquarePosition().getX();
+                    int y = sq[lt.getPos().getX()][lt.getPos().getY()]
+                            .getSquarePosition().getY();
+                    lt.setGraphicPosition(new Position(x, y));
+                    int towerX =  lt.getGraphicPosition().getX()+25;
+                    int towerY =  lt.getGraphicPosition().getY()+12;
+                    int trooperX = lt.getFocusTarget().getGraphicPosition()
+                            .getX()+27;
+                    int trooperY = lt.getFocusTarget().getGraphicPosition()
+                            .getY()+12;
+                    g.setColor(Color.red.darker());
+                    g.drawLine(towerX,towerY,trooperX,trooperY);
+                }
+            }
+        }
+
     }
 
 }

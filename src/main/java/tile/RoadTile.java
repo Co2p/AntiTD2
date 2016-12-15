@@ -3,6 +3,9 @@ package tile;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Hashtable;
+import java.util.Timer;
+
 import trooper.Trooper;
 import helpers.Position;
 
@@ -18,6 +21,7 @@ public class RoadTile extends Tile implements Zone {
     private Method landOnMethod = null;
     private ArrayList<Trooper> troopers;
     private boolean gotLandOn = false;
+    private Hashtable<Position, Tile> map;
 
     /**
      * Constructor for main.RoadTile
@@ -59,13 +63,17 @@ public class RoadTile extends Tile implements Zone {
         if (isGoal) {
             t.setReachedGoal();
         } else if(portalExit != null) {
-            t.setPosition(portalExit.getPosition());
+            for (int i = 0; i < 5; i++) {
+                t.forceMove(map,t.getDirection());
+                t.pushToBackTrack(t.getPosition(),t.getOppociteDirection(t.getDirection()));
+            }
             portalExit.landOn(t);
         } else {
             setChanged();
             if (t != null && countObservers() > 0) {
                 troopers.add(t);
                 notifyObservers(troopers);
+                troopers.clear();
             }
             try {
                 if(gotLandOn) {
@@ -91,8 +99,9 @@ public class RoadTile extends Tile implements Zone {
      * Sets a portal on the main
      * @param t the main where the portal exits
      */
-    public void setPortal(RoadTile t) {
+    public void setPortal(RoadTile t, Hashtable<Position,Tile> map) {
         portalExit = t;
+        this.map = map;
     }
 
     /**

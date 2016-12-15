@@ -1,6 +1,7 @@
 package Game;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Lobby {
     private JPanel selectLevelPanel;
     public Player player;
     public ArrayList<Level> levelArray;
+    private Level currentLevel;
 
     public Lobby(ArrayList<Level> levelArray) {
         this.levelArray = levelArray;
@@ -36,7 +38,7 @@ public class Lobby {
     }
 
     private void addJMenuBar(JFrame frame){
-        MenuBar menu = new MenuBar();
+        MenuBar menu = new MenuBar(this);
         frame.setJMenuBar(menu.getMenuBar());
     }
 
@@ -73,11 +75,23 @@ public class Lobby {
             selectLevelPanel.add(levelButton);
 
             levelButton.addActionListener(
-                    new LevelSelectButtonListener(mainFrame,levelArray.get(i),player));
+                    new LevelSelectButtonListener(this,levelArray.get(i),player));
         }
 
         selectLevelPanel.add(instructionLabel);
         mainFrame.add(selectLevelPanel);
     }
 
+    public void setMainFrameGame(Game game) {
+        mainFrame.add(game, BorderLayout.CENTER);
+        mainFrame.setVisible(true);
+    }
+
+    public void setCurrentLevel(Level level) {
+        currentLevel = level;
+    }
+
+    public Level getCurrentLevel() {
+        return currentLevel;
+    }
 }
