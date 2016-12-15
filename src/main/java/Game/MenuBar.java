@@ -41,6 +41,11 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                frame.getCurrentGame().setVisible(false);
+                frame.getCurrentGame().define();
+                frame.getCurrentGame().setRunning(false);
+                frame.getSelectLevelPanel().setVisible(true);
+
             }
         });
         return newGame;
@@ -52,7 +57,8 @@ public class MenuBar {
         restart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setMainFrameGame(new Game(frame.getCurrentLevel(),frame.player));
+                frame.getCurrentGame().setPause(false);
+                frame.getCurrentGame().define();
             }
         });
         return restart;

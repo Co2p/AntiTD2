@@ -340,7 +340,6 @@ public class Trooper {
      */
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable,
                               Direction preferred){
-
         Position nextPosition;
         Hashtable<Position, RoadTile> possibleMovesTable =
                 getPossibleMoves(map_hashTable);
@@ -360,7 +359,6 @@ public class Trooper {
                                 direction))){
             nextPosition = position.getPosToRight(direction);
             direction = getDirectionToRight(direction);
-            //TODO get direction
             reverse = false;
         }
         else if (preferred == Direction.LEFT &&
@@ -370,12 +368,10 @@ public class Trooper {
                                 direction))){
 
             nextPosition = position.getPosToLeft(direction);
-            //TODO get direction
             direction = getDirectionToLeft(direction);
             reverse = false;
         }
         else {
-
             nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
@@ -442,7 +438,6 @@ public class Trooper {
         return null;
     }
 
-
     /**
      * Method to get the opposite direction from where a trooper moves.
      * @param direction current direction
@@ -477,16 +472,19 @@ public class Trooper {
     private Position getDefaultNextPosition(Hashtable<Position, RoadTile>
                                                     possibleMovesTable) {
         Position nextPosition = null;
-        if (!visited.contains(position.getPosToEast()) &&
-                possibleMovesTable.containsKey(position.getPosToEast())) {
-            nextPosition = position.getPosToEast();
 
-            direction = EAST;
-        } else if (!visited.contains(position.getPosToNorth()) &&
+        if(!visited.contains(position.getPosToDirection(direction)) &&
+                possibleMovesTable.containsKey(position.getPosToDirection(
+                        direction))){
+            nextPosition = position.getPosToDirection(direction);
+        }else if (!visited.contains(position.getPosToNorth()) &&
                 possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
             direction = NORTH;
-
+        }else if (!visited.contains(position.getPosToEast()) &&
+                possibleMovesTable.containsKey(position.getPosToEast())) {
+            nextPosition = position.getPosToEast();
+            direction = EAST;
         } else if (!visited.contains(position.getPosToSouth()) &&
                 possibleMovesTable.containsKey(position.getPosToSouth())) {
             nextPosition = position.getPosToSouth();
@@ -509,8 +507,10 @@ public class Trooper {
      * @param dir
      */
     public void pushToBackTrack(Position pos, Direction dir) {
+
         path.push(pos);
         pathDirection.push(dir);
+        visited.add(pos);
     }
 
 }

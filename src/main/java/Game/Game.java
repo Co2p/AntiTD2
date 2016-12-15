@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -30,7 +31,7 @@ public class Game extends JPanel implements Runnable {
     private Hashtable<Position,Tile> map = new Hashtable<>();
     private Player player;
     private Results results;
-    private volatile boolean pause;
+    private volatile boolean pause, running = true;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -65,12 +66,12 @@ public class Game extends JPanel implements Runnable {
 
     public Game(Level level, Player player){
         this.level = level;
-        thread.start();
         this.player = player;
         results = new Results();
+        thread.start();
     }
 
-    private void define(){
+    public void define(){
 
         width = getWidth();
         height = getHeight();
@@ -90,6 +91,30 @@ public class Game extends JPanel implements Runnable {
         y = startPosition.getY();
         System.out.println("Thread i game: " + thread);
     }
+
+    public void define(Level level){
+
+        thread.start();
+        this.level = level;
+        width = getWidth();
+        height = getHeight();
+        mapString = level.getMap();
+        setupImages();
+        startPosition = new Position();
+        setupMap();
+        this.army = new Army(map, startPosition);
+        this.defense = new Defense(map,level.towerSpawnRate);
+        gameContainer = new GameContainer();
+        GameContainer.setColumnCount(level.getColumns());
+        GameContainer.setRowCount(level.getRows());
+        gameContainer.define();
+        shop = new Shop(army);
+
+        x = startPosition.getX();
+        y = startPosition.getY();
+    }
+
+
 
     //Paints the components in game
     public void paintComponent(Graphics gr){
@@ -112,7 +137,7 @@ public class Game extends JPanel implements Runnable {
     public void run() {
         int totalReached = 0;
         ArrayList<Trooper> refunds;
-        while(totalReached < level.getUnitsToWin()){
+        while(totalReached < level.getUnitsToWin() && running){
             if(!isFirst){
                 army.updateArmy();
                 refunds = army.getFinished();
@@ -149,7 +174,14 @@ public class Game extends JPanel implements Runnable {
         results.setCreditsUsed(shop.getNoOfCredits());
         results.setLevelName(level.getLevelName());
         results.setTime(shop.getTime());
-        player.setResult(results);
+        player.setResults(results);
+
+        //TODO do this a better way
+        try {
+            player.sendResult(player.getResults().get(0));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(results);
 
     }
@@ -193,6 +225,11 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
+
+    /**
+     * Method to setup the map images in the arrays Background & Air
+     *
+     * */
     public void setupMap(){
         background = new int[level.getColumns()][level.getRows()];
         air = new int[level.getColumns()][level.getRows()];
@@ -207,7 +244,6 @@ public class Game extends JPanel implements Runnable {
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.indexBlank;
-
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;
@@ -240,6 +276,10 @@ public class Game extends JPanel implements Runnable {
 
     public Thread getThread() {
         return thread;
+    }
+
+    public void setRunning(boolean b){
+        running = b;
     }
 
     public Hashtable<Position,Tile>  getMap() {

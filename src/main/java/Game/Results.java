@@ -1,4 +1,5 @@
 package Game;
+
 import java.time.LocalTime;
 
 /**
@@ -16,7 +17,7 @@ public class Results {
         time = LocalTime.of(0,0,0);
     }
 
-    public long getCreditsUsed() {
+    public long getCreditsLeft() {
         return creditsLeft;
     }
 
