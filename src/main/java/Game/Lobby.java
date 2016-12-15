@@ -97,6 +97,10 @@ public class Lobby {
         return currentGame;
     }
 
+    public JPanel getSelectLevelPanel(){
+        return selectLevelPanel;
+    }
+
     public void setCurrentLevel(Level level) {
         currentLevel = level;
     }

@@ -30,7 +30,7 @@ public class Game extends JPanel implements Runnable {
     private Hashtable<Position,Tile> map = new Hashtable<>();
     private Player player;
     private Results results;
-    private volatile boolean pause;
+    private volatile boolean pause, running = true;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -91,6 +91,28 @@ public class Game extends JPanel implements Runnable {
         System.out.println("Thread i game: " + thread);
     }
 
+    public void define(Level level){
+        running = true;
+        this.level = level;
+        width = getWidth();
+        height = getHeight();
+        mapString = level.getMap();
+        setupImages();
+        startPosition = new Position();
+        setupMap();
+        this.army = new Army(map, startPosition);
+        this.defense = new Defense(map,level.towerSpawnRate);
+        gameContainer = new GameContainer();
+        GameContainer.setColumnCount(level.getColumns());
+        GameContainer.setRowCount(level.getRows());
+        gameContainer.define();
+        shop = new Shop(army);
+
+        x = startPosition.getX();
+        y = startPosition.getY();
+        System.out.println("Thread i game: " + thread);
+    }
+
     //Paints the components in game
     public void paintComponent(Graphics gr){
 
@@ -112,7 +134,7 @@ public class Game extends JPanel implements Runnable {
     public void run() {
         int totalReached = 0;
         ArrayList<Trooper> refunds;
-        while(totalReached < level.getUnitsToWin()){
+        while(totalReached < level.getUnitsToWin() && running){
             if(!isFirst){
                 army.updateArmy();
                 refunds = army.getFinished();
@@ -244,6 +266,10 @@ public class Game extends JPanel implements Runnable {
 
     public Thread getThread() {
         return thread;
+    }
+
+    public void setRunning(boolean b){
+        running = b;
     }
 
     public Hashtable<Position,Tile>  getMap() {
