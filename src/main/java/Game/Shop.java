@@ -41,7 +41,7 @@ public class Shop {
         buttons = new ShopButton[noOfButtons];
         statsElements = new ShopButton[noOfElements];
         timer = new Timer();
-        timer.scheduleAtFixedRate(new MyCounterTask(),0,1000);
+        timer.scheduleAtFixedRate(new Clock(),0,1000);
         define();
 
     }
@@ -227,11 +227,11 @@ public class Shop {
         return time;
     }
 
-    class MyCounterTask extends TimerTask
+    class Clock extends TimerTask
     {
         int counter;
 
-        public MyCounterTask()
+        public Clock()
         {
             counter = 0;
         }
