@@ -93,6 +93,7 @@ public class Army {
                         road.landOn(trooper);
                     }
 
+
                     if (trooper.getReachedGoal()) {
                         if(trooper.hasTurned()) {
                             reachedGoal++;

@@ -114,7 +114,7 @@
             <towerspawnrate>10</towerspawnrate>
             <timelimit>2</timelimit>
         </rules>
-        <tile className="" > </tile>
+        <!--<tile className="" > </tile>-->
         <map>
             <size>
                 <column>20</column>
@@ -137,22 +137,22 @@
             <towerspawnrate>10</towerspawnrate>
             <timelimit>2</timelimit>
         </rules>
-        <tile className="" > </tile>
+        <!--<tile className="" > </tile>-->
         <map>
             <size>
                 <column>20</column>
                 <row>10</row>
             </size>
-            <row>000000000000000000</row>
-            <row>0000000RRRRG000000</row>
-            <row>0000000R0000000000</row>
-            <row>0000000R0000000000</row>
-            <row>0000000R0000000000</row>
-            <row>0000000R0000000000</row>
-            <row>SRRRRRRR0000000000</row>
-            <row>000000000000000000</row>
-            <row>000000000000000000</row>
-            <row>000000000000000000</row>
+            <row>00000000000000000000</row>
+            <row>0000000RRRRG00000000</row>
+            <row>0000000R000000000000</row>
+            <row>0000000R000000000000</row>
+            <row>0000000R000000000000</row>
+            <row>0000000R000000000000</row>
+            <row>SRRRRRRR000000000000</row>
+            <row>00000000000000000000</row>
+            <row>00000000000000000000</row>
+            <row>00000000000000000000</row>
         </map>
     </level>
     <level name ="Level ??">
@@ -162,7 +162,7 @@
             <towerspawnrate>10</towerspawnrate>
             <timelimit>2</timelimit>
         </rules>
-        <tile className="" > </tile>
+        <!--<tile className="" > </tile>-->
         <map>
             <size>
                 <column>20</column>
