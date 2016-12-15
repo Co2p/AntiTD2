@@ -45,9 +45,10 @@ public class ShopButton extends Rectangle{
                 gr.setColor(Color.black);
                 gr.drawRect(x,y,width,height);
 
+            System.out.println("in button x = " + x + " y =" + y);
                 //Draw the image on the "button"
 
-                gr.drawImage(Game.button_images[i],x, y,null);
+                gr.drawImage(Game.button_images[i],x, y,width,height,null);
             gr.setColor(Color.red);
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSizeButtons));
             if(i==0){

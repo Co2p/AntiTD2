@@ -58,8 +58,8 @@ public class Shop {
             buttons[i] = new ShopButton((Game.width/2) -
                     ((noOfButtons*buttonsize)/2) -((smallSpace*
                     (buttons.length-1)) /2) + ((buttonsize + smallSpace)*i),
-                    (GameContainer.rowCount * GameContainer.squareSize )
-                            + largeSpace, buttonsize , buttonsize, i);
+                    ((GameContainer.rowCount * GameContainer.squareSize )
+                            + largeSpace), buttonsize , buttonsize, i);
         }
 
         for (int i = 0; i < statsElements.length ; i++) {
@@ -114,7 +114,7 @@ public class Shop {
                                             .getY()] = Translator.indexTeleportZone;
                                     tp.placePortal(tp.getDirection());
                                     Game.air[t.getPosition().getX()][t.getPosition()
-                                            .getY()] = Translator.indexTeleportZone;
+                                            .getY()] = Translator.indexTeleporterZoneOut;
                                 }
                             }
                         }
@@ -157,7 +157,7 @@ public class Shop {
 
             if(buttons[i].contains(Game.mousePoint)){
                 gr.setColor(Color.red);
-                gr.fillRect(buttons[i].x, buttons[i].y, buttons[i].height,
+                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
                         buttons[i].width);
             }
                 buttons[i].draw(gr, i);
