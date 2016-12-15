@@ -11,6 +11,7 @@ public class MenuBar {
 
     private JMenuBar menu;
     private Lobby frame;
+    private Thread t;
 
     public MenuBar(Lobby frame){
         menu = new JMenuBar();
@@ -59,11 +60,24 @@ public class MenuBar {
 
     //TODO
     private JMenuItem createPauseItem(){
-        JMenuItem pause = new JMenuItem("Pause/Resume");
+        JMenuItem pause = new JMenuItem("Pause");
         pause.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                String s = pause.getText();
+                if(s.equals("Pause")){
+                    pause.setText("Resume");
+                    if(frame.getCurrentGame() != null) {
+                        frame.getCurrentGame().setPause(true);
+                    }
+                }
+                else if (s.equals("Resume")){
+                    pause.setText("Pause");
+                    if(frame.getCurrentGame() != null) {
+                        frame.getCurrentGame().setPause(false);
+                    }
 
+                }
             }
         });
         return pause;

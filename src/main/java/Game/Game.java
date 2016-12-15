@@ -30,6 +30,7 @@ public class Game extends JPanel implements Runnable {
     private Hashtable<Position,Tile> map = new Hashtable<>();
     private Player player;
     private Results results;
+    private volatile boolean pause;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -85,6 +86,7 @@ public class Game extends JPanel implements Runnable {
         gameContainer.setRowCount(level.getRows());
         x = startPosition.getX();
         y = startPosition.getY();
+        System.out.println("Thread i game: " + thread);
     }
 
     //Paints the components in game
@@ -133,6 +135,13 @@ public class Game extends JPanel implements Runnable {
             }catch(Exception e){
                 e.printStackTrace();
             }
+            while(pause){
+                try {
+                    thread.sleep(100);
+                }catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         shop.stopTime();
         results.setCreditsUsed(shop.getNoOfCredits());
@@ -140,6 +149,7 @@ public class Game extends JPanel implements Runnable {
         results.setTime(shop.getTime());
         player.setResult(results);
         System.out.println(results);
+
     }
 
 
@@ -201,20 +211,16 @@ public class Game extends JPanel implements Runnable {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
-                    //TODO REMOVE SOUTS
-                    System.out.println("Utskrift i Game.Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
                     background[x][y] = Translator.indexGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
-                    System.out.println("Utskrift i Game.Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
                     background[x][y] = Translator.indexStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
-                    System.out.println("Utskrift i Game.Game.setupMap: Start = X: " + x + " Y: " + y);
                     startPosition.setX(x);
                     startPosition.setY(y);
                 }
@@ -224,6 +230,14 @@ public class Game extends JPanel implements Runnable {
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
             }
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
+    public Thread getThread() {
+        return thread;
     }
 
     public Hashtable<Position,Tile>  getMap() {
