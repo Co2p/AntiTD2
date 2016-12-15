@@ -121,19 +121,24 @@ public class Shop {
                     }
                     if(i==4){
 
+
                         if(army != null && army.getPreferred() == null) {
+                            buttons[i].setIsSelected(true);
                             army.setPreferred(Direction.LEFT);
                         }
                         else if(army.getPreferred().equals(Direction.LEFT)){
+                            buttons[i].setIsSelected(false);
                             army.setPreferred(null);
                         }
                     }
                     if(i==5){
                         if(army != null && army.getPreferred() == null) {
                             army.setPreferred(Direction.RIGHT);
+                            buttons[i].setIsSelected(true);
                         }
                         else if(army.getPreferred().equals(Direction.RIGHT)){
                             army.setPreferred(null);
+                            buttons[i].setIsSelected(false);
                         }
                     }
                 }
@@ -155,7 +160,12 @@ public class Shop {
         //Draw the buttons
         for (int i = 0; i < buttons.length; i++) {
 
-            if(buttons[i].contains(Game.mousePoint)){
+            if(buttons[i].getIsSelected()){
+                gr.setColor(Color.yellow);
+                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
+                        buttons[i].width);
+            }
+            else if(buttons[i].contains(Game.mousePoint)){
                 gr.setColor(Color.red);
                 gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
                         buttons[i].width);
