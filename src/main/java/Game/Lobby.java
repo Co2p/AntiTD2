@@ -84,6 +84,7 @@ public class Lobby {
     }
 
     public void setMainFrameGame(Game game) {
+        selectLevelPanel.setVisible(false);
         mainFrame.add(game, BorderLayout.CENTER);
         mainFrame.setVisible(true);
     }

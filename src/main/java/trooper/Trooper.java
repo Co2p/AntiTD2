@@ -301,7 +301,13 @@ public class Trooper {
             //Find out nexposition
             if(semiStep == 0) {
                 road2 = (RoadTile)forceMove(map_hashTable, preferred);
-                nextPosition = road2.getPosition();
+                try {
+                    nextPosition = road2.getPosition();
+                }catch (NullPointerException e){
+                    System.out.println("Trooper on position: X" +
+                            position.getX() + "Y:" + position.getY()
+                            +"threw a nullpointerexception");
+                }
             }
             if(!firstStep) {
                 semiStep++;
