@@ -12,6 +12,7 @@ public class ShopButton extends Rectangle{
         public int fontSize = 20;
         private int fontSizeButtons = 12;
 
+        private boolean isSelected = false;
         public int id;
         public int x, y;
         public static int height, width;
@@ -45,9 +46,10 @@ public class ShopButton extends Rectangle{
                 gr.setColor(Color.black);
                 gr.drawRect(x,y,width,height);
 
+            System.out.println("in button x = " + x + " y =" + y);
                 //Draw the image on the "button"
 
-                gr.drawImage(Game.button_images[i],x, y,null);
+                gr.drawImage(Game.button_images[i],x, y,width,height,null);
             gr.setColor(Color.red);
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSizeButtons));
             if(i==0){
@@ -72,6 +74,23 @@ public class ShopButton extends Rectangle{
             gr.setColor(Color.black);
             gr.setFont(new Font("TimesRoman", Font.BOLD, fontSize));
             gr.drawString(Integer.toString(value), buttonXPos, buttonYPos);
+    }
+
+
+    /**
+     * Method to get if a button is selected
+     *
+     * */
+    public boolean getIsSelected(){
+        return  isSelected;
+    }
+
+    /**
+     * Method to set if a button is selected
+     *
+     * */
+    public void setIsSelected(boolean b){
+        isSelected = b;
     }
 
 }

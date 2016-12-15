@@ -28,6 +28,6 @@ public class ClickHandler extends MouseAdapter {
     public void mouseMoved(MouseEvent e) {
 
         //find out where the mouse is on screen.
-        Game.mousePoint = new Point(e.getX(), e.getY() - ShopButton.height/2);
+        Game.mousePoint = new Point(e.getX(), e.getY() - ShopButton.height);
     }
 }
