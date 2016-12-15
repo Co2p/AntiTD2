@@ -41,6 +41,10 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
 
+                frame.getCurrentGame().setVisible(false);
+                frame.getCurrentGame().setRunning(false);
+                frame.getSelectLevelPanel().setVisible(true);
+
             }
         });
         return newGame;
