@@ -107,7 +107,7 @@
             <row>00SRRRRRRG00</row>
         </map>
     </level>
-    <level name ="No towers, testmap">
+    <level name ="Dödsbanan">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
@@ -120,14 +120,16 @@
                 <column>20</column>
                 <row>10</row>
             </size>
-            <row>000000000000</row>
-            <row>0RRRR00RRRR0</row>
-            <row>0R00R00R0000</row>
-            <row>0000RR0R0R00</row>
-            <row>0RRRR00R0R00</row>
-            <row>0000RRRRRR00</row>
-            <row>SRRRR0GR0000</row>
-            <row>000000000000</row>
+            <row>00000000000000000000</row>
+            <row>0000000000RRRRRRR000</row>
+            <row>0TTTTT0000R00000R000</row>
+            <row>0RRRRR000TR00000R000</row>
+            <row>0RTTTR000TR00000R000</row>
+            <row>0RTTTR0000G00000R000</row>
+            <row>0R000R0000000000R000</row>
+            <row>0RRRRRRRRRRRRRRRR000</row>
+            <row>0R0000T00T00000R0000</row>
+            <row>0S000000000000000000</row>
         </map>
     </level>
     <level name ="No towers 20x10">

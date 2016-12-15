@@ -19,8 +19,6 @@ public class Shop {
     public int smallSpace = 3;
     public int largeSpace = 60;
 
-
-    //Maybe this stats should not be declaired inside of the shop.
     private long noOfCredits = 0;
     private int time = 0;
     private int unitsToWin = 0;
@@ -32,10 +30,9 @@ public class Shop {
 
     /**
      * Constructor of the shop.
-     *
-     * Sets up an array of buttons
-     *
-     * */
+     * Sets up an array of buttons and the army
+     * @param army the ary of troopers
+     */
     public Shop(Army army){
         this.army=army;
         buttons = new ShopButton[noOfButtons];
@@ -74,11 +71,9 @@ public class Shop {
     }
 
     /**
-     * Method called when a click is registered
-     *
-     * mousebutton 1 is left click on Mac.
-     *
-     * */
+     * Takes a mousebutton upon method call
+     * @param mouseButton the mousebutton index that was clicked
+     */
     
     //Do something better than just mouse button (left click)
     public void click(int mouseButton){
@@ -153,11 +148,10 @@ public class Shop {
 
     /**
      * Method to draw out the graphics of each button.
-     *
      * creates a rectangle outside the button and adds to the graphic
      * then calls the shopButtons draw method for each button.
-     *
-     * */
+     * @param gr , the graphics element to draw upon
+     */
     public void draw(Graphics gr) {
 
 
@@ -189,6 +183,11 @@ public class Shop {
         }
     }
 
+
+    /**
+     * Subtrackts units from unitsToWin
+     * @param unitsToWin , number of units
+     */
     public void subtractUnitsToWin(int unitsToWin) {
          this.unitsToWin -= unitsToWin;
     }
@@ -219,13 +218,22 @@ public class Shop {
         }
     }
 
+    /**
+     * Returns the creditscount
+     * @return noOfCredits, number of remaining credist
+     */
     public long getNoOfCredits() {
         return noOfCredits;
     }
 
+    /**
+     * Returns playing time
+     * @return time, the time
+     */
     public int getTime() {
         return time;
     }
+
 
     class Clock extends TimerTask
     {

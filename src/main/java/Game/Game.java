@@ -70,7 +70,7 @@ public class Game extends JPanel implements Runnable {
         results = new Results();
     }
 
-    private void define(){
+    public void define(){
 
         width = getWidth();
         height = getHeight();
