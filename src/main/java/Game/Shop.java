@@ -122,8 +122,10 @@ public class Shop {
                     if(i==4){
 
 
-                        if(army != null && army.getPreferred() == null) {
+                        if(army != null && army.getPreferred() == null
+                                || army.getPreferred() == Direction.RIGHT) {
                             buttons[i].setIsSelected(true);
+                            buttons[i+1].setIsSelected(false);
                             army.setPreferred(Direction.LEFT);
                         }
                         else if(army.getPreferred().equals(Direction.LEFT)){
@@ -132,9 +134,11 @@ public class Shop {
                         }
                     }
                     if(i==5){
-                        if(army != null && army.getPreferred() == null) {
+                        if(army != null && army.getPreferred() == null
+                                || army.getPreferred() == Direction.LEFT) {
                             army.setPreferred(Direction.RIGHT);
                             buttons[i].setIsSelected(true);
+                            buttons[i-1].setIsSelected(false);
                         }
                         else if(army.getPreferred().equals(Direction.RIGHT)){
                             army.setPreferred(null);

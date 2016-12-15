@@ -31,8 +31,6 @@ public class ArmoredTrooper extends Trooper {
         removeHealth = removeHealth - (removeHealth * armor/100);
 
         super.receiveDamage(removeHealth);
-        //TODO REMOVE SOUT
-        System.out.println("Target hp: " + getHealth());
     }
 
 

@@ -13,12 +13,12 @@
                 <row>8</row>
             </size>
             <row>000000000000</row>
-            <row>000000000000</row>
-            <row>0000T0000000</row>
+            <row>00000R000000</row>
+            <row>0000TR000000</row>
             <row>SRRRRRRRRRRG</row>
-            <row>0000000T0000</row>
-            <row>000000000000</row>
-            <row>000000000000</row>
+            <row>00000R0T0000</row>
+            <row>00000R000000</row>
+            <row>00000R000000</row>
             <row>000000000000</row>
         </map>
     </level>
