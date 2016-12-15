@@ -15,6 +15,7 @@ public class LevelSelectButtonListener implements ActionListener {
     private Lobby frame;
     private Level level;
     private Player player;
+    private Game g;
 
     public LevelSelectButtonListener(Lobby frame, Level level, Player player){
         super();
@@ -25,7 +26,11 @@ public class LevelSelectButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        frame.setMainFrameGame(new Game(level, player));
+
+        g = new Game(level, player);
+        frame.setMainFrameGame(g);
+        frame.setCurrentGame(g);
+        System.out.println("Thread i LevelSBlist: " + g.getThread());
         frame.setCurrentLevel(level);
     }
 }

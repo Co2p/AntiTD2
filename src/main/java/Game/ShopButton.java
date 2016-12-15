@@ -45,8 +45,6 @@ public class ShopButton extends Rectangle{
                 //draw the bound of the button rectangle
                 gr.setColor(Color.black);
                 gr.drawRect(x,y,width,height);
-
-            System.out.println("in button x = " + x + " y =" + y);
                 //Draw the image on the "button"
 
                 gr.drawImage(Game.button_images[i],x, y,width,height,null);

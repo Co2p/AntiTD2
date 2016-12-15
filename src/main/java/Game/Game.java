@@ -31,6 +31,7 @@ public class Game extends JPanel implements Runnable {
     private Hashtable<Position,Tile> map = new Hashtable<>();
     private Player player;
     private Results results;
+    private volatile boolean pause, running = true;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -70,7 +71,7 @@ public class Game extends JPanel implements Runnable {
         results = new Results();
     }
 
-    private void define(){
+    public void define(){
 
         width = getWidth();
         height = getHeight();
@@ -80,12 +81,37 @@ public class Game extends JPanel implements Runnable {
         setupMap();
         this.army = new Army(map, startPosition);
         this.defense = new Defense(map,level.towerSpawnRate);
-        shop = new Shop(army);
         gameContainer = new GameContainer();
-        gameContainer.setColumnCount(level.getColumns());
-        gameContainer.setRowCount(level.getRows());
+        GameContainer.setColumnCount(level.getColumns());
+        GameContainer.setRowCount(level.getRows());
+        gameContainer.define();
+        shop = new Shop(army);
+
         x = startPosition.getX();
         y = startPosition.getY();
+        System.out.println("Thread i game: " + thread);
+    }
+
+    public void define(Level level){
+        running = true;
+        this.level = level;
+        width = getWidth();
+        height = getHeight();
+        mapString = level.getMap();
+        setupImages();
+        startPosition = new Position();
+        setupMap();
+        this.army = new Army(map, startPosition);
+        this.defense = new Defense(map,level.towerSpawnRate);
+        gameContainer = new GameContainer();
+        GameContainer.setColumnCount(level.getColumns());
+        GameContainer.setRowCount(level.getRows());
+        gameContainer.define();
+        shop = new Shop(army);
+
+        x = startPosition.getX();
+        y = startPosition.getY();
+        System.out.println("Thread i game: " + thread);
     }
 
     //Paints the components in game
@@ -109,7 +135,7 @@ public class Game extends JPanel implements Runnable {
     public void run() {
         int totalReached = 0;
         ArrayList<Trooper> refunds;
-        while(totalReached < level.getUnitsToWin()){
+        while(totalReached < level.getUnitsToWin() && running){
             if(!isFirst){
                 army.updateArmy();
                 refunds = army.getFinished();
@@ -134,6 +160,13 @@ public class Game extends JPanel implements Runnable {
             }catch(Exception e){
                 e.printStackTrace();
             }
+            while(pause){
+                try {
+                    thread.sleep(100);
+                }catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
         }
         shop.stopTime();
         results.setCreditsUsed(shop.getNoOfCredits());
@@ -148,6 +181,7 @@ public class Game extends JPanel implements Runnable {
             e.printStackTrace();
         }
         System.out.println(results);
+
     }
 
 
@@ -189,40 +223,40 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
+
+    /**
+     * Method to setup the map images in the arrays Background & Air
+     *
+     * */
     public void setupMap(){
-        background = new int[GameContainer.columnCount][GameContainer.rowCount];
-        air = new int[GameContainer.columnCount][GameContainer.rowCount];
+        background = new int[level.getColumns()][level.getRows()];
+        air = new int[level.getColumns()][level.getRows()];
 
         for (int y = 0; y < background[0].length ; y++)
             for (int x = 0; x < background.length; x++) {
 
                 //Take out the character (String-value) at specific index
                 char indexChar = mapString.charAt(
-                        (y * GameContainer.columnCount) + x);
+                        (y * level.getColumns()) + x);
 
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.indexBlank;
-
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y)));
-                    //TODO REMOVE SOUTS
-                    System.out.println("Utskrift i Game.Game.setupMap: Väg = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
                     background[x][y] = Translator.indexGoal;
                     air[x][y] = Translator.indexGoal;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "goal"));
-                    System.out.println("Utskrift i Game.Game.setupMap: MÅL = X: " + x + " Y: " + y);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapStart)) {
                     background[x][y] = Translator.indexStart;
                     air[x][y] = Translator.indexStart;
                     map.put(new Position(x,y), new RoadTile(new Position(x,y), "start"));
-                    System.out.println("Utskrift i Game.Game.setupMap: Start = X: " + x + " Y: " + y);
                     startPosition.setX(x);
                     startPosition.setY(y);
                 }
@@ -232,6 +266,18 @@ public class Game extends JPanel implements Runnable {
                     map.put(new Position(x,y), new TowerTile(new Position(x,y)));
                 }
             }
+    }
+
+    public void setPause(boolean pause) {
+        this.pause = pause;
+    }
+
+    public Thread getThread() {
+        return thread;
+    }
+
+    public void setRunning(boolean b){
+        running = b;
     }
 
     public Hashtable<Position,Tile>  getMap() {

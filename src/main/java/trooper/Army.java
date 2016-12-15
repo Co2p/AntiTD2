@@ -87,9 +87,13 @@ public class Army {
             Iterator<Trooper> iterator = army.iterator();
             while(iterator.hasNext()){
                 Trooper trooper = iterator.next();
-                if (!trooper.isDead()) {
+                if (!trooper.isDead() ) {
                     RoadTile road = trooper.move(map, preferred);
-                    road.landOn(trooper);
+                    if(trooper.getSemiStep()==0) {
+                        road.landOn(trooper);
+                    }
+
+
                     if (trooper.getReachedGoal()) {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
@@ -209,7 +213,7 @@ public class Army {
                         g.drawImage(square_air[Translator.indexTeleporter],
                                 x, y,null, null);
                     }
-                    drawHpBar(g, x, y, t);
+                    drawHpBar(g, x, y, t);  //Draw HP-bar on each trooper
                 }
             }
         }

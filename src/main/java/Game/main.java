@@ -24,6 +24,11 @@ public class main {
         }
 
         SwingUtilities.invokeLater(() -> {
+            try {
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
+                e.printStackTrace();
+            }
             Lobby lobby = new Lobby(levelArray);
             lobby.showGUI();
         });

@@ -17,6 +17,7 @@ public class Lobby {
     public Player player;
     public ArrayList<Level> levelArray;
     private Level currentLevel;
+    private Game currentGame;
 
     public Lobby(ArrayList<Level> levelArray) {
         this.levelArray = levelArray;
@@ -86,6 +87,18 @@ public class Lobby {
         selectLevelPanel.setVisible(false);
         mainFrame.add(game, BorderLayout.CENTER);
         mainFrame.setVisible(true);
+    }
+
+    public void setCurrentGame(Game currentGame) {
+        this.currentGame = currentGame;
+    }
+
+    public Game getCurrentGame() {
+        return currentGame;
+    }
+
+    public JPanel getSelectLevelPanel(){
+        return selectLevelPanel;
     }
 
     public void setCurrentLevel(Level level) {

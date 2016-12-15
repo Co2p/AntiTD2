@@ -1,5 +1,6 @@
 package helpers;
 
+import Game.LevelBuilder;
 import org.w3c.dom.Document;
 import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXException;
@@ -128,7 +129,6 @@ public class LevelParser {
             try {
                 levelCount = Integer.parseInt(path.evaluate(
                         "count(/levellist/level)",doc));
-
                 for (int i = 0; i < levelCount;i++) {
                     levelName.add(i, path.evaluate(
                             "/levellist/level["+(i+1)+"]/@name",doc));
@@ -164,9 +164,14 @@ public class LevelParser {
                         str[j] = path.evaluate("/levellist/level["+
                                         (i+1)+"]/map[1]/row["+(j+1)+"]",doc);
                     }
+                    String tmp = LevelBuilder.stringArrayToString(str);
+                    if(!tmp.contains("S") || !tmp.contains("G")){
+                        error = true;
+                        errorMessage.setParsError("Faulty map missing either " +
+                                "a start or a goal");
+                    }
                     map.add(i,str);
                 }
-
             } catch (XPathExpressionException e) {
                 error = true;
                 errorMessage.setXpathException(e.getMessage());
@@ -174,9 +179,7 @@ public class LevelParser {
                 error = true;
                 errorMessage.setNumberFormat(e.getMessage());
             }
-
         }
-
     }
 
 

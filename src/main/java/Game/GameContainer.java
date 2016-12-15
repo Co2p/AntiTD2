@@ -22,10 +22,11 @@ public class GameContainer {
     public static Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
 
     public GameContainer(){
-        define();
+//        define();
     }
 
     public void define(){
+        System.out.println("columns: "+columnCount+" rows: "+rowCount);
 
         //Setup the squares (Game.Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
@@ -70,6 +71,14 @@ public class GameContainer {
     public static void setRowCount(int rowCount) {
         GameContainer.rowCount = rowCount;
     }
+
+    //    public static void setColumnCount(int columnCount) {
+//        GameContainer.columnCount = columnCount;
+//    }
+//
+//    public static void setRowCount(int rowCount) {
+//        GameContainer.rowCount = rowCount;
+//    }
 
     public void move(Army army){
 

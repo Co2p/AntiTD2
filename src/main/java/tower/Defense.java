@@ -48,6 +48,7 @@ public class Defense {
      * @return the position of the tower
      */
     public Position createTower() {
+
         Random rand = new Random();
         Position pos = null;
         if(rand.nextInt(1000) + 1 <= spawnRate) {
@@ -58,6 +59,7 @@ public class Defense {
                 towerPlacement = 0;
             }
             if (!towerMap.isEmpty()) {
+                System.out.println("Lasertower");
                 pos = towerMap.get(towerPlacement).getPosition();
                 Tower tower = new LaserTower(roadMap, pos);
                 //TODO implement different towers
