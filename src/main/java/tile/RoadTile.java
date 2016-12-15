@@ -63,8 +63,6 @@ public class RoadTile extends Tile implements Zone {
         if (isGoal) {
             t.setReachedGoal();
         } else if(portalExit != null) {
-//            t.setPosition(portalExit.getPosition());
-//            t.pushToBackTrack(portalExit.getPosition(),t.getDirection());
             for (int i = 0; i < 5; i++) {
                 t.forceMove(map,t.getDirection());
                 t.pushToBackTrack(t.getPosition(),t.getOppociteDirection(t.getDirection()));
@@ -75,6 +73,7 @@ public class RoadTile extends Tile implements Zone {
             if (t != null && countObservers() > 0) {
                 troopers.add(t);
                 notifyObservers(troopers);
+                troopers.clear();
             }
             try {
                 if(gotLandOn) {

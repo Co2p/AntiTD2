@@ -134,9 +134,6 @@ public class Tower implements Observer {
     @Override
     public void update(Observable o, Object arg) {
         //TODO Alla torn skjuter inte om de bortkommenterade körs ist för addall
-        //ArrayList<Trooper> tmp = (ArrayList<Trooper>) arg;
-        //targets.addAll(tmp);
-        //tmp.clear();
         targets.addAll((ArrayList<Trooper>) arg);
     }
 

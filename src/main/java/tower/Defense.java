@@ -106,7 +106,6 @@ public class Defense {
                             .getY()+12;
                     g.setColor(Color.red.darker());
                     g.drawLine(towerX,towerY,trooperX,trooperY);
-                    g.drawString(((LaserTower) t).getFocusTarget().toString(),towerX,towerY);
                 }
             }
         }
