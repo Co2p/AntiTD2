@@ -64,26 +64,31 @@ public class ZoneLoader {
         try {
             boolean valid = false;
             URL[] urls = {ClassLoader.getSystemClassLoader().getResource(className.concat(".class"))};
-            zoneClass = Class.forName(className,true,new URLClassLoader(urls));
-            if (zoneClass.isInterface()) {
+            if (urls[0] == null) {
                 error = true;
-                errorMessages.setInterFaceError("Class is Interface and" +
-                                                " cannot be instanced");
-                return false;
-            }
-            Constructor<?>[] constructors = zoneClass.getConstructors();
-            for (Constructor con : constructors) {
-                if (con.getParameterCount() == 0) {
-                    valid = true;
+                errorMessages.setFileError("Could not find file: "+className);
+            } else {
+                zoneClass = Class.forName(className,true,new URLClassLoader(urls));
+                if (zoneClass.isInterface()) {
+                    error = true;
+                    errorMessages.setInterFaceError("Class is Interface and" +
+                            " cannot be instanced");
+                    return false;
                 }
-            }
-            if (!valid) {
-                error = true;
-                errorMessages.setConstructorError("Could not find a" +
-                        " constructor that does not take any arguments");
-            }
+                Constructor<?>[] constructors = zoneClass.getConstructors();
+                for (Constructor con : constructors) {
+                    if (con.getParameterCount() == 0) {
+                        valid = true;
+                    }
+                }
+                if (!valid) {
+                    error = true;
+                    errorMessages.setConstructorError("Could not find a" +
+                            " constructor that does not take any arguments");
+                }
 
-            return valid;
+                return valid;
+            }
         } catch (ClassNotFoundException e) {
             error = true;
             errorMessages.setClassNotFoundException("Could not find class: "

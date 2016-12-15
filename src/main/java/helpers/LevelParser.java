@@ -169,7 +169,6 @@ public class LevelParser {
                         error = true;
                         errorMessage.setParsError("Faulty map missing either " +
                                 "a start or a goal");
-                        System.out.println("HEllo");
                     }
                     map.add(i,str);
                 }

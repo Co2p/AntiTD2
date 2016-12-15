@@ -24,13 +24,14 @@ public class ErrorWindow {
 
     private void setUpGui(){
         window = new JFrame("Error");
-        window.add(new JPanel().add(new JLabel("An error occurred press " +
+        window.add(new JPanel().add(new JLabel("An error occurred! press " +
                 "Error message to view the message or press default to use the games default maps")));
         JPanel bottom = new JPanel();
         bottom.add(defaultMap(),BorderLayout.SOUTH);
         bottom.add(messageButton(), BorderLayout.SOUTH);
         bottom.add(quit(),BorderLayout.SOUTH);
         window.add(bottom,BorderLayout.SOUTH);
+        window.setLocationRelativeTo(null);
     }
 
     private JButton messageButton() {

@@ -4,6 +4,8 @@ import helpers.LevelParser;
 import helpers.ErrorMessages;
 import helpers.ZoneLoader;
 
+import java.util.Objects;
+
 /**
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
@@ -22,7 +24,7 @@ public class LevelBuilder {
         errorMessages = new ErrorMessages();
         zoneLoader = new ZoneLoader(errorMessages);
         setupParser(fileName);
-        if(levelParser.isError() || zoneLoader.isError()) {
+        if(levelParser.isError()) {
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
             errorWindow.setVisable();
         } else {
@@ -40,6 +42,7 @@ public class LevelBuilder {
     public void defaultMap() {
         zoneLoader = new ZoneLoader(errorMessages);
         setupParser(FILELOCATION);
+        go = true;
     }
 
     private void setupParser(String fileName) {
@@ -50,7 +53,7 @@ public class LevelBuilder {
     public Level buildLevel(int i) {
         while (!go) {
             try {
-                Thread.sleep(4000);
+                Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -60,7 +63,7 @@ public class LevelBuilder {
         level.setCredits(levelParser.getCredits().get(i));
         level.setUnitsToWin(levelParser.getUnitsToWin().get(i));
         level.setTowerSpawnRate(levelParser.getTowerSpawnRate().get(i));
-        if(levelParser.getClassName().get(i) != null) {
+        if(!Objects.equals(levelParser.getClassName().get(i), "")) {
             if (zoneLoader.loadZone(levelParser.getClassName().get(i))) {
                 level.setZone(zoneLoader.getZone());
                 level.setLandOn(zoneLoader.getLandOn());
@@ -69,6 +72,20 @@ public class LevelBuilder {
         level.setMap(stringArrayToString(levelParser.getMap().get(i)));
         level.setColumns(levelParser.getColumns().get(i));
         level.setRows(levelParser.getRows().get(i));
+        if(zoneLoader.isError()) {
+            go = false;
+            ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
+            errorWindow.setVisable();
+        } else {
+            go = true;
+        }
+        while (!go) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+
+            }
+        }
         return level;
     }
 

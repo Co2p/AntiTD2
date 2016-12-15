@@ -7,7 +7,7 @@
             <towerspawnrate>25</towerspawnrate>
             <!--<timelimit>2</timelimit>-->
         </rules>
-        <!--<tile>className</tile>-->
+        <tile>className</tile>
         <map>
             <size>
                 <column>12</column>
