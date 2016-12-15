@@ -66,9 +66,9 @@ public class Game extends JPanel implements Runnable {
 
     public Game(Level level, Player player){
         this.level = level;
-        thread.start();
         this.player = player;
         results = new Results();
+        thread.start();
     }
 
     public void define(){
@@ -93,7 +93,8 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void define(Level level){
-        running = true;
+
+        thread.start();
         this.level = level;
         width = getWidth();
         height = getHeight();
@@ -111,8 +112,9 @@ public class Game extends JPanel implements Runnable {
 
         x = startPosition.getX();
         y = startPosition.getY();
-        System.out.println("Thread i game: " + thread);
     }
+
+
 
     //Paints the components in game
     public void paintComponent(Graphics gr){

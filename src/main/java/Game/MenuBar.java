@@ -42,6 +42,7 @@ public class MenuBar {
             public void actionPerformed(ActionEvent e) {
 
                 frame.getCurrentGame().setVisible(false);
+                frame.getCurrentGame().define();
                 frame.getCurrentGame().setRunning(false);
                 frame.getSelectLevelPanel().setVisible(true);
 
