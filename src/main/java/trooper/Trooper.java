@@ -294,16 +294,14 @@ public class Trooper {
                 road2 = (RoadTile)forceMove(map_hashTable, preferred);
                 nextPosition = road2.getPosition();
             }
-//            if(!firstStep) {
-//                semiStep++;
-//            }else{
-//                firstStep = false;
-//            }
-            semiStep++;
+            if(!firstStep) {
+                semiStep++;
+            }else{
+                firstStep = false;
+            }
             return road;
         } else {
              road = forceMove(map_hashTable, preferred);
-            //position=road.getPosition();
             position = nextPosition;
             semiStep = 0;
         }
