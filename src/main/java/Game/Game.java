@@ -193,6 +193,11 @@ public class Game extends JPanel implements Runnable {
         }
     }
 
+
+    /**
+     * Method to setup the map images in the arrays Background & Air
+     *
+     * */
     public void setupMap(){
         background = new int[level.getColumns()][level.getRows()];
         air = new int[level.getColumns()][level.getRows()];
@@ -207,7 +212,6 @@ public class Game extends JPanel implements Runnable {
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
                     air[x][y] = Translator.indexBlank;
-
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;

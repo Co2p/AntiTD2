@@ -199,7 +199,6 @@ public class Army {
                 if (t.hasTurned()) {
                     g.drawImage(square_air[Translator.indexZombie], x, y,
                             null, null);
-                    g.drawString(t.getDirection().toString(),x,y);
                     drawHpBar(g,x,y,t);
                 } else {
 

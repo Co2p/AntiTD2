@@ -143,15 +143,15 @@
                 <column>20</column>
                 <row>10</row>
             </size>
-            <row>00000000000000000000</row>
-            <row>0000000RRRRG00000000</row>
-            <row>0000000R000000000000</row>
-            <row>0000000R000000000000</row>
-            <row>0000000R000000000000</row>
-            <row>0000000R000000000000</row>
-            <row>SRRRRRRR000000000000</row>
-            <row>00000000000000000000</row>
-            <row>00000000000000000000</row>
+            <row>000000T000000000T000</row>
+            <row>0000000RRRRRRRRR0000</row>
+            <row>0000000R00TR000R0000</row>
+            <row>00RRRRRR000T000R0000</row>
+            <row>00RTT00R000TRRRRR000</row>
+            <row>000000RR0000000R0000</row>
+            <row>SRRRRRR000R0000RRRG0</row>
+            <row>000T00R000R0TT000000</row>
+            <row>000000RRRRRRR0000000</row>
             <row>00000000000000000000</row>
         </map>
     </level>

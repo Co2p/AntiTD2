@@ -52,7 +52,7 @@ public class MenuBar {
         restart.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                frame.setMainFrameGame(new Game(frame.getCurrentLevel(),frame.player));
+                frame.setMainFrameGame( new Game(frame.getCurrentLevel(),frame.player));
             }
         });
         return restart;
