@@ -77,14 +77,15 @@ public class Game extends JPanel implements Runnable {
         mapString = level.getMap();
         setupImages();
         startPosition = new Position();
+        setupMap();
         this.army = new Army(map, startPosition);
         this.defense = new Defense(map,level.towerSpawnRate);
-        shop = new Shop(army);
         gameContainer = new GameContainer();
         GameContainer.setColumnCount(level.getColumns());
         GameContainer.setRowCount(level.getRows());
         gameContainer.define();
-        setupMap();
+        shop = new Shop(army);
+
         x = startPosition.getX();
         y = startPosition.getY();
         System.out.println("Thread i game: " + thread);
@@ -193,15 +194,15 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void setupMap(){
-        background = new int[GameContainer.columnCount][GameContainer.rowCount];
-        air = new int[GameContainer.columnCount][GameContainer.rowCount];
+        background = new int[level.getColumns()][level.getRows()];
+        air = new int[level.getColumns()][level.getRows()];
 
         for (int y = 0; y < background[0].length ; y++)
             for (int x = 0; x < background.length; x++) {
 
                 //Take out the character (String-value) at specific index
                 char indexChar = mapString.charAt(
-                        (y * GameContainer.columnCount) + x);
+                        (y * level.getColumns()) + x);
 
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGrass)) {
                     background[x][y] = Translator.squareGrass;
