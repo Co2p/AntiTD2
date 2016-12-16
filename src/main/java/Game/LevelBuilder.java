@@ -42,15 +42,14 @@ public class LevelBuilder {
     public void defaultMap() {
         zoneLoader = new ZoneLoader(errorMessages);
         setupParser(FILELOCATION);
-
+        if (!levelParser.isError()) {
+            go = true;
+        }
     }
 
     private void setupParser(String fileName) {
         levelParser = new LevelParser("src/main/resources/xml/levelSchema.xml",errorMessages);
         levelParser.parseFile(fileName);
-        if (!levelParser.isError()) {
-            go = true;
-        }
     }
 
     public Level buildLevel(int i) {
@@ -66,7 +65,6 @@ public class LevelBuilder {
                 level.setLandOn(zoneLoader.getLandOn());
             }
         }
-        level.setRawMap(levelParser.getMap().get(i));
         level.setMap(stringArrayToString(levelParser.getMap().get(i)));
         level.setColumns(levelParser.getColumns().get(i));
         level.setRows(levelParser.getRows().get(i));
@@ -75,6 +73,7 @@ public class LevelBuilder {
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
             errorWindow.setVisable();
             pauseBuild();
+            level = buildLevel(i);
         }
         pauseBuild();
         return level;
@@ -83,7 +82,7 @@ public class LevelBuilder {
     public void pauseBuild(){
         while (!go) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
 
             }
