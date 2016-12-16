@@ -15,6 +15,7 @@ public class Level {
     private String className;
     private String classPath;
     public String map;
+    private String[] rawMap;
     private Method landOn;
     private Object zone;
     private int rows;
@@ -132,5 +133,13 @@ public class Level {
 
     public void setColumns(int columns) {
         this.columns = columns;
+    }
+
+    public String[] getRawMap() {
+        return rawMap;
+    }
+
+    public void setRawMap(String[] rawMap) {
+        this.rawMap = rawMap;
     }
 }

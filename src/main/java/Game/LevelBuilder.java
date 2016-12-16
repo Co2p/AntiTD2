@@ -42,23 +42,19 @@ public class LevelBuilder {
     public void defaultMap() {
         zoneLoader = new ZoneLoader(errorMessages);
         setupParser(FILELOCATION);
-        go = true;
+
     }
 
     private void setupParser(String fileName) {
         levelParser = new LevelParser("src/main/resources/xml/levelSchema.xml",errorMessages);
         levelParser.parseFile(fileName);
+        if (!levelParser.isError()) {
+            go = true;
+        }
     }
 
-    //TODO create a method for the pause instead of using the loop twice.
     public Level buildLevel(int i) {
-        while (!go) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        pauseBuild();
         Level level = new Level();
         level.setLevelName(levelParser.getLevelName().get(i));
         level.setCredits(levelParser.getCredits().get(i));
@@ -70,6 +66,7 @@ public class LevelBuilder {
                 level.setLandOn(zoneLoader.getLandOn());
             }
         }
+        level.setRawMap(levelParser.getMap().get(i));
         level.setMap(stringArrayToString(levelParser.getMap().get(i)));
         level.setColumns(levelParser.getColumns().get(i));
         level.setRows(levelParser.getRows().get(i));
@@ -77,9 +74,13 @@ public class LevelBuilder {
             go = false;
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
             errorWindow.setVisable();
-        } else {
-            go = true;
+            pauseBuild();
         }
+        pauseBuild();
+        return level;
+    }
+
+    public void pauseBuild(){
         while (!go) {
             try {
                 Thread.sleep(1000);
@@ -87,7 +88,6 @@ public class LevelBuilder {
 
             }
         }
-        return level;
     }
 
     public static String stringArrayToString(String[] sArr) {

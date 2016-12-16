@@ -20,6 +20,7 @@ public class main {
 
         for (int i = 0; i < lb.getNoOfLevels(); i++) {
             Level l = lb.buildLevel(i);
+            System.out.println("name of level: "+l.getLevelName());
             levelArray.add(l);
         }
 

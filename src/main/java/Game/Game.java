@@ -89,12 +89,12 @@ public class Game extends JPanel implements Runnable {
 
         x = startPosition.getX();
         y = startPosition.getY();
-        System.out.println("Thread i game: " + thread);
     }
 
     public void define(Level level){
         running = true;
         isFirst = true;
+        this.map = new Hashtable<>();
         this.level = level;
         width = getWidth();
         height = getHeight();
@@ -114,8 +114,6 @@ public class Game extends JPanel implements Runnable {
         y = startPosition.getY();
         thread = new Thread(this);
         thread.start();
-        System.out.println("Thread i game: " + thread);
-//        repaint();
     }
 
 
