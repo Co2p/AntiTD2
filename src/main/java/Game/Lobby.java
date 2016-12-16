@@ -1,5 +1,6 @@
 package Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,6 +16,7 @@ public class Lobby {
 
     private JFrame mainFrame;
     private JPanel enterNamePanel;
+    private JPanel imgPanel;
     private JPanel selectLevelPanel;
     public Player player;
     public ArrayList<Level> levelArray;
@@ -49,6 +51,20 @@ public class Lobby {
 
     private void buildNamePanel() {
         enterNamePanel = new JPanel();
+
+        //imagePanel = new ImagePanel(new ImageIcon("/mskr_home.jpg").getImage());
+        //imagePanel = new ImagePanel(new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/mskr_home.jpg")).getImage());
+        imgPanel = new JPanel();
+        ImageIcon icon = new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/mskr_home.jpg"));
+        Image image = icon.getImage(); // transform it
+        Image newimg = image.getScaledInstance(mainFrame.getWidth(), mainFrame.getHeight() ,  Image.SCALE_DEFAULT); // scale it the smooth way
+        icon = new ImageIcon(newimg);
+        JLabel thumb = new JLabel();
+        thumb.setIcon(icon);
+        imgPanel.add(thumb);
+
+        // enterNamePanel.add(imagePanel);
+
         player = new Player();
         JTextField enterNameField = new JTextField("Enter name", 15);
         JButton nameNextButton = new JButton("Next");
@@ -63,7 +79,9 @@ public class Lobby {
 
         enterNamePanel.add(enterNameField);
         enterNamePanel.add(nameNextButton);
-        mainFrame.add(enterNamePanel);
+        mainFrame.add(enterNamePanel, BorderLayout.NORTH);
+        mainFrame.add(imgPanel, BorderLayout.SOUTH);
+        mainFrame.pack();
     }
 
     private void buildSelectLevelPanel() {
@@ -89,6 +107,7 @@ public class Lobby {
 
     public void setMainFrameGame(Game game) {
         selectLevelPanel.setVisible(false);
+        imgPanel.setVisible(false);
         mainFrame.add(game, BorderLayout.CENTER);
         mainFrame.setVisible(true);
     }
