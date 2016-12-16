@@ -71,7 +71,7 @@ public class EndScreen {
         return replay;
     }
 
-    private JLabel creteTextLabel(Player player, Results results){
+    private JLabel createWinLabel(Player player, Results results){
         JLabel text = new JLabel("<html><h1 style=\"text-align:center;" +
                 " color:green\">YOU WON!</h1> <h3 style=\"text-align:center;" +
                 "\">Contratulations "+
@@ -90,24 +90,34 @@ public class EndScreen {
         return buttonpanel;
     }
 
-    private JPanel createTextPanel(Player player, Results results){
+    private JPanel createTextPanel(JLabel text){
         JPanel textpanel = new JPanel();
-        textpanel.add(creteTextLabel(player,results));
+        textpanel.add(text);
         return textpanel;
     }
 
     public void createWinScrean(Player p, Results r, Game g){
         frame = new JFrame("WELL PLAYED!");
-        frame.add(createTextPanel(p,r), BorderLayout.NORTH);
+        frame.add(createTextPanel(createWinLabel(p,r)), BorderLayout.NORTH);
         frame.add(createButtonPanel(g),BorderLayout.SOUTH);
         frame.pack();
         frame.setVisible(true);
     }
 
     public void createLooseScreen(Player p, Game g){
-        frame = new JFrame("NOT WELL PLAYED!");
+        frame = new JFrame("DEFEAT!");
+        frame.add(createTextPanel(createDefeatLable(p)));
         frame.add(createButtonPanel(g),BorderLayout.SOUTH);
         frame.pack();
         frame.setVisible(true);
+    }
+
+    private JLabel createDefeatLable(Player player) {
+        JLabel text = new JLabel("<html><h1 style=\"text-align:center;" +
+                " color:red\">"+player.getName()+" YOU GOT DEFEATED!</h1> " +
+                "<h3 style=\"text-align:center;\">Your zombie invasion " +
+                "failed and you ran out of credits </h3></html>");
+
+        return text;
     }
 }

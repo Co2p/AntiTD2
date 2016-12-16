@@ -68,14 +68,8 @@ public class Lobby {
         player = new Player();
         JTextField enterNameField = new JTextField("Enter name", 15);
         JButton nameNextButton = new JButton("Next");
-
-        nameNextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                player.setName(enterNameField.getText());
-                buildSelectLevelPanel();
-            }
-        });
+        enterNameField.addActionListener(new EnterNameListener(this,enterNameField));
+        nameNextButton.addActionListener(new EnterNameListener(this,enterNameField));
 
         enterNamePanel.add(enterNameField);
         enterNamePanel.add(nameNextButton);
@@ -84,7 +78,7 @@ public class Lobby {
         mainFrame.pack();
     }
 
-    private void buildSelectLevelPanel() {
+    public void buildSelectLevelPanel() {
         enterNamePanel.setVisible(false);
         selectLevelPanel = new JPanel();
         JLabel instructionLabel = new JLabel("Select your level "
