@@ -16,7 +16,7 @@
             <row>00000R000000</row>
             <row>0000TR000000</row>
             <row>SRRRRRRRRRRG</row>
-            <row>00000R0T0000</row>
+            <row>00000R0TT000</row>
             <row>00000R000000</row>
             <row>00000R000000</row>
             <row>000000000000</row>
@@ -25,7 +25,7 @@
     <level name ="Level 1">
         <rules>
             <credits>600</credits>
-            <unitstowin>10</unitstowin>
+            <unitstowin>8</unitstowin>
             <towerspawnrate>10</towerspawnrate>
         </rules>
         <!--<tile>BearTrap</tile>-->
@@ -37,9 +37,9 @@
             <row>00T000000000</row>
             <row>SRRRR0000000</row>
             <row>0000R0000000</row>
-            <row>000TR0RRR000</row>
+            <row>000TR0RRRT00</row>
             <row>0000RRR0R000</row>
-            <row>0000000TRT00</row>
+            <row>0000000TR000</row>
             <row>00000000R000</row>
             <row>00000000G000</row>
         </map>
@@ -47,92 +47,95 @@
     <level name ="Level 2">
         <rules>
             <credits>500</credits>
-            <unitstowin>30</unitstowin>
+            <unitstowin>10</unitstowin>
             <towerspawnrate>10</towerspawnrate>
         </rules>
         <map>
             <size>
-                <column>12</column>
+                <column>14</column>
                 <row>8</row>
             </size>
-            <row>000TTT000000</row>
-            <row>000RRRRT0000</row>
-            <row>000R00RT0000</row>
-            <row>0RRR00RT0000</row>
-            <row>0RT000R00T00</row>
-            <row>0RTTRRRRRR00</row>
-            <row>0R000000TR00</row>
-            <row>0S0000000G00</row>
+            <row>000T0T00000000</row>
+            <row>000RRRRT000000</row>
+            <row>000R00RT0000T0</row>
+            <row>0RRR00RT0000TT</row>
+            <row>0RT000R00T00T0</row>
+            <row>0RT0RRRRRR0000</row>
+            <row>0R000000TR0000</row>
+            <row>0S0000000RRRG0</row>
         </map>
     </level>
     <level name ="Level 3">
         <rules>
-            <credits>500</credits>
-            <unitstowin>30</unitstowin>
+            <credits>1000</credits>
+            <unitstowin>14</unitstowin>
             <towerspawnrate>15</towerspawnrate>
         </rules>
         <map>
             <size>
-                <column>12</column>
+                <column>15</column>
                 <row>8</row>
             </size>
-            <row>TTTTTTTTTTGT</row>
-            <row>TRRRTRRRTTRT</row>
-            <row>TRTRRRTRRRRT</row>
-            <row>TRTTTTTTTTTT</row>
-            <row>TRRRRRRRRRRT</row>
-            <row>TTTTTTTTTTRT</row>
-            <row>SRRRRRRRRRRT</row>
-            <row>TTTTTTTTTTTT</row>
+            <row>00000000T0000G0</row>
+            <row>0TTT0000TRRRRR0</row>
+            <row>0000000000000R0</row>
+            <row>000RRRRRRRRRRRT</row>
+            <row>000R000TT000R0T</row>
+            <row>000R00000000R00</row>
+            <row>SRRRRRRRRRRRR00</row>
+            <row>00000000000TT00</row>
         </map>
     </level>
-    <level name ="fu">
+    <level name ="Level 4">
         <rules>
-            <credits>500</credits>
-            <unitstowin>30</unitstowin>
+            <credits>1000</credits>
+            <unitstowin>8</unitstowin>
             <towerspawnrate>10</towerspawnrate>
         </rules>
         <map>
             <size>
-                <column>12</column>
-                <row>8</row>
+                <column>16</column>
+                <row>9</row>
             </size>
-            <row>00000RR00000</row>
-            <row>00000RR00000</row>
-            <row>00000RR00000</row>
-            <row>00000RR00000</row>
-            <row>00RR0RR0RR00</row>
-            <row>00RRRRRRRR00</row>
-            <row>00RRRRRRRR00</row>
-            <row>00SRRRRRRG00</row>
+            <row>0000000T00T00T00</row>
+            <row>SRRRRRRRRRRRRRR0</row>
+            <row>T0R000000000T0R0</row>
+            <row>T0RRRRRR00000TRT</row>
+            <row>T00000TR000RRRRT</row>
+            <row>0RRRRRRR00RR000T</row>
+            <row>0R000TT0000R000T</row>
+            <row>0RRRRRRRRRRRRRG0</row>
+            <row>0000000000000000</row>
         </map>
     </level>
     <level name ="Dödsbanan">
         <rules>
-            <credits>500</credits>
-            <unitstowin>30</unitstowin>
-            <towerspawnrate>10</towerspawnrate>
+            <credits>1500</credits>
+            <unitstowin>15</unitstowin>
+            <towerspawnrate>15</towerspawnrate>
             <!--<timelimit>2</timelimit>-->
         </rules>
         <!--<tile className="" > </tile>-->
         <map>
             <size>
                 <column>20</column>
-                <row>10</row>
+                <row>11</row>
             </size>
-            <row>00000000000000000000</row>
-            <row>0000000000RRRRRRR000</row>
-            <row>0TTTTT0000R00000R000</row>
-            <row>0RRRRR000TR00000R000</row>
-            <row>0RTTTR000TR00000R000</row>
-            <row>0RTTTR0000G00000R000</row>
-            <row>0R000R0000000000R000</row>
-            <row>0RRRRRRRRRRRRRRRR000</row>
-            <row>0R0000T00T00000R0000</row>
-            <row>0S000000000000000000</row>
+            <row>000000RRRSRRR0000000</row>
+            <row>0000RRR00000RRR00000</row>
+            <row>000RR000000000RR0000</row>
+            <row>00RR0TRR000RRT0RR000</row>
+            <row>00TR0TTR000RTT0RT000</row>
+            <row>000R00000R00000R0000</row>
+            <row>000RR0000T0000RR0000</row>
+            <row>0000RRRRRRRRRRR00000</row>
+            <row>0000TRTRTRTRTRT00000</row>
+            <row>00000RTRTRTRTG000000</row>
+            <row>00000RRRRRRRRR000000</row>
+
         </map>
     </level>
-    <level name ="No towers 20x10">
+    <level name ="Final Cup">
         <rules>
             <credits>500</credits>
             <unitstowin>30</unitstowin>
@@ -155,29 +158,6 @@
             <row>000T00R000R0TT000000</row>
             <row>000000RRRRRRR0000000</row>
             <row>00000000000000000000</row>
-        </map>
-    </level>
-    <level name ="Level ??">
-        <rules>
-            <credits>500</credits>
-            <unitstowin>5</unitstowin>
-            <towerspawnrate>10</towerspawnrate>
-            <!--<timelimit>2</timelimit>-->
-        </rules>
-        <!--<tile className="" > </tile>-->
-        <map>
-            <size>
-                <column>20</column>
-                <row>10</row>
-            </size>
-            <row>SRRR00RRRRRR</row>
-            <row>00TR00R0T00R</row>
-            <row>000RTTRRRR0R</row>
-            <row>000RRR000R0R</row>
-            <row>00000R000RTR</row>
-            <row>RRRRRR000R0R</row>
-            <row>R00T00000RTR</row>
-            <row>RRRRRRRRRR0G</row>
         </map>
     </level>
 </levellist>

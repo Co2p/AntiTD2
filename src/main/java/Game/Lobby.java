@@ -1,5 +1,6 @@
 package Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,18 +9,23 @@ import java.util.ArrayList;
 
 /**
  * Created by Daniel on 2016-12-05.
+ *
+ * comment
  */
 public class Lobby {
 
     private JFrame mainFrame;
     private JPanel enterNamePanel;
+    private JPanel imgPanel;
     private JPanel selectLevelPanel;
     public Player player;
     public ArrayList<Level> levelArray;
     private Level currentLevel;
     private Game currentGame;
+    private EndScreen escreen;
 
     public Lobby(ArrayList<Level> levelArray) {
+        escreen = new EndScreen(this);
         this.levelArray = levelArray;
         setUpGUI();
     }
@@ -45,24 +51,34 @@ public class Lobby {
 
     private void buildNamePanel() {
         enterNamePanel = new JPanel();
+
+        //imagePanel = new ImagePanel(new ImageIcon("/mskr_home.jpg").getImage());
+        //imagePanel = new ImagePanel(new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/mskr_home.jpg")).getImage());
+        imgPanel = new JPanel();
+        ImageIcon icon = new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/mskr_home.jpg"));
+        Image image = icon.getImage(); // transform it
+        Image newimg = image.getScaledInstance(mainFrame.getWidth(), mainFrame.getHeight() ,  Image.SCALE_DEFAULT); // scale it the smooth way
+        icon = new ImageIcon(newimg);
+        JLabel thumb = new JLabel();
+        thumb.setIcon(icon);
+        imgPanel.add(thumb);
+
+        // enterNamePanel.add(imagePanel);
+
         player = new Player();
         JTextField enterNameField = new JTextField("Enter name", 15);
         JButton nameNextButton = new JButton("Next");
-
-        nameNextButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                player.setName(enterNameField.getText());
-                buildSelectLevelPanel();
-            }
-        });
+        enterNameField.addActionListener(new EnterNameListener(this,enterNameField));
+        nameNextButton.addActionListener(new EnterNameListener(this,enterNameField));
 
         enterNamePanel.add(enterNameField);
         enterNamePanel.add(nameNextButton);
-        mainFrame.add(enterNamePanel);
+        mainFrame.add(enterNamePanel, BorderLayout.NORTH);
+        mainFrame.add(imgPanel, BorderLayout.SOUTH);
+        mainFrame.pack();
     }
 
-    private void buildSelectLevelPanel() {
+    public void buildSelectLevelPanel() {
         enterNamePanel.setVisible(false);
         selectLevelPanel = new JPanel();
         JLabel instructionLabel = new JLabel("Select your level "
@@ -85,6 +101,7 @@ public class Lobby {
 
     public void setMainFrameGame(Game game) {
         selectLevelPanel.setVisible(false);
+        imgPanel.setVisible(false);
         mainFrame.add(game, BorderLayout.CENTER);
         mainFrame.setVisible(true);
     }
@@ -107,5 +124,17 @@ public class Lobby {
 
     public Level getCurrentLevel() {
         return currentLevel;
+    }
+
+    public void setMainFrameVisible(boolean visible) {
+        mainFrame.setVisible(visible);
+    }
+
+    public EndScreen getEscreen() {
+        return escreen;
+    }
+
+    public JPanel getImgPanel(){
+        return imgPanel;
     }
 }

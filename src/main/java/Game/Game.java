@@ -32,6 +32,7 @@ public class Game extends JPanel implements Runnable {
     private Player player;
     private Results results;
     private volatile boolean pause, running = true;
+    private EndScreen endScreen=null;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -62,13 +63,15 @@ public class Game extends JPanel implements Runnable {
                                 "000000000000";
 
     private Thread thread = new Thread(this);//thread that runs the game
-    private static boolean isFirst = true; //first time the game opens = true
+    private static volatile boolean isFirst = true; //first time the game opens = true
 
-    public Game(Level level, Player player){
+    public Game(Level level, Player player, EndScreen endScreen){
         this.level = level;
-        thread.start();
         this.player = player;
         results = new Results();
+        this.endScreen = endScreen;
+        thread.start();
+
     }
 
     public void define(){
@@ -89,11 +92,12 @@ public class Game extends JPanel implements Runnable {
 
         x = startPosition.getX();
         y = startPosition.getY();
-        System.out.println("Thread i game: " + thread);
     }
 
     public void define(Level level){
         running = true;
+        isFirst = true;
+        this.map = new Hashtable<>();
         this.level = level;
         width = getWidth();
         height = getHeight();
@@ -111,12 +115,14 @@ public class Game extends JPanel implements Runnable {
 
         x = startPosition.getX();
         y = startPosition.getY();
-        System.out.println("Thread i game: " + thread);
+        thread = new Thread(this);
+        thread.start();
     }
+
+
 
     //Paints the components in game
     public void paintComponent(Graphics gr){
-
         if(isFirst) {
             define();   //define the squarearray
             isFirst = false;
@@ -135,7 +141,7 @@ public class Game extends JPanel implements Runnable {
     public void run() {
         int totalReached = 0;
         ArrayList<Trooper> refunds;
-        while(totalReached < level.getUnitsToWin() && running){
+        while(!isWin(totalReached) && running && !isDefeat()){
             if(!isFirst){
                 army.updateArmy();
                 refunds = army.getFinished();
@@ -149,10 +155,7 @@ public class Game extends JPanel implements Runnable {
                     buildTowers(towerPosition);
                 }
                 defense.update();
-
-                //gameContainer.move(army); //do something to change the game
             }
-            repaint();  // repaint the graphics in the gameframe.
             try{
 
                 thread.sleep(GAMETIMER);
@@ -167,21 +170,38 @@ public class Game extends JPanel implements Runnable {
                     e.printStackTrace();
                 }
             }
+            repaint();  // repaint the graphics in the gameframe.
         }
         shop.stopTime();
-        results.setCreditsUsed(shop.getNoOfCredits());
-        results.setLevelName(level.getLevelName());
-        results.setTime(shop.getTime());
-        player.setResults(results);
-
-        //TODO do this a better way
-        try {
-            player.sendResult(player.getResults().get(0));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (isWin(totalReached)) {
+            System.out.println("WIN");
+            results.setCreditsUsed(shop.getNoOfCredits());
+            results.setLevelName(level.getLevelName());
+            results.setTime(shop.getTime());
+            player.setResults(results);
+            endScreen.createWinScrean(player,results,this);
+            //TODO do this a better way
+            try {
+                player.sendResult(player.getResults().get(0));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(results);
+        } else if (isDefeat()) {
+            endScreen.createLooseScreen(player,this);
         }
-        System.out.println(results);
 
+    }
+
+    private boolean isWin(int unitsReachedGoal) {
+        return (unitsReachedGoal == level.getUnitsToWin());
+    }
+
+    private boolean isDefeat() {
+        if (isFirst) {
+            return false;
+        }
+        return ((army.getArmy().size() == 0) && (shop.getNoOfCredits() == 0));
     }
 
 

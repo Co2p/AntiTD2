@@ -309,11 +309,7 @@ public class Trooper {
                             +"threw a nullpointerexception");
                 }
             }
-            if(!firstStep) {
-                semiStep++;
-            }else{
-                firstStep = false;
-            }
+           semiStep++;
             if(road2!=null) {
                 return road2;
             }
@@ -359,7 +355,6 @@ public class Trooper {
                                 direction))){
             nextPosition = position.getPosToRight(direction);
             direction = getDirectionToRight(direction);
-            //TODO get direction
             reverse = false;
         }
         else if (preferred == Direction.LEFT &&
@@ -369,12 +364,10 @@ public class Trooper {
                                 direction))){
 
             nextPosition = position.getPosToLeft(direction);
-            //TODO get direction
             direction = getDirectionToLeft(direction);
             reverse = false;
         }
         else {
-
             nextPosition = getDefaultNextPosition(possibleMovesTable);
             reverse = false;
         }
@@ -475,7 +468,12 @@ public class Trooper {
     private Position getDefaultNextPosition(Hashtable<Position, RoadTile>
                                                     possibleMovesTable) {
         Position nextPosition = null;
-         if (!visited.contains(position.getPosToNorth()) &&
+
+        if(!visited.contains(position.getPosToDirection(direction)) &&
+                possibleMovesTable.containsKey(position.getPosToDirection(
+                        direction))){
+            nextPosition = position.getPosToDirection(direction);
+        }else if (!visited.contains(position.getPosToNorth()) &&
                 possibleMovesTable.containsKey(position.getPosToNorth())) {
             nextPosition = position.getPosToNorth();
             direction = NORTH;

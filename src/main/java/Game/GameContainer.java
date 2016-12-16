@@ -26,7 +26,6 @@ public class GameContainer {
     }
 
     public void define(){
-        System.out.println("columns: "+columnCount+" rows: "+rowCount);
 
         //Setup the squares (Game.Game pane) of the gui.
         backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array

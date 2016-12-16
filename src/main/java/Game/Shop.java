@@ -83,7 +83,6 @@ public class Shop {
                 //if click was registered on a button
                 if(buttons[i].contains(Game.mousePoint)){
                     int j = i +1;
-                    System.out.println("Button: " + j + " was clicked");
 
                     if(i == 0 && !(noOfCredits - Translator.pitifullPrice < 0)){
                         noOfCredits -= Translator.pitifullPrice;

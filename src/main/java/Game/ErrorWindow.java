@@ -57,7 +57,6 @@ public class ErrorWindow {
             @Override
             public void actionPerformed(ActionEvent e) {
                 builder.defaultMap();
-                builder.setGo(true);
                 window.setVisible(false);
             }
         });
