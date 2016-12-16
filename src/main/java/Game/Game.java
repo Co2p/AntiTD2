@@ -141,7 +141,7 @@ public class Game extends JPanel implements Runnable {
     public void run() {
         int totalReached = 0;
         ArrayList<Trooper> refunds;
-        while(totalReached < level.getUnitsToWin() && running){
+        while(!isWin(totalReached) && running && !isDefeat()){
             if(!isFirst){
                 army.updateArmy();
                 refunds = army.getFinished();
@@ -173,20 +173,35 @@ public class Game extends JPanel implements Runnable {
             repaint();  // repaint the graphics in the gameframe.
         }
         shop.stopTime();
-        results.setCreditsUsed(shop.getNoOfCredits());
-        results.setLevelName(level.getLevelName());
-        results.setTime(shop.getTime());
-        player.setResults(results);
-        endScreen.createWinScrean(player,results,this);
-
-        //TODO do this a better way
-        try {
-            player.sendResult(player.getResults().get(0));
-        } catch (IOException e) {
-            e.printStackTrace();
+        if (isWin(totalReached)) {
+            System.out.println("WIN");
+            results.setCreditsUsed(shop.getNoOfCredits());
+            results.setLevelName(level.getLevelName());
+            results.setTime(shop.getTime());
+            player.setResults(results);
+            endScreen.createWinScrean(player,results,this);
+            //TODO do this a better way
+            try {
+                player.sendResult(player.getResults().get(0));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            System.out.println(results);
+        } else if (isDefeat()) {
+            endScreen.createLooseScreen(player,this);
         }
-        System.out.println(results);
 
+    }
+
+    private boolean isWin(int unitsReachedGoal) {
+        return (unitsReachedGoal == level.getUnitsToWin());
+    }
+
+    private boolean isDefeat() {
+        if (isFirst) {
+            return false;
+        }
+        return ((army.getArmy().size() == 0) && (shop.getNoOfCredits() == 0));
     }
 
 
