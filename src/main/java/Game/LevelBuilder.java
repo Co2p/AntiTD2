@@ -42,7 +42,9 @@ public class LevelBuilder {
     public void defaultMap() {
         zoneLoader = new ZoneLoader(errorMessages);
         setupParser(FILELOCATION);
-        go = true;
+        if (!levelParser.isError()) {
+            go = true;
+        }
     }
 
     private void setupParser(String fileName) {
@@ -50,15 +52,8 @@ public class LevelBuilder {
         levelParser.parseFile(fileName);
     }
 
-    //TODO create a method for the pause instead of using the loop twice.
     public Level buildLevel(int i) {
-        while (!go) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
+        pauseBuild();
         Level level = new Level();
         level.setLevelName(levelParser.getLevelName().get(i));
         level.setCredits(levelParser.getCredits().get(i));
@@ -77,17 +72,21 @@ public class LevelBuilder {
             go = false;
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
             errorWindow.setVisable();
-        } else {
-            go = true;
+            pauseBuild();
+            level = buildLevel(i);
         }
+        pauseBuild();
+        return level;
+    }
+
+    public void pauseBuild(){
         while (!go) {
             try {
-                Thread.sleep(1000);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
 
             }
         }
-        return level;
     }
 
     public static String stringArrayToString(String[] sArr) {
