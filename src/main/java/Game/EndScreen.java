@@ -26,6 +26,7 @@ public class EndScreen {
                 frame.setVisible(false);
                 lobby.getSelectLevelPanel().setVisible(true);
                 lobby.getCurrentGame().setVisible(false);
+                lobby.getImgPanel().setVisible(true);
 
             }
         });
