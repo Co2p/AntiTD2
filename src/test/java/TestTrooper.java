@@ -102,8 +102,8 @@ public class TestTrooper {
     @Test
     public void TestSetHp(){
         Trooper t = new Trooper();
-        t.setHealth(-2);
-        assertEquals(t.getHealth(), -2);
+        t.receiveHealth(-2);
+        assertEquals(t.getHealth(), 998);
     }
 
     @Test
@@ -119,12 +119,15 @@ public class TestTrooper {
         RoadTile rt2 = new RoadTile(p2);
         Position p3 = new Position(2,1);
         RoadTile rt3 = new RoadTile(p3 );
-        Position p4 = new Position(3,2);
-        RoadTile rt4 = new RoadTile(p4, "goal");
+        Position p4 = new Position(3,1);
+        RoadTile rt4 = new RoadTile(p4);
+        Position p5 = new Position(3,2);
+        RoadTile rt5 = new RoadTile(p5, "goal");
         map.put(p1, rt1);
         map.put(p2, rt2);
         map.put(p3, rt3);
         map.put(p4, rt4);
+        map.put(p5,rt5);
     }
 
 
@@ -142,13 +145,13 @@ public class TestTrooper {
         pt = new PitifulTrooper();
         pt.setPosition(new Position(0,1));
         makeMap();
-        RoadTile rt = pt.move(map, Direction.NORTH);
-        assertEquals(new Position(0,1), rt.getPosition());
-        rt = pt.move(map, Direction.NORTH);
+        RoadTile rt = pt.forceMove(map, Direction.NORTH);
         assertEquals(new Position(1,1), rt.getPosition());
-        rt = pt.move(map, Direction.NORTH);
+        rt = pt.forceMove(map, Direction.NORTH);
         assertEquals(new Position(2,1), rt.getPosition());
-        rt = pt.move(map, Direction.NORTH);
-        assertEquals(new Position(2,1), rt.getPosition());
+        rt = pt.forceMove(map, Direction.NORTH);
+        assertEquals(new Position(3,1), rt.getPosition());
+        rt = pt.forceMove(map, Direction.NORTH);
+        assertEquals(new Position(3,2), rt.getPosition());
     }
 }
