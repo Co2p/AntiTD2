@@ -178,6 +178,7 @@ public class Game extends JPanel implements Runnable {
         results.setLevelName(level.getLevelName());
         results.setTime(shop.getTime());
         player.setResults(results);
+        EndScreen endScreen = new EndScreen(player,results, this);
 
         //TODO do this a better way
         try {

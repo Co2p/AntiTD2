@@ -21,11 +21,11 @@ public class EndScreen {
     }
 
     private JButton createNewGame(){
-        JButton newGame = new JButton("New Game");
+        JButton newGame = new JButton("New level");
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //Todo ladda om levelselect
             }
         });
         return newGame;
@@ -60,7 +60,10 @@ public class EndScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
+
                 game.define();
+                game.run();
+                game.repaint();
 
             }
         });
