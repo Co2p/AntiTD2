@@ -167,8 +167,8 @@
         <!--<tile className="" > </tile>-->
         <map>
             <size>
-                <column>20</column>
-                <row>10</row>
+                <column>12</column>
+                <row>8</row>
             </size>
             <row>SRRR00RRRRRR</row>
             <row>00TR00R0T00R</row>

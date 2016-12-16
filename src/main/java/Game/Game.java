@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.CropImageFilter;
 import java.awt.image.FilteredImageSource;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -65,9 +66,9 @@ public class Game extends JPanel implements Runnable {
 
     public Game(Level level, Player player){
         this.level = level;
-        thread.start();
         this.player = player;
         results = new Results();
+        thread.start();
     }
 
     public void define(){
@@ -116,6 +117,8 @@ public class Game extends JPanel implements Runnable {
         System.out.println("Thread i game: " + thread);
 //        repaint();
     }
+
+
 
     //Paints the components in game
     public void paintComponent(Graphics gr){
@@ -174,7 +177,14 @@ public class Game extends JPanel implements Runnable {
         results.setCreditsUsed(shop.getNoOfCredits());
         results.setLevelName(level.getLevelName());
         results.setTime(shop.getTime());
-        player.setResult(results);
+        player.setResults(results);
+
+        //TODO do this a better way
+        try {
+            player.sendResult(player.getResults().get(0));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         System.out.println(results);
 
     }

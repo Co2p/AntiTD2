@@ -34,13 +34,13 @@ public class TestResults {
 
     @Test
     public void shouldReturnCreditsUsed() {
-        assertEquals(0,results.getCreditsUsed());
+        assertEquals(0,results.getCreditsLeft());
     }
 
     @Test
     public void shouldSetCreditsUsed() {
         results.setCreditsUsed(35);
-        assertEquals(35,results.getCreditsUsed());
+        assertEquals(35,results.getCreditsLeft());
     }
 
 }
