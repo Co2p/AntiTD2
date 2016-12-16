@@ -50,6 +50,7 @@ public class LevelBuilder {
         levelParser.parseFile(fileName);
     }
 
+    //TODO create a method for the pause instead of using the loop twice.
     public Level buildLevel(int i) {
         while (!go) {
             try {

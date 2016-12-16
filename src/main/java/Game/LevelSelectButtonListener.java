@@ -1,6 +1,5 @@
 package Game;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -26,10 +25,16 @@ public class LevelSelectButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-
-        g = new Game(level, player);
-        frame.setMainFrameGame(g);
-        frame.setCurrentGame(g);
+        if(frame.getCurrentGame() == null) {
+            g = new Game(level, player);
+            frame.setMainFrameGame(g);
+            frame.setCurrentGame(g);
+        } else {
+            g = frame.getCurrentGame();
+            g.define(level);
+            frame.setMainFrameGame(g);
+            g.setVisible(true);
+        }
         System.out.println("Thread i LevelSBlist: " + g.getThread());
         frame.setCurrentLevel(level);
     }
