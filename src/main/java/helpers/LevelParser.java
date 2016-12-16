@@ -50,19 +50,21 @@ public class LevelParser {
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
         try {
-            Schema schema = schemaFactory.newSchema(
-                                new StreamSource(schemaFile));
-            DocumentBuilderFactory dbfactory
-                    = DocumentBuilderFactory.newInstance();
+            Schema schema;
+            schema = schemaFactory.newSchema(new StreamSource(
+                    this.getClass().getResourceAsStream(schemaFile)));
+            DocumentBuilderFactory dbfactory =
+                    DocumentBuilderFactory.newInstance();
             dbfactory.setSchema(schema);
             parser = dbfactory.newDocumentBuilder();
+
         } catch (SAXException e) {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
             error = true;
             errorMessage.setParseConfigException("Error when creating the" +
                     " document parser. Could not parse the xml.");
-        }
+        } 
         parser.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(SAXParseException exception) throws SAXException {

@@ -48,7 +48,7 @@ public class LevelBuilder {
     }
 
     private void setupParser(String fileName) {
-        levelParser = new LevelParser("src/main/resources/xml/levelSchema.xml",errorMessages);
+        levelParser = new LevelParser("/xml/levelSchema.xml",errorMessages);
         levelParser.parseFile(fileName);
     }
 
