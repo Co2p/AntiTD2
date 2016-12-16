@@ -110,4 +110,8 @@ public class Lobby {
     public Level getCurrentLevel() {
         return currentLevel;
     }
+
+    public void setMainFrameVisible(boolean visible) {
+        mainFrame.setVisible(visible);
+    }
 }

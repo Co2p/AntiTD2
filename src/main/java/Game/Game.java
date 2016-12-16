@@ -62,7 +62,7 @@ public class Game extends JPanel implements Runnable {
                                 "000000000000";
 
     private Thread thread = new Thread(this);//thread that runs the game
-    private static boolean isFirst = true; //first time the game opens = true
+    private static volatile boolean isFirst = true; //first time the game opens = true
 
     public Game(Level level, Player player){
         this.level = level;
@@ -93,8 +93,8 @@ public class Game extends JPanel implements Runnable {
     }
 
     public void define(Level level){
-
-        thread.start();
+        running = true;
+        isFirst = true;
         this.level = level;
         width = getWidth();
         height = getHeight();
@@ -112,13 +112,16 @@ public class Game extends JPanel implements Runnable {
 
         x = startPosition.getX();
         y = startPosition.getY();
+        thread = new Thread(this);
+        thread.start();
+        System.out.println("Thread i game: " + thread);
+//        repaint();
     }
 
 
 
     //Paints the components in game
     public void paintComponent(Graphics gr){
-
         if(isFirst) {
             define();   //define the squarearray
             isFirst = false;
@@ -154,7 +157,6 @@ public class Game extends JPanel implements Runnable {
 
                 //gameContainer.move(army); //do something to change the game
             }
-            repaint();  // repaint the graphics in the gameframe.
             try{
 
                 thread.sleep(GAMETIMER);
@@ -169,6 +171,7 @@ public class Game extends JPanel implements Runnable {
                     e.printStackTrace();
                 }
             }
+            repaint();  // repaint the graphics in the gameframe.
         }
         shop.stopTime();
         results.setCreditsUsed(shop.getNoOfCredits());
