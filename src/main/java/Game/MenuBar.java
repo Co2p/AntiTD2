@@ -141,8 +141,8 @@ public class MenuBar {
                 JFrame frame = new JFrame("JOptionPane showMessageDialog");
 
                 //TODO update the help text
-                JLabel intro = new JLabel("To complete a level you need to spawn troopers using the buttons " +
-                        " below the map,\n units have different prices and abilities.");
+                JLabel intro = new JLabel("<html>To complete a level you need to spawn troopers using the buttons " +
+                        "below the map. To get points a Trooper must be a <b>zombie</b> when it enters the goal.</html>");
 
                 JLabel towerTile = new JLabel("Towers will be placed on this tile by the computer.");
 
