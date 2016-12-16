@@ -64,7 +64,8 @@ public class ZoneLoader {
             URL[] urls = {ClassLoader.getSystemClassLoader().getResource(className.concat(".class"))};
             if (urls[0] == null) {
                 error = true;
-                errorMessages.setFileError("Could not find file: "+className);
+                errorMessages.setFileError("Could not find class file: "+
+                                            className);
             } else {
                 zoneClass = Class.forName(className,true,new URLClassLoader(urls));
                 if (zoneClass.isInterface()) {
