@@ -45,6 +45,7 @@ public class MenuBar {
                 frame.getCurrentGame().define();
                 frame.getCurrentGame().setRunning(false);
                 frame.getSelectLevelPanel().setVisible(true);
+                frame.getImgPanel().setVisible(true);
 
             }
         });

@@ -139,4 +139,8 @@ public class Lobby {
     public EndScreen getEscreen() {
         return escreen;
     }
+
+    public JPanel getImgPanel(){
+        return imgPanel;
+    }
 }
