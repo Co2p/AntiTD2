@@ -20,8 +20,10 @@ public class Lobby {
     public ArrayList<Level> levelArray;
     private Level currentLevel;
     private Game currentGame;
+    private EndScreen escreen;
 
     public Lobby(ArrayList<Level> levelArray) {
+        escreen = new EndScreen(this);
         this.levelArray = levelArray;
         setUpGUI();
     }
@@ -113,5 +115,9 @@ public class Lobby {
 
     public void setMainFrameVisible(boolean visible) {
         mainFrame.setVisible(visible);
+    }
+
+    public EndScreen getEscreen() {
+        return escreen;
     }
 }

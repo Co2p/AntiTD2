@@ -309,11 +309,7 @@ public class Trooper {
                             +"threw a nullpointerexception");
                 }
             }
-            if(!firstStep) {
-                semiStep++;
-            }else{
-                firstStep = false;
-            }
+           semiStep++;
             if(road2!=null) {
                 return road2;
             }

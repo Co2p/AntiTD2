@@ -10,14 +10,12 @@ import java.awt.event.ActionListener;
  */
 public class EndScreen {
 
-    JFrame frame;
+    private Lobby lobby;
+    private JFrame frame;
 
-    public EndScreen(Player player, Results results, Game game){
-        frame = new JFrame("WELL PLAYED!");
-        frame.add(createTextPanel(player,results), BorderLayout.NORTH);
-        frame.add(createButtonPanel(game),BorderLayout.SOUTH);
-        frame.pack();
-        frame.setVisible(true);
+
+    public EndScreen(Lobby lobby){
+        this.lobby=lobby;
     }
 
     private JButton createNewGame(){
@@ -25,7 +23,10 @@ public class EndScreen {
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //Todo ladda om levelselect
+                frame.setVisible(false);
+                lobby.getSelectLevelPanel().setVisible(true);
+                lobby.getCurrentGame().setVisible(false);
+
             }
         });
         return newGame;
@@ -60,10 +61,9 @@ public class EndScreen {
             @Override
             public void actionPerformed(ActionEvent e) {
                 frame.setVisible(false);
+                game.define(Game.level);
 
-                game.define();
-                game.run();
-                game.repaint();
+
 
             }
         });
@@ -95,4 +95,18 @@ public class EndScreen {
         return textpanel;
     }
 
+    public void createWinScrean(Player p, Results r, Game g){
+        frame = new JFrame("WELL PLAYED!");
+        frame.add(createTextPanel(p,r), BorderLayout.NORTH);
+        frame.add(createButtonPanel(g),BorderLayout.SOUTH);
+        frame.pack();
+        frame.setVisible(true);
+    }
+
+    public void createLooseScreen(Player p, Game g){
+        frame = new JFrame("NOT WELL PLAYED!");
+        frame.add(createButtonPanel(g),BorderLayout.SOUTH);
+        frame.pack();
+        frame.setVisible(true);
+    }
 }

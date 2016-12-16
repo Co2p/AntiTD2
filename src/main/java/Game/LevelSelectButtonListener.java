@@ -16,6 +16,7 @@ public class LevelSelectButtonListener implements ActionListener {
     private Player player;
     private Game g;
 
+
     public LevelSelectButtonListener(Lobby frame, Level level, Player player){
         super();
         this.frame = frame;
@@ -26,7 +27,7 @@ public class LevelSelectButtonListener implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if(frame.getCurrentGame() == null) {
-            g = new Game(level, player);
+            g = new Game(level, player, frame.getEscreen());
             frame.setMainFrameGame(g);
             frame.setCurrentGame(g);
         } else {

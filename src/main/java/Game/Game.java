@@ -32,6 +32,7 @@ public class Game extends JPanel implements Runnable {
     private Player player;
     private Results results;
     private volatile boolean pause, running = true;
+    private EndScreen endScreen=null;
 
     public static int width, height;
     public static Image[] square_material = new Image[50];
@@ -64,11 +65,13 @@ public class Game extends JPanel implements Runnable {
     private Thread thread = new Thread(this);//thread that runs the game
     private static volatile boolean isFirst = true; //first time the game opens = true
 
-    public Game(Level level, Player player){
+    public Game(Level level, Player player, EndScreen endScreen){
         this.level = level;
         this.player = player;
         results = new Results();
+        this.endScreen = endScreen;
         thread.start();
+
     }
 
     public void define(){
@@ -154,8 +157,6 @@ public class Game extends JPanel implements Runnable {
                     buildTowers(towerPosition);
                 }
                 defense.update();
-
-                //gameContainer.move(army); //do something to change the game
             }
             try{
 
@@ -178,7 +179,7 @@ public class Game extends JPanel implements Runnable {
         results.setLevelName(level.getLevelName());
         results.setTime(shop.getTime());
         player.setResults(results);
-        EndScreen endScreen = new EndScreen(player,results, this);
+        endScreen.createWinScrean(player,results,this);
 
         //TODO do this a better way
         try {
