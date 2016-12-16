@@ -342,26 +342,22 @@ public class Trooper {
 
         if (preferred == null &&
                 possibleMovesTable.containsKey(
-                        position.getPosToDirection(direction)) &&
-                        !visited.contains(position.getPosToDirection(
-                                direction))){
+                        position.getPosToDirection(direction))){
             nextPosition = position.getPosToDirection(direction);
             reverse = false;
 
         } else if(preferred == Direction.RIGHT &&
                 possibleMovesTable.containsKey(
-                        position.getPosToRight(direction)) &&
-                        !visited.contains(position.getPosToRight(
-                                direction))){
+                        position.getPosToRight(direction))
+                        ){
             nextPosition = position.getPosToRight(direction);
             direction = getDirectionToRight(direction);
             reverse = false;
         }
         else if (preferred == Direction.LEFT &&
                 possibleMovesTable.containsKey(
-                        position.getPosToLeft(direction)) &&
-                        !visited.contains(position.getPosToLeft(
-                                direction))){
+                        position.getPosToLeft(direction))
+                       ){
 
             nextPosition = position.getPosToLeft(direction);
             direction = getDirectionToLeft(direction);
@@ -372,7 +368,7 @@ public class Trooper {
             reverse = false;
         }
         path.add(position);
-        visited.add(position);
+        //visited.add(position);
         pathDirection.add(getOppociteDirection(direction));
 
         if(nextPosition == null || reverse) {
@@ -469,24 +465,24 @@ public class Trooper {
                                                     possibleMovesTable) {
         Position nextPosition = null;
 
-        if(!visited.contains(position.getPosToDirection(direction)) &&
+        if(
                 possibleMovesTable.containsKey(position.getPosToDirection(
                         direction))){
             nextPosition = position.getPosToDirection(direction);
-        }else if (!visited.contains(position.getPosToNorth()) &&
-                possibleMovesTable.containsKey(position.getPosToNorth())) {
+        }else if (
+                possibleMovesTable.containsKey(position.getPosToNorth()) && getOppociteDirection(direction)!= NORTH) {
             nextPosition = position.getPosToNorth();
             direction = NORTH;
-        }else if (!visited.contains(position.getPosToEast()) &&
-                possibleMovesTable.containsKey(position.getPosToEast())) {
+        }else if (
+                possibleMovesTable.containsKey(position.getPosToEast()) && getOppociteDirection(direction)!= EAST) {
             nextPosition = position.getPosToEast();
             direction = EAST;
-        } else if (!visited.contains(position.getPosToSouth()) &&
-                possibleMovesTable.containsKey(position.getPosToSouth())) {
+        } else if (
+                possibleMovesTable.containsKey(position.getPosToSouth()) && getOppociteDirection(direction)!= SOUTH) {
             nextPosition = position.getPosToSouth();
             direction = SOUTH;
-        } else if (!visited.contains(position.getPosToWest()) &&
-                possibleMovesTable.containsKey(position.getPosToWest())) {
+        } else if (
+                possibleMovesTable.containsKey(position.getPosToWest())&& getOppociteDirection(direction)!= WEST) {
             nextPosition = position.getPosToWest();
             direction = WEST;
         }
@@ -506,7 +502,7 @@ public class Trooper {
 
         path.push(pos);
         pathDirection.push(dir);
-        visited.add(pos);
+       // visited.add(pos);
     }
 
 }
