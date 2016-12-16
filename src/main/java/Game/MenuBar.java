@@ -1,8 +1,14 @@
 package Game;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.net.URISyntaxException;
 
 /**
  * Created by andreas on 2016-12-13.
@@ -36,7 +42,7 @@ public class MenuBar {
 
     //TODO
     private JMenuItem createNewGameItem(){
-        JMenuItem newGame = new JMenuItem("New Game / Restart game");
+        JMenuItem newGame = new JMenuItem("New Game");
         newGame.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -132,23 +138,61 @@ public class MenuBar {
         help.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //TODO update the help text.
-                JOptionPane.showMessageDialog(null,
-                        "To complete a level you need to spawn " +
-                                "troopers with the buttons showing trooper" +
-                                " units,\nthe units have different prices and "+
-                                "have different specifics. The cheapest one "+
-                                "are the pitiful\ntrooper with a cost of 20 " +
-                                "golds. This trooper has no special trait. " +
-                                "The next\nTrooper are armored trooper wich " +
-                                "has an armor making it take less damage " +
-                                "from the\nenemy towers. The last trooper are"+
-                                " an teleporter that can place a teleport on"+
-                                " the\nground that the other troopers can use"+
-                                " to skip crucial parts of the road.\nTo place"
-                                +" an teleport you press the image containing "+
-                                "a teleportplate when you have a teleport " +
-                                "trooper active. ");
+                JFrame frame = new JFrame("JOptionPane showMessageDialog");
+
+                //TODO update the help text
+                JLabel intro = new JLabel("<html>To complete a level you need to spawn troopers using the buttons " +
+                        "below the map. To get points a Trooper must be a <b>zombie</b> when it enters the goal.</html>");
+
+                JLabel towerTile = new JLabel("Towers will be placed on this tile by the computer.");
+
+                JLabel startTile = new JLabel("Troopers spawn on this tile.");
+
+                JLabel goalTile = new JLabel("This is the goal.");
+
+                JLabel pitifulTroop = new JLabel("This is the Pitiful Trooper, it costs 20 gold and has no abilities.\n");
+
+                JLabel armoredTroop = new JLabel("The Armored Trooper which has armor which protects it from enemy fire.\n");
+
+                JLabel teleportTroop = new JLabel("The Teleport Trooper places a teleport when the teleport-button is pressed.\n");
+
+                JLabel zombieTroop = new JLabel("After being killed the troopers become zombies with reduced stats until they are killed again.");
+
+                JLabel tower = new JLabel("Towers are placed by the computer and shoot Troopers");
+
+                JLabel placeTeleport = new JLabel("This button places the teleport lets all troops that land on it move 5 steps forward\n");
+
+                JLabel leftRight = new JLabel("These buttons let you decide which direction the troopers want to take (Left or Right from their perspective)\n");
+
+                String image = "<html><img src=\"" + ClassLoader.getSystemClassLoader().getResource("img/air.png") + "\"></img></html>";
+
+                //ImageIcon infographic = new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/air.png"));
+                BufferedImage bi = null;
+                try {
+                    bi = ImageIO.read(new File(ClassLoader.getSystemClassLoader().getResource("img/air.png").toURI()));
+                } catch (IOException | URISyntaxException e1){
+                    e1.printStackTrace();
+                }
+                Image croppedImage = bi.getSubimage(0, 50, 50, 450);
+                
+                JPanel helpPanel = new JPanel(new BorderLayout());
+                JPanel helpTextPanel = new JPanel(new GridLayout(9,1));
+
+                helpTextPanel.add(towerTile);
+                helpTextPanel.add(startTile);
+                helpTextPanel.add(goalTile);
+                helpTextPanel.add(pitifulTroop);
+                helpTextPanel.add(armoredTroop);
+                helpTextPanel.add(teleportTroop);
+                helpTextPanel.add(zombieTroop);
+                helpTextPanel.add(tower);
+                helpTextPanel.add(placeTeleport);
+
+                helpPanel.add(BorderLayout.NORTH, intro);
+                helpPanel.add(BorderLayout.WEST, new JLabel(new ImageIcon(croppedImage)));
+                helpPanel.add(BorderLayout.CENTER, helpTextPanel);
+
+                JOptionPane.showMessageDialog(frame, helpPanel, "Help", JOptionPane.PLAIN_MESSAGE);
             }
         });
         return help;
