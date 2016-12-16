@@ -36,7 +36,6 @@ public class LevelSelectButtonListener implements ActionListener {
             frame.setMainFrameGame(g);
             g.setVisible(true);
         }
-        System.out.println("Thread i LevelSBlist: " + g.getThread());
         frame.setCurrentLevel(level);
     }
 }

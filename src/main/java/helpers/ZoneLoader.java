@@ -31,11 +31,9 @@ public class ZoneLoader {
             try {
                 zone = zoneClass.newInstance();
                 Method[] methods = zoneClass.getMethods();
-                System.out.println("method array size: " + methods.length);
                 for(Method method: methods) {
                     if(method.getName().compareTo("landOn") == 0) {
                         landOn = method;
-                        System.out.println("method name: "+landOn.getName());
                         return true;
                     }
                 }

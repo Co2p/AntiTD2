@@ -20,7 +20,6 @@ public class ClickHandler extends MouseAdapter {
 
         //call the clickmethod inside the shop
         Game.shop.click(e.getButton());
-        System.out.println(Game.mousePoint);
     }
 
     @Override

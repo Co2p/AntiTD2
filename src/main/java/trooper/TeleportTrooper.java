@@ -47,7 +47,6 @@ public class TeleportTrooper extends Trooper{
                 if (isReverse()) {
                     if(!portalPlaced) {
                         portalPlacement = (RoadTile) map.get(getPosition());
-                        System.out.println("placerade en portal på " + getPosition().toString());
                         portalPlaced = true;
                     }
                     i--;

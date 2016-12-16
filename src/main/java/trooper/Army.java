@@ -33,7 +33,6 @@ public class Army {
         army = Collections.synchronizedList(new ArrayList<Trooper>());
         armyQueue = new LinkedList<>();
         this.map = map;
-        System.out.println("Map in constructor: " + map);
         this.startPosition = startPosition;
     }
 
@@ -103,7 +102,6 @@ public class Army {
                         armySize--;
                     }
                 } else {
-                    System.out.println("Im dead!");
                     iterator.remove();
                     armySize--;
                 }
@@ -114,7 +112,6 @@ public class Army {
     private void getArmyStartPos() {
         for (int i = 0; i < map.size(); i++) {
             Tile t = map.get(i);
-            System.out.println("Map: " + map.get(i));
             if (t != null && t.getClass() == RoadTile.class) {
                 RoadTile rT = (RoadTile) t;
                 if (rT.isStart()) {
