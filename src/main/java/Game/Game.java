@@ -181,6 +181,7 @@ public class Game extends JPanel implements Runnable {
             player.setResults(results);
             endScreen.createWinScrean(player,results,this);
             //TODO do this a better way
+            player.sendResult();
 //            try {
 //                player.sendResult(player.getResults().get(0));
 //            } catch (IOException e) {

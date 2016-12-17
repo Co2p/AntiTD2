@@ -10,6 +10,7 @@ public class Results {
     private LocalTime time;
     private long creditsLeft;
     private String levelName;
+    private String stringTime;
 
 
     public Results() {
@@ -34,13 +35,14 @@ public class Results {
     }
 
 
-    public LocalTime getTime() {
-        return time;
+    public int getTime() {
+        return Integer.parseInt(stringTime);
     }
 
     public void setTime(int time) {
         int minute = time/60;
         int hour = minute/60;
+        stringTime = "" + hour + "" + minute;
         time = time - (minute * 60);
         this.time = LocalTime.of(hour,minute,time);
     }

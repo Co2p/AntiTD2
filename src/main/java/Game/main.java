@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class main {
 
+    public static SQLiteJDBC slj = new SQLiteJDBC();
+
     public static void main(String[] args ){
 
         ArrayList<Level> levelArray = new ArrayList<Level>();
@@ -22,8 +24,6 @@ public class main {
             Level l = lb.buildLevel(i);
             levelArray.add(l);
         }
-
-        SQLiteJDBC slj = new SQLiteJDBC();
 
         SwingUtilities.invokeLater(() -> {
             try {

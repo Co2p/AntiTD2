@@ -14,33 +14,71 @@ import java.sql.*;
  */
 public class SQLiteJDBC {
 
+    private Connection c = null;
+    private Statement stmt = null;
+    private int i = 0;
+
     public SQLiteJDBC() {
 
-        Connection c = null;
-        Statement stmt = null;
         try {
             Class.forName("org.sqlite.JDBC");
-            c = DriverManager.getConnection("jdbc:sqlite:test.db");
-
-            stmt = c.createStatement();
-            String sql =    "CREATE TABLE HIGHSCORE " +
-                            "(ID INT PRIMARY    KEY     NOT NULL," +
-                            "NAME               TEXT    NOT NULL," +
-                            "LEVEL              TEXT    NOT NULL," +
-                            "CREDITS            INT," +
-                            "TIME               INT)";
-            stmt.executeUpdate(sql);
-            stmt.close();
-            c.close();
-            System.out.println("Database updated");
 
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    //TODO create a unique ID for every post
+    public void postToDb(String name, String level, int credits, int time) {
+        i++;
+        try {
+            c = DriverManager.getConnection("jdbc:sqlite:test.db");
+            c.setAutoCommit(false);
+
+            stmt = c.createStatement();
+            String sql =    "INSERT INTO HIGHSCORE (ID,NAME,LEVEL,CREDITS,TIME) " +
+                            "VALUES (" + i +
+                            ", '" + name +
+                            "', '" + level +
+                            "', " + credits +
+                            ", " + time +
+                            " );";
+            stmt.executeUpdate(sql);
+
+            getFromDb();
+            stmt.close();
+            c.commit();
+            c.close();
+            System.out.println("Posted into DB");
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //Primarily used for test purpose
+    public void getFromDb() {
+        try {
+            ResultSet rs = stmt.executeQuery("SELECT * FROM HIGHSCORE;" );
+            while ( rs.next() ) {
+                int id = rs.getInt("id");
+                String  name = rs.getString("name");
+                int level  = rs.getInt("level");
+                String  credits = rs.getString("credits");
+                float time = rs.getFloat("time");
+                System.out.println( "ID = " + id );
+                System.out.println( "NAME = " + name );
+                System.out.println( "LEVEL = " + level );
+                System.out.println( "CREDITS = " + credits );
+                System.out.println( "TIME = " + time );
+                System.out.println();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
     }
+
 
 
 }

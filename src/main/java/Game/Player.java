@@ -14,6 +14,8 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import static Game.main.slj;
+
 public class Player {
     private String name;
     private ArrayList<Results> results;
@@ -64,10 +66,13 @@ public class Player {
         return results;
     }
 
-    public boolean sendResult() {
-        SQLiteJDBC
+    public void sendResult() {
+        for (int i = 0; i < results.size(); i++) {
+            slj.postToDb(getName(), getResults().get(i).getLevelName(),
+                    (int) getResults().get(i).getCreditsLeft(),
+                    getResults().get(i).getTime());
+        }
 
-        return true;
     }
 
 //    public boolean sendResult(Results result) throws IOException {
