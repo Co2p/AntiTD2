@@ -23,6 +23,8 @@ public class main {
             levelArray.add(l);
         }
 
+        SQLiteJDBC slj = new SQLiteJDBC();
+
         SwingUtilities.invokeLater(() -> {
             try {
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

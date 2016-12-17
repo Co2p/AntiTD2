@@ -181,11 +181,11 @@ public class Game extends JPanel implements Runnable {
             player.setResults(results);
             endScreen.createWinScrean(player,results,this);
             //TODO do this a better way
-            try {
-                player.sendResult(player.getResults().get(0));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                player.sendResult(player.getResults().get(0));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             System.out.println(results);
         } else if (isDefeat()) {
             endScreen.createLooseScreen(player,this);
