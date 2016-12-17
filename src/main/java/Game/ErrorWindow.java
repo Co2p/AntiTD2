@@ -68,7 +68,7 @@ public class ErrorWindow {
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(1);
+                System.exit(0);
             }
         });
 

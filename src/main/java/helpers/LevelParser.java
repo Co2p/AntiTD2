@@ -64,7 +64,7 @@ public class LevelParser {
             error = true;
             errorMessage.setParseConfigException("Error when creating the" +
                     " document parser. Could not parse the xml.");
-        } 
+        }
         parser.setErrorHandler(new ErrorHandler() {
             @Override
             public void warning(SAXParseException exception) throws SAXException {
@@ -105,22 +105,26 @@ public class LevelParser {
     public void parseFile(String fileName) {
         Document doc = null;
         try {
-
-            URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-            if(url != null) {
-                File f = new File(url.toURI());
-                if(f.exists() && !f.isDirectory()) {
-                    doc = parser.parse(url.openStream());
+            if (fileName.equals("/xml/levels.xml")) {
+                doc = parser.parse(this.getClass().getResourceAsStream(fileName));
+            } else{
+                String path = LevelParser.class.getProtectionDomain()
+                        .getCodeSource().getLocation().toURI().getPath();
+                if(path != null) {
+                    System.out.println(path);
+                    File f = new File(path);
+                    if(f.exists() && !f.isDirectory()) {
+                        doc = parser.parse(f.getParentFile().getPath()+fileName);
+                    } else {
+                        error = true;
+                        errorMessage.setFileError("Could not find file: "
+                                + fileName);
+                    }
                 } else {
                     error = true;
-                    errorMessage.setFileError("Could not find file: "
-                                                + fileName);
+                    errorMessage.setFileError("Could not find file: " + fileName);
                 }
-            } else {
-                error = true;
-                errorMessage.setFileError("Could not find file: " + fileName);
             }
-
         } catch (SAXException | IOException | IllegalArgumentException |
                     NullPointerException | URISyntaxException e) {
             error = true;

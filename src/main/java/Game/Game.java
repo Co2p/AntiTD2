@@ -23,7 +23,7 @@ import tile.*;
  */
 public class Game extends JPanel implements Runnable {
 
-    private String RESPATH = "src/main/resources/img";
+    private String RESPATH = "/img";
 
     private Army army;
     public Position startPosition;
@@ -181,11 +181,11 @@ public class Game extends JPanel implements Runnable {
             player.setResults(results);
             endScreen.createWinScrean(player,results,this);
             //TODO do this a better way
-            try {
-                player.sendResult(player.getResults().get(0));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                player.sendResult(player.getResults().get(0));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             System.out.println(results);
         } else if (isDefeat()) {
             endScreen.createLooseScreen(player,this);
@@ -222,21 +222,24 @@ public class Game extends JPanel implements Runnable {
     private void setupImages(){
 
         for (int i = 0; i <square_material.length ; i++) {
-            square_material[i] = new ImageIcon(RESPATH + "/materials.png").getImage();
+            square_material[i] = new ImageIcon(this.getClass().getResource(RESPATH+"/materials.png")).getImage();
+//            square_material[i] = new ImageIcon(RESPATH + "/materials.png").getImage();
             square_material[i] = createImage(new FilteredImageSource(
                     square_material[i].getSource(), new CropImageFilter(0, 50*i,50,50)
             ));
         }
 
         for (int i = 0; i <square_air.length ; i++) {
-            square_air[i] = new ImageIcon(RESPATH + "/air.png").getImage();
+            square_air[i] = new ImageIcon(this.getClass().getResource(RESPATH+"/air.png")).getImage();
+//            square_air[i] = new ImageIcon(RESPATH + "/air.png").getImage();
             square_air[i] = createImage(new FilteredImageSource(
                     square_air[i].getSource(), new CropImageFilter(0, 50*i,50,50)
             ));
         }
 
         for (int i = 0; i <button_images.length ; i++) {
-            button_images[i] = new ImageIcon(RESPATH + "/buttons.png").getImage();
+            button_images[i] = new ImageIcon(this.getClass().getResource(RESPATH+"/buttons.png")).getImage();
+//            button_images[i] = new ImageIcon(RESPATH + "/buttons.png").getImage();
             button_images[i] = createImage(new FilteredImageSource(
                     button_images[i].getSource(), new CropImageFilter(0, 50*i,50,50)
             ));
@@ -266,7 +269,11 @@ public class Game extends JPanel implements Runnable {
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
                     background[x][y] = Translator.squareRoad;
                     air[x][y] = Translator.indexBlank;
-                    map.put(new Position(x,y), new RoadTile(new Position(x,y)));
+                    RoadTile road = new RoadTile(new Position(x,y));
+                    if (level.getLandOn() != null && level.getZone() != null) {
+                        road.setLandOnModifier(level.getZone(),level.getLandOn());
+                    }
+                    map.put(new Position(x,y), road);
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapGoal)) {
                     background[x][y] = Translator.indexGoal;

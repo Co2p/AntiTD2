@@ -15,7 +15,7 @@ public class LevelBuilder {
     private ZoneLoader zoneLoader;
     private ErrorMessages errorMessages;
     private String fileName;
-    private static String FILELOCATION = "xml/levels.xml";
+    private static String FILELOCATION = "/xml/levels.xml";
     private volatile boolean go;
 
     public LevelBuilder (String fileName) {
@@ -27,6 +27,7 @@ public class LevelBuilder {
         if(levelParser.isError()) {
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
             errorWindow.setVisable();
+            pauseBuild();
         } else {
             go = true;
         }
