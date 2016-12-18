@@ -38,25 +38,27 @@ public class TeleportTrooper extends Trooper{
             boolean portalPlaced = false;
             RoadTile portalPlacement = null;
             int portalsteps = 5;
+            RoadTile road;
             for (int i = 0; i < portalsteps; i++) {
                 if (i ==0 && !isReverse() && !portalPlaced){
                     portalPlacement = (RoadTile) map.get(getPosition());
                     portalPlaced = true;
-                }
-                RoadTile road = forceMove(map, preferred);
-                if (isReverse()) {
+                } else if (isReverse()) {
                     if(!portalPlaced) {
                         portalPlacement = (RoadTile) map.get(getPosition());
                         portalPlaced = true;
                     }
                     i--;
-                }else {
+                }
+                road = forceMove(map, preferred);
+                if (portalPlaced){
                     pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
                 }
             }
             setSemiStep(0);
             setGraphicPosition(GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
             portalPlacement.setPortal((RoadTile) map.get(getPosition()),map);
+            portalPlacement.setExitDirection(getDirection());
         }
     }
 

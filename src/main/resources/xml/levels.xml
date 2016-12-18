@@ -24,7 +24,7 @@
     </level>
     <level name ="Level 1">
         <rules>
-            <credits>600</credits>
+            <credits>800</credits>
             <unitstowin>8</unitstowin>
             <towerspawnrate>10</towerspawnrate>
         </rules>
@@ -46,7 +46,7 @@
     </level>
     <level name ="Level 2">
         <rules>
-            <credits>500</credits>
+            <credits>800</credits>
             <unitstowin>10</unitstowin>
             <towerspawnrate>10</towerspawnrate>
         </rules>
@@ -67,7 +67,7 @@
     </level>
     <level name ="Level 3">
         <rules>
-            <credits>1000</credits>
+            <credits>1200</credits>
             <unitstowin>14</unitstowin>
             <towerspawnrate>15</towerspawnrate>
         </rules>
@@ -110,7 +110,7 @@
     </level>
     <level name ="Dödsbanan">
         <rules>
-            <credits>1500</credits>
+            <credits>2500</credits>
             <unitstowin>15</unitstowin>
             <towerspawnrate>15</towerspawnrate>
             <!--<timelimit>2</timelimit>-->
@@ -121,8 +121,8 @@
                 <column>20</column>
                 <row>11</row>
             </size>
-            <row>000000RRRSRRR0000000</row>
-            <row>0000RRR00000RRR00000</row>
+            <row>000000RRRRRRR0000000</row>
+            <row>0000RRR00S00RRR00000</row>
             <row>000RR000000000RR0000</row>
             <row>00RR0TRR000RRT0RR000</row>
             <row>00TR0TTR000RTT0RT000</row>
@@ -130,7 +130,7 @@
             <row>000RR0000T0000RR0000</row>
             <row>0000RRRRRRRRRRR00000</row>
             <row>0000TRTRTRTRTRT00000</row>
-            <row>00000RTRTRTRTG000000</row>
+            <row>00000RTRTGTRTR000000</row>
             <row>00000RRRRRRRRR000000</row>
 
         </map>

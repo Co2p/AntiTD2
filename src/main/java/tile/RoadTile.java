@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Timer;
 
+import helpers.Direction;
 import trooper.Trooper;
 import helpers.Position;
 
@@ -17,6 +18,7 @@ public class RoadTile extends Tile implements Zone {
     private boolean isGoal = false;
     private boolean isStart = false;
     private RoadTile portalExit = null;
+    private Direction exitDirection;
     private Object landOnModifier = null;
     private Method landOnMethod = null;
     private ArrayList<Trooper> troopers;
@@ -63,10 +65,15 @@ public class RoadTile extends Tile implements Zone {
         if (isGoal) {
             t.setReachedGoal();
         } else if(portalExit != null) {
-            for (int i = 0; i < 5; i++) {
-                t.forceMove(map,t.getDirection());
-                t.pushToBackTrack(t.getPosition(),t.getOppociteDirection(t.getDirection()));
+//            for (int i = 0; i < 5; i++) {
+//                t.forceMove(map,t.getDirection());
+//                t.pushToBackTrack(t.getPosition(),t.getOppociteDirection(t.getDirection()));
+//            }
+            if (t.getDirection() != exitDirection) {
+                t.setDirection(exitDirection);
             }
+            t.setPosition(portalExit.getPosition());
+//            t.setDirection(t.getDirection());
             portalExit.landOn(t);
         } else {
             setChanged();
@@ -121,6 +128,10 @@ public class RoadTile extends Tile implements Zone {
     }
 
     public boolean isStart(){ return isStart;}
+
+    public void setExitDirection(Direction exitDirection) {
+        this.exitDirection = exitDirection;
+    }
 
     public void setLandOnModifier(Object zone, Method landOn) {
         landOnModifier = zone;
