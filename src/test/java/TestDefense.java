@@ -37,7 +37,7 @@ public class TestDefense {
         map.put(p,new RoadTile(p));
         p = new Position(3,7);
         map.put(p,new TowerTile(p));
-        Defense def = new Defense(map,100);
+        Defense def = new Defense(map,1000);
         def.createTower();
         assertEquals(1,def.getTowerCount());
         def.createTower();
