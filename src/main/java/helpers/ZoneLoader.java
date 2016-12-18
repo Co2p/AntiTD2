@@ -66,9 +66,8 @@ public class ZoneLoader {
             boolean valid = false;
             String path = ZoneLoader.class.getProtectionDomain()
                     .getCodeSource().getLocation().toURI().getPath();
-            path= path+className+".class";
             File f = new File(path);
-            URL[] urls = {f.toURI().toURL()};
+            URL[] urls = {f.getParentFile().toURI().toURL()};
             if (urls[0] == null) {
                 error = true;
                 errorMessages.setFileError("Could not find class file: "+
@@ -119,7 +118,6 @@ public class ZoneLoader {
     private boolean implementsZone(Class<?> cls) {
         Class<?>[] interfaces = cls.getInterfaces();
         for (Class<?> anInterface : interfaces) {
-            System.out.println(anInterface.getName());
             if (anInterface.getName().compareTo("tile.Zone") == 0) {
                 return true;
             }

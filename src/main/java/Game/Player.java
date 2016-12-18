@@ -6,14 +6,14 @@ import static Game.main.slj;
 
 public class Player {
     private String name;
-    private ArrayList<Results> results;
+    private Results results;
 
     /**
      * Constructor without name, name will then be set to "Unknown".
      */
     public Player() {
         this.name = "Unknown";
-        results = new ArrayList<>();
+//        results = new ArrayList<>();
     }
 
     /**
@@ -22,7 +22,7 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
-        results = new ArrayList<>();
+//        results = new ArrayList<>();
     }
 
     /**
@@ -46,20 +46,21 @@ public class Player {
      * @param r the results.
      */
     public void setResults(Results r) {
-        results.add(r);
+        results = r;
 
     }
 
-    public ArrayList<Results> getResults() {
+    public Results getResults() {
         return results;
     }
 
     public void sendResult() {
-        for (int i = 0; i < results.size(); i++) {
-            slj.postToDb(getName(), getResults().get(i).getLevelName(),
-                    (int) getResults().get(i).getCreditsLeft(),
-                    getResults().get(i).getTime());
-        }
+//        for (int i = 0; i < results.size(); i++) {
+//            slj.postToDb(getName(), getResults().get(i).getLevelName(),
+//                    (int) getResults().get(i).getCreditsLeft(),
+//                    getResults().get(i).getStringTime());
+//        }
+        slj.postToDb(getName(),results.getLevelName(),(int)results.getCreditsLeft(),results.getStringTime());
 
     }
 }

@@ -111,10 +111,9 @@ public class LevelParser {
                 String path = LevelParser.class.getProtectionDomain()
                         .getCodeSource().getLocation().toURI().getPath();
                 if(path != null) {
-                    System.out.println(path);
                     File f = new File(path);
-                    if(f.exists() && !f.isDirectory()) {
-                        doc = parser.parse(f.getParentFile().getPath()+fileName);
+                    if(f.exists()) {
+                        doc = parser.parse(f.getParentFile().getPath()+"/"+fileName);
                     } else {
                         error = true;
                         errorMessage.setFileError("Could not find file: "

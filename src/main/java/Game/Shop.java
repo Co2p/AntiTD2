@@ -200,19 +200,19 @@ public class Shop {
     public void refund(Trooper t) {
         if(t.hasTurned()) {
             if(ArmoredTrooper.class.isInstance(t)) {
-                noOfCredits = noOfCredits + (2 * Translator.armoredTrooperPrice);
+                noOfCredits = (long) (noOfCredits + (1.25 * Translator.armoredTrooperPrice));
             } else if(PitifulTrooper.class.isInstance(t)) {
-                noOfCredits = noOfCredits + (2 * Translator.pitifullPrice);
+                noOfCredits = (long) (noOfCredits + (1.25 * Translator.pitifullPrice));
             } else if(TeleportTrooper.class.isInstance(t)) {
-                noOfCredits = noOfCredits + (2 * Translator.teleporterPrice);
+                noOfCredits = (long) (noOfCredits + (1.25 * Translator.teleporterPrice));
             }
         } else {
             if(ArmoredTrooper.class.isInstance(t)) {
-                noOfCredits = noOfCredits + Translator.armoredTrooperPrice;
+                noOfCredits = (long) (noOfCredits + (0.75*Translator.armoredTrooperPrice));
             } else if(PitifulTrooper.class.isInstance(t)) {
-                noOfCredits = noOfCredits + Translator.pitifullPrice;
+                noOfCredits = (long) (noOfCredits + (0.75*Translator.pitifullPrice));
             } else if(TeleportTrooper.class.isInstance(t)) {
-                noOfCredits = noOfCredits + Translator.teleporterPrice;
+                noOfCredits = (long) (noOfCredits + (0.75*Translator.teleporterPrice));
             }
         }
     }

@@ -174,7 +174,6 @@ public class Game extends JPanel implements Runnable {
         }
         shop.stopTime();
         if (isWin(totalReached)) {
-            System.out.println("WIN");
             results.setCreditsUsed(shop.getNoOfCredits());
             results.setLevelName(level.getLevelName());
             results.setTime(shop.getTime());
@@ -182,7 +181,6 @@ public class Game extends JPanel implements Runnable {
             endScreen.createWinScrean(player,results,this);
             //TODO do this a better way
             player.sendResult();
-            System.out.println(results);
         } else if (isDefeat()) {
             endScreen.createLooseScreen(player,this);
         }
