@@ -98,7 +98,7 @@ public class ErrorWindow {
 
     /**
      * set the visibility for the window
-     * 
+     *
      * @param visible true if the window shall be set to visible
      *                false if the window shall not be visible
      */

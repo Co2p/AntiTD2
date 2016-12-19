@@ -1,6 +1,7 @@
 package Game;
 
 import java.awt.*;
+import java.time.Clock;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -24,6 +25,8 @@ public class Shop {
     private int unitsToWin = 0;
     private Army army;
     private Timer timer;
+    private Clock clock;
+    private boolean isRunning = true;
 
     public ShopButton[] buttons;
     public ShopButton[] statsElements;
@@ -38,7 +41,8 @@ public class Shop {
         buttons = new ShopButton[noOfButtons];
         statsElements = new ShopButton[noOfElements];
         timer = new Timer();
-        timer.scheduleAtFixedRate(new Clock(),0,1000);
+        clock = new Clock();
+        timer.scheduleAtFixedRate(clock,0,1000);
         define();
 
     }
@@ -245,14 +249,27 @@ public class Shop {
 
         public void run()
         {
-            time = counter;
+            counter = time;
             counter++;
+            time = counter;
+        }
+    }
+
+    public void startTime() {
+        if (!isRunning) {
+            timer = new Timer();
+            clock = new Clock();
+            timer.scheduleAtFixedRate(clock,0,1000);
+            isRunning = true;
         }
     }
 
     public void stopTime() {
-        timer.cancel();
-        timer.purge();
+        if (isRunning) {
+            timer.cancel();
+            timer.purge();
+        }
+        isRunning = false;
     }
 }
 

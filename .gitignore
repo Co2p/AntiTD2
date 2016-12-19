@@ -18,3 +18,4 @@ src/main/java/META-INF/MANIFEST.MF
 out/artifacts/AntiTD3_main_jar/AntiTD3_main.jar
 
 *.MF
+highscore.db
