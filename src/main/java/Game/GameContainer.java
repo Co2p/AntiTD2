@@ -1,6 +1,5 @@
 package Game;
 
-import trooper.Army;
 import java.awt.*;
 
 /**

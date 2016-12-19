@@ -1,10 +1,8 @@
 package Game;
 
 import java.awt.*;
-import java.time.Clock;
 import java.util.Timer;
 import java.util.TimerTask;
-
 import helpers.*;
 import trooper.*;
 
