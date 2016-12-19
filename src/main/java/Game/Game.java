@@ -196,7 +196,9 @@ public class Game extends JPanel implements Runnable {
         if (isFirst) {
             return false;
         }
-        return ((army.getArmy().size() == 0) && (shop.getNoOfCredits() == 0));
+        return (((army.getArmy().size() == 0) && (shop.getNoOfCredits() == 0) ||
+                ((army.getArmy().size() == 0) && (shop.getNoOfCredits() <
+                        Translator.pitifullPrice))));
     }
 
 
