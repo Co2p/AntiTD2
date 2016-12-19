@@ -2,7 +2,6 @@ package trooper;
 
 import tile.*;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Stack;
 import helpers.Position;
@@ -10,6 +9,10 @@ import helpers.Direction;
 
 import static helpers.Direction.*;
 
+/**
+ * Trooper defines the general attributes of a trooper in the game like move and health behaviour.
+ * All other troopers extend Trooper.
+ */
 public class Trooper {
     private int maxhealth;
     private int zombiehealth;
@@ -22,13 +25,14 @@ public class Trooper {
     private Direction direction;
     private Position position = null;
     private Position nextPosition = null;
+
     public  Position graphicPosition = new Position(0,0);
-    private Stack<Direction> pathDirection = new Stack<>();
-    private Stack<Position> path = new Stack<>();
-    private ArrayList<Position> visited = new ArrayList<>();
+
+    protected Stack<Direction> pathDirection = new Stack<>();
+    protected Stack<Position> path = new Stack<>();
+
     private boolean reverse = false;
     private boolean reachedGoal = false;
-    private boolean firstStep = true;
 
     /**
      * Default constructor, crates a Trooper
@@ -202,24 +206,6 @@ public class Trooper {
         graphicPosition = position;
     }
 
-    //Todo ta bort?
-    /**
-     * Get what position is next.
-     * @return nextPosition.
-     */
-    public Position getNextPosition(){
-        return  nextPosition;
-    }
-
-    //Todo ta bort?
-    /**
-     * Set the nextPosition for a trooper.
-     * @param p, next position.
-     */
-    public void setNextPosition(Position p){
-        nextPosition = p;
-    }
-
     /**
      * Sets the position of the trooper to position
      * Don't touch unless you are testing
@@ -298,7 +284,6 @@ public class Trooper {
         if (semiStep < stepDelay-1) {
             road = (RoadTile) map_hashTable.get(position);
 
-            //Find out nexposition
             if(semiStep == 0) {
                 road2 = (RoadTile)forceMove(map_hashTable, preferred);
                 try {
@@ -368,7 +353,6 @@ public class Trooper {
             reverse = false;
         }
         path.add(position);
-        //visited.add(position);
         pathDirection.add(getOppociteDirection(direction));
 
         if(nextPosition == null || reverse) {
@@ -457,7 +441,7 @@ public class Trooper {
     }
 
     /**
-     * Brute force all directions except forwards //TODO this could be so much neater
+     * Brute force all directions except forwards
      * @param possibleMovesTable a table of roadtiles
      * @return the first roadtile that was found clockwise starting in north
      */
@@ -470,39 +454,26 @@ public class Trooper {
                         direction))){
             nextPosition = position.getPosToDirection(direction);
         }else if (
-                possibleMovesTable.containsKey(position.getPosToNorth()) && getOppociteDirection(direction)!= NORTH) {
-            nextPosition = position.getPosToNorth();
+                possibleMovesTable.containsKey(position.getPosToNorth()) &&
+                        getOppociteDirection(direction)!= NORTH) { nextPosition = position.getPosToNorth();
             direction = NORTH;
         }else if (
-                possibleMovesTable.containsKey(position.getPosToEast()) && getOppociteDirection(direction)!= EAST) {
-            nextPosition = position.getPosToEast();
+                possibleMovesTable.containsKey(position.getPosToEast()) &&
+                        getOppociteDirection(direction)!= EAST) { nextPosition = position.getPosToEast();
             direction = EAST;
         } else if (
-                possibleMovesTable.containsKey(position.getPosToSouth()) && getOppociteDirection(direction)!= SOUTH) {
-            nextPosition = position.getPosToSouth();
+                possibleMovesTable.containsKey(position.getPosToSouth()) &&
+                        getOppociteDirection(direction)!= SOUTH) { nextPosition = position.getPosToSouth();
             direction = SOUTH;
         } else if (
-                possibleMovesTable.containsKey(position.getPosToWest())&& getOppociteDirection(direction)!= WEST) {
-            nextPosition = position.getPosToWest();
+                possibleMovesTable.containsKey(position.getPosToWest()) &&
+                        getOppociteDirection(direction)!= WEST) { nextPosition = position.getPosToWest();
             direction = WEST;
         }
 
         else nextPosition=null;
 
         return nextPosition;
-    }
-
-    /**
-     * Method to push positions and directions to the stack for
-     * backtrack purposes
-     * @param pos
-     * @param dir
-     */
-    public void pushToBackTrack(Position pos, Direction dir) {
-
-        path.push(pos);
-        pathDirection.push(dir);
-       // visited.add(pos);
     }
 
 }
