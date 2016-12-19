@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
+import java.util.Random;
 
 import helpers.Translator;
 import helpers.Position;
@@ -261,7 +262,17 @@ public class Game extends JPanel implements Runnable {
                     air[x][y] = Translator.indexBlank;
                 }
                 if (Objects.equals(Character.toString(indexChar), Translator.mapRoad)) {
-                    background[x][y] = Translator.squareRoad;
+                    int random = new Random().nextInt(3);
+                    int roadSprite;
+                    if(random == 1) {
+                        roadSprite = Translator.squareRoad;
+                    } else if (random == 2) {
+                        roadSprite = Translator.squareRoad2;
+                    } else {
+                        roadSprite = Translator.squareRoad3;
+                    }
+
+                    background[x][y] = roadSprite;
                     air[x][y] = Translator.indexBlank;
                     RoadTile road = new RoadTile(new Position(x,y));
                     if (level.getLandOn() != null && level.getZone() != null) {

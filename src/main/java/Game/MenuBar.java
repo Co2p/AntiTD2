@@ -1,5 +1,7 @@
 package Game;
 
+import helpers.Translator;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -139,60 +141,75 @@ public class MenuBar {
             @Override
             public void actionPerformed(ActionEvent e) {
                 JFrame frame = new JFrame("JOptionPane showMessageDialog");
-
-                //TODO update the help text
-                JLabel intro = new JLabel("<html>To complete a level you need to spawn troopers using the buttons " +
-                        "below the map. To get points a Trooper must be a <b>zombie</b> when it enters the goal.</html>");
-
-                JLabel towerTile = new JLabel("Towers will be placed on this tile by the computer.");
-
-                JLabel startTile = new JLabel("Troopers spawn on this tile.");
-
-                JLabel goalTile = new JLabel("This is the goal.");
-
-                JLabel pitifulTroop = new JLabel("This is the Pitiful Trooper, it costs 20 gold and has no abilities.\n");
-
-                JLabel armoredTroop = new JLabel("The Armored Trooper which has armor which protects it from enemy fire.\n");
-
-                JLabel teleportTroop = new JLabel("The Teleport Trooper places a teleport when the teleport-button is pressed.\n");
-
-                JLabel zombieTroop = new JLabel("After being killed the troopers become zombies with reduced stats until they are killed again.");
-
-                JLabel tower = new JLabel("Towers are placed by the computer and shoot Troopers");
-
-                JLabel placeTeleport = new JLabel("This button places the teleport lets all troops that land on it move 5 steps forward\n");
-
-                JLabel leftRight = new JLabel("These buttons let you decide which direction the troopers want to take (Left or Right from their perspective)\n");
-
-                String image = "<html><img src=\"" + ClassLoader.getSystemClassLoader().getResource("img/air.png") + "\"></img></html>";
-
-                //ImageIcon infographic = new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/air.png"));
-                BufferedImage bi = null;
+                BufferedImage air = null;
+                BufferedImage buttons = null;
                 try {
-                    bi = ImageIO.read(new File(ClassLoader.getSystemClassLoader().getResource("img/air.png").toURI()));
+                    air = ImageIO.read(new File(
+                            ClassLoader.getSystemClassLoader().getResource("src/main/resources/img/air.png").toURI()));
+                    buttons = ImageIO.read(new File(
+                            ClassLoader.getSystemClassLoader().getResource("src/main/resources/img/buttons.png").toURI()));
+
                 } catch (IOException | URISyntaxException e1){
                     e1.printStackTrace();
                 }
-                Image croppedImage = bi.getSubimage(0, 50, 50, 450);
-                
-                JPanel helpPanel = new JPanel(new BorderLayout());
-                JPanel helpTextPanel = new JPanel(new GridLayout(9,1));
+                Image towerZoneGraphic = air.getSubimage(0, 50 * Translator.indexTowerZone, 50, 50);
+                Image startGraphic = air.getSubimage(0, 50 * Translator.indexStart, 50, 50);
+                Image goalGraphic = air.getSubimage(0, 50 * Translator.indexGoal, 50, 50);
+                Image towerGraphic = air.getSubimage(0, 50 * Translator.indexTower, 50, 50);
+                Image armoredTrooperGraphic = air.getSubimage(0, 50 * Translator.indexArmoredTrooper, 50, 50);
+                Image pitifulTrooperGraphic = air.getSubimage(0, 50 * Translator.indexTrooper, 50, 50);
+                Image teleportTrooperGraphic = air.getSubimage(0, 50 * Translator.indexTeleporter, 50, 50);
+                Image zombieTrooperGraphic = air.getSubimage(0, 50 * Translator.indexZombie, 50, 50);
+                Image teleportZoneGraphic = air.getSubimage(0, 50 * Translator.indexTeleportZone, 50, 50);
 
-                helpTextPanel.add(towerTile);
-                helpTextPanel.add(startTile);
-                helpTextPanel.add(goalTile);
-                helpTextPanel.add(pitifulTroop);
-                helpTextPanel.add(armoredTroop);
-                helpTextPanel.add(teleportTroop);
-                helpTextPanel.add(zombieTroop);
-                helpTextPanel.add(tower);
-                helpTextPanel.add(placeTeleport);
+                Image rightArrow = buttons.getSubimage(0, 50 * 5, 50, 50);
+
+                JLabel intro = new JLabel("<html>To complete a level you need to spawn troopers using the " +
+                        "buttons below the map. To get points a Trooper must be a <b color=\"green\">zombie</b> " +
+                        "when it enters the goal.</html>");
+                JLabel towerZoneText = new JLabel("Towers will be placed on this tile by the computer.");
+                JLabel startTileText = new JLabel("Troopers spawn on this tile.");
+                JLabel goalTileText = new JLabel("This is the goal.");
+                JLabel pitifulTroopText = new JLabel("This is the Pitiful Trooper, " +
+                        "it costs 20 gold and has no abilities.");
+                JLabel armoredTroopText = new JLabel("The Armored Trooper has armor which " +
+                        "protects it from enemy fire. Costs 40 gold");
+                JLabel teleportTroopText = new JLabel("The Teleport Trooper places a teleport when the " +
+                        "teleport-button is pressed.");
+                JLabel zombieTrooperText = new JLabel("After being killed the troopers become zombies with " +
+                        "reduced stats until they are killed again.");
+                JLabel towerText = new JLabel( "Towers are placed by the computer and shoot Troopers");
+                JLabel teleportText = new JLabel("This button places the teleport lets all troops that land on " +
+                        "it move 5 steps forward.");
+
+                JLabel leftRight = new JLabel("These buttons let you decide which direction the troopers want to take (Left or Right from their perspective)\n");
+
+                JPanel helpPanel = new JPanel(new BorderLayout());
+                JPanel helpTextPanel = new JPanel(new GridLayout(10,1));
+
+                helpTextPanel.add(iconList(towerZoneGraphic, towerZoneText));
+                helpTextPanel.add(iconList(startGraphic, startTileText));
+                helpTextPanel.add(iconList(goalGraphic, goalTileText));
+                helpTextPanel.add(iconList(pitifulTrooperGraphic, pitifulTroopText));
+                helpTextPanel.add(iconList(armoredTrooperGraphic, armoredTroopText));
+                helpTextPanel.add(iconList(teleportTrooperGraphic, teleportTroopText));
+                helpTextPanel.add(iconList(zombieTrooperGraphic, zombieTrooperText));
+                helpTextPanel.add(iconList(towerGraphic, towerText));
+                helpTextPanel.add(iconList(teleportZoneGraphic, teleportText));
+                helpTextPanel.add(iconList(rightArrow, leftRight));
+
 
                 helpPanel.add(BorderLayout.NORTH, intro);
-                helpPanel.add(BorderLayout.WEST, new JLabel(new ImageIcon(croppedImage)));
                 helpPanel.add(BorderLayout.CENTER, helpTextPanel);
 
                 JOptionPane.showMessageDialog(frame, helpPanel, "Help", JOptionPane.PLAIN_MESSAGE);
+            }
+
+            private JPanel iconList(Image i, JLabel l) {
+                JPanel jp = new JPanel();
+                jp.add(new JLabel(new ImageIcon(i)));
+                jp.add(l);
+                return jp;
             }
         });
         return help;
