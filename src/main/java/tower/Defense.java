@@ -59,10 +59,7 @@ public class Defense {
             if (!towerMap.isEmpty()) {
                 pos = towerMap.get(towerPlacement).getPosition();
                 Tower tower = new LaserTower(roadMap, pos);
-                //TODO implement different towers
-//                Tower tower = new BomberTower(roadMap, pos);
                 towers.add(tower);
-                towerMap.get(towerPlacement).setTower(tower);
                 towerMap.remove(towerPlacement);
             }
         }

@@ -3,12 +3,15 @@ package tile;
 import java.util.Observable;
 import helpers.Position;
 
+/**
+ * A logical superclass Tile that contains a position,
+ * is extended by all Tiles
+ */
 public abstract class Tile extends Observable {
     private Position position;
-    private Boolean occupied = false;
 
     /**
-     * Constructor to create a Game.main.Tile, this will only be used in subclasses.
+     * Constructor to create a Tile, this will only be used in subclasses.
      * @param p the postion of the Game.main on the board
      */
     public Tile(Position p){
@@ -16,23 +19,7 @@ public abstract class Tile extends Observable {
     }
 
     /**
-     * Getter for isOccupied
-     * @return true if occupied, false if not.
-     */
-    public boolean isOccupied(){
-        return occupied;
-    }
-
-    /**
-     * Set occupied.
-     * @param b the value to set occupied to,
-     */
-    private void setOccupied(boolean b){
-        occupied = b;
-    }
-
-    /**
-     * @return the position of the tile as a Position object
+     * @return the position of the Tile as a Position object
      */
     public Position getPosition() {
         return position;
