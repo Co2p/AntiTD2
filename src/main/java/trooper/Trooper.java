@@ -246,6 +246,8 @@ public class Trooper {
      * possible tiles to move to.
      * @param map_hashTable a table of tiles (a map)
      * @return a map of neighbouring roadtiles
+     *
+     * Edited by Simon Ekdahl id13sel@cs.umu.se
      */
     public Hashtable<Position, RoadTile> getPossibleMoves(Hashtable<Position,
             Tile> map_hashTable){
@@ -280,6 +282,8 @@ public class Trooper {
      * @param map_hashTable a map
      * @param preferred preferred direction for the army
      * @return the RoadTile that the trooper is on
+     *
+     * Edited by Simon Ekdahl id13sel@cs.umu.se
      */
     public RoadTile move(Hashtable<Position, Tile> map_hashTable,
                          Direction preferred) {
@@ -322,6 +326,8 @@ public class Trooper {
      * Finds the next RoadTile to move to and calls landOn for that RoadTile
      * @param map_hashTable a map
      * @param preferred preferred direction of the army
+     *
+     * Edited by Simon Ekdahl id13sel@cs.umu.se
      */
     public RoadTile forceMove(Hashtable<Position, Tile> map_hashTable,
                               Direction preferred){
@@ -422,6 +428,7 @@ public class Trooper {
      * Method to get the opposite direction from where a trooper moves.
      * @param direction current direction
      * @return opposite direction.
+     * Written by Simon Ekdahl id13sel@cs.umu.se
      */
     public Direction getOppociteDirection(Direction direction){
 

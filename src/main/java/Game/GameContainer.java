@@ -3,16 +3,12 @@ package Game;
 import java.awt.*;
 
 /**
- * Created by Simon on 2016-12-01.
+ * Created by Simon on 2016-12-01. id13sel@cs.umu.se
+ *
+ * GameContainer contains and defines the game pane
  */
 public class GameContainer {
 
-
-    /**
-     *
-     * Column and Row count should be dynamic. depending on the map size.
-     *
-     * */
     public static int columnCount = 12;   //define number of columns
     public static int rowCount = 8;       //define numer of rows
     public static int squareSize = 50;   //change this to be dynamic (square size)
@@ -30,9 +26,11 @@ public class GameContainer {
     public void define(){
 
         //Setup the squares (Game.Game pane) of the gui.
-        backgroundSquares = new Square[columnCount][rowCount]; //Setup the square array
+        // Setup the square array
+        backgroundSquares = new Square[columnCount][rowCount];
 
-        airSquares = new Square[columnCount][rowCount];    //Setup the square array
+        //Setup the square array
+        airSquares = new Square[columnCount][rowCount];
 
         for (int y = 0; y < backgroundSquares[0].length ; y++) {
             for (int x = 0; x < backgroundSquares.length ; x++) {
@@ -52,8 +50,9 @@ public class GameContainer {
     }
 
     /**
-     * Paints the ground layer and air layer on the graphics
-     * @param gr the graphics where the game will be drawn
+     * Paints the ground layer images and air layer images on the graphics
+     * element
+     * @param gr the graphics element where the images will be drawn
      */
     public void draw(Graphics gr){
 
@@ -66,6 +65,7 @@ public class GameContainer {
     }
 
     /**
+     *Method to set columncount.
      *
      * @param columnCount The number of columns in the map defined in the xml
      */
@@ -74,6 +74,7 @@ public class GameContainer {
     }
 
     /**
+     *Method to set rowCount
      *
      * @param rowCount The number of rows in the map defined in the xml
      */
@@ -82,6 +83,11 @@ public class GameContainer {
     }
 
 
+    /**
+     * Method to return the airSquare array containing tha airimages (Start,
+     * Goal and transparent images to place towers upon)
+     * @return airSquares
+     */
     public Square[][] getAirSquares() {
         return airSquares;
     }

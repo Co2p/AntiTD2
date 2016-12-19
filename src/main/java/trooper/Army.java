@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * A object that handles Trooper updates and spawns
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
+ *
  */
 public class Army {
 
@@ -166,7 +167,6 @@ public class Army {
      * @param g the UI canvas
      * @param square_air array of sprites
      * @param sq the background
-     *
      * Created by Andreas(dv15ahn) and Simon(id13sel)
      */
 
