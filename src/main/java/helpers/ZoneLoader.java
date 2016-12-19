@@ -1,7 +1,10 @@
 package helpers;
 
+import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLClassLoader;
 
@@ -61,7 +64,10 @@ public class ZoneLoader {
     private boolean isValidClass(String className) {
         try {
             boolean valid = false;
-            URL[] urls = {ClassLoader.getSystemClassLoader().getResource(className.concat(".class"))};
+            String path = ZoneLoader.class.getProtectionDomain()
+                    .getCodeSource().getLocation().toURI().getPath();
+            File f = new File(path);
+            URL[] urls = {f.getParentFile().toURI().toURL()};
             if (urls[0] == null) {
                 error = true;
                 errorMessages.setFileError("Could not find class file: "+
@@ -96,6 +102,10 @@ public class ZoneLoader {
             error = true;
             errorMessages.setNoClassDefFoundError("Could not find class: " +
                             className + " (Check spelling)");
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
         return false;
     }
@@ -108,7 +118,6 @@ public class ZoneLoader {
     private boolean implementsZone(Class<?> cls) {
         Class<?>[] interfaces = cls.getInterfaces();
         for (Class<?> anInterface : interfaces) {
-            System.out.println(anInterface.getName());
             if (anInterface.getName().compareTo("tile.Zone") == 0) {
                 return true;
             }

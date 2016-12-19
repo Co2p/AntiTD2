@@ -15,7 +15,7 @@ public class LevelBuilder {
     private ZoneLoader zoneLoader;
     private ErrorMessages errorMessages;
     private String fileName;
-    private static String FILELOCATION = "xml/levels.xml";
+    private static String FILELOCATION = "/xml/levels.xml";
     private volatile boolean go;
 
     public LevelBuilder (String fileName) {
@@ -26,7 +26,8 @@ public class LevelBuilder {
         setupParser(fileName);
         if(levelParser.isError()) {
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
-            errorWindow.setVisable();
+            errorWindow.setVisible(true);
+            pauseBuild();
         } else {
             go = true;
         }
@@ -48,7 +49,7 @@ public class LevelBuilder {
     }
 
     private void setupParser(String fileName) {
-        levelParser = new LevelParser("src/main/resources/xml/levelSchema.xml",errorMessages);
+        levelParser = new LevelParser("/xml/levelSchema.xml",errorMessages);
         levelParser.parseFile(fileName);
     }
 
@@ -71,7 +72,7 @@ public class LevelBuilder {
         if(zoneLoader.isError()) {
             go = false;
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
-            errorWindow.setVisable();
+            errorWindow.setVisible(true);
             pauseBuild();
             level = buildLevel(i);
         }

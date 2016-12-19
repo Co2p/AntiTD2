@@ -18,13 +18,16 @@ public class GameContainer {
     public static int rowCount = 8;       //define numer of rows
     public static int squareSize = 50;   //change this to be dynamic (square size)
 
-    private Square[][] backgroundSquares;    //Array containg the ground backgroundSquares
-    public static Square[][] airSquares;           //Array containing the indexBlank backgroundSquares.
+    private Square[][] backgroundSquares; //Array containg the ground backgroundSquares
+    public static Square[][] airSquares; //Array containing the indexBlank backgroundSquares.
 
     public GameContainer(){
-//        define();
     }
 
+    /**
+     * Defines the actual game map what image should be at what position by
+     * creating square arrays for the air layer and background layer.
+     */
     public void define(){
 
         //Setup the squares (Game.Game pane) of the gui.
@@ -48,10 +51,11 @@ public class GameContainer {
         }
 
     }
-    /*public void drawTower(Position p, Graphics gr){
-        airSquares[p.getX()][p.getY()].drawGraphics(, p.getX(), p.getY());
-    }*/
 
+    /**
+     * Paints the ground layer and air layer on the graphics
+     * @param gr the graphics where the game will be drawn
+     */
     public void draw(Graphics gr){
 
         for (int y = 0; y < backgroundSquares[0].length; y++) {
@@ -60,28 +64,24 @@ public class GameContainer {
                 airSquares[x][y].drawGraphics(gr, x, y);
             }
         }
-
     }
 
+    /**
+     *
+     * @param columnCount The number of columns in the map defined in the xml
+     */
     public static void setColumnCount(int columnCount) {
         GameContainer.columnCount = columnCount;
     }
 
+    /**
+     *
+     * @param rowCount The number of rows in the map defined in the xml
+     */
     public static void setRowCount(int rowCount) {
         GameContainer.rowCount = rowCount;
     }
 
-    //    public static void setColumnCount(int columnCount) {
-//        GameContainer.columnCount = columnCount;
-//    }
-//
-//    public static void setRowCount(int rowCount) {
-//        GameContainer.rowCount = rowCount;
-//    }
-
-    public void move(Army army){
-
-    }
 
     public Square[][] getAirSquares() {
         return airSquares;
