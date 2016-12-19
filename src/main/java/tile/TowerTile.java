@@ -1,10 +1,9 @@
 package tile;
 
 import helpers.Position;
-import tower.Tower;
 
 /**
- * A
+ * A tile for towers
  */
 public class TowerTile extends Tile {
     /**
