@@ -9,6 +9,8 @@ import helpers.Position;
 import java.util.Hashtable;
 
 /**
+ * A TeleportTrooper is a trooper that is weak, but can place a teleport on RoadTiles
+ * that transports Troopers 5 Tiles forward.
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
 public class TeleportTrooper extends Trooper{
@@ -28,9 +30,9 @@ public class TeleportTrooper extends Trooper{
     }
 
     /**
-     * places a portal on current Game.main.RoadTile which teleports troopers to a Game.main
+     * places a portal on current RoadTile which teleports troopers to a Game.main
      * five steps further ahead.
-     * @param preferred -
+     * @param preferred preferred direction to move in
      */
     public void placePortal(Direction preferred) {
         if (hasTeleport) {
@@ -38,28 +40,35 @@ public class TeleportTrooper extends Trooper{
             boolean portalPlaced = false;
             RoadTile portalPlacement = null;
             int portalsteps = 5;
+            RoadTile road;
             for (int i = 0; i < portalsteps; i++) {
                 if (i ==0 && !isReverse() && !portalPlaced){
                     portalPlacement = (RoadTile) map.get(getPosition());
                     portalPlaced = true;
-                }
-                RoadTile road = forceMove(map, preferred);
-                if (isReverse()) {
+                } else if (isReverse()) {
                     if(!portalPlaced) {
                         portalPlacement = (RoadTile) map.get(getPosition());
                         portalPlaced = true;
                     }
                     i--;
-                }else {
-                    pushToBackTrack(road.getPosition(),getOppociteDirection(getDirection()));
+                }
+                road = forceMove(map, preferred);
+                if (portalPlaced){
+                    path.push(road.getPosition());
+                    pathDirection.push(getOppociteDirection(getDirection()));
                 }
             }
             setSemiStep(0);
-            setGraphicPosition(GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
+            setGraphicPosition(
+                    GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
             portalPlacement.setPortal((RoadTile) map.get(getPosition()),map);
+            portalPlacement.setExitDirection(getDirection());
         }
     }
 
+    /**
+     * @return is false if the TeleportTrooper already has placed a teleport
+     */
     public boolean hasTeleport() {
         return hasTeleport;
     }

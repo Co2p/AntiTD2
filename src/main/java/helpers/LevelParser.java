@@ -50,12 +50,14 @@ public class LevelParser {
         String schemaLang = "http://www.w3.org/2001/XMLSchema";
         SchemaFactory schemaFactory = SchemaFactory.newInstance(schemaLang);
         try {
-            Schema schema = schemaFactory.newSchema(
-                                new StreamSource(schemaFile));
-            DocumentBuilderFactory dbfactory
-                    = DocumentBuilderFactory.newInstance();
+            Schema schema;
+            schema = schemaFactory.newSchema(new StreamSource(
+                    this.getClass().getResourceAsStream(schemaFile)));
+            DocumentBuilderFactory dbfactory =
+                    DocumentBuilderFactory.newInstance();
             dbfactory.setSchema(schema);
             parser = dbfactory.newDocumentBuilder();
+
         } catch (SAXException e) {
             e.printStackTrace();
         } catch (ParserConfigurationException e) {
@@ -103,22 +105,25 @@ public class LevelParser {
     public void parseFile(String fileName) {
         Document doc = null;
         try {
-
-            URL url = ClassLoader.getSystemClassLoader().getResource(fileName);
-            if(url != null) {
-                File f = new File(url.toURI());
-                if(f.exists() && !f.isDirectory()) {
-                    doc = parser.parse(url.openStream());
+            if (fileName.equals("/xml/levels.xml")) {
+                doc = parser.parse(this.getClass().getResourceAsStream(fileName));
+            } else{
+                String path = LevelParser.class.getProtectionDomain()
+                        .getCodeSource().getLocation().toURI().getPath();
+                if(path != null) {
+                    File f = new File(path);
+                    if(f.exists()) {
+                        doc = parser.parse(f.getParentFile().getPath()+"/"+fileName);
+                    } else {
+                        error = true;
+                        errorMessage.setFileError("Could not find file: "
+                                + fileName);
+                    }
                 } else {
                     error = true;
-                    errorMessage.setFileError("Could not find file: "
-                                                + fileName);
+                    errorMessage.setFileError("Could not find file: " + fileName);
                 }
-            } else {
-                error = true;
-                errorMessage.setFileError("Could not find file: " + fileName);
             }
-
         } catch (SAXException | IOException | IllegalArgumentException |
                     NullPointerException | URISyntaxException e) {
             error = true;

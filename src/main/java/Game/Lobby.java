@@ -74,8 +74,9 @@ public class Lobby {
         enterNamePanel.add(enterNameField);
         enterNamePanel.add(nameNextButton);
         mainFrame.add(enterNamePanel, BorderLayout.NORTH);
-        mainFrame.add(imgPanel, BorderLayout.SOUTH);
+        mainFrame.add(imgPanel, BorderLayout.CENTER);
         mainFrame.pack();
+
     }
 
     public void buildSelectLevelPanel() {
@@ -96,7 +97,9 @@ public class Lobby {
         }
 
         selectLevelPanel.add(instructionLabel);
-        mainFrame.add(selectLevelPanel);
+        mainFrame.add(selectLevelPanel,BorderLayout.NORTH);
+        mainFrame.pack();
+
     }
 
     public void setMainFrameGame(Game game) {
@@ -104,6 +107,7 @@ public class Lobby {
         imgPanel.setVisible(false);
         mainFrame.add(game, BorderLayout.CENTER);
         mainFrame.setVisible(true);
+
     }
 
     public void setCurrentGame(Game currentGame) {

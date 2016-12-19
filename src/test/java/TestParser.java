@@ -16,7 +16,7 @@ public class TestParser {
 
     @Before
     public void createParser() {
-        parser = new LevelParser("src/main/resources/xml/levelSchema.xml",new ErrorMessages());
+        parser = new LevelParser("/xml/levelSchema.xml",new ErrorMessages());
     }
 
     @Test

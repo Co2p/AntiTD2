@@ -15,6 +15,12 @@ public class ErrorWindow {
     private ErrorMessages message;
     private LevelBuilder builder;
 
+    /**
+     * Creates a error window
+     * @param message the error message class containing different
+     *                error messages
+     * @param builder the level builder
+     */
     public ErrorWindow(ErrorMessages message, LevelBuilder builder) {
         this.message = message;
         this.builder = builder;
@@ -22,6 +28,9 @@ public class ErrorWindow {
         window.pack();
     }
 
+    /**
+     * Will build the window, with a message explaining the options
+     */
     private void setUpGui(){
         window = new JFrame("Error");
         window.add(new JPanel().add(new JLabel("<html><div " +
@@ -35,9 +44,13 @@ public class ErrorWindow {
         bottom.add(messageButton(), BorderLayout.SOUTH);
         bottom.add(quit(),BorderLayout.SOUTH);
         window.add(bottom,BorderLayout.SOUTH);
-        window.setLocationRelativeTo(null);
+//        window.setLocationRelativeTo(null);
     }
 
+    /**
+     * Create a button for showing the error messages
+     * @return the message button
+     */
     private JButton messageButton() {
         JButton messageButton = new JButton("Error message");
         messageButton.addActionListener(new ActionListener() {
@@ -51,6 +64,10 @@ public class ErrorWindow {
         return messageButton;
     }
 
+    /**
+     * Create a button to load in the default maps
+     * @return the default map button
+     */
     private JButton defaultMap() {
         JButton defaultMap = new JButton("Default maps");
         defaultMap.addActionListener(new ActionListener() {
@@ -63,19 +80,29 @@ public class ErrorWindow {
         return defaultMap;
     }
 
+    /**
+     * Create a button to exit the program
+     * @return the quit button
+     */
     private JButton quit() {
         JButton quit = new JButton("QUIT");
         quit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.exit(1);
+                System.exit(0);
             }
         });
 
         return quit;
     }
 
-    public void setVisable() {
-        window.setVisible(true);
+    /**
+     * set the visibility for the window
+     *
+     * @param visible true if the window shall be set to visible
+     *                false if the window shall not be visible
+     */
+    public void setVisible(boolean visible) {
+        window.setVisible(visible);
     }
 }

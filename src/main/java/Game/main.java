@@ -8,6 +8,8 @@ import java.util.ArrayList;
  */
 public class main {
 
+    public static SQLiteJDBC slj = new SQLiteJDBC();
+
     public static void main(String[] args ){
 
         ArrayList<Level> levelArray = new ArrayList<Level>();

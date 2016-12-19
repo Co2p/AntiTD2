@@ -13,6 +13,7 @@ import java.util.*;
 import java.util.List;
 
 /**
+ * A object that handles Trooper updates and spawns
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
 public class Army {
@@ -29,6 +30,11 @@ public class Army {
     private ArrayList<Trooper> finished;
 
 
+    /**
+     * Creates a new Army Object
+     * @param map the map/level that the Army will inhabit
+     * @param startPosition the start of the goal
+     */
     public Army (Hashtable<Position, Tile> map, Position startPosition) {
         army = Collections.synchronizedList(new ArrayList<Trooper>());
         armyQueue = new LinkedList<>();
@@ -36,6 +42,11 @@ public class Army {
         this.startPosition = startPosition;
     }
 
+    /**
+     * Creates a new Trooper of type TrooperType and returns it
+     * @param type a TrooperType
+     * @return the new Trooper
+     */
     public Trooper createTrooper(TrooperType type) {
 
         Trooper t = new Trooper();
@@ -58,21 +69,33 @@ public class Army {
         return t;
     }
 
+    /**
+     * Adds a TrooperType to the queue of troopers that will spawn on updateArmy
+     * @param tt a TrooperType that will spawn
+     */
     public void addToArmyQueue(TrooperType tt) {
         armyQueue.add(tt);
     }
 
+    /**
+     * Gets the top TrooperType in the queue of troopers that will spawn.
+     * The TrooperType is used in a switch to spawn that type of Trooper
+     * @return TrooperType
+     */
     public TrooperType getFromQueue() {
         return armyQueue.poll();
     }
 
-
+    /**
+     * Called every game cycle, calls update on all Troopers in play, spawns new troopers and
+     * removes those who have reached the goal or died.
+     */
     public void updateArmy() {
         reachedGoal = 0;
         finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
 
-            //Set the troopers graphical position to match start in gcontainer
+            //Set the troopers graphical position to match start in GameContainer
             int x = GameContainer.airSquares[startPosition.getX()]
                     [startPosition.getY()].getSquarePosition().getX();
             int y = GameContainer.airSquares[startPosition.getX()]
@@ -92,7 +115,6 @@ public class Army {
                         road.landOn(trooper);
                     }
 
-
                     if (trooper.getReachedGoal()) {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
@@ -109,22 +131,16 @@ public class Army {
         }
     }
 
-    private void getArmyStartPos() {
-        for (int i = 0; i < map.size(); i++) {
-            Tile t = map.get(i);
-            if (t != null && t.getClass() == RoadTile.class) {
-                RoadTile rT = (RoadTile) t;
-                if (rT.isStart()) {
-                    startPosition =  rT.getPosition();
-                }
-            }
-        }
-    }
-
+    /**
+     * @return number of troopers in the army
+     */
     public int getArmySize() {
         return armySize;
     }
 
+    /**
+     * @return a List of all current Troopers
+     */
     public List<Trooper> getArmy() {
         return army;
     }
@@ -138,10 +154,19 @@ public class Army {
         this.preferred = preferred;
     }
 
+    /**
+     * @return number of troopers that have reached the goal
+     */
     public int getReachedGoal() {
         return reachedGoal;
     }
 
+    /**
+     * Draws the army of troopers onto the Graphics canvas
+     * @param g the UI canvas
+     * @param square_air array of sprites
+     * @param sq the background
+     */
     public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
         ArrayList<Trooper> armyReverse = new ArrayList<>();
 
@@ -151,7 +176,7 @@ public class Army {
         for (Trooper t: armyReverse) {
             if(!t.isDead()) {
 
-                //Translate trooper position from 1:0 to square positions.
+                //Translate trooper position from 1:0 to UI (square) positions.
                 int value;
 
                 int x = t.getGraphicPosition().getX();
@@ -216,18 +241,31 @@ public class Army {
         }
     }
 
+    /**
+     * @return a array of troopers that have reached the goal
+     */
     public ArrayList<Trooper> getFinished() {
         return finished;
     }
 
+    /**
+     * @return preferred direction for the army
+     */
     public Direction getPreferred() {
         return preferred;
     }
 
+    /**
+     * Draws a hp-bar above a trooper
+     * @param g the Graphics for the UI
+     * @param x bar position x relative to trooper
+     * @param y bar position y relative to trooper
+     * @param t the trooper
+     */
     public void drawHpBar(Graphics g, int x, int y, Trooper t){
 
         float yellowBarWidth = 0;
-        float greenBarWidth = 0;
+        float greenBarWidth;
 
         if(t.hasTurned()){
             greenBarWidth = (float)Translator.squareSize * ((float)
