@@ -115,7 +115,6 @@ public class Army {
                     if(trooper.getSemiStep()==0) {
                         road.landOn(trooper);
                     }
-
                     if (trooper.getReachedGoal()) {
                         if(trooper.hasTurned()) {
                             reachedGoal++;
