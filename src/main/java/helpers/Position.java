@@ -63,6 +63,8 @@ public class Position {
      * Converts Direction into Position
      * @param direction the direction of travel
      * @return the position
+     *
+     * Finalized by Gordon (id13gcr)
      */
     public Position getPosToDirection(Direction direction) {
         switch (direction) {
@@ -83,6 +85,8 @@ public class Position {
      * the direction youre facing.
      * @param direction
      * @return Position to the left.
+     *
+     * Finalized by Gordon (id13gcr)
      */
     public Position getPosToLeft(Direction direction) {
         switch (direction) {
@@ -103,6 +107,8 @@ public class Position {
      * the direction youre facing.
      * @param direction
      * @return Position to the right.
+     *
+     * Finalized by Gordon (id13gcr)
      */
     public Position getPosToRight(Direction direction) {
         switch (direction) {
@@ -125,7 +131,6 @@ public class Position {
     public Position getPosToSouth(){
         Position p = new Position(this.x,this.y);
         p.setY(this.y+1);
-       // p.setX(this.x+1);
         return p;
     }
 
@@ -135,7 +140,6 @@ public class Position {
      */
     public Position getPosToNorth(){
         Position p = new Position(this.x,this.y);
-        //p.setX(this.x-1);
         p.setY(this.y-1);
         return p;
     }
@@ -147,7 +151,6 @@ public class Position {
     public Position getPosToWest(){
         Position p = new Position(this.x,this.y);
         p.setX(this.x-1);
-        //p.setY(this.y-1);
         return p;
     }
 
@@ -158,7 +161,6 @@ public class Position {
     public Position getPosToEast(){
         Position p = new Position(this.x,this.y);
         p.setX(this.x+1);
-        //p.setY(this.y+1);
         return p;
     }
 
@@ -197,6 +199,8 @@ public class Position {
     /**
      * Method to se if an position is out of the map range (negative position).
      * @return true if the position is out of rage, false if not.
+     *
+     * Finalized by Gordon (id13gcr)
      */
     public boolean inRange() {
         return x >= 0 && y >= 0;
@@ -221,6 +225,8 @@ public class Position {
      * Method to generate a distance between two positions.
      * @param p the position to searh from
      * @return the dinstance between two posiitons.
+     *
+     * Finalized by Gordon (id13gcr)
      */
     public double distance(Position p) {
         int xVert = Math.abs(p.getX() - x);
