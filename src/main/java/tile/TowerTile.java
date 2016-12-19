@@ -1,7 +1,6 @@
 package tile;
 
 import helpers.Position;
-import tower.Tower;
 
 /**
  * A tile for towers
