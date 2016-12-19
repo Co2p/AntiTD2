@@ -4,6 +4,7 @@ package trooper;
  * A Trooper that has a amazing armor that deflects any attack,
  * a little bit anyway
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
+ * id13gcr Gordon Cooper
  */
 public class ArmoredTrooper extends Trooper {
 
