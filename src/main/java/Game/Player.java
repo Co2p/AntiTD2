@@ -1,9 +1,9 @@
 package Game;
-
-import java.util.ArrayList;
-
 import static Game.main.slj;
 
+/**
+ * 
+ */
 public class Player {
     private String name;
     private Results results;
@@ -13,7 +13,6 @@ public class Player {
      */
     public Player() {
         this.name = "Unknown";
-//        results = new ArrayList<>();
     }
 
     /**
@@ -22,7 +21,6 @@ public class Player {
      */
     public Player(String name){
         this.name = name;
-//        results = new ArrayList<>();
     }
 
     /**
@@ -50,17 +48,19 @@ public class Player {
 
     }
 
+    /**
+     *
+     * @return Players results
+     */
     public Results getResults() {
         return results;
     }
 
+    /**
+     * Send the rusults to the database
+     */
     public void sendResult() {
-//        for (int i = 0; i < results.size(); i++) {
-//            slj.postToDb(getName(), getResults().get(i).getLevelName(),
-//                    (int) getResults().get(i).getCreditsLeft(),
-//                    getResults().get(i).getStringTime());
-//        }
-        slj.postToDb(getName(),results.getLevelName(),(int)results.getCreditsLeft(),results.getStringTime());
-
+        slj.postToDb(getName(),results.getLevelName(),
+                (int)results.getCreditsLeft(),results.getStringTime());
     }
 }
