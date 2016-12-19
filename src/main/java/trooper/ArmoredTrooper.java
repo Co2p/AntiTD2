@@ -1,7 +1,8 @@
 package trooper;
 
 /**
- * A Trooper that has a amazing armor that deflects any attack, a little bit anyway
+ * A Trooper that has a amazing armor that deflects any attack,
+ * a little bit anyway
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
 public class ArmoredTrooper extends Trooper {
@@ -21,7 +22,8 @@ public class ArmoredTrooper extends Trooper {
     /**
      * Constructor for a ArmoredTrooper
      * @param hp amount of health the trooper has
-     * @param armor amount of armor the trooper has (calculated in %) ie 12 = 12% less damage
+     * @param armor amount of armor the trooper has
+     *              (calculated in %) ie 12 = 12% less damage
      */
     public ArmoredTrooper(int hp, int armor) {
         super(hp);

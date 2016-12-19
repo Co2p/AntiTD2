@@ -74,6 +74,8 @@ public class Tower implements Observer {
 
     /**
      * Adds neighbouring tiles to the neighbours array
+     *
+     * id13gcr Gordon Cooper
      */
     public void addNeighbours() {
         Position NPos = pos;

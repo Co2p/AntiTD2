@@ -10,7 +10,8 @@ import helpers.Direction;
 import static helpers.Direction.*;
 
 /**
- * Trooper defines the general attributes of a trooper in the game like move and health behaviour.
+ * Trooper defines the general attributes of a trooper in the game
+ * like move and health behaviour.
  * All other troopers extend Trooper.
  */
 public class Trooper {
