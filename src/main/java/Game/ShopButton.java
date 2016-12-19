@@ -5,6 +5,8 @@ import helpers.*;
 
 /**
  * Created by Simon on 2016-12-01.
+ *
+ * Defines a shopButton
  */
 public class ShopButton extends Rectangle{
 
@@ -17,13 +19,15 @@ public class ShopButton extends Rectangle{
         public int x, y;
         public static int height, width;
 
+
     /**
-     * Constructor for a Game.ShopButton
-     *
-     * takes the buttons position : X, Y
-     * the width of a button, and an id.
-     *
-     * */
+     * Constructor of a shopButton
+     * @param x Position x
+     * @param y Position y
+     * @param width width of the button
+     * @param height height of the button
+     * @param id    button id
+     */
         public ShopButton(int x, int y, int width, int height, int id){
             setBounds(x,y,width,height);
             this.id = id;
@@ -34,13 +38,14 @@ public class ShopButton extends Rectangle{
 
         }
 
-        /**
-         * Method to draw the button with image.
-         *
-         * draw rect draws a rectangle around the button image.
-         *
-         * */
-        public void draw(Graphics gr, int i){
+    /**
+     * Method to draw a button image, also draws a rectangle around the image
+     *
+     * @param gr The Graphics element to draw upon
+     * @param i index to get the right image from the button array:
+     *          button_images[]
+     */
+    public void draw(Graphics gr, int i){
 
                 //draw the bound of the button rectangle
                 gr.setColor(Color.black);
@@ -63,6 +68,15 @@ public class ShopButton extends Rectangle{
 
         }
 
+    /**
+     * Method to draw the stats elements in the shop.
+     * Stats elements use similar graphic layout as a bytton, but are not
+     * clickable
+     *
+     * @param gr Gragpics element
+     * @param i index to get the right image from the button array:
+     * @param value a value to be presented together with a statselement
+     */
         public void drawStats(Graphics gr, int i, int value){
 
             gr.drawImage(Game.button_images[i],x, y, null);
@@ -74,11 +88,11 @@ public class ShopButton extends Rectangle{
             gr.drawString(Integer.toString(value), buttonXPos, buttonYPos);
     }
 
-
     /**
      * Method to get if a button is selected
      *
-     * */
+     * @return isSelected boolean
+     */
     public boolean getIsSelected(){
         return  isSelected;
     }
@@ -86,7 +100,8 @@ public class ShopButton extends Rectangle{
     /**
      * Method to set if a button is selected
      *
-     * */
+     * @param b boolean
+     */
     public void setIsSelected(boolean b){
         isSelected = b;
     }

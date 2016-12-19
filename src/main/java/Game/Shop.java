@@ -11,6 +11,8 @@ import trooper.*;
 
 /**
  * Created by Simon on 2016-12-01.
+ *
+ * Class for the shop and it's containing elements
  */
 public class Shop {
 
@@ -48,7 +50,8 @@ public class Shop {
     }
 
     /**
-     * Method for defining the shop, placement of buttons and buttonsize.
+     * Method for defining the shop, the credits, units to win,
+     * placement of buttons, stats elements and buttonsize.
      * */
     public void define(){
 
@@ -75,11 +78,10 @@ public class Shop {
     }
 
     /**
-     * Takes a mousebutton upon method call
+     * Takes a mousebutton upon method call. Uses mousepoint in Game-class to
+     * find out which button index is being clicked
      * @param mouseButton the mousebutton index that was clicked
      */
-    
-    //Do something better than just mouse button (left click)
     public void click(int mouseButton){
 
         if(mouseButton ==1){
@@ -118,8 +120,6 @@ public class Shop {
                         }
                     }
                     if(i==4){
-
-
                         if(army != null && army.getPreferred() == null
                                 || army.getPreferred() == Direction.RIGHT) {
                             buttons[i].setIsSelected(true);
