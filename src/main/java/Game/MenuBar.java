@@ -144,12 +144,10 @@ public class MenuBar {
                 BufferedImage air = null;
                 BufferedImage buttons = null;
                 try {
-                    air = ImageIO.read(new File(
-                            ClassLoader.getSystemClassLoader().getResource("src/main/resources/img/air.png").toURI()));
-                    buttons = ImageIO.read(new File(
-                            ClassLoader.getSystemClassLoader().getResource("src/main/resources/img/buttons.png").toURI()));
+                    air = ImageIO.read(this.getClass().getResource("/img/air.png"));
+                    buttons = ImageIO.read(this.getClass().getResource("/img/buttons.png"));
 
-                } catch (IOException | URISyntaxException e1){
+                } catch (IOException e1){
                     e1.printStackTrace();
                 }
                 Image towerZoneGraphic = air.getSubimage(0, 50 * Translator.indexTowerZone, 50, 50);
