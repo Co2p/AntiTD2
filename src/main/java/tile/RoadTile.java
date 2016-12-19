@@ -52,6 +52,9 @@ public class RoadTile extends Tile implements Zone {
         initTroopersArray();
     }
 
+    /**
+     * creates a new array of troopers standing on the tile
+     */
     private void initTroopersArray() {
         troopers = new ArrayList<>();
     }
@@ -65,15 +68,10 @@ public class RoadTile extends Tile implements Zone {
         if (isGoal) {
             t.setReachedGoal();
         } else if(portalExit != null) {
-//            for (int i = 0; i < 5; i++) {
-//                t.forceMove(map,t.getDirection());
-//                t.pushToBackTrack(t.getPosition(),t.getOppociteDirection(t.getDirection()));
-//            }
             if (t.getDirection() != exitDirection) {
                 t.setDirection(exitDirection);
             }
             t.setPosition(portalExit.getPosition());
-//            t.setDirection(t.getDirection());
             portalExit.landOn(t);
         } else {
             setChanged();
@@ -127,6 +125,10 @@ public class RoadTile extends Tile implements Zone {
         return isGoal;
     }
 
+    /**
+     * Returns true if the main is a start.
+     * @return true if the main is a start.
+     */
     public boolean isStart(){ return isStart;}
 
     public void setExitDirection(Direction exitDirection) {
