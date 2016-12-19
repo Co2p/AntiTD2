@@ -12,6 +12,9 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
+ * Connects to the database or creates a new one if its the first time the user starts
+ * the game. There´s methods for inserting data into the database and selecting it.
+ *
  * Created by Daniel on 2016-12-17.
  */
 public class SQLiteJDBC {
@@ -20,8 +23,16 @@ public class SQLiteJDBC {
     private Statement stmt = null;
     private int i = 0;
 
+    /**
+     * Creates a new database locally. If a database already exists (the user has started the
+     * program atleast once) this constructor wont create a new one.
+     *
+     * The name of the database is highscore.db
+     *
+     * dv15anm@cs.umu.se Alexander Nyström id13dsm@cs.umu.se Daniel Sjöström
+     */
     public SQLiteJDBC() {
-        boolean excists = false;
+        boolean exists = false;
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:highscore.db");
@@ -31,11 +42,11 @@ public class SQLiteJDBC {
             while (resultSet.next()) {
                 String databaseName = resultSet.getString("TABLE_NAME");
                 if (databaseName.equals("HIGHSCORE")) {
-                    excists = true;
+                    exists = true;
                 }
             }
             resultSet.close();
-            if (!excists) {
+            if (!exists) {
                 stmt = c.createStatement();
                 String sql = "CREATE TABLE HIGHSCORE " +
                         "(ID INT PRIMARY KEY     NOT NULL," +
@@ -54,7 +65,15 @@ public class SQLiteJDBC {
         }
     }
 
-    //TODO create a unique ID for every post
+    /**
+     * Inserts the parameters into the database.
+     * @param name Name of the player
+     * @param level Name of the level
+     * @param credits Number of credits after the level has been completed
+     * @param time The time it took for the player to finish the level
+     *
+     * id13dsm@cs.umu.se Daniel sjöström
+     */
     public void postToDb(String name, String level, int credits, String time) {
         try {
             c = DriverManager.getConnection("jdbc:sqlite:highscore.db");
@@ -76,7 +95,6 @@ public class SQLiteJDBC {
                             "' );";
             stmt.executeUpdate(sql);
 
-//            getFromDb("Introlevel");
             stmt.close();
             c.commit();
             c.close();
@@ -85,7 +103,13 @@ public class SQLiteJDBC {
         }
     }
 
-    //Primarily used for test purpose
+    /**
+     * Gets all the highscores from a specific level.
+     * @param levelName The name of the level
+     * @return players List of all the players that has completed that level.
+     *
+     * dv15anm@cs.umu.se Alexander Nyström id13dsm@cs.umu.se Daniel Sjöström
+     */
     public ArrayList<Player> getFromDb(String levelName) {
         ArrayList<Player> players = new ArrayList<>();
         try {
@@ -114,7 +138,4 @@ public class SQLiteJDBC {
         }
         return players;
     }
-
-
-
 }
