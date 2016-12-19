@@ -1,4 +1,4 @@
-package main.java.helpers;
+package helpers;
 
 /**
  * Created by Simon on 2016-12-05.
@@ -17,6 +17,7 @@ public class Translator {
     public static int squareStart = 2;
     public static int squareGoal = 3;
     public static int squareTowerZone = 4;
+    public static int squareSize = 50;
 
 
     //Indexes for images in air array
