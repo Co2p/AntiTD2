@@ -77,6 +77,7 @@ public class Shop {
     /**
      * Takes a mousebutton upon method call
      * @param mouseButton the mousebutton index that was clicked
+     * Finalized by Andreas(dv15ahn)
      */
     public void click(int mouseButton){
 
@@ -160,13 +161,13 @@ public class Shop {
 
             if(buttons[i].getIsSelected()){
                 gr.setColor(Color.yellow);
-                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
-                        buttons[i].width);
+                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY()
+                        , buttons[i].height, buttons[i].width);
             }
             else if(buttons[i].contains(Game.mousePoint)){
                 gr.setColor(Color.red);
-                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
-                        buttons[i].width);
+                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY()
+                        , buttons[i].height, buttons[i].width);
             }
                 buttons[i].draw(gr, i);
         }

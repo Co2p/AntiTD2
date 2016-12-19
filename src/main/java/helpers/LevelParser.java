@@ -18,7 +18,6 @@ import javax.xml.xpath.XPathFactory;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 
 /**
@@ -67,27 +66,33 @@ public class LevelParser {
         }
         parser.setErrorHandler(new ErrorHandler() {
             @Override
-            public void warning(SAXParseException exception) throws SAXException {
+            public void warning(SAXParseException exception)
+                    throws SAXException {
                 error = true;
-                errorMessage.setSaxParsWarning("At line: " + exception.getLineNumber() +
+                errorMessage.setSaxParsWarning("At line: " +
+                        exception.getLineNumber() +
                         "column: " + exception.getColumnNumber() +
                         "Following error was found " +
                         exception.getMessage());
             }
 
             @Override
-            public void error(SAXParseException exception) throws SAXException {
+            public void error(SAXParseException exception)
+                    throws SAXException {
                 error = true;
-                errorMessage.setSaxParsError("At line: " + exception.getLineNumber() +
+                errorMessage.setSaxParsError("At line: " +
+                        exception.getLineNumber() +
                         " column: " + exception.getColumnNumber() +
                         " Following error was found " +
                         exception.getMessage());
             }
 
             @Override
-            public void fatalError(SAXParseException exception) throws SAXException {
+            public void fatalError(SAXParseException exception)
+                    throws SAXException {
                 error = true;
-                errorMessage.setSaxParsFatalError("At line: " + exception.getLineNumber() +
+                errorMessage.setSaxParsFatalError("At line: " +
+                        exception.getLineNumber() +
                         "column: " + exception.getColumnNumber() +
                         "Following error was found " +
                         exception.getMessage());
@@ -106,14 +111,17 @@ public class LevelParser {
         Document doc = null;
         try {
             if (fileName.equals("/xml/levels.xml")) {
-                doc = parser.parse(this.getClass().getResourceAsStream(fileName));
+                //Fixed by Daniel (id13dsm)
+                doc = parser.parse(this.getClass().
+                        getResourceAsStream(fileName));
             } else{
                 String path = LevelParser.class.getProtectionDomain()
                         .getCodeSource().getLocation().toURI().getPath();
                 if(path != null) {
                     File f = new File(path);
                     if(f.exists()) {
-                        doc = parser.parse(f.getParentFile().getPath()+"/"+fileName);
+                        doc = parser.parse(f.getParentFile().getPath()+"/"
+                                +fileName);
                     } else {
                         error = true;
                         errorMessage.setFileError("Could not find file: "
@@ -121,7 +129,8 @@ public class LevelParser {
                     }
                 } else {
                     error = true;
-                    errorMessage.setFileError("Could not find file: " + fileName);
+                    errorMessage.setFileError("Could not find file: " +
+                            fileName);
                 }
             }
         } catch (SAXException | IOException | IllegalArgumentException |
@@ -269,10 +278,18 @@ public class LevelParser {
         return levelCount;
     }
 
+    /**
+     *
+     * @return List with all the column for each parsed level
+     */
     public ArrayList<Integer> getColumns() {
         return columns;
     }
 
+    /**
+     *
+     * @return List with all the rows for each parsed level
+     */
     public ArrayList<Integer> getRows() {
         return rows;
     }
