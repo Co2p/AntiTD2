@@ -85,9 +85,10 @@ public class Defense {
     }
 
     /**
-     *
+     * Draws a laserbeam from a tower to a target.
      * @param g
      * @param sq
+     * Created by Andreas (dv15ahn)
      */
     public void draw(Graphics g, Square[][] sq){
         for (Tower t : towers) {

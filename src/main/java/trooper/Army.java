@@ -264,7 +264,7 @@ public class Army {
      * @param x bar position x relative to trooper
      * @param y bar position y relative to trooper
      * @param t the trooper
-     * created by Andreas(dv15ahn) and Simon(id13sel)
+     * created by Andreas(dv15ahn), daniel(dv13dsm) and Simon(id13sel)
      */
     public void drawHpBar(Graphics g, int x, int y, Trooper t){
 
