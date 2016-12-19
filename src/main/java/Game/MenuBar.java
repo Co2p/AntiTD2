@@ -21,17 +21,31 @@ public class MenuBar {
     private Lobby frame;
     private Thread t;
 
+    /**
+     *
+     * @param frame The main window
+     */
     public MenuBar(Lobby frame){
         menu = new JMenuBar();
         this.frame = frame;
         addMenus(createGameMenu(),createInfoMenu());
     }
+
+    /**
+     * Add menus to the menu
+     *
+     * @param gameMenu Menu containing new level, restart, pause and quit
+     * @param infoMenu Menu containing about and help
+     */
     private void addMenus(JMenu gameMenu, JMenu infoMenu){
         menu.add(gameMenu);
         menu.add(infoMenu);
-
     }
 
+    /**
+     *
+     * @return
+     */
     private JMenu createGameMenu(){
         //Game menu
         JMenu gameMenu = new JMenu("Game");
@@ -42,7 +56,13 @@ public class MenuBar {
         return gameMenu;
     }
 
-    //TODO
+    /**
+     *
+     * @return button to start a new level, by returning to the level select
+     *          screen.
+     *
+     * Finalized by Alexander (dv15anm)
+     */
     private JMenuItem createNewGameItem(){
         JMenuItem newGame = new JMenuItem("New Game");
         newGame.addActionListener(new ActionListener() {
@@ -60,7 +80,12 @@ public class MenuBar {
         return newGame;
     }
 
-    //TODO
+    /**
+     *
+     * @return Button to restart the current level
+     *
+     * Finalized by Simon (id13sel)
+     */
     private JMenuItem createRestartItem(){
         JMenuItem restart = new JMenuItem("Restart level");
         restart.addActionListener(new ActionListener() {
@@ -73,7 +98,10 @@ public class MenuBar {
         return restart;
     }
 
-    //TODO
+    /**
+     *
+     * @return Button to pause the current game and resume the current game
+     */
     private JMenuItem createPauseItem(){
         JMenuItem pause = new JMenuItem("Pause");
         pause.addActionListener(new ActionListener() {
@@ -91,13 +119,16 @@ public class MenuBar {
                     if(frame.getCurrentGame() != null) {
                         frame.getCurrentGame().setPause(false);
                     }
-
                 }
             }
         });
         return pause;
     }
 
+    /**
+     *
+     * @return Button to quit the game
+     */
     private JMenuItem createQuitItem(){
         JMenuItem quit = new JMenuItem("Quit");
         quit.addActionListener(new ActionListener() {
@@ -109,6 +140,10 @@ public class MenuBar {
         return quit;
     }
 
+    /**
+     *
+     * @return Menu with About and Help
+     */
     private JMenu createInfoMenu(){
         JMenu info = new JMenu("info");
         info.add(createAboutItem());
@@ -116,6 +151,10 @@ public class MenuBar {
         return info;
     }
 
+    /**
+     *
+     * @return Button to view some info about the game
+     */
     private JMenuItem createAboutItem(){
         JMenuItem about = new JMenuItem("About");
         about.addActionListener(new ActionListener() {
@@ -134,6 +173,10 @@ public class MenuBar {
         return about;
     }
 
+    /**
+     *
+     * @return Button displaying help information
+     */
     private JMenuItem createHelpItem(){
         JMenuItem help = new JMenuItem("Help");
 
@@ -144,54 +187,82 @@ public class MenuBar {
                 BufferedImage air = null;
                 BufferedImage buttons = null;
                 try {
-                    air = ImageIO.read(this.getClass().getResource("/img/air.png"));
-                    buttons = ImageIO.read(this.getClass().getResource("/img/buttons.png"));
+                    air = ImageIO.read(this.getClass().getResource(
+                            "/img/air.png"));
+                    buttons = ImageIO.read(this.getClass().getResource(
+                            "/img/buttons.png"));
 
                 } catch (IOException e1){
                     e1.printStackTrace();
                 }
-                Image towerZoneGraphic = air.getSubimage(0, 50 * Translator.indexTowerZone, 50, 50);
-                Image startGraphic = air.getSubimage(0, 50 * Translator.indexStart, 50, 50);
-                Image goalGraphic = air.getSubimage(0, 50 * Translator.indexGoal, 50, 50);
-                Image towerGraphic = air.getSubimage(0, 50 * Translator.indexTower, 50, 50);
-                Image armoredTrooperGraphic = air.getSubimage(0, 50 * Translator.indexArmoredTrooper, 50, 50);
-                Image pitifulTrooperGraphic = air.getSubimage(0, 50 * Translator.indexTrooper, 50, 50);
-                Image teleportTrooperGraphic = air.getSubimage(0, 50 * Translator.indexTeleporter, 50, 50);
-                Image zombieTrooperGraphic = air.getSubimage(0, 50 * Translator.indexZombie, 50, 50);
-                Image teleportZoneGraphic = air.getSubimage(0, 50 * Translator.indexTeleportZone, 50, 50);
+                Image towerZoneGraphic = air.getSubimage(0, 50 *
+                        Translator.indexTowerZone, 50, 50);
+                Image startGraphic = air.getSubimage(0, 50 *
+                        Translator.indexStart, 50, 50);
+                Image goalGraphic = air.getSubimage(0, 50 *
+                        Translator.indexGoal, 50, 50);
+                Image towerGraphic = air.getSubimage(0, 50 *
+                        Translator.indexTower, 50, 50);
+                Image armoredTrooperGraphic = air.getSubimage(0, 50 *
+                        Translator.indexArmoredTrooper, 50, 50);
+                Image pitifulTrooperGraphic = air.getSubimage(0, 50 *
+                        Translator.indexTrooper, 50, 50);
+                Image teleportTrooperGraphic = air.getSubimage(0, 50 *
+                        Translator.indexTeleporter, 50, 50);
+                Image zombieTrooperGraphic = air.getSubimage(0, 50 *
+                        Translator.indexZombie, 50, 50);
+                Image teleportZoneGraphic = air.getSubimage(0, 50 *
+                        Translator.indexTeleportZone, 50, 50);
 
                 Image rightArrow = buttons.getSubimage(0, 50 * 5, 50, 50);
 
-                JLabel intro = new JLabel("<html>To complete a level you need to spawn troopers using the " +
-                        "buttons below the map. To get points a Trooper must be a <b color=\"green\">zombie</b> " +
+                JLabel intro = new JLabel("<html>To complete a level you" +
+                        " need to spawn troopers using the " +
+                        "buttons below the map. To get points a Trooper must" +
+                        " be a <b color=\"green\">zombie</b> " +
                         "when it enters the goal.</html>");
-                JLabel towerZoneText = new JLabel("Towers will be placed on this tile by the computer.");
-                JLabel startTileText = new JLabel("Troopers spawn on this tile.");
+                JLabel towerZoneText = new JLabel("Towers will be placed" +
+                        " on this tile by the computer.");
+                JLabel startTileText = new JLabel("Troopers spawn on this" +
+                        " tile.");
                 JLabel goalTileText = new JLabel("This is the goal.");
-                JLabel pitifulTroopText = new JLabel("This is the Pitiful Trooper, " +
+                JLabel pitifulTroopText = new JLabel("This is the Pitiful" +
+                        " Trooper, " +
                         "it costs 20 gold and has no abilities.");
-                JLabel armoredTroopText = new JLabel("The Armored Trooper has armor which " +
+                JLabel armoredTroopText = new JLabel("The Armored Trooper" +
+                        " has armor which " +
                         "protects it from enemy fire. Costs 40 gold");
-                JLabel teleportTroopText = new JLabel("The Teleport Trooper places a teleport when the " +
+                JLabel teleportTroopText = new JLabel("The Teleport " +
+                        "Trooper places a teleport when the " +
                         "teleport-button is pressed.");
-                JLabel zombieTrooperText = new JLabel("After being killed the troopers become zombies with " +
+                JLabel zombieTrooperText = new JLabel("After being killed" +
+                        " the troopers become zombies with " +
                         "reduced stats until they are killed again.");
-                JLabel towerText = new JLabel( "Towers are placed by the computer and shoot Troopers");
-                JLabel teleportText = new JLabel("This button places the teleport lets all troops that land on " +
+                JLabel towerText = new JLabel( "Towers are placed by the" +
+                        " computer and shoot Troopers");
+                JLabel teleportText = new JLabel("This button places the" +
+                        " teleport lets all troops that land on " +
                         "it move 5 steps forward.");
 
-                JLabel leftRight = new JLabel("These buttons let you decide which direction the troopers want to take (Left or Right from their perspective)\n");
+                JLabel leftRight = new JLabel("These buttons let you" +
+                        " decide which direction the troopers want to take" +
+                        " (Left or Right from their perspective)\n");
 
                 JPanel helpPanel = new JPanel(new BorderLayout());
-                JPanel helpTextPanel = new JPanel(new GridLayout(10,1));
+                JPanel helpTextPanel = new JPanel(new GridLayout(10,
+                        1));
 
                 helpTextPanel.add(iconList(towerZoneGraphic, towerZoneText));
                 helpTextPanel.add(iconList(startGraphic, startTileText));
                 helpTextPanel.add(iconList(goalGraphic, goalTileText));
-                helpTextPanel.add(iconList(pitifulTrooperGraphic, pitifulTroopText));
-                helpTextPanel.add(iconList(armoredTrooperGraphic, armoredTroopText));
-                helpTextPanel.add(iconList(teleportTrooperGraphic, teleportTroopText));
-                helpTextPanel.add(iconList(zombieTrooperGraphic, zombieTrooperText));
+                helpTextPanel.add(iconList(pitifulTrooperGraphic,
+                        pitifulTroopText));
+                helpTextPanel.add(iconList(armoredTrooperGraphic,
+                        armoredTroopText));
+                helpTextPanel.add(iconList(teleportTrooperGraphic,
+                        teleportTroopText));
+                helpTextPanel.add(iconList(zombieTrooperGraphic,
+                        zombieTrooperText));
                 helpTextPanel.add(iconList(towerGraphic, towerText));
                 helpTextPanel.add(iconList(teleportZoneGraphic, teleportText));
                 helpTextPanel.add(iconList(rightArrow, leftRight));
@@ -200,7 +271,8 @@ public class MenuBar {
                 helpPanel.add(BorderLayout.NORTH, intro);
                 helpPanel.add(BorderLayout.CENTER, helpTextPanel);
 
-                JOptionPane.showMessageDialog(frame, helpPanel, "Help", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(frame, helpPanel,
+                        "Help", JOptionPane.PLAIN_MESSAGE);
             }
 
             private JPanel iconList(Image i, JLabel l) {
@@ -213,6 +285,10 @@ public class MenuBar {
         return help;
     }
 
+    /**
+     *
+     * @return The finalized menu bar
+     */
     public JMenuBar getMenuBar(){
         return menu;
     }
