@@ -10,7 +10,7 @@ import trooper.*;
 
 
 /**
- * Created by Simon on 2016-12-01.
+ * Created by Simon on 2016-12-01. id13sel@cs.umu.se
  *
  * Class for the shop and it's containing elements
  */

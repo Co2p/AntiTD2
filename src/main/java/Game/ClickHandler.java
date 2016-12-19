@@ -5,7 +5,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Created by Simon on 2016-12-01.
+ * Created by Simon on 2016-12-01. id13sel@cs.umu.se
  *
  * The mouseAdapter interface lets class use only some of the methods
  * in the mouseclick event handler. Some methods like " Mouse released " might

@@ -4,7 +4,7 @@ import trooper.Army;
 import java.awt.*;
 
 /**
- * Created by Simon on 2016-12-01.
+ * Created by Simon on 2016-12-01. id13sel@cs.umu.se
  *
  * GameContainer contains and defines the game pane
  */

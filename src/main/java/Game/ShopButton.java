@@ -4,7 +4,7 @@ import java.awt.*;
 import helpers.*;
 
 /**
- * Created by Simon on 2016-12-01.
+ * Created by Simon on 2016-12-01. id13sel@cs.umu.se
  *
  * Defines a shopButton
  */

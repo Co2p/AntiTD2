@@ -15,6 +15,7 @@ import java.util.List;
 /**
  * A object that handles Trooper updates and spawns
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
+ *
  */
 public class Army {
 
@@ -166,6 +167,8 @@ public class Army {
      * @param g the UI canvas
      * @param square_air array of sprites
      * @param sq the background
+     *
+     * Edited by Simon Ekdahl id13sel@cs.umu.se
      */
     public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
         ArrayList<Trooper> armyReverse = new ArrayList<>();
@@ -261,6 +264,8 @@ public class Army {
      * @param x bar position x relative to trooper
      * @param y bar position y relative to trooper
      * @param t the trooper
+     *
+     *Created by Simon Ekdahl id13sel@cs.umu.se
      */
     public void drawHpBar(Graphics g, int x, int y, Trooper t){
 

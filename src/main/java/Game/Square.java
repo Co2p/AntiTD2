@@ -7,7 +7,7 @@ import helpers.Position;
 
 
 /**
- * Created by Simon on 2016-11-30.
+ * Created by Simon on 2016-11-30. id13sel@cs.umu.se
  *
  * this class defines how a square on the gameboard looks for the player.
  */
