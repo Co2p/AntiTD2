@@ -18,18 +18,21 @@ public class Tower implements Observer {
     protected int damage;
     protected int range;
     protected Position pos;
-    protected ArrayList<Position> neighbours = new ArrayList<>(); // a array of ALL tiles within the range of the tower
+    // a array of ALL tiles within the range of the tower
+    protected ArrayList<Position> neighbours = new ArrayList<>();
     protected ArrayList<Trooper> targets;
-    public int observedTiles=0; // number of tiles with observers attached by the tower
+    // number of tiles with observers attached by the tower
+    public int observedTiles=0;
 
     /**
      * Super tower constructor, called by the sub-tower classes
      * @param damage tower damage
      * @param range tower range
      */
-    public Tower(int damage, int range, Hashtable<Position, Tile> map_hashTable, Position pos){
+    public Tower(int damage, int range, Hashtable<Position, Tile> map_hashTable,
+                 Position pos){
         this.damage=damage;
-        this.range=range;    //Ska vi ens ha range?
+        this.range=range;
         targets = new ArrayList<>();
         setPos(pos);
         addNeighbours();
@@ -114,7 +117,8 @@ public class Tower implements Observer {
     }
 
     /**
-     * Gets the total of the tiles in the tower range (including non RoadTiles), used in tests
+     * Gets the total of the tiles in the tower range (including non RoadTiles),
+     * used in tests
      * @return number of tiles innrange
      */
     public int getNrofNeighbours() {
