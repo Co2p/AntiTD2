@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 /**
+ * Initiates a LevelBuilder which will build levels from an XML-file, the main class
+ * will also start the process of creating the frame and panels for the game.
+ *
  * Created by Daniel on 2016-11-24.
  */
 public class main {

@@ -8,9 +8,10 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 /**
- * Created by Daniel on 2016-12-05.
+ * Creates the user lobby which consists of a panel where the user gets to choose their name
+ * and select which level that the user wants to play.
  *
- * comment
+ * Created by Daniel on 2016-12-05.
  */
 public class Lobby {
 
@@ -24,12 +25,23 @@ public class Lobby {
     private Game currentGame;
     private EndScreen escreen;
 
+    /**
+     * Creates the end screen and sets up the GUI.
+     * @param levelArray An array of levels
+     *
+     * id13dsm@cs.umu.se Daniel Sjöström
+     */
     public Lobby(ArrayList<Level> levelArray) {
         escreen = new EndScreen(this);
         this.levelArray = levelArray;
         setUpGUI();
     }
 
+    /**
+     * Creates the frame and adds mouse listeners to that frame.
+     *
+     * id13dsm@cs.umu.se Daniel Sjöström
+     */
     private void setUpGUI() {
         mainFrame = new JFrame("Move Shoot Kill Repeat");
         addJMenuBar(mainFrame);
@@ -40,20 +52,35 @@ public class Lobby {
         mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
+    /**
+     * Displays the GUI
+     *
+     * id13dsm@cs.umu.se Daniel Sjöström
+     */
     public void showGUI() {
         mainFrame.setVisible(true);
     }
 
+    /**
+     * Adds a menu bar to the frame
+     * @param frame The main frame
+     *
+     * dv15anm@cs.umu.se Alexander Nyström
+     */
     private void addJMenuBar(JFrame frame){
         MenuBar menu = new MenuBar(this);
         frame.setJMenuBar(menu.getMenuBar());
     }
 
+    /**
+     * Builds the intro panel where the user is prompted to enter their nickname.
+     * Creates a new player and adds actionlisteners to the interactive elements in the panel.
+     *
+     * id13dsm@cs.umu.se Daniel Sjöström
+     */
     private void buildNamePanel() {
         enterNamePanel = new JPanel();
 
-        //imagePanel = new ImagePanel(new ImageIcon("/mskr_home.jpg").getImage());
-        //imagePanel = new ImagePanel(new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/mskr_home.jpg")).getImage());
         imgPanel = new JPanel();
         ImageIcon icon = new ImageIcon(ClassLoader.getSystemClassLoader().getResource("img/mskr_home.jpg"));
         Image image = icon.getImage(); // transform it
@@ -62,8 +89,6 @@ public class Lobby {
         JLabel thumb = new JLabel();
         thumb.setIcon(icon);
         imgPanel.add(thumb);
-
-        // enterNamePanel.add(imagePanel);
 
         player = new Player();
         JTextField enterNameField = new JTextField("Enter name", 15);
@@ -79,6 +104,12 @@ public class Lobby {
 
     }
 
+    /**
+     * Build the panel where the user is prompted to choose a level. It'll create X
+     * number of level buttons depending on how many levels that exists in the XML-file.
+     *
+     * id13dsm@cs.umu.se Daniel Sjöström
+     */
     public void buildSelectLevelPanel() {
         enterNamePanel.setVisible(false);
         selectLevelPanel = new JPanel();
@@ -99,9 +130,14 @@ public class Lobby {
         selectLevelPanel.add(instructionLabel);
         mainFrame.add(selectLevelPanel,BorderLayout.NORTH);
         mainFrame.pack();
-
     }
 
+    /**
+     * Adds the game panel to the main frame.
+     * @param game A game object.
+     *
+     * dv15anm@cs.umu.se Alexander Nyström
+     */
     public void setMainFrameGame(Game game) {
         selectLevelPanel.setVisible(false);
         imgPanel.setVisible(false);

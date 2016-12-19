@@ -104,6 +104,8 @@ public class Game extends JPanel implements Runnable {
      * graphics and prepares the game for start.
      *
      * @param level a new level to load the game with
+     *
+     * Finalized by Alexander (dv15anm)
      */
     public void define(Level level){
         running = true;
@@ -224,6 +226,8 @@ public class Game extends JPanel implements Runnable {
      * Checks if criteria for winning is met
      * @param unitsReachedGoal number of units who have reaced the goal
      * @return true if the criteria for winning is fulfilled else false
+     *
+     * Finalized by Alexander (dv15anm)
      */
     private boolean isWin(int unitsReachedGoal) {
         return (unitsReachedGoal == level.getUnitsToWin());
@@ -232,6 +236,8 @@ public class Game extends JPanel implements Runnable {
     /**
      * Check if the criteria for loosing is met
      * @return return true if the criteria is met else false
+     *
+     * Finalized by Alexander (dv15anm)
      */
     private boolean isDefeat() {
         if (isFirst) {
