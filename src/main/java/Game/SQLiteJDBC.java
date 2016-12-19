@@ -72,7 +72,7 @@ public class SQLiteJDBC {
      * @param credits Number of credits after the level has been completed
      * @param time The time it took for the player to finish the level
      *
-     * id13dsm@cs.umu.se Daniel sjöström
+     * id13dsm@cs.umu.se Daniel Sjöström
      */
     public void postToDb(String name, String level, int credits, String time) {
         try {
