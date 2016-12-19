@@ -94,7 +94,6 @@ public class Game extends JPanel implements Runnable {
         GameContainer.setRowCount(level.getRows());
         gameContainer.define();
         shop = new Shop(army);
-
         x = startPosition.getX();
         y = startPosition.getY();
     }
@@ -136,6 +135,8 @@ public class Game extends JPanel implements Runnable {
     /**
      * Paints all graphics components of the game
      * @param gr where the graphics will be painted
+     *
+     * Updated by Andreas (dv15ahn)
      */
     public void paintComponent(Graphics gr){
         if(isFirst) {
@@ -155,6 +156,8 @@ public class Game extends JPanel implements Runnable {
     /**
      * The loop running the game, where the game loops unlit stopped or the
      * player wins or looses
+     *
+     * Updated by Andreas (dv15ahn)
      */
     @Override
     public void run() {
@@ -212,7 +215,6 @@ public class Game extends JPanel implements Runnable {
             player.setResults(results);
             //Open the victory screen
             endScreen.createWinScrean(player,results,this);
-            //TODO do this a better way
             player.sendResult();
         } else if (isDefeat()) {
             //Open the loosing screen
