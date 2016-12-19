@@ -87,15 +87,15 @@ public class Army {
     }
 
     /**
-     * Called every game cycle, calls update on all Troopers in play, spawns new troopers and
-     * removes those who have reached the goal or died.
+     * Called every game cycle, calls update on all Troopers in play,
+     * spawns new troopers and removes those who have reached the goal or died.
      */
     public void updateArmy() {
         reachedGoal = 0;
         finished = new ArrayList<>();
         if(!armyQueue.isEmpty()) {
 
-            //Set the troopers graphical position to match start in GameContainer
+            //Set troopers graphical position to match start in GameContainer
             int x = GameContainer.airSquares[startPosition.getX()]
                     [startPosition.getY()].getSquarePosition().getX();
             int y = GameContainer.airSquares[startPosition.getX()]

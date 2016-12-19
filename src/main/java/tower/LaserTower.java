@@ -2,7 +2,6 @@ package tower;
 
 import helpers.Position;
 import tile.Tile;
-import tile.TowerTile;
 import trooper.Trooper;
 
 import java.util.Hashtable;
@@ -25,8 +24,8 @@ public class LaserTower extends Tower {
     }
 
     /**
-     * Prioritizes shooting the focused trooper, otherwise gets the trooper that
-     * entered the target list last. Hopefully at the back of the line.
+     * Prioritizes shooting the focused trooper, otherwise gets the trooper
+     * that entered the target list last. Hopefully at the back of the line.
      */
     @Override
     public void fire() {
@@ -57,6 +56,9 @@ public class LaserTower extends Tower {
         return focusTarget;
     }
 
+    /**
+     * @return true if the tower has a active target
+     */
     public boolean hasFocusTarget(){
         if(focusTarget != null){
             return true;
@@ -64,10 +66,16 @@ public class LaserTower extends Tower {
         return false;
     }
 
+    /**
+     * @return gets the tower position in the UI
+     */
     public Position getGraphicPosition(){
         return graphicPosition;
     }
 
+    /**
+     * @param position sets the position of the tower for the UI
+     */
     public void setGraphicPosition(Position position){
         graphicPosition = position;
     }

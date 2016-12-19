@@ -9,7 +9,8 @@ import helpers.Position;
 import java.util.Hashtable;
 
 /**
- * A TeleportTrooper is a trooper that is weak, but can place a teleport on RoadTiles
+ * A TeleportTrooper is a trooper that is weak,
+ * but can place a teleport on RoadTiles
  * that transports Troopers 5 Tiles forward.
  * Created by Alexander Nyström(dv15anm) on 01/12/2016.
  */
@@ -30,7 +31,7 @@ public class TeleportTrooper extends Trooper{
     }
 
     /**
-     * places a portal on current RoadTile which teleports troopers to a Game.main
+     * places a portal on current RoadTile which teleports troopers to a main
      * five steps further ahead.
      * @param preferred preferred direction to move in
      */
@@ -60,7 +61,8 @@ public class TeleportTrooper extends Trooper{
             }
             setSemiStep(0);
             setGraphicPosition(
-                    GameContainer.airSquares[getPosition().getX()][getPosition().getY()].getSquarePosition());
+                    GameContainer.airSquares[getPosition().getX()]
+                            [getPosition().getY()].getSquarePosition());
             portalPlacement.setPortal((RoadTile) map.get(getPosition()),map);
             portalPlacement.setExitDirection(getDirection());
         }

@@ -2,13 +2,10 @@ package tower;
 
 import Game.Square;
 import helpers.Position;
-import helpers.Translator;
-import sun.misc.PostVMInitHook;
 import tile.RoadTile;
 import tile.Tile;
 import tile.TowerTile;
 
-import javax.swing.text.StyledEditorKit;
 import java.awt.*;
 import java.util.*;
 
@@ -29,7 +26,8 @@ public class Defense {
     /**
      * Constructor for the defence object
      * @param map the active map
-     * @param spawnRate the rate that Towers will spawn at in percent (spawnRate=5 is 5% spawn chance)
+     * @param spawnRate the rate that Towers will
+     *                  spawn at in percent (spawnRate=5 is 5% spawn chance)
      */
     public Defense(Hashtable<Position, Tile> map, int spawnRate) {
         for(Tile tile: map.values()) {
@@ -89,6 +87,11 @@ public class Defense {
         return towers.size();
     }
 
+    /**
+     *
+     * @param g
+     * @param sq
+     */
     public void draw(Graphics g, Square[][] sq){
         for (Tower t : towers) {
             if(t.getClass().equals(LaserTower.class)){
