@@ -97,9 +97,12 @@ public class ErrorWindow {
     }
 
     /**
-     * set the window visable
+     * set the visibility for the window
+     * 
+     * @param visible true if the window shall be set to visible
+     *                false if the window shall not be visible
      */
-    public void setVisable() {
-        window.setVisible(true);
+    public void setVisible(boolean visible) {
+        window.setVisible(visible);
     }
 }

@@ -26,7 +26,7 @@ public class LevelBuilder {
         setupParser(fileName);
         if(levelParser.isError()) {
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
-            errorWindow.setVisable();
+            errorWindow.setVisible(true);
             pauseBuild();
         } else {
             go = true;
@@ -72,7 +72,7 @@ public class LevelBuilder {
         if(zoneLoader.isError()) {
             go = false;
             ErrorWindow errorWindow = new ErrorWindow(errorMessages,this);
-            errorWindow.setVisable();
+            errorWindow.setVisible(true);
             pauseBuild();
             level = buildLevel(i);
         }
