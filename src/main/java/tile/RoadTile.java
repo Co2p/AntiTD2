@@ -60,8 +60,10 @@ public class RoadTile extends Tile implements Zone {
     }
 
     /**
-     * Called when a mainper.Trooper lands on the main.RoadTile
-     * @param t the mainper.Trooper
+     * Called when a Trooper lands on the main.RoadTile
+     * @param t the Trooper
+     *
+     * Finalized by Gordon (id13gcr) && Alexander (dv15anm) && Andreas (dv15ahn)
      */
     @Override
     public void landOn(Trooper t) {
@@ -131,10 +133,26 @@ public class RoadTile extends Tile implements Zone {
      */
     public boolean isStart(){ return isStart;}
 
+    /**
+     *
+     * @param exitDirection The direction to move after a trooper have stepped
+     *                      through a portal
+     *
+     * Finalized by Alexander (dv15anm)
+     */
     public void setExitDirection(Direction exitDirection) {
         this.exitDirection = exitDirection;
     }
 
+    /**
+     * Set landOn modifier that has been loaded through reflection
+     * @param zone The instantiated class containing the landOn method
+     * @param landOn The method in the zone object to be called on landOn
+     *
+     * @see helpers.ZoneLoader
+     *
+     * Finalized by Alexander (dv15anm)
+     */
     public void setLandOnModifier(Object zone, Method landOn) {
         landOnModifier = zone;
         landOnMethod = landOn;
