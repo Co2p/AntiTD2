@@ -44,7 +44,6 @@ public class ErrorWindow {
         bottom.add(messageButton(), BorderLayout.SOUTH);
         bottom.add(quit(),BorderLayout.SOUTH);
         window.add(bottom,BorderLayout.SOUTH);
-//        window.setLocationRelativeTo(null);
     }
 
     /**
