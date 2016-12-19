@@ -10,6 +10,8 @@ import helpers.Direction;
 import static helpers.Direction.*;
 
 /**
+ * Created by Andreas(dv15ahn) on 2016-11-25
+ *
  * Trooper defines the general attributes of a trooper in the game
  * like move and health behaviour.
  * All other troopers extend Trooper.
@@ -111,7 +113,8 @@ public class Trooper {
      * @param d a Direction (North, East, South, West)
      */
     public void setDirection(Direction d){
-        if (d == Direction.NORTH || d == Direction.SOUTH || d == Direction.WEST || d == Direction.EAST) {
+        if (d == Direction.NORTH || d == Direction.SOUTH ||
+                d == Direction.WEST || d == Direction.EAST) {
             this.direction = d;
         }
     }
@@ -456,19 +459,23 @@ public class Trooper {
             nextPosition = position.getPosToDirection(direction);
         }else if (
                 possibleMovesTable.containsKey(position.getPosToNorth()) &&
-                        getOppociteDirection(direction)!= NORTH) { nextPosition = position.getPosToNorth();
+                        getOppociteDirection(direction)!= NORTH) { nextPosition
+                = position.getPosToNorth();
             direction = NORTH;
         }else if (
                 possibleMovesTable.containsKey(position.getPosToEast()) &&
-                        getOppociteDirection(direction)!= EAST) { nextPosition = position.getPosToEast();
+                        getOppociteDirection(direction)!= EAST) { nextPosition
+                = position.getPosToEast();
             direction = EAST;
         } else if (
                 possibleMovesTable.containsKey(position.getPosToSouth()) &&
-                        getOppociteDirection(direction)!= SOUTH) { nextPosition = position.getPosToSouth();
+                        getOppociteDirection(direction)!= SOUTH) { nextPosition
+                = position.getPosToSouth();
             direction = SOUTH;
         } else if (
                 possibleMovesTable.containsKey(position.getPosToWest()) &&
-                        getOppociteDirection(direction)!= WEST) { nextPosition = position.getPosToWest();
+                        getOppociteDirection(direction)!= WEST) { nextPosition
+                = position.getPosToWest();
             direction = WEST;
         }
 
