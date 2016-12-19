@@ -31,6 +31,8 @@ public class Translator {
     public static int indexZombie = 7;
     public static int indexTower = 8;
     public static int indexTeleporter = 9;
+    public static int indexTeleportZone = 9;
+    public static int indexTeleporterZoneOut = 10;
 
     public static int pitifullPrice = 20;
     public static int armoredTrooperPrice = 40;
