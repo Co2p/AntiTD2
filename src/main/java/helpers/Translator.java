@@ -14,6 +14,8 @@ public class Translator {
 
     public static int squareGrass = 0;
     public static int squareRoad = 1;
+    public static int squareRoad2 = 2;
+    public static int squareRoad3 = 3;
     public static int squareStart = 2;
     public static int squareGoal = 3;
     public static int squareTowerZone = 4;
@@ -27,10 +29,9 @@ public class Translator {
     public static int indexGoal = 3; //3
     public static int indexTrooper = 4;
     public static int indexArmoredTrooper = 5;
-    public static int indexTeleportTrooper = 6;
+    public static int indexTeleporter = 6;
     public static int indexZombie = 7;
     public static int indexTower = 8;
-    public static int indexTeleporter = 9;
     public static int indexTeleportZone = 9;
     public static int indexTeleporterZoneOut = 10;
 
