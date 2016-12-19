@@ -2,7 +2,11 @@ package Game;
 import static Game.main.slj;
 
 /**
- * 
+ * Created by Andreas on 2016-12-01
+ *
+ * Playes is a class that stores an name and a result object.
+ * It has methods to set and get results and name and also send results to an
+ * sql database.
  */
 public class Player {
     private String name;
@@ -57,7 +61,7 @@ public class Player {
     }
 
     /**
-     * Send the rusults to the database
+     * Send the results to the database
      */
     public void sendResult() {
         slj.postToDb(getName(),results.getLevelName(),

@@ -1,5 +1,10 @@
 package helpers;
 
+/**
+ * Created by Andreas on 2016-12-01
+ *
+ * A class that represent a position in a grid. with x and y coordinates.
+ */
 public class Position {
     private int y;
     private int x;
@@ -23,7 +28,7 @@ public class Position {
     }
 
     /**
-     * Get the x from a mainers.Position.
+     * Get the x from a Position.
      * @return x
      */
     public int getX(){
@@ -31,7 +36,7 @@ public class Position {
     }
 
     /**
-     * Get the y from a mainers.Position.
+     * Get the y from a Position.
      * @return y
      */
     public int getY(){
@@ -39,7 +44,7 @@ public class Position {
     }
 
     /**
-     * Set/change x of a mainers.Position.
+     * Set/change x of a Position.
      * @param i the integer you want to set as x coordinate.
      */
     public void setX(int i){
@@ -47,7 +52,7 @@ public class Position {
     }
 
     /**
-     * Set/change y of a mainers.Position.
+     * Set/change y of a Position.
      * @param j the integer you want to set as y coordinate.
      */
     public void setY(int j){
@@ -55,7 +60,7 @@ public class Position {
     }
 
     /**
-     * Converts mainers.Direction into mainers.Position
+     * Converts Direction into Position
      * @param direction the direction of travel
      * @return the position
      */
@@ -77,7 +82,7 @@ public class Position {
      * Method to get the position to left according to
      * the direction youre facing.
      * @param direction
-     * @return mainers.Position to the left.
+     * @return Position to the left.
      */
     public Position getPosToLeft(Direction direction) {
         switch (direction) {
@@ -97,7 +102,7 @@ public class Position {
      * Method to get the position to right according to
      * the direction youre facing.
      * @param direction
-     * @return mainers.Position to the right.
+     * @return Position to the right.
      */
     public Position getPosToRight(Direction direction) {
         switch (direction) {
@@ -114,7 +119,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to south of the current mainers.Position.
+     * Get the Position to south of the current Position.
      * @return p
      */
     public Position getPosToSouth(){
@@ -125,7 +130,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to north of the current mainers.Position
+     * Get the Position to north of the current Position
      * @return p
      */
     public Position getPosToNorth(){
@@ -136,7 +141,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to west of the current mainers.Position.
+     * Get the Position to west of the current Position.
      * @return p
      */
     public Position getPosToWest(){
@@ -147,7 +152,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to east of the current mainers.Position.
+     * Get the Position to east of the current Position.
      * @return p
      */
     public Position getPosToEast(){
@@ -158,7 +163,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to north east of the current mainers.Position.
+     * Get the Position to north east of the current Position.
      * @return p
      */
     public Position getPosToNorthEast() {
@@ -166,7 +171,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to north west of the current mainers.Position.
+     * Get the Position to north west of the current Position.
      * @return p
      */
     public Position getPosToNorthWest() {
@@ -174,7 +179,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to south east of the current mainers.Position.
+     * Get the Position to south east of the current Position.
      * @return p
      */
     public Position getPosToSouthEast() {
@@ -182,7 +187,7 @@ public class Position {
     }
 
     /**
-     * Get the mainers.Position to south west of the current mainers.Position.
+     * Get the Position to south west of the current Position.
      * @return p
      */
     public Position getPosToSouthWest() {
@@ -225,7 +230,7 @@ public class Position {
     }
 
     /**
-     * Creates hashcode for a mainers.Position.
+     * Creates hashcode for a Position.
      * @return hashCode
      */
     @Override
