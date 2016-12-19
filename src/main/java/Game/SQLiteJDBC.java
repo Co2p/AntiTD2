@@ -1,19 +1,12 @@
 package Game;
 
-//import sun.rmi.rmic.iiop.ClassPathLoader;
-//import sun.tools.java.ClassPath;
-//
-//import java.io.File;
-//import java.net.MalformedURLException;
-//import java.net.URL;
-//import java.net.URLClassLoader;
 import java.sql.*;
-import java.time.LocalTime;
 import java.util.ArrayList;
 
 /**
- * Connects to the database or creates a new one if its the first time the user starts
- * the game. There´s methods for inserting data into the database and selecting it.
+ * Connects to the database or creates a new one if its the first time the user
+ * starts the game. There´s methods for inserting data into the database and
+ * selecting it.
  *
  * Created by Daniel on 2016-12-17.
  */
@@ -24,8 +17,9 @@ public class SQLiteJDBC {
     private int i = 0;
 
     /**
-     * Creates a new database locally. If a database already exists (the user has started the
-     * program atleast once) this constructor wont create a new one.
+     * Creates a new database locally. If a database already exists
+     * (the user has started the program atleast once) this constructor
+     * wont create a new one.
      *
      * The name of the database is highscore.db
      *
@@ -40,7 +34,8 @@ public class SQLiteJDBC {
                     null, null,
                     new String[] {"TABLE"});
             while (resultSet.next()) {
-                String databaseName = resultSet.getString("TABLE_NAME");
+                String databaseName = resultSet.getString(
+                        "TABLE_NAME");
                 if (databaseName.equals("HIGHSCORE")) {
                     exists = true;
                 }
@@ -86,7 +81,8 @@ public class SQLiteJDBC {
                 i = id;
             }
             i++;
-            String sql =    "INSERT INTO HIGHSCORE (ID,NAME,LEVEL,CREDITS,TIME) " +
+            String sql =    "INSERT INTO HIGHSCORE " +
+                    "(ID,NAME,LEVEL,CREDITS,TIME) " +
                             "VALUES (" + i +
                             ", '" + name +
                             "', '" + level +

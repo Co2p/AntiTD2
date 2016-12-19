@@ -8,7 +8,11 @@ import java.util.ArrayList;
 import static Game.main.slj;
 
 /**
- * Created by andreas on 2016-12-15.
+ * Created by Andreas on 2016-12-15.
+ *
+ * This class is a JFrame that comes up when a player has played the game.
+ * Depending if the player did succeed the map or not a Winscreen or a
+ * Losescreen pops up.
  */
 public class EndScreen {
 
@@ -67,8 +71,10 @@ public class EndScreen {
         highScore.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                ArrayList<Player> highScores = slj.getFromDb(lobby.getCurrentLevel().getLevelName());
-                HighScoreWindow highScoreWindow = new HighScoreWindow(highScores);
+                ArrayList<Player> highScores =
+                        slj.getFromDb(lobby.getCurrentLevel().getLevelName());
+                HighScoreWindow highScoreWindow =
+                        new HighScoreWindow(highScores);
             }
         });
         return highScore;

@@ -11,6 +11,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 /**
+ * Created by Andreas(dv15ahn) on 2016-12-02
  * Superclass for any tower class
  */
 public class Tower implements Observer {

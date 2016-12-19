@@ -81,6 +81,7 @@ public class Shop {
      * Takes a mousebutton upon method call. Uses mousepoint in Game-class to
      * find out which button index is being clicked
      * @param mouseButton the mousebutton index that was clicked
+     * Finalized by Andreas(dv15ahn)
      */
     public void click(int mouseButton){
 
@@ -110,11 +111,13 @@ public class Shop {
                             if(t.getClass().equals(TeleportTrooper.class)){
                                 TeleportTrooper tp = (TeleportTrooper)t;
                                 if(tp.hasTeleport()) {
-                                    Game.air[t.getPosition().getX()][t.getPosition()
-                                            .getY()] = Translator.indexTeleportZone;
+                                    Game.air[t.getPosition().getX()]
+                                            [t.getPosition().getY()] =
+                                            Translator.indexTeleportZone;
                                     tp.placePortal(tp.getDirection());
-                                    Game.air[t.getPosition().getX()][t.getPosition()
-                                            .getY()] = Translator.indexTeleporterZoneOut;
+                                    Game.air[t.getPosition().getX()]
+                                            [t.getPosition().getY()] =
+                                            Translator.indexTeleporterZoneOut;
                                 }
                             }
                         }
@@ -157,19 +160,18 @@ public class Shop {
      */
     public void draw(Graphics gr) {
 
-
         //Draw the buttons
         for (int i = 0; i < buttons.length; i++) {
 
             if(buttons[i].getIsSelected()){
                 gr.setColor(Color.yellow);
-                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
-                        buttons[i].width);
+                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY()
+                        , buttons[i].height, buttons[i].width);
             }
             else if(buttons[i].contains(Game.mousePoint)){
                 gr.setColor(Color.red);
-                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY() , buttons[i].height,
-                        buttons[i].width);
+                gr.fillRect((int)buttons[i].getX() , (int)buttons[i].getY()
+                        , buttons[i].height, buttons[i].width);
             }
                 buttons[i].draw(gr, i);
         }
@@ -204,19 +206,25 @@ public class Shop {
     public void refund(Trooper t) {
         if(t.hasTurned()) {
             if(ArmoredTrooper.class.isInstance(t)) {
-                noOfCredits = (long) (noOfCredits + (1.25 * Translator.armoredTrooperPrice));
+                noOfCredits = (long) (noOfCredits + (1.25 *
+                        Translator.armoredTrooperPrice));
             } else if(PitifulTrooper.class.isInstance(t)) {
-                noOfCredits = (long) (noOfCredits + (1.25 * Translator.pitifullPrice));
+                noOfCredits = (long) (noOfCredits + (1.25 *
+                        Translator.pitifullPrice));
             } else if(TeleportTrooper.class.isInstance(t)) {
-                noOfCredits = (long) (noOfCredits + (1.25 * Translator.teleporterPrice));
+                noOfCredits = (long) (noOfCredits + (1.25 *
+                        Translator.teleporterPrice));
             }
         } else {
             if(ArmoredTrooper.class.isInstance(t)) {
-                noOfCredits = (long) (noOfCredits + (0.75*Translator.armoredTrooperPrice));
+                noOfCredits = (long) (noOfCredits + (0.75 *
+                        Translator.armoredTrooperPrice));
             } else if(PitifulTrooper.class.isInstance(t)) {
-                noOfCredits = (long) (noOfCredits + (0.75*Translator.pitifullPrice));
+                noOfCredits = (long) (noOfCredits + (0.75 *
+                        Translator.pitifullPrice));
             } else if(TeleportTrooper.class.isInstance(t)) {
-                noOfCredits = (long) (noOfCredits + (0.75*Translator.teleporterPrice));
+                noOfCredits = (long) (noOfCredits + (0.75 *
+                        Translator.teleporterPrice));
             }
         }
     }
@@ -232,12 +240,18 @@ public class Shop {
     /**
      * Returns playing time
      * @return time, the time
+     *
+     * Finalized by Alexander (dv15anm)
      */
     public int getTime() {
         return time;
     }
 
-
+    /**
+     * Used to count the seconds played
+     *
+     * Finalized by Alexander (dv15anm)
+     */
     class Clock extends TimerTask
     {
         int counter;
@@ -255,6 +269,11 @@ public class Shop {
         }
     }
 
+    /**
+     * Start the timer
+     *
+     * Finalized by Alexander (dv15anm)
+     */
     public void startTime() {
         if (!isRunning) {
             timer = new Timer();
@@ -264,6 +283,11 @@ public class Shop {
         }
     }
 
+    /**
+     * Stop the timer
+     *
+     * Finalized by Alexander (dv15anm)
+     */
     public void stopTime() {
         if (isRunning) {
             timer.cancel();

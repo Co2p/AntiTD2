@@ -167,9 +167,9 @@ public class Army {
      * @param g the UI canvas
      * @param square_air array of sprites
      * @param sq the background
-     *
-     * Edited by Simon Ekdahl id13sel@cs.umu.se
+     * Created by Andreas(dv15ahn) and Simon(id13sel)
      */
+
     public void draw(Graphics g, Image[] square_air,  Square[][] sq) {
         ArrayList<Trooper> armyReverse = new ArrayList<>();
 
@@ -264,8 +264,7 @@ public class Army {
      * @param x bar position x relative to trooper
      * @param y bar position y relative to trooper
      * @param t the trooper
-     *
-     *Created by Simon Ekdahl id13sel@cs.umu.se
+     * created by Andreas(dv15ahn) and Simon(id13sel)
      */
     public void drawHpBar(Graphics g, int x, int y, Trooper t){
 
@@ -280,7 +279,6 @@ public class Army {
                     t.getHealth() / (float)t.getMaxhealth());
             greenBarWidth = Translator.squareSize;
         }
-
         g.setColor(Color.red);
         g.fillRect(x,y-3,Translator.squareSize,5);
         g.setColor(Color.green);

@@ -176,6 +176,8 @@ public class MenuBar {
     /**
      *
      * @return Button displaying help information
+     *
+     * id13gcr Gordon Cooper
      */
     private JMenuItem createHelpItem(){
         JMenuItem help = new JMenuItem("Help");
